@@ -1,0 +1,11 @@
+<div class="app-wrapper">
+  <app-topbar (mobileMenuButtonClicked)="onToggleMobileMenu()" />
+  <app-sidebar />
+  <div class="page-content">
+    <!-- Start Container -->
+    <div class="container-fluid">
+      <router-outlet (activate)="onActivate($event)" />
+    </div>
+    <app-footer />
+  </div>
+</div>

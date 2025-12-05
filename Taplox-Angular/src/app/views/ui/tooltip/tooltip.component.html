@@ -1,0 +1,155 @@
+<app-breadcrumb title="Base UI" subTitle="Tooltips" />
+<!-- start tooltips-->
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Tooltip Direction</h5>
+        <p class="card-subtitle">
+          Four options are available: top, right, bottom, and left aligned.
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="d-flex flex-wrap gap-3">
+          <button
+            type="button"
+            class="btn btn-primary"
+            placement="top"
+            ngbTooltip="Tooltip on top"
+          >
+            Tooltip on top
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            placement="right"
+            ngbTooltip="Tooltip on right"
+          >
+            Tooltip on right
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            placement="bottom"
+            ngbTooltip="Tooltip on bottom"
+          >
+            Tooltip on bottom
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            placement="left"
+            ngbTooltip="Tooltip on left"
+          >
+            Tooltip on left
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Color Tooltip</h5>
+        <p class="card-subtitle">
+          We set a custom class with ex.
+          <code>data-bs-custom-class="primary-tooltip"</code> to scope our
+          background-color primary appearance and use it to override a local CSS
+          variable.
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="d-flex flex-wrap gap-3">
+          <button
+            type="button"
+            class="btn btn-primary"
+            placement="top"
+            tooltipClass="primary-tooltip"
+            ngbTooltip="This top tooltip is themed via CSS variables."
+          >
+            Primary tooltip
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            placement="top"
+            tooltipClass="danger-tooltip"
+            ngbTooltip="This top tooltip is themed via CSS variables."
+          >
+            Danger tooltip
+          </button>
+          <button
+            type="button"
+            class="btn btn-info"
+            placement="top"
+            tooltipClass="info-tooltip"
+            ngbTooltip="This top tooltip is themed via CSS variables."
+          >
+            Info tooltip
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            placement="top"
+            tooltipClass="success-tooltip"
+            ngbTooltip="This top tooltip is themed via CSS variables."
+          >
+            Success tooltip
+          </button>
+        </div>
+      </div>
+      <!-- end card body -->
+    </div>
+    <!-- end card -->
+  </div>
+  <!-- end col -->
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Tooltips on links</h5>
+        <p class="card-subtitle">Hover over the links below to see tooltips:</p>
+      </div>
+      <div class="card-body">
+        <p class="muted">
+          Placeholder text to demonstrate some
+          <a
+            href="javascript:void(0);"
+            class="link-danger"
+            data-bs-toggle="tooltip"
+            ngbTooltip="Default tooltip"
+            >inline links</a
+          >
+          with tooltips. This is now just filler, no killer. Content placed here
+          just to mimic the presence of
+          <a
+            href="javascript:void(0);"
+            class="link-danger"
+            data-bs-toggle="tooltip"
+            ngbTooltip="Another tooltip"
+            >real text</a
+          >. And all that just to give you an idea of how tooltips would look
+          when used in real-world situations. So hopefully you've now seen how
+          <a
+            href="javascript:void(0);"
+            class="link-danger"
+            data-bs-toggle="tooltip"
+            ngbTooltip="Another one here too"
+            >these tooltips on links</a
+          >
+          can work in practice, once you use them on
+          <a
+            href="javascript:void(0);"
+            class="link-danger"
+            ngbTooltip="The last tip!"
+            >your own</a
+          >
+          site or project.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end row -->
+<!-- start tooltips-->

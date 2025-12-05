@@ -1,0 +1,278 @@
+<app-breadcrumb title="Base UI" subTitle="Alerts" />
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Basic Example</h5>
+        <p class="card-subtitle">
+          Provide contextual feedback messages for typical user actions with the
+          handful of available and flexible alert messages. Alerts are available
+          for any length of text, as well as an optional dismiss button.
+        </p>
+      </div>
+      <div class="card-body">
+        <ngb-alert [dismissible]="false" type="primary" role="alert">
+          A simple primary alert—check it out!
+        </ngb-alert>
+        <ngb-alert [dismissible]="false" type="secondary" role="alert">
+          A simple secondary alert—check it out!
+        </ngb-alert>
+        <ngb-alert [dismissible]="false" type="success" role="alert">
+          A simple success alert—check it out!
+        </ngb-alert>
+        <ngb-alert [dismissible]="false" type="danger" role="alert">
+          A simple danger alert—check it out!
+        </ngb-alert>
+        <ngb-alert [dismissible]="false" type="warning" role="alert">
+          A simple warning alert—check it out!
+        </ngb-alert>
+        <ngb-alert [dismissible]="false" type="info" role="alert">
+          A simple info alert—check it out!
+        </ngb-alert>
+        <ngb-alert [dismissible]="false" type="light" role="alert">
+          A simple light alert—check it out!
+        </ngb-alert>
+        <ngb-alert [dismissible]="false" type="dark" class="mb-0" role="alert">
+          A simple dark alert—check it out!
+        </ngb-alert>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Dismissible Alerts Example</h5>
+        <p class="card-subtitle">
+          Add a dismiss button and the <code>.alert-dismissible</code> class,
+          which adds extra padding to the right of the alert and positions the
+          <code>.btn-close</code> button.
+        </p>
+      </div>
+      <div class="card-body">
+        @for (item of alertData; track $index) {
+          <ngb-alert
+            [dismissible]="false"
+            [type]="item.type"
+            class="fade d-flex"
+            role="alert"
+          >
+            {{ item.message }}
+            <button
+              type="button"
+              class="btn-close ms-auto"
+              (click)="close($index)"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </ngb-alert>
+        }
+      </div>
+    </div>
+  </div>
+  <!-- end col -->
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Alert Link Example</h5>
+        <p class="card-subtitle">
+          Use the <code>.alert-link</code> utility class to quickly provide
+          matching colored links within any alert.
+        </p>
+      </div>
+      <div class="card-body">
+        <ngb-alert [dismissible]="false" type="primary" role="alert">
+          A simple primary alert with
+          <a href="javascript:void(0);" class="alert-link">an example link</a>.
+          Give it a click if you like.
+        </ngb-alert>
+        <ngb-alert [dismissible]="false" type="secondary" role="alert">
+          A simple secondary alert with
+          <a href="javascript:void(0);" class="alert-link">an example link</a>.
+          Give it a click if you like.
+        </ngb-alert>
+        <ngb-alert [dismissible]="false" type="success" role="alert">
+          A simple success alert with
+          <a href="javascript:void(0);" class="alert-link">an example link</a>.
+          Give it a click if you like.
+        </ngb-alert>
+        <ngb-alert
+          [dismissible]="false"
+          type="danger"
+          class="mb-0"
+          role="alert"
+        >
+          A simple danger alert with
+          <a href="javascript:void(0);" class="alert-link">an example link</a>.
+          Give it a click if you like.
+        </ngb-alert>
+      </div>
+    </div>
+  </div>
+  <!-- end col -->
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Icons Alert Example</h5>
+        <p class="card-subtitle">
+          You can also include additional elements like icons, heading, etc
+          along side the actual message.
+        </p>
+      </div>
+      <div class="card-body">
+        <ngb-alert
+          [dismissible]="false"
+          type="primary"
+          class="alert-icon"
+          role="alert"
+        >
+          <div class="d-flex align-items-center">
+            <div
+              class="avatar-sm rounded bg-primary d-flex justify-content-center align-items-center fs-18 me-2 flex-shrink-0"
+            >
+              <i class="bx bx-info-circle text-white"></i>
+            </div>
+            <div class="flex-grow-1">A simple primary alert—check it out!</div>
+          </div>
+        </ngb-alert>
+        <ngb-alert
+          [dismissible]="false"
+          type="secondary"
+          class="alert-icon"
+          role="alert"
+        >
+          <div class="d-flex align-items-center">
+            <div
+              class="avatar-sm rounded bg-secondary d-flex justify-content-center align-items-center fs-18 me-2 flex-shrink-0"
+            >
+              <i class="bx bx-x-circle text-white"></i>
+            </div>
+            <div class="flex-grow-1">
+              A simple secondary alert—check it out!
+            </div>
+          </div>
+        </ngb-alert>
+        <ngb-alert
+          [dismissible]="false"
+          type="success"
+          class="alert-icon"
+          role="alert"
+        >
+          <div class="d-flex align-items-center">
+            <div
+              class="avatar-sm rounded bg-success d-flex justify-content-center align-items-center fs-18 me-2 flex-shrink-0"
+            >
+              <i class="bx bx-check-shield text-white"></i>
+            </div>
+            <div class="flex-grow-1">A simple success alert—check it out!</div>
+          </div>
+        </ngb-alert>
+        <ngb-alert
+          [dismissible]="false"
+          type="danger"
+          class="alert-icon mb-0"
+          role="alert"
+        >
+          <div class="d-flex align-items-center">
+            <div
+              class="avatar-sm rounded bg-danger d-flex justify-content-center align-items-center fs-18 me-2 flex-shrink-0"
+            >
+              <i class="bx bx-info-circle text-white"></i>
+            </div>
+            <div class="flex-grow-1">A simple danger alert—check it out!</div>
+          </div>
+        </ngb-alert>
+      </div>
+    </div>
+  </div>
+  <!-- end col -->
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Additional Content Alert Example</h5>
+        <p class="card-subtitle">
+          Alerts can also contain additional HTML elements like headings,
+          paragraphs and dividers.
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-6">
+            <ngb-alert
+              [dismissible]="false"
+              type="primary"
+              class="mb-3 p-3 mb-xl-0"
+              role="alert"
+            >
+              <h4 class="alert-heading">Well done!</h4>
+              <p class="mb-0">
+                Aww yeah, you successfully read this important alert message.
+                This example text is going to run a bit longer so that you can
+                see how spacing within an alert works with this kind of content.
+              </p>
+              <hr />
+              <p class="mb-0">
+                Whenever you need to, be sure to use margin utilities to keep
+                things nice and tidy.
+              </p>
+            </ngb-alert>
+          </div>
+          <div class="col-xl-6">
+            <ngb-alert
+              [dismissible]="false"
+              type="secondary"
+              class="p-3 mb-0"
+              role="alert"
+            >
+              <h4 class="alert-heading">Well done!</h4>
+              <p class="mb-0">
+                Aww yeah, you successfully read this important alert message.
+                This example text is going to run a bit longer so that you can
+                see how spacing within an alert works with this kind of content.
+              </p>
+              <hr />
+              <p class="mb-0">
+                Whenever you need to, be sure to use margin utilities to keep
+                things nice and tidy.
+              </p>
+            </ngb-alert>
+          </div>
+        </div>
+      </div>
+      <!-- end card body -->
+    </div>
+    <!-- end card -->
+  </div>
+  <!-- end col -->
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Live example</h5>
+        <p class="card-subtitle">
+          Click the button below to show an alert (hidden with inline styles to
+          start), then dismiss (and destroy) it with the built-in close button.
+        </p>
+      </div>
+      <div class="card-body">
+        <div id="liveAlertPlaceholder"></div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="showLive()"
+          id="liveAlertBtn"
+        >
+          Show live alert
+        </button>
+      </div>
+      <!-- end card body -->
+    </div>
+    <!-- end card -->
+  </div>
+  <!-- end col -->
+</div>
+<!-- end row -->
