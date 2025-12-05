@@ -4,12 +4,19 @@ import { ValidationComponent } from './validation/validation.component'
 import { FlatpickrComponent } from './flatpickr/flatpickr.component'
 import { UploadComponent } from './upload/upload.component'
 import { EditorComponent } from './editor/editor.component'
+import { EmployeeComponent } from '@/app/employee/employee.component'
 
 export const FORMS_ROUTES: Route[] = [
+  
   {
     path: 'basic',
     component: BasicComponent,
     data: { title: 'Form Basic Element' },
+  },
+  {
+    path: 'employee',
+    component:EmployeeComponent,
+    data: { title: 'Add Employee' },
   },
 
   {

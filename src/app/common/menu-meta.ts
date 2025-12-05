@@ -236,6 +236,12 @@ export const MENU: MenuItem[] = [
     collapsed: true,
     subMenu: [
       {
+        key: 'forms-employee-elements',
+        label: 'Add Employee',
+        link: '/forms/employee',
+        parentKey: 'forms',
+      },
+      {
         key: 'forms-basic-elements',
         label: 'Basic Elements',
         link: '/forms/basic',
