@@ -1,1 +1,63 @@
-<p>employee works!</p>
+<h2>Add New Employee</h2>
+
+<form (ngSubmit)="saveEmployee()" #empForm="ngForm" class="employee-form">
+
+  <label>Name:</label>
+  <input
+    type="text"
+    class="form-control"
+    name="name"
+    [(ngModel)]="addemployee.name"
+    required
+  />
+
+  <label>Email:</label>
+  <input
+    type="email"
+    class="form-control"
+    name="email"
+    [(ngModel)]="addemployee.email"
+    required
+  />
+
+  <label>Salary:</label>
+  <input
+    type="number"
+    class="form-control"
+    name="salary"
+    [(ngModel)]="addemployee.salary"
+    required
+  />
+
+  <button type="submit" [disabled]="empForm.invalid" class="btn btn-primary">
+    Save Employee
+  </button>
+
+</form>
+
+
+
+<h2>Employee List</h2>
+
+<table border="1" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    
+    <tr *ngFor="let e of employees">
+  <td>{{ e.id }}</td>
+  <td>{{ e.name }}</td>
+  <td>{{ e.email }}</td>
+  <td>{{ e.salary }}</td>
+</tr>
+    
+    
+  </tbody>
+</table>

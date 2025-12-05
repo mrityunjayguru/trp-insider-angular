@@ -12,9 +12,13 @@ export class EmployeeService {
   constructor(private http: HttpClient) {}
 
   // POST - create employee
-  createEmployee(employee: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/createemployee`, employee);
-  }
+ createEmployee(employee: any): Observable<any> {
+  return this.http.post(
+    `${this.baseUrl}/createemployee`,
+    employee,
+    { headers: { 'Content-Type': 'application/json' } }
+  );
+}
 
   // GET - all employees
   getAllEmployees(): Observable<any> {
