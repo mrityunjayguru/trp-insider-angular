@@ -15,7 +15,9 @@ export class EmployeeService {
  createEmployee(employee: any): Observable<any> {
   return this.http.post(
     `${this.baseUrl}/createemployee`,
-    employee
+      JSON.stringify(employee),
+       { responseType: 'text' }
+      
   );
 }
 
