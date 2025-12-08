@@ -242,6 +242,12 @@ export const MENU: MenuItem[] = [
         parentKey: 'forms',
       },
       {
+        key: 'forms-company-elements',
+        label: 'Add Company',
+        link: '/forms/company',
+        parentKey: 'forms',
+      },
+      {
         key: 'forms-basic-elements',
         label: 'Basic Elements',
         link: '/forms/basic',

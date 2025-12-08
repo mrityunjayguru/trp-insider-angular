@@ -5,6 +5,7 @@ import { FlatpickrComponent } from './flatpickr/flatpickr.component'
 import { UploadComponent } from './upload/upload.component'
 import { EditorComponent } from './editor/editor.component'
 import { EmployeeComponent } from '@/app/employee/employee.component'
+import { CompanyComponent } from '@/app/company/company.component'
 
 export const FORMS_ROUTES: Route[] = [
   
@@ -19,6 +20,11 @@ export const FORMS_ROUTES: Route[] = [
     data: { title: 'Add Employee' },
   },
 
+  {
+    path: 'company',
+    component:CompanyComponent,
+    data: { title: 'Add Employee' },
+  },
   {
     path: 'flatepicker',
     component: FlatpickrComponent,

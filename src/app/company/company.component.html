@@ -1,0 +1,142 @@
+<div class="container">
+
+  <h2 class="title">Add Company</h2>
+
+  <form #companyForm="ngForm" (ngSubmit)="saveEmployee(companyForm)" class="form">
+
+    <div class="form-row">
+      <label>Company nnn Name</label>
+      <input type="text" name="companyName" [(ngModel)]="addCompany.companyName" required>
+    </div>
+
+    <div class="form-row">
+      <label>Company Type</label>
+      <input type="text" name="companyType" [(ngModel)]="addCompany.companyType" required>
+    </div>
+
+    <div class="form-row">
+      <label>Upload Logo</label>
+      <input type="text" name="uploadCompanyLogo" [(ngModel)]="addCompany.uploadCompanyLogo">
+    </div>
+
+    <div class="form-row">
+      <label>GST Number</label>
+      <input type="text" name="gstNumber" [(ngModel)]="addCompany.gstNumber" required>
+    </div>
+
+    <div class="form-row">
+      <label>Email</label>
+      <input type="email" name="emailId" [(ngModel)]="addCompany.emailId" required>
+    </div>
+
+    <div class="form-row">
+      <label>Mobile Number</label>
+      <input type="text" name="mobileNumber" [(ngModel)]="addCompany.mobileNumber" required>
+    </div>
+
+    <div class="form-row">
+      <label>Password</label>
+      <input type="password" name="companyPassword" [(ngModel)]="addCompany.companyPassword">
+    </div>
+
+    <div class="form-row">
+      <label>Confirm Password</label>
+      <input type="password" name="confirmCompanyPassword" [(ngModel)]="addCompany.confirmCompanyPassword">
+    </div>
+
+    <div class="form-row">
+      <label>Status</label>
+      <input type="text" name="status" [(ngModel)]="addCompany.status">
+    </div>
+
+    <div class="form-row">
+      <label>Contact Person Name</label>
+      <input type="text" name="contactPersonName" [(ngModel)]="addCompany.contactPersonName">
+    </div>
+
+    <div class="form-row">
+      <label>Designation</label>
+      <input type="text" name="contactPersonDesignation" [(ngModel)]="addCompany.contactPersonDesignation">
+    </div>
+
+    <div class="form-row">
+      <label>Contact Mobile</label>
+      <input type="text" name="contactPersonMobileNumber" [(ngModel)]="addCompany.contactPersonMobileNumber">
+    </div>
+
+    <div class="form-row">
+      <label>Registered Address</label>
+      <input type="text" name="companyRegisteredAddress" [(ngModel)]="addCompany.companyRegisteredAddress">
+    </div>
+
+    <div class="form-row">
+      <label>Country</label>
+      <input type="text" name="companyCountry" [(ngModel)]="addCompany.companyCountry">
+    </div>
+
+    <div class="form-row">
+      <label>State</label>
+      <input type="text" name="companyState" [(ngModel)]="addCompany.companyState">
+    </div>
+
+    <div class="form-row">
+      <label>City</label>
+      <input type="text" name="companyCity" [(ngModel)]="addCompany.companyCity">
+    </div>
+
+    <div class="form-row">
+      <label>Pincode</label>
+      <input type="text" name="companyPincode" [(ngModel)]="addCompany.companyPincode">
+    </div>
+
+    <div class="form-row">
+      <label>Identity Document</label>
+      <input type="text" name="companyIdentityDocument" [(ngModel)]="addCompany.companyIdentityDocument">
+    </div>
+
+    <div class="form-row">
+      <label>ID Number</label>
+      <input type="text" name="companyIdNumber" [(ngModel)]="addCompany.companyIdNumber" required>
+    </div>
+
+    <div class="form-row">
+      <label>Upload Document</label>
+      <input type="text" name="companyUploadDocument" [(ngModel)]="addCompany.companyUploadDocument">
+    </div>
+
+    <button class="btn">Save Company</button>
+{{company}}
+  </form>
+
+
+  <!-- Company Table -->
+  <h2 class="title">Company List</h2>
+
+  <table class="styled-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Company Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Country</th>
+      <th> State </th>
+      
+      <th>City</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let c of company">
+      <td>{{ c.id }}</td>
+      <td>{{ c.companyName }}</td>
+      <td>{{ c.emailId }}</td>
+      <td>{{ c.contactPersonMobileNumber }}</td>
+      <td>{{ c.companyCountry }}</td>
+      <td>{{ c.companyState }}</td>
+      <td>{{ c.companyCity }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
