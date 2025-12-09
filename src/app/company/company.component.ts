@@ -70,7 +70,7 @@ addCompany = {
       },
       error: (err) => {
         console.error("API Error:", err);
-        alert("Error creating employee"+err.message);
+        alert("Error creating company "+err.error);
       }
     });
   }
