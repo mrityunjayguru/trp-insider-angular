@@ -1,3 +1,5 @@
+<!-- 
+
 <div class="container">
 
   <h2 class="title">Add Company</h2>
@@ -94,6 +96,8 @@
       <input type="text" name="companyIdentityDocument" [(ngModel)]="addCompany.companyIdentityDocument">
     </div>
 
+
+    
     <div class="form-row">
       <label>ID Number</label>
       <input type="text" name="companyIdNumber" [(ngModel)]="addCompany.companyIdNumber" required>
@@ -104,12 +108,15 @@
       <input type="text" name="companyUploadDocument" [(ngModel)]="addCompany.companyUploadDocument">
     </div>
 
+     <label>Upload PDF</label>
+  <input type="file" (change)="onPdfSelected($event)" accept="application/pdf">
+
     <button class="btn">Save Company</button>
 {{company}}
   </form>
 
 
-  <!-- Company Table -->
+  
   <h2 class="title">Company List</h2>
 
   <table class="styled-table">
@@ -138,5 +145,148 @@
     </tr>
   </tbody>
 </table>
+</div>
+
+-->
+
+<div class="container mt-4">
+
+  <h2>Add New Company</h2>
+
+  <form #companyForm="ngForm">
+
+    <!-- Company Basic Information -->
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <label>Company Name</label>
+        <input class="form-control" [(ngModel)]="addCompany.companyName" name="companyName">
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <label>Company Type</label>
+        <input class="form-control" [(ngModel)]="addCompany.companyType" name="companyType">
+      </div>
+    </div>
+
+    <!-- Contact Details -->
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <label>Email ID</label>
+        <input class="form-control" [(ngModel)]="addCompany.emailId" name="emailId">
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <label>Mobile Number</label>
+        <input class="form-control" [(ngModel)]="addCompany.mobileNumber" name="mobileNumber">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <label>Password</label>
+        <input type="password" class="form-control" [(ngModel)]="addCompany.companyPassword" name="companyPassword">
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" [(ngModel)]="addCompany.confirmCompanyPassword" name="confirmCompanyPassword">
+      </div>
+    </div>
+
+    <!-- Contact Person -->
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <label>Contact Person Name</label>
+        <input class="form-control" [(ngModel)]="addCompany.contactPersonName" name="contactPersonName">
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <label>Designation</label>
+        <input class="form-control" [(ngModel)]="addCompany.contactPersonDesignation" name="contactPersonDesignation">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <label>Contact Person Mobile</label>
+        <input class="form-control" [(ngModel)]="addCompany.contactPersonMobileNumber" name="contactPersonMobileNumber">
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <label>Status</label>
+        <input class="form-control" [(ngModel)]="addCompany.status" name="status">
+      </div>
+    </div>
+
+    <!-- Company Address -->
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <label>Registered Address</label>
+        <input class="form-control" [(ngModel)]="addCompany.companyRegisteredAddress" name="companyRegisteredAddress">
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <label>Country</label>
+        <input class="form-control" [(ngModel)]="addCompany.companyCountry" name="companyCountry">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <label>State</label>
+        <input class="form-control" [(ngModel)]="addCompany.companyState" name="companyState">
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <label>City</label>
+        <input class="form-control" [(ngModel)]="addCompany.companyCity" name="companyCity">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <label>Pincode</label>
+        <input class="form-control" [(ngModel)]="addCompany.companyPincode" name="companyPincode">
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <label>GST Number</label>
+        <input class="form-control" [(ngModel)]="addCompany.gstNumber" name="gstNumber">
+      </div>
+    </div>
+
+    <!-- Identity Document -->
+    <div class="row">
+      <div class="col-md-6 mt-3">
+        <label>Identity Document Type</label>
+        <input class="form-control" [(ngModel)]="addCompany.companyIdentityDocument" name="companyIdentityDocument">
+      </div>
+
+      <div class="col-md-6 mt-3">
+        <label>ID Number</label>
+        <input class="form-control" [(ngModel)]="addCompany.companyIdNumber" name="companyIdNumber">
+      </div>
+    </div>
+
+    <!-- PDF Upload -->
+    <div class="mt-4">
+      <label>Upload Company Document (PDF)</label>
+      <input type="file" accept="application/pdf" class="form-control" (change)="onPdfSelected($event)">
+    </div>
+
+    <!-- Company Images -->
+    <div class="mt-4">
+      <label>Upload Company Images</label>
+      <input type="file" multiple accept="image/*" class="form-control" (change)="onImagesSelected($event)">
+    </div>
+
+    <!-- Submit -->
+    <button class="btn btn-primary mt-4" (click)="saveEmployee(companyForm)">
+      Save Company
+    </button>
+
+  </form>
+
+  <p class="mt-3">{{ message }}</p>
 </div>
 
