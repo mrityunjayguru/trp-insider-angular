@@ -97,7 +97,7 @@
     </div>
 
 
-    
+
     <div class="form-row">
       <label>ID Number</label>
       <input type="text" name="companyIdNumber" [(ngModel)]="addCompany.companyIdNumber" required>
@@ -288,5 +288,35 @@
   </form>
 
   <p class="mt-3">{{ message }}</p>
+
+ <h2 class="title">Company List</h2>
+
+  <table class="styled-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Company Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Country</th>
+      <th> State </th>
+      
+      <th>City</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let c of company">
+      <td>{{ c.id }}</td>
+      <td>{{ c.companyName }}</td>
+      <td>{{ c.emailId }}</td>
+      <td>{{ c.contactPersonMobileNumber }}</td>
+      <td>{{ c.companyCountry }}</td>
+      <td>{{ c.companyState }}</td>
+      <td>{{ c.companyCity }}</td>
+    </tr>
+  </tbody>
+</table>
+
 </div>
 

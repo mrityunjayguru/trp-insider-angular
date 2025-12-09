@@ -162,7 +162,7 @@ export class CompanyComponent {
   onPdfSelected(event: any) {
     const file = event.target.files[0];
     this.addCompany.fileName = file.name;
-    
+
 
     const reader = new FileReader();
     reader.onload = () => {
@@ -207,6 +207,7 @@ export class CompanyComponent {
 
     this.apiService.createCompany(payload).subscribe({
       next: (res) => {
+        this.loadEmployees();
         alert("Company added successfully!");
       },
       error: (err) => {
