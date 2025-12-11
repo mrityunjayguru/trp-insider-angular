@@ -195,7 +195,12 @@ export class CompanyComponent {
   }
 
   // ⬇ SEND all company info + files
-  saveEmployee(formData: any) {
+  saveEmployee(form: any) {
+
+  if (form.invalid || this.addCompany.companyPassword !== this.addCompany.confirmCompanyPassword) {
+    this.message = "Please fill all required fields correctly!";
+    return;
+  }
 
     const payload = {
       ...this.addCompany,                // all company details  

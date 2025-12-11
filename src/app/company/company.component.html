@@ -1,20 +1,41 @@
 
 <div class="container mt-4">
 
-  <h2>Add New Company</h2>
+  <h2> Add New Company </h2>
 
-  <form #companyForm="ngForm">
+  <form #companyForm="ngForm" (ngSubmit)="saveEmployee(companyForm)">
 
     <!-- Company Basic Information -->
-    <div class="row">
-      <div class="col-md-6 mt-3">
-        <label>Company Name</label>
-        <input class="form-control" [(ngModel)]="addCompany.companyName" name="companyName">
-      </div>
+
+       
+          <div class="row">
+
+        
+
+          <div class="col-md-6 mt-3">
+            <label> Company Name </label>
+            <input class="form-control" [(ngModel)]="addCompany.companyName"
+               name="companyName"
+                required
+                #companyName="ngModel">            
+
+             <small *ngIf="companyName.invalid && companyName.touched" class="text-danger">
+              Company name is required.
+              </small>
+          </div>
+      
+        
+
 
       <div class="col-md-6 mt-3">
         <label>Company Type</label>
-        <input class="form-control" [(ngModel)]="addCompany.companyType" name="companyType">
+        <input class="form-control" [(ngModel)]="addCompany.companyType" 
+        name="companyType"
+        required
+        #companyType="ngModel">
+        <small *ngIf="companyType.invalid && companyType.touched" class="text-danger">
+              Company type is required.
+              </small>
       </div>
     </div>
 
@@ -131,15 +152,18 @@
     </div>
 
     <!-- Submit -->
-    <button class="btn btn-primary mt-4" (click)="saveEmployee(companyForm)">
-      Save Company
-    </button>
+    <button class="btn btn-primary mt-4"
+        type="submit"
+        [disabled]="companyForm.invalid || addCompany.companyPassword !== addCompany.confirmCompanyPassword">
+  Save Company
+</button>
+
 
   </form>
 
-  <p class="mt-3">{{ message }}</p>
+  <p class="mt-3"> {{ message }} </p>
 
- <h2 class="title">Company List</h2>
+ <h2 class="title"> Company List </h2>
 
   <table class="styled-table">
   <thead>
