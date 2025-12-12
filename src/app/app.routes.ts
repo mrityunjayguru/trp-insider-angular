@@ -48,3 +48,14 @@ export const routes: Routes = [
       import('./views/layout-pages/layout.route').then((mod) => mod.LAYOUT_ROUTES),
   },
 ]
+
+
+
+/*private static final String BUCKET = "awsS3Bucket": {
+      "region": "ap-south-1",
+      "awsKey": "AKIASDRAM5QDWMWXJ2VN",
+      "awsSecret": "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",
+      "bucket": "aws-sam-cli-managed-default-samclisourcebucket-lebqf5sdisiq"
+    };*/
+    
+
