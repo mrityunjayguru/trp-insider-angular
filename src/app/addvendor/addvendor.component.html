@@ -1,0 +1,41 @@
+<div class="container-fluid main">
+  <div class="row2">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="mb-2" style="font-weight: 500; font-size: 16px;">Phone Number</label>
+        <input type="tel" class="form-control input" id="phone" name="mobile" placeholder="Enter your phone number"
+          formControlName="mobile" (keypress)="alphanumber($event)">
+        <!-- <div *ngIf="f.mobile.touched && f.mobile.invalid" class="">
+              <div *ngIf="f.mobile.errors.required" style="color:red;margin-top:5px;">Mobile Number is
+                  required.</div>
+              <div *ngIf="f.mobile.errors.pattern" style="color:red;margin-top:5px;">Please, Enter 10
+                  digit Mobile Number.</div>
+          </div> -->
+      </div>
+      <div class="mb-4">
+        <label class="mb-2" style="font-weight: 500; font-size: 16px;">Name</label>
+        <input type="text" class="form-control input" id="name" name="name" placeholder="Enter Name"
+          formControlName="firstName" (keypress)="alpha($event)">
+      </div>
+
+      <div class="mb-3">
+        <label class="mb-2" style="font-weight: 500; font-size: 16px;">User Type</label>
+        <select formControlName="roleid" name="roleid" id="roleid" class="form-select input">
+          <option value="01">Select Type</option>
+          <option value="02">Vendor</option>
+          <option value="03">Merchant</option>
+        </select>
+
+      </div>
+
+
+      <div class="row mt-5" style="text-align: center;">
+       
+        <div class="col">
+          <button type="submit" class="btn" [disabled]="!registerForm.valid">Add Vendor / Merchant</button>
+        </div>
+       
+      </div>
+    </form>
+  </div>
+</div>

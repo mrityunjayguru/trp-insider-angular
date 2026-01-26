@@ -1,0 +1,170 @@
+::selection {
+    background: #c51724;
+    color:#fff;        
+  }
+
+h3{
+    font-family: lato;
+    font-size: 17px;
+}
+h3 span{
+    color:#c51724;
+}
+.pd{
+    padding: 28px;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+}
+tr img{
+    width: 50px;
+}
+tr{
+    border: 1px solid #c51724;
+}
+th{
+    border: 1px solid #c51724;
+}
+td{
+    border: 1px solid #c51724;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+table{
+    border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 0px 20px;
+}
+th{
+    font-family: lato;
+}
+tr td tr td{
+    
+    font-family: lato;
+}
+
+td img:hover{
+    transform: scale(3.5);
+}
+span{
+    font-family: lato;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    
+  }
+  tr td th{
+    border: 1px solid #c51724;
+  }
+  tr td{
+    border: 1px solid #c51724;
+  }
+  td tr td{
+    border: 1px solid #c51724;
+    width: 100%;
+  }
+
+
+
+  .row1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 40px;
+   
+}
+.sticky {
+  padding: 15px 0px;
+  text-align: center;
+  background: #F6F5FD;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 9999;
+}
+.footerimage{
+  width: 38px;
+}
+.row5{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+ 
+}
+ul{
+  display: flex;
+}
+ul li{
+  list-style: none;
+  padding: 20px 10px;
+}
+.back{
+  background: #c51724;
+  padding: 20px 40px;
+}
+.logo{
+  width: 200px;
+}
+#datatable_filter{
+  color: #000;
+    font-family: lato;
+    font-size: 25px;
+}
+input[type=search]{
+  padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+    h3{
+        font-family: lato;
+    font-size: 12px;
+    }
+    .pd{
+        padding: 28px 28px 100px 28px;
+    }
+    .back{
+      background: #c51724;
+      padding: 5px 0px;
+  }
+  .logo{
+      width: 140px;
+  }
+  .footerimage{
+      width: 38px;
+    }
+    .row5{
+      padding: 0px 0px;
+      justify-content: space-around;
+    }
+    ul li{
+      list-style: none;
+      padding: 5px 10px;
+    }
+  }

@@ -1,0 +1,178 @@
+.row1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 0px 0px;
+   
+  }
+  .sticky{
+    background: #F6F5FD;
+    position: sticky;
+    bottom: 0px;
+  }
+  
+  .footerimage1{
+    width: 38px;
+  }
+  .footerimage{
+    width: 38px;
+  }
+  /* h3{
+    font-size: 20px;
+  } */
+  
+  @media only screen and (max-width: 600px) {
+    .row1{
+      padding: 0px 20px;
+    }
+    .footerimage1{
+      width: 27px;
+    }
+    .wdt{
+      width: 141px;
+    }
+    .footerimage{
+      width: 38px;
+    }
+    .det{
+      font-size: 13px;
+      line-height: 15px;
+    }
+    .grd{
+      display: grid !important;
+      padding: 10px 10px !important;
+    }
+    .new1{
+      font-size: 0px;
+      padding: 0px;
+    }
+    table.dataTable thead .sorting{
+      background-image: none;
+    }
+    table.dataTable thead .sorting_asc{
+       background-image: none;
+    }
+    table.dataTable thead .sorting_desc{
+      background-image: none;
+    }
+    .new1{
+      font-size: 9px;
+    }
+    .mat-mdc-paginator-container {
+      padding: 11px 8px !important;
+    }
+
+    .pege {
+     
+      margin-bottom: 4% !important;
+  }
+  }
+  
+ 
+  .new1{
+    font-size: 15px;
+    padding: 9px;
+  }
+  
+  .grd{
+    display: flex;
+    justify-content: center;
+    padding: 67px 7px;
+  }
+  
+  h3{
+    font-family: lato;
+    font-size: 17px;
+  }
+  ::selection{
+    background: #c51724;
+    color: #fff;
+  }
+  h3 span{
+    color:#c51724;
+  }
+  .pd{
+    padding: 28px;
+  }
+  .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  tr img{
+    width: 50px;
+  }
+  tr{
+    border: 1px solid #c51724;
+  }
+  th{
+    border: 1px solid #c51724;
+  }
+  td{
+    border: 1px solid #c51724;
+  }
+  tr:nth-child(even){background-color: #f2f2f2}
+  table{
+    border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 0px 20px;
+  }
+  th{
+    font-family: lato;
+  }
+  
+  td img:hover{
+    transform: scale(1.5);
+    transition: .3s;
+  }
+  td img{
+    width: 150px;
+    height: 150px;
+    transition: .3s;
+  }
+  .pd{
+    padding: 95px 28px 100px 28px;
+  }
+  .btn-primary{
+    background-color: #c51724 !important;
+    border:none;
+  }
+  
+  
+  
+  .hideclass
+  {
+    display: none;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  @media only screen and (max-width: 600px) {
+    h3{
+        font-family: lato;
+    font-size: 12px;
+    }
+    .pd{
+        padding: 108px 10px 100px 10px;
+    }
+  }

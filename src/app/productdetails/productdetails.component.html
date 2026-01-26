@@ -1,0 +1,87 @@
+<div class="container-fluid back" id="mainhead">
+    <div class="row5">
+      <div class="col1">
+      <a routerLink="/afterlogin.component"><img src="assets/Group 801.svg" class="logo"></a>
+      </div>
+      <div class="header">
+        <button class="toggle-button" (click)="toggleItems()">
+          <img [src]="showItems ? 'assets/close.png' : 'assets/menu.png'" alt="Toggle Items">
+        </button>
+      </div>
+      
+      <div class="items-container" *ngIf="showItems">
+        <ul>
+          <li><a href="tel:9811144961"><img src="assets/phone.svg" width="20px;"></a></li>
+          <li><a href="https://wa.link/da6uyh"><img src="assets/whatsapp.svg" width="20px;"></a></li>
+          <li><a href="#/logout.component"><img src="assets/Logout.svg" width="20px;"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+<div class="container-fluid" style="padding:20px 20px 100px 20px;">
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <img src="{{imgConfig}}/{{this.productData.topimage}}" class="productimg">
+    </div>
+    <div class="row" style="padding-top: 10px;">
+        <div class="col">
+        <h3>Design No: {{this.productData.designnumber}}</h3>
+        <h3>Size: {{this.productData.size}}</h3>
+        <h3>WSP: {{this.productData.wsp}}Rs</h3>
+        <h3>Set of: {{this.productData.setofpic}} Pcs</h3>
+    </div>
+    </div>
+    <div class="row">
+        
+        <div class="column" id="array" *ngFor="let item of range(0, 30); let i = index" style="font-family: lato;">
+            <ng-container *ngIf="imagefiles[item]">
+              <img src="{{ imgConfig }}/{{ imagefiles[item] }}" class="productimg1">
+              <h3 style="text-transform: uppercase;">{{ imagecolor[item] }}</h3>
+              <div class="quantity-control">
+                <input type="button" class="quantity-button decrease" (click)="decreaseQuantity(i)" value="-">
+                <input type="number" class="quantity-input" [(ngModel)]="quantities[i]"      value="{{quantities[i]}}" formControlName="additem{{i}}" >
+                <input type="button" class="quantity-button increase" (click)="increaseQuantity(i)" value="+">
+                <label> &nbsp;&nbsp;{{quantities[i]}}</label>
+              </div>
+            </ng-container>
+          </div>
+    </div>
+
+    <div  style="display:none" class="row">
+        
+        <input type="text"  value="{{ getTotalQuantity() }}" formControlName="totalquantity">
+        <input type="number"  formControlName="pervaritaionsetofpices">
+        <input type="text" value="{{ getTotalQuantity() * this.productData.setofpic * this.productData.wsp }}" formControlName="totalprice">
+
+
+
+        <div class="col"><h3>Total Quantity: {{ getTotalQuantity() }} Set of {{this.productData.setofpic}} pcs<br>
+            Total Price: {{ getTotalQuantity() * this.productData.setofpic * this.productData.wsp }}</h3></div>
+        <div class="col"><button type="submit" class="btn">Add Order</button></div>
+    </div>
+
+
+    <div class="row">
+     <div class="col">
+      <div class="form-group mb-5" style="text-align: left;">
+        <label>Custom Requirment</label><br>
+        <input type="text" formControlName="remarks" class="remark">
+      </div>
+     </div>
+        <div class="col"><h3>Total Quantity: {{ getTotalQuantity() }} Set of {{this.productData.setofpic}} pcs<br>
+            Total Price: {{ getTotalQuantity() * this.productData.setofpic * this.productData.wsp }}</h3></div>
+            
+           
+        
+    </div>
+    
+
+    <div class="row7" style="margin-top: 30px;">
+      <div class="col"><a routerLink="/afterlogin.component"><button  class="btn">Cancel</button></a></div>
+        <div class="col"><button type="submit" class="btn">Add Order</button></div>
+  </div>
+
+</form>
+</div>

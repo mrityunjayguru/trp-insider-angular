@@ -1,0 +1,70 @@
+<head style="display: none;">
+    <!-- jQuery -->
+    <script type="text/javascript" 
+            src="https://code.jquery.com/jquery-3.5.1.js">
+    </script>
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" 
+          href=
+  "https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    
+    <!-- DataTables JS -->
+    <script src=
+  "https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+    </script>
+     
+  </head>
+
+<!-- 
+  <app-user-header></app-user-header>
+-->
+
+<div class="container-fluid pd">
+   
+    <div class="over">
+    <table id="datatable" class="row-border hover mt-4" *ngIf="dtRendered" datatable [dtOptions]="dtOptions" cellspacing="0" width="100%" style="padding: 0;">
+
+        <thead>
+        <tr>
+            <th class="ct2"><h3>S.No</h3></th>
+            <th class="ct2"><h3>ID</h3></th>
+            <th class="ct1"><h3>Username</h3></th>
+            <th class="ct1"><h3>Mobile Number</h3></th>
+            <th class="ct2"><h3>Role ID</h3> </th>
+            <th class="ct1"><h3>Category</h3> </th>
+            <th class="ct1"><h3>Shop Name </h3> </th>
+            <th class="ct2"><h3>OTP</h3></th>
+            <th class="ct2 buttontd"><h3>Action</h3></th>
+        </tr>
+        </thead>
+<tbody>
+    <tr *ngFor="let item of productData let i = index">
+        <td>{{i}}</td>
+        <td>{{item.id}}</td>
+        <td>{{item.firstName}}</td>
+        <td> <a href="#/userinvoice.component?mobile={{item.mobile}}">  {{item.mobile}}  </a> </td>
+
+        <td> {{item.roleid}} </td>
+        <td> {{ item.roleid == '01' ? 'Super Admin' : '' }}   {{ item.roleid == '02' ? 'Vendor' : '' }} {{ item.roleid == '03' ? 'Admin Merchant' : '' }} {{ item.roleid == '05' ? 'Vendor Merchant' : '' }} {{ item.roleid == '04' ? 'Users' : '' }} </td>
+        <td>{{item.shopname}}        </td>
+        <td>{{item.otp}}</td>
+        <td class="buttontd ">
+          <input type="submit" class="Enablebutton" value="Active" (click)="enable(item.id,item.mobile)"  >&nbsp;&nbsp;&nbsp;
+          <input type="submit" class="Disablebutton" value="Deactive" (click)="disable(item.id,item.mobile)" ></td>
+      </tr>
+
+    </tbody>
+    </table>
+    <div class="row">
+        <div class="col">
+            <h3>Total Users: {{userlength}}</h3>
+        </div>
+    </div>
+</div>
+
+    
+</div>
+
+
+

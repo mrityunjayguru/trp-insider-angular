@@ -1,0 +1,27 @@
+<div class="container pt-5 pbbb">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="paddingtop">
+                <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
+                    <input type="text" formControlName="size" class="inp"> <br><br>
+                    <input type="submit" [disabled]="!formsize.valid" value="Add Custom Size" class="btn">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div style="display: flex; justify-content: center;">
+                <table>
+                    <tr>
+                        <th >Add Sizes</th>
+                    </tr>
+                    <tr style="border: 1px solid red;" *ngFor="let item of sizes; let i = index">
+                        <td>{{item.size}}</td>
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+    </div>

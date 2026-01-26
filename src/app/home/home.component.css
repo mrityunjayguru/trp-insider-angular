@@ -1,0 +1,21 @@
+.event{
+    color: #fff;
+    text-decoration: none;
+    font-size: 33px;
+    font-family: 'Lato';
+    text-align: center;
+}
+.main{
+    background: #c51724;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+::selection{
+    background: #c51724;
+    color: #fff;
+  }
+  .login{
+    width: 67%;
+  }

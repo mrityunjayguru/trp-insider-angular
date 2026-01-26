@@ -1,0 +1,358 @@
+
+
+
+.file-upload {
+    background-color: #ffffff;
+    width: 90%;
+    margin: 0 auto;
+  }
+  ::selection{
+    background: #c51724;
+    color: #fff;
+  }
+  
+  .backgroundElement{
+    background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+  .file-upload-btn {
+    width: 100%;
+    margin: 0;
+    color: #fff;
+    background: #1FB264;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #15824B;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .file-upload-btn:hover {
+    background: #1AA059;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  .file-upload-btn:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+  
+  .file-upload-content {
+    display: none;
+    text-align: center;
+  }
+  .image-upload-wrap {
+    margin: 20px 0px;
+      border: 0.25px solid #c0c0c0;
+      position: relative;
+      border-radius: 7px;
+  }
+  
+  .image-dropping,
+  .image-upload-wrap:hover {
+    background-color: #c0c0c0;
+    border: 1px dashed #c0c0c0;
+  }
+  .drag-text {
+    text-align: center;
+    padding: 120px 0px;
+  }
+  
+  .drag-text h3 {
+    font-weight: 400;
+    text-transform: capitalize;
+      color: #000;
+      font-size: 17px;
+      font-family: lato !important;
+  }
+  #description{
+    width: 90%;
+    padding: 25px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    margin-top: 11px;
+    font-size: 23px;
+  }
+  
+  #style{
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    margin-top: 11px;
+    font-size: 23px;
+  }
+  #Vendor{
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    margin-top: 11px;
+    font-size: 23px;
+  }
+  #size{
+    
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    margin-top: 11px;
+    font-size: 23px;
+  }
+  #wsp{
+    
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    margin-top: 11px;
+    font-size: 23px;
+  }
+  #cateogory{
+    
+    padding: 10px 0px 10px 10px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    margin-top: 11px;
+    font-size: 23px;
+  }
+  #color{
+    padding: 1px 5px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    margin-top: 11px;
+    width: 115px;
+    font-size: 23px;
+  }
+  label{
+    font-family: lato;
+    font-size: 20px;
+  }
+  .rowstyle{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    padding: 0px 70px;
+  }
+  #set{
+    padding: 10px 0px 10px 10px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    margin-top: 11px;
+    font-family: lato;
+    font-weight: 500;
+    font-size:23px;
+  }
+  
+  .padd{
+    padding-top:10px;
+  }
+  .row1 {
+    display: flex;
+    justify-content: space-between;
+    margin: 27px 0px 24px 0px;
+  }
+  input[type=checkbox]{
+    width: 19px;
+    height: 19px;
+  }
+  .box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px;
+  }
+  .box1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn{
+    color: #fff;
+    background: #c51724;
+    border: 1px solid #fff;
+    padding: 11px 78px;
+    font-size: 19px;
+    border-radius: 13px;
+    cursor: pointer;
+  }
+  input[type='checkbox']:checked:after {
+    width: 14px;
+    height: 14px;
+    content: "";
+    position: relative;
+    background-color: #c51724;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 3px solid #c51724;
+  }
+  .font{
+    font-size: 20px;
+  }
+  .md{
+    margin: 10px 0px 10px 12px;
+  }
+  #image-background {
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    
+  }
+  #backgroundElement{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  .colorsection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .picture{
+    width: 136px;
+    aspect-ratio: 16/17;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.25px solid #0009;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 7px;
+    color: #646464;
+    font-size: 17px;
+  }
+  .remove-button
+  {
+  background: none;
+    border: none;
+    cursor: pointer;
+    width: 38px;
+    font-size: 33px;
+  }
+  
+  .plus-icon{
+  background: none;
+  border: none;
+  font-size: 47px;
+  cursor: pointer;
+  }
+  .column1{
+  width: 16% !important;
+  }
+  .mim{
+  width: 133px;
+    padding: 7px;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  .mty{
+  margin:10px 0px;
+  }
+  
+  .sizeinp{
+ 
+    width: 100%;
+    height: 8vh;
+    border-radius: 5px;
+    font-family: lato;
+    font-weight: 500;
+    font-size: 23px;
+    cursor: pointer;
+    border: 1px solid #000;
+    margin-top: 10px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  @media only screen and (max-width: 600px) {
+    .rowstyle{
+        display: grid;
+        padding: 0px 0px;
+        
+      }
+      #style{
+        padding: 10px 13px 10px 10px;
+        width: 300px;
+        
+      }
+      #size{
+        width: 300px;
+      }
+      #wsp{
+        width: 308px;
+      }
+      #color{
+        
+        padding: 10px 0px;
+        width: 93px;
+      
+      }
+      #description{
+        width:100%;
+      }
+      #Vendor{
+        width:300px;
+      }
+      .mty{
+        margin:15px 0px;
+        }
+      .font{
+        font-size: 17px;
+      }
+      #set{
+        padding: 10px 128px 10px 10px;
+      }
+      .md{
+        margin-left: 0px;
+      }
+      .file-upload {
+        background-color: #ffffff;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .colorsection{
+        display:grid;
+      }
+      .row2{
+        display:grid !important;
+      }
+      .column1 {
+        width: 100% !important;
+    }
+    
+  }
+  
+  

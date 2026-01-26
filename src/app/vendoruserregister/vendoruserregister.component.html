@@ -1,0 +1,23 @@
+<div class="container-fluid main">
+    <div class="row2">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"> 
+            <div class="mb-3">
+              <input type="tel" class="form-control input" id="phone" name="mobile" placeholder="Enter your phone number" formControlName="mobile">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control input" id="name" name="name"  placeholder="Enter your Name" formControlName="firstName">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control input" id="shopname" name="shopname" placeholder="Enter your ShopName" formControlName="shopname">
+              </div>
+          
+           <div class="row mt-5" style="text-align: center;">
+            <div class="col"></div>
+            <div class="col">
+              <button type="submit" class="btn" [disabled]="!registerForm.valid">Register</button>
+            </div>
+            <div class="col"></div>
+           </div>
+          </form>
+    </div>
+  </div>

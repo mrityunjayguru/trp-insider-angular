@@ -1,0 +1,52 @@
+<div class="container-fluid" style="padding: 130px 20px 150px 20px;">
+  <div class="row">
+    <div class="col-md-6">
+      <label class="mb-2">Search Mobile</label>
+      <input class="form-control mr-sm-2 mb-3" type="search" placeholder="Search" aria-label="Search"
+        (input)="onSearch($event)">
+      <select (change)="onMobileSelect($event)" class="form-control mr-sm-2 mb-3">
+        <option *ngFor="let item of filteredMobileData" [ngValue]="item">{{ item }}</option>
+      </select>
+
+      <!-- Conditionally apply 'disabled' class if pdfurl is not valid -->
+      <a [ngClass]="{ 'disabled-link': !pdfurl || !pdfurl.endsWith('.pdf') }" class="mr-sm-2" [href]="pdfurl"
+        target="_blank">Download PDF nn</a>
+    </div>
+  </div>
+
+
+
+
+  <div class="over">
+    <table class="mt-5">
+      <tr>
+        <th class="ct1">Created Date</th>
+        <th class="ct3">ID</th>
+        <th class="ct6">Total <br>Amount</th>
+        <th class="ct6">Total Qty</th>
+        <th class="ct2">UpDated Date</th>
+        <th class="ct3">UserId</th>
+        <th class="ct3">Mobile</th>
+        <th class="ct3">FirstName</th>
+        <th class="ct3">Shop Name</th>
+        <th>Date</th>
+
+      </tr>
+      <tr *ngFor="let item of productData">
+        <td>{{item.cd  | date:'yyyy-MM-dd' }}</td>
+        <td>{{item.id}}</td>
+        <td>{{item.totalAmount}}</td>
+        <td>{{item.totalqty}}</td>
+        <td>{{item.ud |  date:'yyyy-MM-dd' }}</td>
+        <td>{{item.userid.id}}</td>
+        <td>{{item.usermobile }}</td>
+        <td>{{item.username}}</td>
+        <td>{{item.usershopname}}</td>
+        <td>{{item.cd | date:'dd-MM-yyyy'}}</td>
+
+      </tr>
+
+
+    </table>
+  </div>
+</div>

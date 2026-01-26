@@ -1,0 +1,80 @@
+<div class="container-fluid fixed-top back" id="mainhead">
+  <div class="roww">
+    <div class="col1">
+      <a routerLink="/vendorhome.component"><img src="assets/images/MVendorlogo.svg" class="logo"></a>
+    </div>
+
+
+    <div class="header">
+
+    </div>
+
+    <div class="header">
+
+
+      <button class="toggle-button mrt" (click)="toggleNotification()">
+        <img [src]="showNotification ? 'assets/close1.png' : 'assets/bell.png'" alt="Toggle Items" style="width: 26px;">
+        <span class="button-text"> {{pendingForApprovgal}} </span>
+      </button>
+      <button class="toggle-button" (click)="toggleItems()">
+        <img [src]="showItems ? 'assets/close1.png' : 'assets/header.svg'" alt="Toggle Items" style="width: 26px;">
+      </button>
+    </div>
+
+
+    <div class="items-container" *ngIf="showItems">
+      <ul>
+
+        <li><a href="tel:9811144961"><img src="assets/phone.svg" width="20px;"></a></li>
+        <li><a href="https://wa.link/da6uyh"><img src="assets/whatsapp.svg" width="20px;"></a></li>
+        <li><a href="#/logout.component"><img src="assets/Logout.svg" width="20px;"></a></li>
+      </ul>
+    </div>
+
+
+    <div class="alert alert-success alert-dismissible fade show items-container-notification ccc" role="alert"
+      *ngIf="showNotification">
+
+      <!-- <button class="toggle-button" (click)="toggleItemsClose()">
+        <span class="close">&times;</span>
+      </button> -->
+
+      <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+        <table class="table" *ngIf="notificationMessages != undefined">
+          <thead>
+            <tr>
+              <!-- <th scope="col" class="cl1">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Design </th>
+            <th scope="col">Size</th>
+            <th scope="col" class="cl2">Vendor Mobile</th> -->
+              <th scope="col">Vendor Name</th>
+              <th scope="col" class="cl3">Status</th>
+              <th scope="col">Link</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of notificationMessages; let i = index;">
+              <!-- <th scope="row">{{i}}</th>
+            <td>{{item.id}}</td>
+            <td>{{item.desiginnumber}}</td>
+            <td>{{item.size}}</td>
+            <td>{{item.vendormobile}}</td> -->
+              <td>{{item.vendorname}}</td>
+              <td>{{item.productapprovalstatus}}</td>
+              <td> <a href="#/vendorproducts.component?id={{item.vendorid}}&mobile={{item.vendormobile}}"> Go </a></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+
+
+
+  </div>
+</div>

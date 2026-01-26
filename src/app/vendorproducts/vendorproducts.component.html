@@ -1,0 +1,116 @@
+<app-vendorheader></app-vendorheader>
+
+<head>
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js">
+  </script>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+  </script>
+
+</head>
+
+<div class="container-fluid pd">
+  <mat-paginator [pageSizeOptions]="[5, 10, 25,50, 100]" [pageSize]="25" [length]="totalElements"
+    (page)="nextPage($event)" class="bottmnow"> </mat-paginator>
+
+  <div style="overflow-x: auto;">
+    <table id="datatable" class="row-border hover" *ngIf="dtRendered" datatable [dtOptions]="dtOptions" cellspacing="0"
+      width="100%" style="padding: 0; margin-top: 4%;">
+
+      <thead>
+
+        <tr>
+          <th>
+            <h3>Product Image</h3>
+          </th>
+          <th>
+            <h3>Design No</h3>
+          </th>
+          <th>
+            <h3>Category</h3>
+          </th>
+          <th class="hideclass">
+            <h3>QR</h3>
+          </th>
+          <th class="hideclass">
+            <h3>Action</h3>
+          </th>
+          <th class="hideclass">
+            <h3>Action</h3>
+          </th>
+          <th class="hideclass">
+            <h3>Action</h3>
+          </th>
+          <th>
+            <h3>Approval Status </h3>
+          </th>
+          <th>
+            <h3>Action</h3>
+          </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of productData">
+          <td> <img src="{{imgConfig}}/{{item.topimage}}" referrerpolicy="no-referrer"></td>
+          <td>
+            <h3> <span> {{item.designnumber}} </span></h3>
+          </td>
+          <td>
+            <h3><span>{{item.category}} </span></h3>
+          </td>
+          <td class="hideclass">
+            <img src="{{imgConfig}}/{{item.qrfile}}" referrerpolicy="no-referrer">
+            {{item.designnumber}}
+
+            <input type="button" class="btn btn-primary"
+              (click)="genPdf(imgConfig+'/'+item.qrfile,item.qrfile, item.designnumber)" value="Downlaod">
+          </td>
+          <td class="hideclass"><input class="btn btn-primary" type="button" (click)="deleteProd(item.id)"
+              value="Delete"> </td>
+          <td class="hideclass"><a class="btn btn-primary" href="#/venderupdateproduct.component?id={{item.id}}">
+              Edit</a></td>
+          <td class="hideclass"> <a class="btn btn-primary" href="{{imgConfig}}/{{item.qrfile}}" target="_blank">View QR
+              Image</a> </td>
+
+          <td>
+            {{item.productapprovalstatus}}
+          </td>
+
+          <td>
+
+            <a *ngIf="item.productapprovalstatus === 'PENDING_AT_VENDOR'; else disabledLink"
+              [href]="'#/venderupdateproduct.component?id=' + item.id" class="btn btn-primary wdt">Edit</a>
+
+            <ng-template #disabledLink>
+              <a href="javascript:void(0)" class="btn btn-primary wdt disabled-button"
+                style="pointer-events: none; cursor: not-allowed;">Edit (Disabled)</a>
+            </ng-template>
+
+            &nbsp; &nbsp;
+
+            <input type="button" [disabled]="item.productapprovalstatus != 'PENDING_AT_VENDOR'"
+              class="btn btn-primary wdt"
+              (click)="updatePending(item.id, item.vendorid,item.vendormobile,item.vendorname,'PENDING_AT_ADMIN')"
+              value="Send For Approval">&nbsp; &nbsp;
+            <a class="btn btn-primary wdt" href="#/view-vendor-log-only.component?productid={{item.id}}"> View Approval
+              Log</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+  </div>
+
+</div>
+
+
+<app-vendorfooter></app-vendorfooter>

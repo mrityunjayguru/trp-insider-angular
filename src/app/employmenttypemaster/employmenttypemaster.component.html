@@ -1,0 +1,54 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container pt-5 pbbb">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="paddingtop">
+                <h3> Adding Employment Type</h3>
+                <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
+                    <label> Employment Type Name </label>
+                    <input type="text" formControlName="employmenttypename" class="inp"> <br><br>
+
+       
+                    
+
+                    
+                    <input type="submit" [disabled]="!formsize.valid" value="Add Master" class="btn">
+                </form>
+            </div>
+        </div>
+
+<div class="col-lg-6">
+  <div style="display: flex; justify-content: center;">
+    <table border="1">
+      <thead>
+        <tr>
+          <th> ID</th>
+          <th>Employment Type Name</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of allemploymenttype; let i = index">
+          <td>{{ item.id }}</td>
+          <td> {{ item.employmenttypename }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+        </div>
+    </div>

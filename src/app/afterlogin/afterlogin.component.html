@@ -1,0 +1,58 @@
+<div class="container-fluid back" id="mainhead" style="display:none">
+  <div class="row5">
+    <div class="col1">
+    <a routerLink="/afterlogin.component"><img src="assets/Group 8011.svg" class="logo"></a>
+    </div>
+    <div class="header">
+      <button class="toggle-button" (click)="toggleItems()">
+        <img [src]="showItems ? 'assets/close.png' : 'assets/menu.png'" alt="Toggle Items">
+      </button>
+    </div>
+    
+    <div class="items-container" *ngIf="showItems">
+      <ul>
+        <li style="display: none;"><a href="tel:9650403954"><img src="assets/phone.svg" width="20px;"></a></li>
+        <li style="display: none;" ><a href="goolge.com"><img src="assets/whatsapp.svg" width="20px;"></a></li>
+        <li><a href="#/logout.component"><img src="assets/Logout.svg" width="20px;"></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<app-user-header></app-user-header>
+
+
+  <div class="container-fluid main">
+    <div class="myrow mydp" style="text-align:center;">
+        <div class=""><a routerLink="/qr.component"><img src="assets/scan products-01.svg" class="bimg"></a></div>
+        <div class=""><a routerLink="/userorderdetails.component"><span (disabled)="prolength === 0"><img src="assets/order details-01.svg" class="bimg"></span></a></div>
+        <div class=""><a routerLink="/invoice.component"><img src="assets/final bill-01.svg" class="bimg"></a></div>
+       
+       
+       
+      </div>
+    
+   
+    
+</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+

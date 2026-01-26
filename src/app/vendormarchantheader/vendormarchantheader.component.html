@@ -1,0 +1,41 @@
+<div class="container-fluid fixed-top back" id="mainhead">
+    <div class="roww">
+      <div class="col1">
+      <a routerLink="/vendormerchanthome.component"><img src="assets/merchantapp-01.svg" class="logo"></a>
+      </div>
+
+
+      <div class="header">
+      
+      </div>
+      
+      <div class="header">
+       
+        <button class="toggle-button" (click)="toggleItems()">
+          <img [src]="showItems ? 'assets/header_close.svg' : 'assets/header.svg'" alt="Toggle Items" style="width: 26px;">
+        </button>
+      </div>
+
+      
+      <div class="items-container" *ngIf="showItems">
+        <ul>
+          <li><a href="tel:9811144961"><img src="assets/phone.svg" width="20px;"></a></li>
+          <li><a href="https://wa.link/da6uyh"><img src="assets/whatsapp.svg" width="20px;"></a></li>
+          <li><a href="#/logout.component"><img src="assets/Logout.svg" width="20px;"></a></li>
+        </ul>
+      </div>
+
+      
+    <div class="alert alert-success alert-dismissible fade show items-container-notification ccc" role="alert" *ngIf="showNotification">
+      <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+     
+      </div>
+
+
+  </div>
+
+
+
+
+    </div>
+  </div>

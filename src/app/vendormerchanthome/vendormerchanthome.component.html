@@ -1,0 +1,21 @@
+
+
+<app-vendormarchantheader></app-vendormarchantheader>
+
+<div class="main" >
+    <a [routerLink]="['/vendormerchantinvoice.component']" [ngClass]="{'disabled-link': !controlEnable}"><div class="banner">
+        <img src="assets/designers-masterpiese-group-of-fashion-designers-2022-02-02-19-58-52-utc.png" >
+    </div>
+    <button [disabled]="!controlEnable" type="button" class="btn1">
+        <span style="font-weight: 100;">View</span><br><span style="color:#FFEE00;">Invoice</span>
+
+    </button>
+    
+    
+</a>
+
+<span  style="font-weight: 100;"></span><br><span style="color:#FF0000;">{{userMessage}}</span>
+</div>
+
+<app-vendormarchantfooter></app-vendormarchantfooter>
+

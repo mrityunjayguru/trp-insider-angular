@@ -1,0 +1,122 @@
+
+
+
+
+
+<head>
+  <!-- jQuery -->
+  <script type="text/javascript" 
+          src="https://code.jquery.com/jquery-3.5.1.js">
+  </script>
+  
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" 
+        href=
+"https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+  
+  <!-- DataTables JS -->
+  <script src=
+"https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+  </script>
+   
+</head>
+
+<div class="container-fluid main pttab" style="padding-bottom: 150px;">
+
+  <div class="over">  
+    <table id="datatable" class="row-border hover" *ngIf="dtRendered" datatable [dtOptions]="dtOptions" cellspacing="0" width="100%" style="padding: 0; margin-top: 4%;">
+          <thead>
+    
+            <tr>
+              <th> # </th> 
+             <th>
+               <h3>Vendor Name</h3>
+             </th>
+             <th>
+               <h3>Vendor Mobile</h3>
+             </th>
+             <th>
+               <h3>Role Id</h3>
+             </th>
+             <th>
+               <h3>OTP</h3>
+             </th>
+             <th>
+               <h3>View Vendor Product</h3>
+             </th>
+           </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let item of allVendorData; let i = index;">
+
+    <td>{{i}}</td>
+    <td>{{item.firstName}}</td>
+    <td>{{item.mobile}}</td>
+    <td>{{item.roleid}}</td>
+    <td>{{item.otp}}</td>
+
+    <td> 
+      <a href="#/admin-approval-rejection.component?id={{item.id}}&mobile={{item.mobile}}">View</a>
+    
+    </td>
+
+</tr>
+</tbody>
+  </table>
+</div>
+  
+</div>
+
+
+
+
+<!-- <div class="container-fluid main pttab" style="padding-bottom: 150px;">
+    <div class="row mt-5">
+        <div style="overflow-x:auto;">
+            <table class="row-border hover"  cellspacing="0" width="100%" style="padding: 0;">
+              <thead>
+                <tr>
+                   <th> # </th> 
+                  <th>
+                    <h3>Vendor Name</h3>
+                  </th>
+                  <th>
+                    <h3>Vendor Mobile</h3>
+                  </th>
+                  <th>
+                    <h3>Role Id</h3>
+                  </th>
+                  <th>
+                    <h3>OTP</h3>
+                  </th>
+                  <th>
+                    <h3>View Vendor Product</h3>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr *ngFor="let item of allVendorData; let i = index;">
+
+                    <td>{{i}}</td>
+                    <td>{{item.firstName}}</td>
+                    <td>{{item.mobile}}</td>
+                    <td>{{item.roleid}}</td>
+                    <td>{{item.otp}}</td>
+
+                    <td> 
+                      <a href="#/admin-approval-rejection.component?id={{item.id}}&mobile={{item.mobile}}">View</a>
+                    
+                    </td>
+
+                </tr>
+                
+              </tbody>
+        
+          
+            
+            </table>
+           
+        </div>
+    </div>
+</div> -->

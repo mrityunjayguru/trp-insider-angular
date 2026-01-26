@@ -1,0 +1,59 @@
+import { Component } from '@angular/core';
+import { HeaderfooterService } from '../headerfooter.service';
+import { FormBuilder } from '@angular/forms';
+import { ImgconfigService } from '../imgconfig.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../api.service';
+import { DatePipe } from '@angular/common';
+import { LogService } from '../log.service';
+
+@Component({
+  selector: 'app-view-approval-log-history',
+  templateUrl: './view-approval-log-history.component.html',
+  styleUrls: ['./view-approval-log-history.component.css'],
+  providers: [DatePipe],
+})
+export class ViewApprovalLogHistoryComponent {
+
+    headerFooterService:any;
+    formBuilder:any;
+    apiService: any;
+    imgConfigService: any;
+    router: any;
+    route: any;
+    actionHistoryData : any;
+    logService : any;
+      
+  constructor(logService : LogService ,headerFooterService :HeaderfooterService,formBuilder:FormBuilder, apiService: ApiService, imgConfigService: ImgconfigService, router: Router, route: ActivatedRoute) {
+    this.logService = logService;
+    this.headerFooterService=headerFooterService;
+    this.formBuilder=formBuilder;
+    this.apiService= apiService;
+    this.imgConfigService=imgConfigService;
+    this.router=router;
+    this.route=route;
+
+    this.route.queryParams.subscribe((params:any) => {
+      if(params.productid != undefined)
+      { 
+
+        this.apiService.getactionHistoryByID(params.productid).subscribe(
+          (response:any) => {
+
+                this.actionHistoryData = response.data;
+                this.logService.clog(" Product Data ",this.actionHistoryData,false);               
+          })
+
+
+
+      }
+      else
+      {
+        alert(" Need to select Product Id : kindly coordinate to admin");
+      }
+
+    } ); 
+
+  }
+
+}

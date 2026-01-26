@@ -1,0 +1,73 @@
+
+.header{
+    background: #C51724;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+  }
+  h1,h2,h3,h4,h5,h6{
+    font-family: lato !important;
+    font-weight: normal;
+  }
+  .icon{
+    display: flex;
+    align-items: center;
+    text-align: right;
+  }
+  .logo{
+    margin-top: 10px;
+  }
+  .icon a{
+    padding: 0px 8px;
+  }
+  .main{
+    /* height: 80vh; */
+    padding-top: 14%;
+    padding-bottom: 6%;
+      text-align: center;
+    }
+  .btn1{
+    padding: 5px 53px;
+    background: #C51724;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 7px;
+    margin-top: 8px;
+  }
+  .banner img{
+    border: 0.25px solid #c51724de;
+      border-radius: 10px;
+      width: auto;
+      height: 220px;
+  }
+  .banner{
+    margin-bottom: 5px;
+  }
+  .bottom h5{
+    font-size: 11px;
+  }
+  .bottom{
+    display: flex;
+  }
+
+
+  .disabled-link {
+    pointer-events: none; /* This makes the link unclickable */
+    opacity: 0.5;         /* This can be used to reduce the opacity to visually indicate it's disabled */
+  }
+
+  @media only screen and (max-width: 600px) {
+    .main{
+      padding-top: 67%;
+      padding-bottom: 6%;
+      text-align: center;
+  }
+  }
+
+
+
+
+
+
+

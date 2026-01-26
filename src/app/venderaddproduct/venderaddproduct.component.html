@@ -1,0 +1,578 @@
+<app-vendorheader></app-vendorheader>
+
+<div style="padding:84px 20px 150px 20px;">
+    <form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="file-upload">
+                <div class="image-upload-wrap" [style.backgroundImage]="'url(' + imageSrc + ')'" id="backgroundElement">
+                    <input type="file" (change)="onFileSelected($event)" accept="image/*" class="file-upload-input"
+                        name="topimage" id="topimage" formControlName="topimage">
+
+                    <div class="drag-text">
+                        <img src="assets/icon.png" width="50px;">
+                        <h3>Upload Images</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row rowstyle">
+
+            <div class="col padd" style="margin: 15px 0px;">
+                <label>
+                    Design No/Article No
+                </label><br>
+                <input type="text" name="style" id="style" formControlName="designnumber">
+            </div>
+            <div class="col">
+                <label>Size</label><br>
+                <select class="sizeinp form-select" formControlName="size">
+                    <option  *ngFor="let item of sizes" [value]="item.size">{{ item.size }}</option>
+                 </select>
+            </div>
+            <div class="col" style="margin: 15px 0px;">
+                <label>Set Of</label><br>
+                <select name="set" id="set" class="form-select" formControlName="setofpic">
+                    <option value="1">1Pcs</option>
+                    <option value="2">2Pcs</option>
+                    <option value="3">3Pcs</option>
+                    <option value="4">4Pcs</option>
+                    <option value="5">5Pcs</option>
+                    <option value="6">6Pcs</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row rowstyle">
+
+            <div class="col padd">
+                <label>
+                    Category
+                </label><br>
+
+                <select name="cateogory" id="cateogory" class="form-select" formControlName="category">
+
+                    <option value="Sportswear"> Sportswear </option>
+                    <option value="Swimwear"> Swimwear </option>
+                    <option value="Formal Wear"> Formal Wear </option>
+                    <option value="Jeans/Pants"> Jeans/Pants </option>
+                    <option value="Lowers"> Lowers </option>
+                    <option value="T-shirts"> T-shirts </option>
+                    <option value="Top's"> Top's </option>
+                    <option value="Kurtis"> Kurtis </option>
+                    <option value="Legging's"> Legging's </option>
+                    <option value="Jackets"> Jacket </option>
+                    <option value="Shorts"> Shorts </option>
+                    <option value="Sweaters"> Sweaters </option>
+                    <option value="Cardigans"> Cardigans </option>
+                    <option value="Poncho"> Poncho </option>
+                    <option value="Pullover"> Pullover </option>
+                    <option value="Hoodies/Sweat shirts"> Hoodies/Sweat shirts </option>
+                    <option value="Coat"> Coat </option>
+                    <option value="Coat pant"> Coat pant </option>
+                    <option value="Coordinated set"> Coordinated set </option>
+                    <option value="Two pc set/Coordinated set"> Two pc set/Coordinated set </option>
+                    <option value="Three pc set/Coordinated set"> Three pc set/Coordinated set </option>
+                    <option value="Four pc set/Coordinated set"> Four pc set/Coordinated set </option>
+                    <option value="Track Suit"> Track Suit </option>
+                    <option value="Shrug"> Shrug </option>
+                    <option value="Middy/Tunic/Dress"> Middy/Tunic/Dress </option>
+                    <option value="Plazo"> Plazo </option>
+                    <option value="Stole/Shawl"> Stole/Shawl </option>
+                </select>
+            </div>
+            <div class="col mty">
+                <label>Vendor Selling Price</label><br>
+                <input type="text" id="wsp" name="wsp" formControlName="wsp"  (keypress)="alpha($event)">
+            </div>
+            <div class="col mty">
+                <label>
+                    Product Description
+                </label><br>
+                <input type="text" name="description" id="description" formControlName="description">
+            </div>
+        </div>
+        <div class="row rowstyle">
+
+            <div class="col padd">
+                <label>
+                    Vendor Name
+                </label><br>
+                <input type="text" name="Vendor" id="Vendor" formControlName="vendorname" readonly>
+            </div>
+            <div class="col mty">
+               
+            </div>
+            
+            
+            <div class="col mty">           
+            </div>
+        </div>
+
+        
+
+
+        <div class="row md">
+            <div class="col1"><button type="button" class="btn subbtn" (click)="toggleRowVisibility()">Add Color</button></div>
+
+
+        </div>
+        <div class="row2 var" *ngIf="showRow">
+            <label style="margin-bottom: 8px;">Colors<span style="color:red;">*</span></label><br>
+            <div class="row" style="display: flex;">
+
+                <div class="column1">
+
+                    <label class="picture backgroundElement" for="picture__input" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom + ')'" id="backgroundElement">
+                        Upload <br>Image
+                    </label>
+                    <input type="file" (change)="onFileSelectBottom($event)" name="picture__input" id="picture__input"
+                        style="display:none;" formControlName="pictureinput">
+
+                    <input id="textaa" name="color" type="text" class="mim" formControlName="imgcolor0">
+
+
+                </div>
+
+                <div class="column1" *ngIf="showColumn1">
+
+                    <label class="picture backgroundElement" for="picture__input1" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom1 + ')'" id="backgroundElement1">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottoms($event)" name="picture__input" id="picture__input1"
+                        style="display:none;" formControlName="pictureinput1">
+                    <input id="textaa" name="color1" type="text" class="mim" formControlName="imgcolor1">
+                    <input type="button" class="remove-button" (click)="removeColumn('column1')" value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn2">
+
+                    <label class="picture backgroundElement" for="picture__input2" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom2 + ')'" id="backgroundElement2">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom2($event)" name="picture__input" id="picture__input2"
+                        style="display:none;" formControlName="pictureinput2">
+                    <input id="textaa" name="color2" type="text" class="mim" formControlName="imgcolor2">
+                    <input type="button" class="remove-button" (click)="removeColumn('column2')" value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn3">
+
+                    <label class="picture backgroundElement" for="picture__input3" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom3 + ')'" id="backgroundElement3">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom3($event)" name="picture__input" id="picture__input3"
+                        style="display:none;" formControlName="pictureinput3">
+                    <input id="textaa" name="color3" type="text" class="mim" formControlName="imgcolor3">
+                    <input type="button" class="remove-button" (click)="removeColumn('column3')" value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn4">
+
+                    <label class="picture backgroundElement" for="picture__input4" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom4 + ')'" id="backgroundElement4">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom4($event)" name="picture__input" id="picture__input4"
+                        style="display:none;" formControlName="pictureinput4">
+                    <input id="textaa" name="color4" type="text" class="mim" formControlName="imgcolor4">
+                    <input type="button" class="remove-button" (click)="removeColumn('column4')" value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn5">
+
+                    <label class="picture backgroundElement" for="picture__input5" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom5 + ')'" id="backgroundElement5">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom5($event)" name="picture__input" id="picture__input5"
+                        style="display:none;" formControlName="pictureinput5">
+                    <input id="textaa" name="color4" type="text" class="mim" formControlName="imgcolor5">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column5')"
+                        value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn6">
+
+                    <label class="picture backgroundElement" for="picture__input6" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom6 + ')'" id="backgroundElement6">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom6($event)" name="picture__input" id="picture__input6"
+                        style="display:none;" formControlName="pictureinput6">
+                    <input id="textaa" name="color6" type="text" class="mim" formControlName="imgcolor6">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column6')"
+                        value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn7">
+
+                    <label class="picture backgroundElement" for="picture__input7" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom7 + ')'" id="backgroundElement7">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom7($event)" name="picture__input" id="picture__input7"
+                        style="display:none;" formControlName="pictureinput7">
+                    <input id="textaa" name="imgcolor7" type="text" class="mim" formControlName="imgcolor7">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column7')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn8">
+
+                    <label class="picture backgroundElement" for="picture__input8" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom8 + ')'" id="backgroundElement8">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom8($event)" name="picture__input" id="picture__input8"
+                        style="display:none;" formControlName="pictureinput8">
+                    <input id="textaa" name="imgcolor8" type="text" class="mim" formControlName="imgcolor8">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column8')"
+                        value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn9">
+
+                    <label class="picture backgroundElement" for="picture__input9" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom9 + ')'" id="backgroundElement9">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom9($event)" name="picture__input" id="picture__input9"
+                        style="display:none;" formControlName="pictureinput9">
+                    <input id="textaa" name="imgcolor9" type="text" class="mim" formControlName="imgcolor9">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column9')"
+                        value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn10">
+
+                    <label class="picture backgroundElement" for="picture__input10" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom10 + ')'" id="backgroundElement10">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom10($event)" name="picture__input"
+                        id="picture__input10" style="display:none;" formControlName="pictureinput10">
+                    <input id="textaa" name="imgcolor10" type="text" class="mim" formControlName="imgcolor10">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column10')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn11">
+
+                    <label class="picture backgroundElement" for="picture__input11" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom11 + ')'" id="backgroundElement11">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom11($event)" name="picture__input"
+                        id="picture__input11" style="display:none;" formControlName="pictureinput11">
+                    <input id="textaa" name="imgcolor11" type="text" class="mim" formControlName="imgcolor11">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column11')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn12">
+
+                    <label class="picture backgroundElement" for="picture__input12" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom12 + ')'" id="backgroundElement12">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom12($event)" name="picture__input"
+                        id="picture__input12" style="display:none;" formControlName="pictureinput12">
+                    <input id="textaa" name="imgcolor12" type="text" class="mim" formControlName="imgcolor12">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column12')"
+                        value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn13">
+
+                    <label class="picture backgroundElement" for="picture__input13" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom13 + ')'" id="backgroundElement13">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom13($event)" name="picture__input"
+                        id="picture__input13" style="display:none;" formControlName="pictureinput13">
+                    <input id="textaa" name="imgcolor13" type="text" class="mim" formControlName="imgcolor13">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column13')"
+                        value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn14">
+
+                    <label class="picture backgroundElement" for="picture__input14" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom14 + ')'" id="backgroundElement14">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom14($event)" name="picture__input"
+                        id="picture__input14" style="display:none;" formControlName="pictureinput14">
+                    <input id="textaa" name="imgcolor14" type="text" class="mim" formControlName="imgcolor14">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column14')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn15">
+
+                    <label class="picture backgroundElement" for="picture__input15" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom15 + ')'" id="backgroundElement15">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom15($event)" name="picture__input"
+                        id="picture__input15" style="display:none;" formControlName="pictureinput15">
+                    <input id="textaa" name="imgcolor15" type="text" class="mim" formControlName="imgcolor15">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column15')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn16">
+
+                    <label class="picture backgroundElement" for="picture__input16" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom16 + ')'" id="backgroundElement16">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom16($event)" name="picture__input"
+                        id="picture__input16" style="display:none;" formControlName="pictureinput16">
+                    <input id="textaa" name="imgcolor16" type="text" class="mim" formControlName="imgcolor16">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column16')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn17">
+
+                    <label class="picture backgroundElement" for="picture__input17" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom17 + ')'" id="backgroundElement17">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom17($event)" name="picture__input"
+                        id="picture__input17" style="display:none;" formControlName="pictureinput17">
+                    <input id="textaa" name="imgcolor17" type="text" class="mim" formControlName="imgcolor17">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column17')"
+                        value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn18">
+
+                    <label class="picture backgroundElement" for="picture__input18" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom18 + ')'" id="backgroundElement18">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom18($event)" name="picture__input"
+                        id="picture__input18" style="display:none;" formControlName="pictureinput18">
+                    <input id="textaa" name="imgcolor18" type="text" class="mim" formControlName="imgcolor18">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column18')"
+                        value="-">
+                </div>
+
+
+                <div class="column1" *ngIf="showColumn19">
+
+                    <label class="picture backgroundElement" for="picture__input19" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom19 + ')'" id="backgroundElement19">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom19($event)" name="picture__input"
+                        id="picture__input19" style="display:none;" formControlName="pictureinput19">
+                    <input id="textaa" name="imgcolor19" type="text" class="mim" formControlName="imgcolor19">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column19')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn20">
+
+                    <label class="picture backgroundElement" for="picture__input20" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom20 + ')'" id="backgroundElement20">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom20($event)" name="picture__input"
+                        id="picture__input20" style="display:none;" formControlName="pictureinput20">
+                    <input id="textaa" name="imgcolor20" type="text" class="mim" formControlName="imgcolor20">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column20')"
+                        value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn21">
+
+                    <label class="picture backgroundElement" for="picture__input21" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom21 + ')'" id="backgroundElement21">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom21($event)" name="picture__input"
+                        id="picture__input21" style="display:none;" formControlName="pictureinput21">
+                    <input id="textaa" name="imgcolor21" type="text" class="mim" formControlName="imgcolor21">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column21')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn22">
+
+                    <label class="picture backgroundElement" for="picture__input22" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom22 + ')'" id="backgroundElement22">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom22($event)" name="picture__input"
+                        id="picture__input22" style="display:none;" formControlName="pictureinput22">
+                    <input id="textaa" name="imgcolor22" type="text" class="mim" formControlName="imgcolor22">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column22')"
+                        value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn23">
+
+                    <label class="picture backgroundElement" for="picture__input23" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom23 + ')'" id="backgroundElement23">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom23($event)" name="picture__input"
+                        id="picture__input23" style="display:none;" formControlName="pictureinput23">
+                    <input id="textaa" name="imgcolor23" type="text" class="mim" formControlName="imgcolor23">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column23')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn24">
+
+                    <label class="picture backgroundElement" for="picture__input24" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom24 + ')'" id="backgroundElement24">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom24($event)" name="picture__input"
+                        id="picture__input24" style="display:none;" formControlName="pictureinput24">
+                    <input id="textaa" name="imgcolor24" type="text" class="mim" formControlName="imgcolor24">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column24')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn25">
+
+                    <label class="picture backgroundElement" for="picture__input25" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom25 + ')'" id="backgroundElement25">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom25($event)" name="picture__input"
+                        id="picture__input25" style="display:none;" formControlName="pictureinput25">
+                    <input id="textaa" name="imgcolor25" type="text" class="mim" formControlName="imgcolor25">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column25')"
+                        value="-">
+                </div>
+
+
+                <div class="column1" *ngIf="showColumn26">
+
+                    <label class="picture backgroundElement" for="picture__input26" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom26 + ')'" id="backgroundElement26">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom26($event)" name="picture__input"
+                        id="picture__input26" style="display:none;" formControlName="pictureinput26">
+                    <input id="textaa" name="imgcolor26" type="text" class="mim" formControlName="imgcolor26">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column26')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn27">
+
+                    <label class="picture backgroundElement" for="picture__input27" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom27 + ')'" id="backgroundElement27">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom27($event)" name="picture__input"
+                        id="picture__input27" style="display:none;" formControlName="pictureinput27">
+                    <input id="textaa" name="imgcolor27" type="text" class="mim" formControlName="imgcolor27">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column27')"
+                        value="-">
+                </div>
+
+                <div class="column1" *ngIf="showColumn28">
+
+                    <label class="picture backgroundElement" for="picture__input28" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom28 + ')'" id="backgroundElement28">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom28($event)" name="picture__input"
+                        id="picture__input28" style="display:none;" formControlName="pictureinput28">
+                    <input id="textaa" name="imgcolor28" type="text" class="mim" formControlName="imgcolor28">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column28')"
+                        value="-">
+                </div>
+                <div class="column1" *ngIf="showColumn29">
+
+                    <label class="picture backgroundElement" for="picture__input29" tabindex="0"
+                        [style.backgroundImage]="'url(' + imageSrcbottom29 + ')'" id="backgroundElement29">
+                        Upload <br>Image
+                    </label>
+
+                    <input type="file" (change)="onFileSelectBottom29($event)" name="picture__input"
+                        id="picture__input29" style="display:none;" formControlName="pictureinput29">
+                    <input id="textaa" name="imgcolor29" type="text" class="mim" formControlName="imgcolor29">
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column29')"
+                        value="-">
+                </div>
+
+
+                <div class="col">
+                    <div class="plus-icon" *ngIf="!showColumn31" (click)="showNextColumn()">
+                        +
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row2" style="display:flex;margin-top: 20px;">
+
+        </div>
+
+        <div class="row md">
+            <div class="col1"><button type="submit" class="btn subbtn" [disabled]="!productsForm.valid">Submit</button></div>
+
+
+        </div>
+
+
+    </form>
+
+</div>
+
+<!-- 
+<div class="container-fluid sticky" id="mainfoot1">
+    <div class="row1">
+        <div class="col">
+            <a routerLink="/venderaddproduct.component"><img src="assets/New Design empty.svg" class="footerimage1">
+            </a>
+            <h3 class="det">Add Product</h3>
+        </div>
+        <div class="col">
+            <a routerLink="/vendorproducts.component"> <img src="assets/Repeat order.svg" class="footerimage"></a>
+            <h3 class="det">View Products</h3>
+        </div>
+        <div class="col">
+            <a routerLink="/vendororderdetails.component"> <img src="assets/Order history.svg" class="footerimage"></a>
+            <h3 class="det">All Orders</h3>
+        </div>
+        <div class="col">
+            <a routerLink="/vendoruserregister.component"> <img src="assets/add-user.svg" class="footerimage"></a>
+            <h3 class="det">Add User</h3>
+        </div>
+
+    </div>
+</div> -->
+<app-vendorfooter></app-vendorfooter>
+

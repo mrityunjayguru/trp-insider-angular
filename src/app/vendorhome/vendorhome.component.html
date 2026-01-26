@@ -1,0 +1,30 @@
+<app-vendorheader></app-vendorheader>
+
+<div class="twobtn">
+    <a [routerLink]="['/vendorinvoice.component']" [queryParams]="{ mobile: users.mobile }">
+        <button type="button" class="btn1">
+            <span style="font-weight: 100;">View</span><br><span
+                style="color: #FFEE00; text-transform: uppercase;">invoice</span>
+        </button>
+    </a>&nbsp;
+    <a [routerLink]="['/requestsize.component']" [queryParams]="{ mobile: users.mobile }">
+        <button type="button" class="btn1" style="padding: 15px;">
+            <span style="color: #FFEE00; text-transform: uppercase;">Request Require Size</span>
+        </button>
+    </a>
+</div>
+
+
+<div class="main">
+    <a routerLink="/venderaddproduct.component">
+        <div class="banner">
+            <img src="assets/designers-masterpiese-group-of-fashion-designers-2022-02-02-19-58-52-utc.png">
+        </div>
+        <button type="button" class="btn1">
+            <span style="font-weight: 100;">Add</span><br><span style="color:#FFEE00;text-transform: uppercase;">New
+                Design</span>
+        </button>
+    </a> <br>
+</div>
+
+<app-vendorfooter></app-vendorfooter>

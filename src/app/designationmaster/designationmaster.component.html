@@ -1,0 +1,52 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container pt-5 pbbb">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="paddingtop">
+                <h3> Adding Designation</h3>
+                <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
+                    <label> Designation Name </label>
+                    <input type="text" formControlName="designationname" class="inp"> <br><br>
+
+       
+                    
+
+                    
+                    <input type="submit" [disabled]="!formsize.valid" value="Add Designation" class="btn">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div style="display: flex; justify-content: center;">
+                <table>
+                    <tr>
+                        <th> Designation ID   </th>
+                        <th> Designation Name </th>
+                        
+                    </tr>
+                    <tr style="border: 1px solid red;" *ngFor="let item of alldesignation; let i = index">
+
+                        <td>{{item.id}}</td>
+                        <td>{{item.designationname}}</td>
+                        
+
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+    </div>

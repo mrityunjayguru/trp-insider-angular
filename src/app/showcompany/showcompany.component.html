@@ -1,0 +1,196 @@
+<head>
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js">
+  </script>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+  </script>
+
+</head>
+
+<div class="container-fluid pd">
+
+  <!-- <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="input-group">
+          <input type="text" id="searchBox" class="form-control" placeholder="Search data by design number"
+            (keyup)="searchProductByIDLike($event.target)">
+
+          &nbsp; &nbsp;&nbsp;
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25,50,75 ]" [pageSize]="15" [length]="totalElements"
+    (page)="nextPage($event)"> </mat-paginator>
+
+  <div style="overflow-x: auto;">
+    <table id="datatable" class="row-border hover mt-3" *ngIf="dtRendered" datatable [dtOptions]="dtOptions"
+      cellspacing="0" width="100%" style="padding: 0;">
+
+      <thead>
+        <tr>
+          <th>
+            <h3>Company Logo</h3>
+          </th>
+          <th>
+            <h3>Company Name </h3>
+          </th>
+          <th>
+            <h3>Company Type</h3>
+          </th>
+          <th>
+            <h3>GST Number</h3>
+          </th>
+
+          <th>
+            <h3>Email Id </h3>
+          </th>
+          <th>
+            <h3>Mobile Number </h3>
+          </th>
+
+          <th>
+            <h3> Country  </h3>
+          </th>
+
+          <th>
+            <h3> State  </h3>
+          </th>
+          <th>
+            <h3> City  </h3>
+          </th>
+
+           <th>
+            <h3> Pin Code  </h3>
+          </th>
+
+          
+           <th>
+            <h3> Company Id Number  </h3>
+          </th>
+          
+
+          
+           <th>
+            <h3> Company Id Document  </h3>
+          </th>
+
+          
+           <th>
+            <h3> Company Uploaded Document  </h3>
+          </th>
+          
+          <th>
+            <h3>Action</h3>
+          </th>
+          <th>
+            <h3>Action</h3>
+          </th>
+          <th>
+            <h3>Action</h3>
+          </th>
+          <th>
+            <h3>Action</h3>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of productData">
+          <td>
+  <img
+    class="topimage"
+    [src]="imgConfig + '/' + item.uploadCompanyLogo"
+    alt="Company Logo"
+  >
+</td>
+          <td>
+            <h3> <span> {{item.companyName}} </span></h3>
+          </td>
+          <td>
+            <h3><span>{{item.companyType}} </span></h3>
+          </td>
+
+          <td>
+            <h3><span>{{item.gstNumber}} </span></h3> 
+
+          </td>
+         
+          <td>
+            <h3><span>{{item.emailId}} </span></h3> 
+          </td>
+
+          <td>
+            <h3><span>{{item.mobileNumber}} </span></h3> 
+          </td>
+
+          <td>
+            <h3><span>{{item.companyCountry}} </span></h3> 
+          </td>
+
+          <td>
+            <h3><span>{{item.companyState}} </span></h3> 
+          </td>
+          
+          
+          <td>
+            <h3><span>{{item.companyCity}} </span></h3> 
+          </td>
+
+          
+          <td>
+            <h3><span>{{item.companyPincode}} </span></h3> 
+          </td>
+          
+          
+          <td>
+            <h3><span>{{item.companyIdNumber}} </span></h3> 
+          </td>
+          
+          <td>
+
+          <img
+          class="topimage"
+          [src]="imgConfig + '/' + item.uploadCompanyLogo"
+          alt="Company Id Document"
+        >
+      </td>
+
+
+      <td>
+      <img
+          class="topimage"
+          [src]="imgConfig + '/' + item.uploadCompanyLogo"
+          alt="Company Uploaded"
+        >
+      </td>
+          
+
+          <td><input class="btn btn-primary" type="button" (click)="deleteProd(item.id)" value="Delete"> </td>
+          <td><a class="btn btn-primary" href="#/updatecompany.component?id={{item.id}}"> Edit</a></td>
+          <td> <a class="btn btn-primary wdt" href="{{imgConfig}}/{{item.qrfile}}" target="_blank">View QR Image</a>
+          </td>
+
+          <td> <input type="button" class="btn btn-primary"
+              (click)="DownloadProfilePic(imgConfig+'/'+item.qrfile,item.qrfile, item.designnumber)" value="Download">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+  </div>
+
+</div>

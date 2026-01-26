@@ -1,0 +1,34 @@
+
+<div class="container-fluid pd">
+  <h2>Action Log</h2>
+ 
+  <div style="overflow-x: scroll;">
+  <table class="table">
+    <thead>
+      <tr>
+        <th> # </th>
+       
+        <th> Action Type </th>
+        <th> Remarks </th>
+        <th> Vendor Mobile </th>
+        <th> Vendor Name </th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let item of actionHistoryData; let i =index;">
+
+        <td> {{i}} </td>
+        
+        <td> {{item.actiontype}} </td>
+        <td> {{item.remarks}} </td>
+        <td> {{item.vendormobile}} </td>
+        <td> {{item.vendorname}} </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>

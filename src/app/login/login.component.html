@@ -1,0 +1,78 @@
+<div class="container-fluid main">
+  
+  <div class="row2">
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-5" style="text-align:center;">
+        <img src="assets/images/orderapplogo.svg" class="login">
+      </div>
+      
+      <div class="mb-3">
+        <input type="tel" class="form-control input" id="phone" name="mobile" formControlName="mobile"
+          placeholder="Enter your phone number" formControlName="mobile">
+        <br>
+        <div *ngIf="f.mobile.touched && f.mobile.invalid" class="">
+          <div *ngIf="f.mobile.errors.required" style="color:white;margin-top:5px;">
+            <h1 style="font-family:Verdana, Geneva, Tahoma, sans-serif"> Mobile Number is
+              required. </h1>
+          </div>
+          <div *ngIf="f.mobile.errors.pattern" style="color:white;margin-top:5px;">
+            <h1> Please, Enter 10
+              digit Mobile Number. </h1>
+          </div>
+
+          <div *ngIf="f.mobile.hasError('minlength')" style="color:white;margin-top:5px;">
+            <h1> Please, Enter minimum 10
+              digit Mobile Number. </h1>
+          </div>
+
+          <div *ngIf="f.mobile.hasError('maxlength')" style="color:white;margin-top:5px;">
+            <h1> Please, Enter Maximum 10
+              digit Mobile Number. </h1>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control input" id="otp" name="otp" formControlName="otp"
+          placeholder="Enter OTP" formControlName="otp">
+        <div *ngIf="f.otp.touched && f.otp.invalid" class="">
+          <div *ngIf="f.otp.errors.required" style="color:white;margin-top:5px;">
+            <h1> OTP Number is
+              required.</h1>
+          </div>
+          <div *ngIf="f.otp.errors.pattern" style="color:white;margin-top:5px;">
+            <h1> Please, Enter 4
+              digit OTP Number. </h1>
+          </div>
+
+          <div *ngIf="f.otp.hasError('minlength')" style="color:white;margin-top:5px;">
+            <h1>Please, Enter minimum 4
+              digit OTP Number. </h1>
+          </div>
+
+          <div *ngIf="f.otp.hasError('maxlength')" style="color:white;margin-top:5px;">
+            <h1>Please, Enter Maximum 4
+              digit OTP Number. </h1>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <re-captcha formControlName="recaptcha"></re-captcha>
+        <div *ngIf="f.recaptcha.touched && f.recaptcha.invalid" class="">
+          <h1 style="color: white; margin-top: 5px;">Please complete the reCAPTCHA validation.</h1>
+        </div>
+      </div>
+      <div class="row mt-5" style="text-align: center;">
+        <div class="col"></div>
+        <div class="col">
+
+          <button type="submit" class="btn" [disabled]="!loginForm.valid">Login</button>
+        </div>
+        <div class="col">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

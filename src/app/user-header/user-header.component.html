@@ -1,0 +1,22 @@
+  <div class="container-fluid fixed-top back" id="mainhead">
+    <div class="roww">
+      <div class="col1">
+        <a routerLink="/mainpage.component"><img src="assets/images/orderapplogo.svg" class="logo"></a>
+        <!-- <a routerLink="/afterlogin.component"><img src="assets/images/orderapplogo.svg" class="logo"></a> -->
+      </div>
+      <div class="header">
+        <button class="toggle-button" (click)="toggleItems()">
+          <img [src]="showItems ? 'assets/header_close.svg' : 'assets/header.svg'" alt="Toggle Items"
+            style="width: 26px;">
+        </button>
+      </div>
+  
+      <div class="items-container" *ngIf="showItems">
+        <ul>
+          <li style="display:none"><a href="tel:9811144961"><img src="assets/phone.svg" width="20px;"></a></li>
+          <li ><a href="https://wa.link/da6uyh"><img src="assets/whatsapp.svg" width="20px;"></a></li>
+          <li><a href="#/logout.component"><img src="assets/Logout.svg" width="20px;"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>

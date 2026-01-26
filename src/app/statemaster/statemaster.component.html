@@ -1,0 +1,60 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container pt-5 pbbb">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="paddingtop">
+                <h3> Adding State</h3>
+                <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
+                    <label> State Name </label>
+                    <input type="text" formControlName="statename" class="inp"> <br><br>
+
+       
+                    <label> Country ID </label>
+                    <input type="number" formControlName="country_id" class="inp"> <br><br>
+
+                    <label> Country Name </label>
+                    <input type="text" formControlName="countryname" class="inp"> <br><br>
+
+
+                    
+                    <input type="submit" [disabled]="!formsize.valid" value="Add Department" class="btn">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div style="display: flex; justify-content: center;">
+                <table>
+                    <tr>
+                        <th> State  ID   </th>
+                        <th> State Name </th>
+                        <th> Country ID </th>
+                        <th> Country Name </th>
+
+                    </tr>
+                    <tr style="border: 1px solid red;" *ngFor="let item of departments; let i = index">
+
+                        <td>{{item.id}}</td>
+                        <td>{{item.statename}}</td>
+                        <td>{{item.countrymasterobj.id}}</td>
+                        <td>{{item.countrymasterobj.countryname}}</td>
+
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+    </div>

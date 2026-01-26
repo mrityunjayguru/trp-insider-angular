@@ -1,0 +1,85 @@
+<head>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js">
+    </script>
+  
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+  
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+    </script>
+  
+  </head>
+  <app-merchantheader></app-merchantheader>
+  <div class="container-fluid pd">
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="2000" [length]="totalElements"
+      (page)="nextPage($event)" class="page"> </mat-paginator>
+    <div style="overflow-x: auto;">
+      <table id="datatable" class="row-border hover" *ngIf="dtRendered" datatable [dtOptions]="dtOptions" cellspacing="0"
+        width="100%" style="padding: 0; margin-top: 4%;">
+  
+        <thead>
+  
+          <tr>
+            <th>
+              <h3>Product Image</h3>
+            </th>
+            <th>
+              <h3>Design No</h3>
+            </th>
+            <th>
+              <h3>Category</h3>
+            </th>
+            <th>
+              <h3>QR</h3>
+            </th>
+            <th>
+              <h3>Action</h3>
+            </th>
+            <th>
+              <h3>Action</h3>
+            </th>
+            <th>
+              <h3>Action</h3>
+            </th>
+            <th>
+              <h3>Action</h3>
+            </th>
+  
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of productData">
+            <td> <img src="{{imgConfig}}/{{item.topimage}}" referrerpolicy="no-referrer"></td>
+            <td>
+              <h3> <span> {{item.designnumber}} </span></h3>
+            </td>
+            <td>
+              <h3><span>{{item.category}} </span></h3>
+            </td>
+            <td>
+              <img src="{{imgConfig}}/{{item.qrfile}}" referrerpolicy="no-referrer">
+              {{item.designnumber}}
+  
+              <input type="button" class="btn btn-primary"
+                (click)="genPdf(imgConfig+'/'+item.qrfile,item.qrfile, item.designnumber)" value="Downlaod">
+            </td>
+            <td><input class="btn btn-primary" type="button" (click)="deleteProd(item.id)" value="Delete"> </td>
+            <td><a class="btn btn-primary" href="#/merchantproductsedit.component?id={{item.id}}"> Edit</a></td>
+            <td> <a class="btn btn-primary wdt" href="{{imgConfig}}/{{item.qrfile}}" target="_blank">View QR Image</a> </td>
+  
+            <td> <input type="button" class="btn btn-primary"
+                (click)="DownloadProfilePic(imgConfig+'/'+item.qrfile,item.qrfile, item.designnumber)" value="Download">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+  
+  
+  
+    </div>
+  
+  </div>
+  <app-merchantfooter></app-merchantfooter>
