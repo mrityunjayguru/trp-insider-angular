@@ -48,6 +48,8 @@ export class ShowcompanyComponent {
 
   logService : any;
 
+   images: { [key: string]: string } = {};
+
 
   constructor( logService : LogService ,headerFooterService :HeaderfooterService, apiService :ApiService,imgConfigService: ImgconfigService,route: ActivatedRoute,http:HttpClient)
   {
@@ -100,9 +102,24 @@ export class ShowcompanyComponent {
         this.logService.clog(" Product Data ",this.productData,false);
 
         this.dtRendered =true;
+
+ this.images = {};
+
+    // Fetch image for each product
+    this.productData.forEach((item: any) => {
+      this.apiService.getImage(item.uploadCompanyLogo).subscribe((blob: any) => {
+        this.images[item.uploadCompanyLogo] = URL.createObjectURL(blob);
+      });
+    });
+  
+
+
       })
 
   }
+
+
+
 
 
   deleteProd(id:any)
@@ -165,6 +182,12 @@ export class ShowcompanyComponent {
             'copy', 'csv', 'excel', 'print','pdf'
         ]
     };
+
+  
+
+  
+
+
   }
   
 
@@ -185,16 +208,52 @@ export class ShowcompanyComponent {
     
 
     
-
+/*
     this.apiService.showProducts(request).subscribe(
       (response:any) => {
 
         this.productData = response.data.content;
+
+        this.productData.forEach((item: { uploadCompanyLogo: string | number; }) => {
+            this.apiService.getImage(item.uploadCompanyLogo).subscribe((blob: Blob | MediaSource) => {
+            this.images[item.uploadCompanyLogo] = URL.createObjectURL(blob);
+      });
+    });
+
         this.logService.clog(" Product Data ",this.productData,false);
         this.dtRendered =true;
       })
-}
+}*/
 
+
+
+this.apiService.showProducts(request).subscribe(
+  (response: any) => {
+    // Store the product data
+    this.productData = response.data.content;
+
+    console.log("  this.productData");
+    console.log("  this.productData");
+    console.log(this.productData);
+    console.log("  this.productData");
+    console.log("  this.productData");
+
+
+    // Clear previous images
+    this.images = {};
+
+    // Fetch image for each product
+    this.productData.forEach((item: any) => {
+      this.apiService.getImage(item.uploadCompanyLogo).subscribe((blob: any) => {
+        this.images[item.uploadCompanyLogo] = URL.createObjectURL(blob);
+      });
+    });
+  },
+  (error:any) => {
+    console.error('Error fetching products:', error);
+  }
+);
+  }
   
 
 genPdf(imgurl:any,qrfile:any, designnumber:any)

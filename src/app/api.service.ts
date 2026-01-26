@@ -530,4 +530,13 @@ savePickupPoint(formData: any): Observable<any> {
   }
 
 
+getImage(fileName: string) {
+
+  const url = `https://trpinsiderbackend.routerosterpro.com/imageevent/${fileName}`;
+  return this.http.get(url, {
+    responseType: 'blob',
+    headers: this.headers
+  });
+}
+
 }
