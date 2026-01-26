@@ -92,9 +92,15 @@ export class ShowcompanyComponent {
 
         this.productData = response.data.content;
 
-        console.log(" Company Data ");
+        console.log(" Company Data updated ");
+        console.log(" Company Data updated ");
+        console.log(" Company Data updated ");
         console.log(this.productData);
         console.log(" Company Data ");
+        console.log(" Company Data updated ");
+        console.log(" Company Data updated ");
+        console.log(" Company Data updated ");
+        
 
 
         this.totalElements= response.data.totalElements;
