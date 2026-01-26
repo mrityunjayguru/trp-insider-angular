@@ -38,7 +38,7 @@ export class ApiService {
   
        // this.apiUrl = 'https://stageeventappback.designdemonz.com/api';
 
-        this.apiUrl = 'http://trpinsiderbackend.trackroutepro.com/api';
+        this.apiUrl = 'https://trpinsiderbackend.trackroutepro.com/api';
        // this.apiUrl = 'http://localhost:8085/api';
         
         alert(this.apiUrl);
