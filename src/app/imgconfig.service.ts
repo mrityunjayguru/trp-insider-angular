@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
 })
 export class ImgconfigService {
     
-    productPath = "https://stageeventappback.designdemonz.com/Event/productdetails.component?designNo=";
-    imagePath =   "https://stageeventappback.designdemonz.com/imageevent";
-    imagePathpdf = "https://stageeventappback.designdemonz.com/imageeventpdf";
+    productPath = "https://trpinsiderbackend.routerosterpro.com/Event/productdetails.component?designNo=";
+    imagePath =   "https://trpinsiderbackend.routerosterpro.com/imageevent";
+    imagePathpdf = "https://trpinsiderbackend.routerosterpro.com/imageeventpdf";
     
     
   //  productPath = "http:192.168.1.16:8085/Event/productdetails.component?designNo=";
@@ -18,12 +18,12 @@ export class ImgconfigService {
 constructor(  )
 {
     
-   this.imagePath = "https://stageeventappback.designdemonz.com/imageevent";
-   this.productPath = "https://stageeventappback.designdemonz.com/Event/productdetails.component?designNo=";
-   this.imagePathpdf = "https://stageeventappback.designdemonz.com/imageeventpdf";
+   this.imagePath = "https://trpinsiderbackend.routerosterpro.com/imageevent";
+   this.productPath = "https://trpinsiderbackend.routerosterpro.com/Event/productdetails.component?designNo=";
+   this.imagePathpdf = "https://trpinsiderbackend.routerosterpro.com/imageeventpdf";
 
   //  this.productPath = "http:192.168.1.16:8085/Event/productdetails.component?designNo=";
-  this.imagePath =   "C:/opt/tomcat/webapps/imageevent";
+ // this.imagePath =   "C:/opt/tomcat/webapps/imageevent";
   //this.imagePathpdf = "assets/imageeventpdf";
     
   
