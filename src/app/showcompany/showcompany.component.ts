@@ -49,6 +49,8 @@ export class ShowcompanyComponent {
   logService : any;
 
    images: { [key: string]: string } = {};
+   images1: { [key: string]: string } = {};
+   images2: { [key: string]: string } = {};
 
 
   constructor( logService : LogService ,headerFooterService :HeaderfooterService, apiService :ApiService,imgConfigService: ImgconfigService,route: ActivatedRoute,http:HttpClient)
@@ -109,13 +111,28 @@ export class ShowcompanyComponent {
 
         this.dtRendered =true;
 
- this.images = {};
+     this.images = {};
+     this.images1 = {};
+     this.images2 = {};
+
+
 
     // Fetch image for each product
     this.productData.forEach((item: any) => {
       this.apiService.getImage(item.uploadCompanyLogo).subscribe((blob: any) => {
         this.images[item.uploadCompanyLogo] = URL.createObjectURL(blob);
       });
+
+      this.apiService.getImage(item.companyIdentityDocument).subscribe((blob: any) => {
+        this.images1[item.companyIdentityDocument] = URL.createObjectURL(blob);
+      });
+
+
+      this.apiService.getImage(item.companyUploadDocument).subscribe((blob: any) => {
+        this.images2[item.companyUploadDocument] = URL.createObjectURL(blob);
+      });
+
+
     });
   
 

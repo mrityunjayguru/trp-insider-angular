@@ -157,23 +157,24 @@
             <h3><span>{{item.companyIdNumber}} </span></h3> 
           </td>
           
-          <td>
+           <td>
+    <img
+      class="topimage"
+      [src]="images1[item.companyIdentityDocument]"
+      alt="Company ID Image"
+    />
+  </td>
 
-          <img
-          class="topimage"
-          [src]="imgConfig + '/' + item.uploadCompanyLogo"
-          alt="Company Id Document"
-        >
-      </td>
 
+       <td>
 
-      <td>
-      <img
-          class="topimage"
-          [src]="imgConfig + '/' + item.uploadCompanyLogo"
-          alt="Company Uploaded"
-        >
-      </td>
+        {{item.companyUploadDocument}}
+    <img
+      class="topimage"
+      [src]="images2[item.companyUploadDocument]"
+      alt="Company Logo"
+    />
+  </td>
           
 
           <td><input class="btn btn-primary" type="button" (click)="deleteProd(item.id)" value="Delete"> </td>
