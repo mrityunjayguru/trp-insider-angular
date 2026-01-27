@@ -45,7 +45,8 @@ export class PickuppointComponent  implements AfterViewInit {
       pickupduration:['',Validators.required],
       dropoffduration:['',Validators.required],
       latitude:[''],
-      longitude:['']
+      longitude:[''],
+      address:['']
 
     });
 
@@ -194,7 +195,8 @@ initMap(): void {
     // ✅ Update form (NOW Angular sees it)
     this.formsize.patchValue({
       latitude: lat,
-      longitude: lng
+      longitude: lng,
+      address:this.searchBox.nativeElement.value
     });
   }
 }
