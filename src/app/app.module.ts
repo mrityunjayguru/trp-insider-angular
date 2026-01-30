@@ -112,6 +112,7 @@ import { WorkmodeComponent } from './workmode/workmode.component';
 import { ReportingmasterComponent } from './reportingmaster/reportingmaster.component';
 import { EmploymenttypemasterComponent } from './employmenttypemaster/employmenttypemaster.component';
 import { CommitiontypeComponent } from './commitiontype/commitiontype.component';
+import { NPickuppointComponentComponent } from './npickuppoint-component/npickuppoint-component.component';
 
 
 
@@ -209,6 +210,7 @@ import { CommitiontypeComponent } from './commitiontype/commitiontype.component'
     ReportingmasterComponent,
     EmploymenttypemasterComponent,
     CommitiontypeComponent,
+    NPickuppointComponentComponent,
    
 
   ],
