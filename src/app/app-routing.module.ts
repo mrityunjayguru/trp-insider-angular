@@ -91,7 +91,7 @@ import {ReportingmasterComponent} from './reportingmaster/reportingmaster.compon
 import {EmploymenttypemasterComponent} from './employmenttypemaster/employmenttypemaster.component'
 import {CommitiontypeComponent} from './commitiontype/commitiontype.component'
 import {NPickuppointComponentComponent} from './npickuppoint-component/npickuppoint-component.component'
-
+import {DistrictmasterComponent} from './districtmaster/districtmaster.component'
 
 const routes: Routes = [
   { path: 'registeruser.component', component: RegisteruserComponent,canActivate: [ExpenseGuard]},
@@ -186,7 +186,7 @@ const routes: Routes = [
   {path:'employmenttypemaster.component',component:EmploymenttypemasterComponent,canActivate:[ExpenseGuard,authGuard]},
   {path:'commitiontype.component',component:CommitiontypeComponent,canActivate:[ExpenseGuard,authGuard]},
   {path:'npickuppoint-component.component',component:NPickuppointComponentComponent,canActivate:[ExpenseGuard,authGuard]},
-
+  {path:'districtmaster.component',component:DistrictmasterComponent,canActivate:[ExpenseGuard,authGuard]},
   { path: '', component: HomeComponent } 
 ];
 

@@ -113,6 +113,7 @@ import { ReportingmasterComponent } from './reportingmaster/reportingmaster.comp
 import { EmploymenttypemasterComponent } from './employmenttypemaster/employmenttypemaster.component';
 import { CommitiontypeComponent } from './commitiontype/commitiontype.component';
 import { NPickuppointComponentComponent } from './npickuppoint-component/npickuppoint-component.component';
+import { DistrictmasterComponent } from './districtmaster/districtmaster.component';
 
 
 
@@ -211,6 +212,7 @@ import { NPickuppointComponentComponent } from './npickuppoint-component/npickup
     EmploymenttypemasterComponent,
     CommitiontypeComponent,
     NPickuppointComponentComponent,
+    DistrictmasterComponent,
    
 
   ],

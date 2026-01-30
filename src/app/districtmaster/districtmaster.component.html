@@ -1,0 +1,86 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>+
+<br>
+<br>
+<br>
+<br>
+
+<div class="container pt-5 pbbb">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="paddingtop">
+                <h3> Adding District </h3>
+                <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
+                   
+                   
+                    
+            <div class="col padd" style="margin: 23px 0px;">
+                <label> Select State </label><br>
+                <select formControlName="state_id" class="form-control" (change)="onStateChange($event)">
+                    <option value="">-- Select State --</option>
+                    <option *ngFor="let dept of states"
+                            [value]="dept.id">
+                        {{ dept.statename }}
+                    </option>
+                </select>
+            </div>
+
+                    <label> State Name </label>
+                    <input type="text" formControlName="statename" class="inp"> <br><br>
+
+
+                    
+                     <label> District Name </label>
+                    <input type="text" formControlName="districtName" class="inp"> <br><br>
+
+
+
+       
+                    <label> Country ID </label>
+                    <input type="number" formControlName="countryid" class="inp"> <br><br>
+
+                    <label> Country Name </label>
+                    <input type="text" formControlName="countryname" class="inp"> <br><br>
+
+
+                    
+                    <input type="submit" [disabled]="!formsize.valid" value="Add District" class="btn">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div style="display: flex; justify-content: center;">
+                <table>
+                    <tr>
+                        <th> District  ID   </th>
+                        <th> District Name </th>
+                        <th> State ID </th>
+                        <th> State Name </th>
+                        <th> Country ID </th>
+                        <th> Country Name </th>
+
+                    </tr>
+                    <tr style="border: 1px solid red;" *ngFor="let item of alldistricts; let i = index">
+
+                        <td>{{item.id}}</td>
+                        <td>{{item.districtName}}</td>
+                        <td>{{item.stateMasterObj.id}}</td>
+                        <td>{{item.stateMasterObj.statename}}</td>
+                        <td>{{item.countryid}}</td>
+                        <td>{{item.countryname}}</td>
+
+
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+    </div>

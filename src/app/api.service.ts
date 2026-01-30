@@ -41,7 +41,7 @@ export class ApiService {
         this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
        // this.apiUrl = 'http://localhost:8085/api';
         
-       // alert("Niraj Updated"+this.apiUrl);
+       // alert(" Niraj Updated "+this.apiUrl);
 
 
     this.headers = new HttpHeaders({
@@ -216,6 +216,22 @@ savePickupPoint(formData: any): Observable<any> {
   }
   //====================================================================
 
+
+  //=====================================
+  saveDistrict(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/districtmaster/save", formData, { "headers": this.headers });
+  }
+
+
+  
+  getAllDistrict(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/districtmaster/getAllDistricts",  { "headers": this.headers });
+  }
+
+  getDistrictsByState(stateId: any): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/districtmaster/getDistrictsByState?stateId=" + stateId,  { "headers": this.headers });
+  }
+  //====================================================================
 
 
   //=====================================
