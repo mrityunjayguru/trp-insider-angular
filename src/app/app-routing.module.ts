@@ -90,7 +90,7 @@ import {WorkmodeComponent} from './workmode/workmode.component'
 import {ReportingmasterComponent} from './reportingmaster/reportingmaster.component'
 import {EmploymenttypemasterComponent} from './employmenttypemaster/employmenttypemaster.component'
 import {CommitiontypeComponent} from './commitiontype/commitiontype.component'
-
+import {NPickuppointComponentComponent} from './npickuppoint-component/npickuppoint-component.component'
 
 
 const routes: Routes = [
@@ -185,7 +185,7 @@ const routes: Routes = [
   {path:'reportingmaster.component',component:ReportingmasterComponent,canActivate:[ExpenseGuard,authGuard]},
   {path:'employmenttypemaster.component',component:EmploymenttypemasterComponent,canActivate:[ExpenseGuard,authGuard]},
   {path:'commitiontype.component',component:CommitiontypeComponent,canActivate:[ExpenseGuard,authGuard]},
-  
+  {path:'npickuppoint-component.component',component:NPickuppointComponentComponent,canActivate:[ExpenseGuard,authGuard]},
 
   { path: '', component: HomeComponent } 
 ];
