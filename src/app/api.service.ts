@@ -36,10 +36,9 @@ export class ApiService {
 
     this.http = http;
   
-       // this.apiUrl = 'https://stageeventappback.designdemonz.com/api';
-
-        this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
-       // this.apiUrl = 'http://localhost:8085/api';
+     
+       // this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
+        this.apiUrl = 'http://localhost:8085/api';
         
        // alert(" Niraj Updated "+this.apiUrl);
 
@@ -232,6 +231,39 @@ savePickupPoint(formData: any): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/districtmaster/getDistrictsByState?stateId=" + stateId,  { "headers": this.headers });
   }
   //====================================================================
+
+
+  //=====================================
+  saveVehicleType(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/vehicletype/save", formData, { "headers": this.headers });
+  }
+
+
+  
+  getAllVehicleType(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/vehicletype/getAllVehicleType",  { "headers": this.headers });
+  }
+  //====================================================================
+
+
+   //=====================================
+  saveVehicleTypeBrand(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/vehicletypebrand/save", formData, { "headers": this.headers });
+  }
+
+
+  
+  getAllVehicleTypeBrand(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/vehicletypebrand/getVehicleTypeBrandsByVehicleType",  { "headers": this.headers });
+  }
+
+  getVehicleTypeBrandByVehicleType(vehicleTypeId: any): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/vehicletypebrand/getVehicleTypeBrandsByVehicleType?vehicleTypeId=" + vehicleTypeId,  { "headers": this.headers });
+  }
+  //====================================================================
+
+
+
 
 
   //=====================================
