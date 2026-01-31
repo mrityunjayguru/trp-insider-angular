@@ -254,7 +254,7 @@ savePickupPoint(formData: any): Observable<any> {
 
   
   getAllVehicleTypeBrand(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/vehicletypebrand/getVehicleTypeBrandsByVehicleType",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/vehicletypebrand/getAllVehicleTypeBrands",  { "headers": this.headers });
   }
 
   getVehicleTypeBrandByVehicleType(vehicleTypeId: any): Observable<any> {

@@ -115,6 +115,7 @@ import { CommitiontypeComponent } from './commitiontype/commitiontype.component'
 import { NPickuppointComponentComponent } from './npickuppoint-component/npickuppoint-component.component';
 import { DistrictmasterComponent } from './districtmaster/districtmaster.component';
 import { VehicletypeComponent } from './vehicletype/vehicletype.component';
+import { VehicletypebrandComponent } from './vehicletypebrand/vehicletypebrand.component';
 
 
 
@@ -215,6 +216,7 @@ import { VehicletypeComponent } from './vehicletype/vehicletype.component';
     NPickuppointComponentComponent,
     DistrictmasterComponent,
     VehicletypeComponent,
+    VehicletypebrandComponent,
    
 
   ],

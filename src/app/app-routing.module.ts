@@ -93,7 +93,7 @@ import {CommitiontypeComponent} from './commitiontype/commitiontype.component'
 import {NPickuppointComponentComponent} from './npickuppoint-component/npickuppoint-component.component'
 import {DistrictmasterComponent} from './districtmaster/districtmaster.component'
 import {VehicletypeComponent} from './vehicletype/vehicletype.component';
-
+import {VehicletypebrandComponent} from './vehicletypebrand/vehicletypebrand.component';
 const routes: Routes = [
   { path: 'registeruser.component', component: RegisteruserComponent,canActivate: [ExpenseGuard]},
   { path: 'login.component', component: LoginComponent }, 
@@ -189,6 +189,8 @@ const routes: Routes = [
   {path:'npickuppoint-component.component',component:NPickuppointComponentComponent,canActivate:[ExpenseGuard,authGuard]},
   {path:'districtmaster.component',component:DistrictmasterComponent,canActivate:[ExpenseGuard,authGuard]},
   {path: 'vehicletype.component', component: VehicletypeComponent,canActivate:[ExpenseGuard,authGuard]},
+  {path: 'vehicletypebrand.component', component: VehicletypebrandComponent,canActivate:[ExpenseGuard,authGuard]},
+  
 
   { path: '', component: HomeComponent } 
 ];
