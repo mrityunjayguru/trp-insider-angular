@@ -38,7 +38,7 @@ export class ApiService {
   
      
         this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
-       // this.apiUrl = 'http://localhost:8085/api';
+        //this.apiUrl = 'http://localhost:8085/api';
         
        // alert(" Niraj Updated "+this.apiUrl);
 
@@ -244,6 +244,20 @@ savePickupPoint(formData: any): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/vehicletype/getAllVehicleType",  { "headers": this.headers });
   }
   //====================================================================
+
+
+//=====================================
+  saveBloodGroup(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/bloodgroup/save", formData, { "headers": this.headers });
+  }
+
+
+  
+  getAllBloodGroup(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/bloodgroup/getAllBloodGroups",  { "headers": this.headers });
+  }
+  //====================================================================
+
 
 
    //=====================================

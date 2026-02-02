@@ -1,0 +1,47 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container pt-5 pbbb">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="paddingtop">
+                <h3> Adding Blood Group</h3>
+                <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
+                    <label> Blood Group Name </label>
+                    <input type="text" formControlName="bloodgroupname" class="inp"> <br><br>
+                    <input type="submit" [disabled]="!formsize.valid" value="Add Blood Group" class="btn">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div style="display: flex; justify-content: center;">
+                <table>
+                    <tr>
+                        <th>  ID   </th>
+                        <th> Blood Group Name </th>
+                        
+
+                    </tr>
+                    <tr style="border: 1px solid red;" *ngFor="let item of departments; let i = index">
+
+                        <td>{{item.id}}</td>
+                        <td>{{item.bloodgroupname}}</td>
+                        
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+    </div>

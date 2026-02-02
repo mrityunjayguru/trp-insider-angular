@@ -116,6 +116,7 @@ import { NPickuppointComponentComponent } from './npickuppoint-component/npickup
 import { DistrictmasterComponent } from './districtmaster/districtmaster.component';
 import { VehicletypeComponent } from './vehicletype/vehicletype.component';
 import { VehicletypebrandComponent } from './vehicletypebrand/vehicletypebrand.component';
+import { BloodgroupComponent } from './bloodgroup/bloodgroup.component';
 
 
 
@@ -217,6 +218,7 @@ import { VehicletypebrandComponent } from './vehicletypebrand/vehicletypebrand.c
     DistrictmasterComponent,
     VehicletypeComponent,
     VehicletypebrandComponent,
+    BloodgroupComponent,
    
 
   ],

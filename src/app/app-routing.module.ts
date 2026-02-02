@@ -94,6 +94,8 @@ import {NPickuppointComponentComponent} from './npickuppoint-component/npickuppo
 import {DistrictmasterComponent} from './districtmaster/districtmaster.component'
 import {VehicletypeComponent} from './vehicletype/vehicletype.component';
 import {VehicletypebrandComponent} from './vehicletypebrand/vehicletypebrand.component';
+import { BloodgroupComponent } from './bloodgroup/bloodgroup.component';
+
 const routes: Routes = [
   { path: 'registeruser.component', component: RegisteruserComponent,canActivate: [ExpenseGuard]},
   { path: 'login.component', component: LoginComponent }, 
@@ -190,7 +192,7 @@ const routes: Routes = [
   {path:'districtmaster.component',component:DistrictmasterComponent,canActivate:[ExpenseGuard,authGuard]},
   {path: 'vehicletype.component', component: VehicletypeComponent,canActivate:[ExpenseGuard,authGuard]},
   {path: 'vehicletypebrand.component', component: VehicletypebrandComponent,canActivate:[ExpenseGuard,authGuard]},
-  
+  {path:'bloodgroup.component', component: BloodgroupComponent, canActivate:[ExpenseGuard,authGuard]},
 
   { path: '', component: HomeComponent } 
 ];
