@@ -1,1 +1,47 @@
-<p>fuletype works!</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container pt-5 pbbb">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="paddingtop">
+                <h3> Adding Fuel Type</h3>
+                <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
+                    <label> Fuel Type </label>
+                    <input type="text" formControlName="fueltypename" class="inp"> <br><br>
+                    <input type="submit" [disabled]="!formsize.valid" value="Add Fuel Type" class="btn">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div style="display: flex; justify-content: center;">
+                <table>
+                    <tr>
+                        <th> ID  </th>
+                        <th> Fuel Type </th>
+                        
+
+                    </tr>
+                    <tr style="border: 1px solid red;" *ngFor="let item of departments; let i = index">
+
+                        <td>{{item.id}}</td>
+                        <td>nnn {{item.fueltypename}}</td>
+                        
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
