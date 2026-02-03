@@ -259,6 +259,34 @@ savePickupPoint(formData: any): Observable<any> {
   //====================================================================
 
 
+  //=====================================
+  saveLicenseType(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/licencetype/save", formData, { "headers": this.headers });
+  }
+
+
+  
+  getAllLicenseType(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/licencetype/getAllData",  { "headers": this.headers });
+  }
+  //====================================================================
+
+
+  //=====================================
+  saveFuelType(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/fueltype/save", formData, { "headers": this.headers });
+  }
+
+
+  
+  getAllFuelType(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/fueltype/getAllData",  { "headers": this.headers });
+  }
+  //====================================================================
+
+
+
+
 //=====================================
   saveBloodGroup(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/bloodgroup/save", formData, { "headers": this.headers });

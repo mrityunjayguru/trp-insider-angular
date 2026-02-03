@@ -95,8 +95,8 @@ import {DistrictmasterComponent} from './districtmaster/districtmaster.component
 import {VehicletypeComponent} from './vehicletype/vehicletype.component';
 import {VehicletypebrandComponent} from './vehicletypebrand/vehicletypebrand.component';
 import { BloodgroupComponent } from './bloodgroup/bloodgroup.component';
-
 import { BanknameComponent } from './bankname/bankname.component';
+import {LicencetypeComponent} from './licencetype/licencetype.component';
 
 const routes: Routes = [
   { path: 'registeruser.component', component: RegisteruserComponent,canActivate: [ExpenseGuard]},
@@ -196,6 +196,7 @@ const routes: Routes = [
   {path: 'vehicletypebrand.component', component: VehicletypebrandComponent,canActivate:[ExpenseGuard,authGuard]},
   {path:'bloodgroup.component', component: BloodgroupComponent, canActivate:[ExpenseGuard,authGuard]},
   {path:'bankname.component', component: BanknameComponent, canActivate:[ExpenseGuard,authGuard]},
+  {path:'licencetype.component', component: LicencetypeComponent, canActivate:[ExpenseGuard,authGuard]},
 
   { path: '', component: HomeComponent } 
 ];
