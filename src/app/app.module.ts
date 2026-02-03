@@ -117,6 +117,9 @@ import { DistrictmasterComponent } from './districtmaster/districtmaster.compone
 import { VehicletypeComponent } from './vehicletype/vehicletype.component';
 import { VehicletypebrandComponent } from './vehicletypebrand/vehicletypebrand.component';
 import { BloodgroupComponent } from './bloodgroup/bloodgroup.component';
+import { BanknameComponent } from './bankname/bankname.component';
+import { LicencetypeComponent } from './licencetype/licencetype.component';
+import { FuletypeComponent } from './fuletype/fuletype.component';
 
 
 
@@ -219,6 +222,9 @@ import { BloodgroupComponent } from './bloodgroup/bloodgroup.component';
     VehicletypeComponent,
     VehicletypebrandComponent,
     BloodgroupComponent,
+    BanknameComponent,
+    LicencetypeComponent,
+    FuletypeComponent,
    
 
   ],

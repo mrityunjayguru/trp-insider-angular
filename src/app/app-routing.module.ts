@@ -96,6 +96,8 @@ import {VehicletypeComponent} from './vehicletype/vehicletype.component';
 import {VehicletypebrandComponent} from './vehicletypebrand/vehicletypebrand.component';
 import { BloodgroupComponent } from './bloodgroup/bloodgroup.component';
 
+import { BanknameComponent } from './bankname/bankname.component';
+
 const routes: Routes = [
   { path: 'registeruser.component', component: RegisteruserComponent,canActivate: [ExpenseGuard]},
   { path: 'login.component', component: LoginComponent }, 
@@ -193,6 +195,7 @@ const routes: Routes = [
   {path: 'vehicletype.component', component: VehicletypeComponent,canActivate:[ExpenseGuard,authGuard]},
   {path: 'vehicletypebrand.component', component: VehicletypebrandComponent,canActivate:[ExpenseGuard,authGuard]},
   {path:'bloodgroup.component', component: BloodgroupComponent, canActivate:[ExpenseGuard,authGuard]},
+  {path:'bankname.component', component: BanknameComponent, canActivate:[ExpenseGuard,authGuard]},
 
   { path: '', component: HomeComponent } 
 ];
