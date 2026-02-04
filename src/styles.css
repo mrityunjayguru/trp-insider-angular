@@ -1,9 +1,193 @@
-body{
-    margin: 0px;
+@import 'tailwindcss';
+@plugin "tailwindcss-animate";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+body {
+  font-family: "Manrope", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@custom-variant dark (&:is(.dark *));
+
+
+
+
+:root {
+  --radius: 0.625rem;
+
+  /* ---------------------------- */
+  /* ✅ Background + Text Colors */
+  /* ---------------------------- */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  /* ---------------------------- */
+  /* ✅ BRAND COLORS (Your Theme) */
+  /* ---------------------------- */
+
+  /* Primary = #00B38D */
+  --primary: #00B38D;
+  --primary-foreground: oklch(1 0 0);
+
+  /* Secondary = #C1FCCA */
+  --secondary: oklch(0.94 0.12 150);
+  --secondary-foreground: oklch(0.145 0 0);
+
+  /* Disabled Button = #006842 */
+  --muted: oklch(0.52 0.14 170);
+  --muted-foreground: oklch(1 0 0);
+
+  /* Accent */
+  --accent: oklch(0.94 0.12 150);
+  --accent-foreground: oklch(0.145 0 0);
+
+  /* Border + Input */
+  --border: oklch(0.9 0 0);
+  --input: oklch(0.9 0 0);
+
+  /* Ring */
+  --ring: #00B38D;
+
+  /* Destructive */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+
+  /* ---------------------------- */
+  /* Charts (Keep Default) */
+  /* ---------------------------- */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Sidebar */
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+
+  --sidebar-primary: oklch(0.72 0.17 170);
+  --sidebar-primary-foreground: oklch(1 0 0);
+
+  --sidebar-accent: oklch(0.94 0.12 150);
+  --sidebar-accent-foreground: oklch(0.145 0 0);
+
+  --sidebar-border: oklch(0.9 0 0);
+  --sidebar-ring: oklch(0.72 0.17 170);
+}
+
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  /* Primary stays same */
+  --primary: oklch(0.72 0.17 170);
+  --primary-foreground: oklch(1 0 0);
+
+  /* Secondary darker mint */
+  --secondary: oklch(0.35 0.08 170);
+  --secondary-foreground: oklch(1 0 0);
+
+  /* Disabled */
+  --muted: oklch(0.52 0.14 170);
+  --muted-foreground: oklch(1 0 0);
+
+  --accent: oklch(0.35 0.08 170);
+  --accent-foreground: oklch(1 0 0);
+
+  --border: oklch(1 0 0 / 15%);
+  --input: oklch(1 0 0 / 20%);
+  --ring: oklch(0.72 0.17 170);
+
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(1 0 0);
+
+  /* Sidebar */
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+
+  --sidebar-primary: oklch(0.72 0.17 170);
+  --sidebar-primary-foreground: oklch(1 0 0);
+
+  --sidebar-accent: oklch(0.35 0.08 170);
+  --sidebar-accent-foreground: oklch(1 0 0);
+
+  --sidebar-border: oklch(1 0 0 / 15%);
+  --sidebar-ring: oklch(0.72 0.17 170);
+}
+
+
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Manrope", sans-serif;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    /* Added for general compatibility */
+  }
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: white;
+}

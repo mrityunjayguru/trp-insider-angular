@@ -1,0 +1,90 @@
+<div class="login-wrapper">
+  <div class="max-w-4xl w-full flex justify-center items-center gap-10 mx-5 md:mx-0">
+    <div class="bg-primary w-full  p-10 rounded-xl">
+      <div class="w-full flex sm:justify-center md:justify-end items-end">
+        <h2 class="text-white text-xl  md:text-3xl font-normal
+          text-center md:text-right leading-snug">
+          One Platform. <br />
+          Total Workforce Control.
+        </h2>
+      </div>
+
+      <div class="mt-5 md:w-[45%]">
+
+        <h2 class="text-white text-lg md:text-xl font-normal mb-4 leading-snug">
+          Control your workforce <br />
+          from one desktop dashboard
+        </h2>
+
+        <p class="text-white/70 text-xs mb-1">
+          Enter your mobile number to continue
+        </p>
+
+
+        <div class="flex items-center bg-white rounded-md px-2 py-3 mb-4">
+          <span class="mr-2 text-sm">🇮🇳</span>
+          <span class="mr-2 text-gray-500 text-sm">+91</span>
+
+          <input type="text" placeholder="0000000000" type="phone" class="w-full outline-none text-sm text-gray-700" [(ngModel)]="mobile" />
+
+        </div>
+        <div *ngIf="otpVisible" class="mt-4">
+          <p class="text-white/70 text-xs mb-1">Verify OTP</p>
+
+          <div class="flex justify-center items-center gap-2 mb-3">
+            <div class="flex gap-2 ">
+              <input *ngFor="let box of otpBoxes; let i = index" #otpInput type="text" inputmode="numeric" maxlength="1"
+                autocomplete="off" [value]="otp[i]" (input)="onOtpInput($event, i)" (keydown)="onOtpKeydown($event, i)"
+                [disabled]="isValidating"
+                class="w-10 h-10 text-center rounded bg-white outline-none text-sm disabled:opacity-50 disabled:cursor-not-allowed" />
+            </div>
+            <div class="flex items-center justify-center gap-4 text-xs text-white/80">
+
+              <button class="px-4.5 py-2 text-xs rounded bg-white/20 cursor-not-allowed gap-2" *ngIf="timer > 0"
+                disabled>
+                Resend <span>
+                  ({{ timer }}sec)
+                </span>
+              </button>
+
+              <button *ngIf="timer === 0" (click)="resendOtp()" class="px-4.5 py-3 rounded-md text-xs font-medium
+              bg-green-900 text-white hover:bg-secondary transition hover:text-primary cursor-pointer">
+                Resend
+              </button>
+
+            </div>
+          </div>
+          <div *ngIf="errorMessage" class="mt-2 mb-3">
+            <p class="text-red-500 text-xs font-normal flex items-center gap-1">
+              <span>{{ errorMessage }}</span>
+            </p>
+          </div>
+          <div *ngIf="isValidating" class="mt-2 mb-3">
+            <p class="text-white text-xs flex items-center gap-2">
+              <span>Validating OTP...</span>
+            </p>
+          </div>
+        </div>
+
+        <button (click)="showOtp()" class="w-full bg-green-900 text-white py-3 cursor-pointer rounded-md text-sm
+          hover:bg-secondary hover:text-primary transition">
+          Submit
+        </button>
+      </div>
+
+      <div class="mt-8 flex justify-end items-end">
+        <img src="assets/icons/insider.svg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style scoped>
+  .login-wrapper {
+    min-height: calc(100vh - 128px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+  }
+</style>

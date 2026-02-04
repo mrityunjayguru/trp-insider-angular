@@ -1,0 +1,12 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full screen height */
+}
+
+.app-content {
+  flex: 1;
+  width: 100%;        /* Full width */
+  padding: 0;         /* Remove extra spacing */
+  display: block;     /* No flex centering */
+}

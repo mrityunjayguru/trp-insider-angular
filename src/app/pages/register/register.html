@@ -1,0 +1,74 @@
+<div class="register-wrapper">
+  <div class="max-w-7xl w-full flex justify-center items-center gap-10">
+    <!-- Form -->
+    <div class="bg-[#FBFAF7] w-1/2 flex justify-center items-center p-10 rounded-xl">
+      <div class="w-full">
+        <!-- Title -->
+        <h2 class="text-xl font-semibold text-primary">Register Company</h2>
+
+        <p class="text-sm text-[#050914]">One Platform. Total Workforce Control.</p>
+        <hr class="mt-5 mb-8" />
+        <!-- Mobile Number -->
+        <div class="flex justify-between items-center mb-2">
+          <label class="text-sm font-medium text-[#1F1F1F]">
+            Mobile Number <span class="text-primary">*</span>
+          </label>
+
+          <span class="text-sm text-[#1F1F1F]"> OTP will be sent for verification </span>
+        </div>
+
+        <!-- Input -->
+        <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-white">
+          <input
+            type="text"
+            placeholder="Enter Mobile Number"
+            class="flex-1 px-4 py-3 text-sm outline-none"
+          />
+
+          <button class="px-5 text-sm font-medium text-primary cursor-pointer">Verify</button>
+        </div>
+
+        <!-- Continue -->
+        <button
+          class="mt-8 w-44 bg-[#006842] cursor-pointer text-white py-3 rounded-lg font-medium hover:opacity-90 transition"
+        >
+          Continue
+        </button>
+
+        <!-- Safe Secure -->
+        <div class="flex items-center gap-3 mt-24">
+          <img src="assets/icons/secure.svg" alt="" class="h-12 w-12" />
+
+          <div>
+            <p class="text-sm font-semibold text-primary">Safe and Secure</p>
+            <p class="text-xs text-text-[#050914]">With Data Backup</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="hidden lg:flex w-1/2 items-center justify-center relative overflow-hidden">
+      <!-- Background Glow -->
+      <div class="absolute rounded-full opacity-40 blur-3xl"></div>
+
+      <!-- Circle Image -->
+      <div class="relative w-96 h-96 rounded-full overflow-hidden shadow-xl">
+        <img
+          src="assets/iamges/reg.png"
+          alt="Register"
+          class="w-full h-full object-cover rounded-full"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<style scoped>
+  .register-wrapper {
+    min-height: calc(100vh - 128px); /* Adjust based on header and footer height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+  }
+</style>
