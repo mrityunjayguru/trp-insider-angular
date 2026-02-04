@@ -1,16 +1,24 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 import { RegisterFooter } from "@/shared/register-footer/register-footer";
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../apiservice';
+
 
 
 @Component({
   selector: 'app-register',
-  imports: [RegisterFooter],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RegisterFooter
+  ],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
+
 
 
 
