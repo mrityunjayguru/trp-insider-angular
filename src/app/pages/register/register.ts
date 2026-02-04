@@ -55,25 +55,35 @@ export class Register implements OnInit {
   onSubmit(): void {
     
     if (this.registerForm.invalid) return;
+    if (this.registerForm.value.mobile != undefined && this.registerForm.value.mobile.length != 10)
+      {
+        
+        alert("Please enter a valid 10-digit mobile number");
 
-    console.log("=======================");
-    console.log(this.registerForm.value);
-   console.log("=======================");
+      }
+      else
+      {
 
-    var formData = new FormData();
-      formData.append("mobile",this.registerForm.value.mobile);
-      formData.append("firstname","demo");
-      formData.append("shopname","demo");
+              console.log("=======================");
+              console.log(this.registerForm.value);
+            console.log("=======================");
 
-     
+              var formData = new FormData();
+                formData.append("mobile",this.registerForm.value.mobile);
+                formData.append("firstname","demo");
+                formData.append("shopname","demo");
 
-   
-    this.registerService.registerUser(formData).subscribe({
-      next: (res) => {
-        console.log(res);
-        alert('Registration successful');
-      },
-      error: () => alert('Registration failed')
-    });
+              
+
+            
+              this.registerService.registerUser(formData).subscribe({
+                next: (res) => {
+                  console.log(res);
+                  alert('Registration successful');
+                },
+                error: () => alert('Registration failed')
+              });
+
+     }
   }
 }
