@@ -13,7 +13,7 @@ import { ApiService } from '../../apiservice';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-   // RegisterFooter
+    RegisterFooter
   ],
   templateUrl: './register.html',
   styleUrl: './register.css',
