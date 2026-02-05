@@ -1,0 +1,30 @@
+<section class="w-full h-full">
+  <div class="">
+    <div class="my-3">
+      <h1 class="text-xl font-semibold text-primary">Transport & GPS Setting</h1>
+    </div>
+    <!-- Tabs -->
+    <div class="w-full">
+      <div class="w-full">
+        <z-tab-group
+          [zTabsPosition]="'top'"
+          [zActivePosition]="'bottom'"
+          [zAlignTabs]="'start'"
+          class="primary-tabs"
+        >
+          <z-tab label="Add Vehicles">
+            <div class="">
+              <app-vehicles></app-vehicles>
+            </div>
+          </z-tab>
+
+          <z-tab label="Available  GPS Devices">
+            <div class="">
+              <app-list-gps></app-list-gps>
+            </div>
+          </z-tab>
+        </z-tab-group>
+      </div>
+    </div>
+  </div>
+</section>
