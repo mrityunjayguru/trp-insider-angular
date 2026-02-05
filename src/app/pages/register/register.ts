@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { RegisterFooter } from "@/shared/register-footer/register-footer";
 import { ApiService } from '../../apiservice';
 
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +29,8 @@ export class Register implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private registerService: ApiService
+    private registerService: ApiService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -79,7 +80,8 @@ export class Register implements OnInit {
               this.registerService.registerUser(formData).subscribe({
                 next: (res) => {
                   console.log(res);
-                  alert('Registration successful');
+                  this.router.navigate(['company/kyb']);
+                  //alert('Registration successful');
                 },
                 error: () => alert('Registration failed')
               });
