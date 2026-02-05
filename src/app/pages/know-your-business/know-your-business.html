@@ -109,55 +109,68 @@
         </div>
         <button type="button" (click)="fileInput.click()"
           class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-          Upload File
+          Upload Logo
         </button>
-        <input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+        <input #fileInput type="file"  formControlName="topimage" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+      
+                    
+      
+      
       </div>
       <div>
         <label class="text-sm text-[#050914]">
           Upload Proprietor's PAN <span class="text-primary">*</span>
         </label>
-        <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-          <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
-          <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
-            <img src="assets/icons/upload.svg" alt="" />
-          </div>
-        </div>
-        <button type="button" (click)="fileInput.click()"
-          class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-          Upload File
-        </button>
-        <input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+           
+        
+          <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
+                
+                <label class="picture backgroundElement" for="picture__input" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom + ')'" id="backgroundElement">
+                     
+               Upload  <br>      Proprietor's PAN
+                </label>
+                <input type="file" (change)="onFileSelectBottom($event)" name="picture__input" id="picture__input" style="display:none;"
+                    formControlName="pictureinput">
+                    
+            </div>
+
+
       </div>
       <div>
         <label class="text-sm text-[#050914]">
           Aadhaar/DL/Passport <span class="text-primary">*</span>
         </label>
         <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-          <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
-          <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
-            <img src="assets/icons/upload.svg" alt="" />
+                
+                <label class="picture backgroundElement" for="picture__input1" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom1 + ')'" id="backgroundElement1">
+                Upload  <br>   Aadhaar/DL/Passport
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottoms($event)" name="picture__input" id="picture__input1" style="display:none;"
+                    formControlName="pictureinput1" >
+                <input id="textaa" name="color1" type="text" class="mim"
+                    formControlName="imgcolor1"  style="display: none;">
+                    <input type="button" class="remove-button" (click)="removeColumn('column1')" value="-" style="display: none;">
+            
           </div>
         </div>
-        <button type="button" (click)="fileInput.click()"
-          class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-          Upload File
-        </button>
-        <input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
-      </div>
+       
+        
+    
+      
       <div>
         <label class="text-sm text-[#050914]"> GSTIN Certificate </label>
         <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-          <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
-          <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
-            <img src="assets/icons/upload.svg" alt="" />
-          </div>
-        </div>
-        <button type="button" (click)="fileInput.click()"
-          class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-          Upload File
-        </button>
-        <input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+                
+                <label class="picture backgroundElement" for="picture__input2" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom2 + ')'" id="backgroundElement2">
+                    Upload <br>GSTIN Certificate
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom2($event)" name="picture__input" id="picture__input2" style="display:none;"
+                    formControlName="pictureinput2" >
+                </div>
+        
+      
       </div>
     </div>
 

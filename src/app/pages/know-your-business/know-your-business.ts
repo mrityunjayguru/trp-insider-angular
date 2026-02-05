@@ -233,24 +233,25 @@ previewUrl: string | ArrayBuffer | null = null;
   }*/
 
   onBusinessTypeChange() {
-    this.isSelected = this.businesstype !== '';
+    //alert(this.productsForm.value.businesstype);
+    this.isSelected = this.productsForm.value.businesstype !== '';
   }
 
   // Helper methods to determine which fields to show
   isProprietor(): boolean {
-    return this.businesstype === 'proprietor';
+    return this.productsForm.value.businesstype === 'proprietor';
   }
 
   isPrivatePublicLimited(): boolean {
-    return this.businesstype === 'private-public';
+    return this.productsForm.value.businesstype === 'private-public';
   }
 
   isPartnership(): boolean {
-    return this.businesstype === 'partnership';
+    return this.productsForm.value.businesstype === 'partnership';
   }
 
   isTrustSociety(): boolean {
-    return this.businesstype === 'trust-society';
+    return this.productsForm.value.businesstype === 'trust-society';
   }
 
 
@@ -895,7 +896,9 @@ this.apiService.getAllCommissionType().subscribe(
 
 
 
-
+        pictureinput:[''],
+        pictureinput1:[''],
+        pictureinput2:[''],
 
       imgfile0: [''],
       imgfile1: [''],
@@ -983,7 +986,7 @@ this.apiService.getAllCommissionType().subscribe(
 
   onSubmit() {
 
-    alert(this.businessname);
+    
 
     console.log("this.productsForm");
 
