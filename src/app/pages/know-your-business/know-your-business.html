@@ -1,3 +1,4 @@
+ <form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
 <section class="w-full h-full">
   <!-- header -->
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -20,7 +21,7 @@
           Business Type <span class="text-primary"> *</span>
         </label>
 
-        <select [(ngModel)]="businessType" (ngModelChange)="onBusinessTypeChange()"
+        <select formControlName="businesstype" (ngModelChange)="onBusinessTypeChange()"
           [ngClass]="{ 'text-[#BCBCBC]': !isSelected }"
           class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
           <option value="" class="text-[#BCBCBC]" disabled>Choose a Business Type</option>
@@ -36,7 +37,7 @@
       <div>
         <label class="text-sm f text-[#050914]"> GSTIN </label>
 
-        <input type="text" placeholder="Goods and Services Tax Identification Number"
+        <input type="text" formControlName="gstin"  placeholder="Goods and Services Tax Identification Number"
           class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
       </div>
     </div>
@@ -52,7 +53,7 @@
           <span class="text-primary">*</span>
         </label>
 
-        <input type="text" [placeholder]="isTrustSociety() ? 'Enter Company Name' : 'Enter Company Name'" required
+        <input type="text" formControlName="businessname" [placeholder]="isTrustSociety() ? 'Enter Company Name' : 'Enter Company Name'" required
           class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
       </div>
       <div>
@@ -60,7 +61,7 @@
           Registered Address <span class="text-primary">*</span>
         </label>
 
-        <input type="text" [placeholder]="
+        <input type="text" formControlName="registeredaddress" [placeholder]="
             isTrustSociety() ? 'Enter Trust/Society\'s Address' : 'Enter Company\'s Address'
           " required
           class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
@@ -70,7 +71,7 @@
           Proprietor Name <span class="text-primary">*</span>
         </label>
 
-        <input type="text" placeholder="Enter Contact Proprietor Name" required
+        <input type="text" formControlName="proprietorname" placeholder="Enter Contact Proprietor Name" required
           class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
       </div>
       <div>
@@ -81,7 +82,7 @@
           <span class="text-primary">*</span>
         </label>
 
-        <input type="text" [placeholder]="
+        <input type="text" formControlName="proprietorpan" [placeholder]="
             isProprietor()
               ? 'Enter Proprietor\'s PAN'
               : isPrivatePublicLimited() || isPartnership()
@@ -175,3 +176,5 @@
     </button>
   </div>
 </section>
+
+</form>
