@@ -1,0 +1,91 @@
+<div class="w-full h-full">
+    <div class="my-3 flex justify-end">
+        <select name="filter" id=""   class="mt-2 border border-primary rounded-sm px-3 py-2 text-sm text-[#006842]">
+            <option value="" disabled selected>filter GPS Devices</option>
+            <option value="all">All Devices</option>
+            <option value="active">Active Devices</option>
+            <option value="inactive">Inactive Devices</option>
+        </select>
+    </div>
+    <div class="mt-10">
+    <div class="overflow-hidden rounded-lg">
+      <table class="w-full">
+        <thead>
+          <tr class="bg-primary font-medium text-white">
+            <th class="px-6 py-3 text-left text-sm font-medium">Device Id</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Name</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">type</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">assigned</th>
+
+            <th class="px-6 py-3 text-left text-sm font-medium">Status</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Action</th>
+          </tr>
+        </thead>
+
+        <tbody class="bg-white">
+          <tr
+            *ngFor="let list of listGPSData; let i = index"
+            [ngClass]="i % 2 === 0 ? 'bg-[#FBFAF7]  ' : 'bg-gray-50'"
+            class="hover:bg-gray-100 transition-colors border-t border-b border-[#E0F7E9]"
+          >
+           <td
+              class="px-6 py-4 text-sm"
+              [ngClass]="list.isActive ? 'text-gray-900' : 'text-gray-400'"
+            >
+              {{ list.deviceId}}
+            </td>
+            <td
+              class="px-6 py-4 text-sm"
+              [ngClass]="list.isActive ? 'text-gray-900' : 'text-gray-400'"
+            >
+              {{ list.name }}
+            </td>
+            <td
+              class="px-6 py-4 text-sm"
+              [ngClass]="list.isActive ? 'text-gray-900' : 'text-gray-400'"
+            >
+              {{ list.type }}
+            </td>
+            <td
+              class="px-6 py-4 text-sm"
+              [ngClass]="list.isActive ? 'text-gray-900' : 'text-gray-400'"
+            >
+              {{ list.assigned }}
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <!-- Toggle Switch -->
+                <button
+                  (click)="toggleStatus(list)"
+                  class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none f cursor-pointer"
+                  [ngClass]="list.isActive ? 'bg-[#E0F7E9]' : 'bg-[#EEF3F6]'"
+                >
+                  <span
+                    class="inline-block h-6 w-6 transform rounded-full transition-transform"
+                    [ngClass]="
+                      list.isActive ? 'translate-x-6 bg-primary' : 'translate-x-1 bg-[#BCBCBC]'
+                    "
+                  ></span>
+                </button>
+                <span
+                  class="text-sm font-medium"
+                  [ngClass]="list.isActive ? 'text-primary' : 'text-gray-400'"
+                >
+                  {{ list.isActive ? 'Active' : 'Inactive' }}
+                </span>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <button
+                class="text-primary hover:text-primary/80 cursor-pointer transition-colors"
+                (click)="editDepartment(list)"
+              >
+                <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5" />
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

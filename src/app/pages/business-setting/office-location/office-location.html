@@ -1,0 +1,141 @@
+<section class="w-full h-full">
+  <div class="mt-4">
+    <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="">
+        <div>
+          <label class="text-sm text-[#050914]">
+            Add Office Name<span class="text-primary"> *</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Add Office Location"
+            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+          />
+        </div>
+
+        <!-- Office Address -->
+        <div class="mt-2">
+          <label class="text-sm text-[#050914]">
+            Office Address<span class="text-primary"> *</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Office Location"
+            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+          />
+        </div>
+
+        <!-- State + District -->
+        <div class="grid grid-cols-2 gap-4">
+          <!-- State -->
+          <div class="mt-2">
+            <label class="text-sm text-[#050914]">
+              State<span class="text-primary"> *</span>
+            </label>
+            <select
+              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            >
+              <option value="">Choose State</option>
+              <option *ngFor="let s of statesList" [value]="s">
+                {{ s }}
+              </option>
+            </select>
+          </div>
+
+          <!-- District -->
+          <div class="mt-2">
+            <label class="text-sm text-[#050914]">
+              District<span class="text-primary"> *</span>
+            </label>
+            <select
+              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            >
+              <option value="">Choose District</option>
+              <option *ngFor="let d of districtsList" [value]="d">
+                {{ d }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          class="bg-[#006842] text-white hover:bg-secondary hover:text-primary font-medium w-full cursor-pointer rounded-md p-2 mt-6"
+        >
+          Submit
+        </button>
+      </div>
+
+      <div class="border rounded-lg overflow-hidden shadow-sm"></div>
+    </div>
+  </div>
+
+  <!-- Table  -->
+  <div class="mt-10">
+    <h2 class="text-md font-semibold text-[#006842] mb-4">Office Locations List</h2>
+    <div class="overflow-hidden rounded-lg">
+      <table class="w-full">
+        <thead>
+          <tr class="bg-primary font-medium text-white">
+            <th class="px-6 py-3 text-left text-sm font-medium">Office Location</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">State</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Status</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Action</th>
+          </tr>
+        </thead>
+
+        <tbody class="bg-white">
+          <tr
+            *ngFor="let off of departments; let i = index"
+            [ngClass]="i % 2 === 0 ? 'bg-[#FBFAF7]  ' : 'bg-gray-50'"
+            class="hover:bg-gray-100 transition-colors border-t border-b border-[#E0F7E9]"
+          >
+           <td
+              class="px-6 py-4 text-sm"
+              [ngClass]="off.isActive ? 'text-gray-900' : 'text-gray-400'"
+            >
+              {{ off.state}}
+            </td>
+            <td
+              class="px-6 py-4 text-sm"
+              [ngClass]="off.isActive ? 'text-gray-900' : 'text-gray-400'"
+            >
+              {{ off.name }}
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <!-- Toggle Switch -->
+                <button
+                  (click)="toggleStatus(off)"
+                  class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none f cursor-pointer"
+                  [ngClass]="off.isActive ? 'bg-[#E0F7E9]' : 'bg-[#EEF3F6]'"
+                >
+                  <span
+                    class="inline-block h-6 w-6 transform rounded-full transition-transform"
+                    [ngClass]="
+                      off.isActive ? 'translate-x-6 bg-primary' : 'translate-x-1 bg-[#BCBCBC]'
+                    "
+                  ></span>
+                </button>
+                <span
+                  class="text-sm font-medium"
+                  [ngClass]="off.isActive ? 'text-primary' : 'text-gray-400'"
+                >
+                  {{ off.isActive ? 'Active' : 'Inactive' }}
+                </span>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <button
+                class="text-primary hover:text-primary/80 cursor-pointer transition-colors"
+                (click)="editDepartment(off)"
+              >
+                <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5" />
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

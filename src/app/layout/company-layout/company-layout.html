@@ -1,0 +1,21 @@
+<div class="conpany-wrapper">
+    <div class="w-full max-w-7xl flex gap-5">
+        <div class="bg-[#FBFAF7] w-[20%] h-fit p-5 rounded-xl">
+            <app-sidebar></app-sidebar>
+        </div>
+        <main class="bg-[#FBFAF7] w-[80%] px-7 py-6 rounded-xl">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>
+
+<style scoped>
+    .conpany-wrapper {
+        min-height: calc(100vh - 128px);
+        /* Adjust based on header and footer height */
+        display: flex;
+        justify-content: center;
+
+        padding: 40px 0;
+    }
+</style>

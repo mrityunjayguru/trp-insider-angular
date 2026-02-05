@@ -1,0 +1,48 @@
+<section class="w-full h-full">
+  <div class="">
+    <div class="my-3">
+      <h1 class="text-xl font-semibold text-primary">Business Settings</h1>
+    </div>
+    <!-- Tabs -->
+    <div class="w-full">
+      <div class="w-full">
+        <z-tab-group
+          [zTabsPosition]="'top'"
+          [zActivePosition]="'bottom'"
+          [zAlignTabs]="'start'"
+          class="primary-tabs"
+        >
+          <z-tab label="Add Department">
+            <div class="">
+              <app-department></app-department>
+            </div>
+          </z-tab>
+
+          <z-tab label="Add Designation">
+            <div class="">
+              <app-designation></app-designation>
+            </div>
+          </z-tab>
+
+          <z-tab label="Add Work Shifts">
+            <div class="">
+              <app-work-shift></app-work-shift>
+            </div>
+          </z-tab>
+
+          <z-tab label="Add Working Days">
+            <div class="">
+              <app-working-days></app-working-days>
+            </div>
+          </z-tab>
+
+          <z-tab label="Add Office Locations">
+            <div class="">
+            <app-office-location></app-office-location>
+            </div>
+          </z-tab>
+        </z-tab-group>
+      </div>
+    </div>
+  </div>
+</section>

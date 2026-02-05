@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import 'tailwindcss';
 @plugin "tailwindcss-animate";
-
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
 body {
   font-family: "Manrope", sans-serif;
@@ -191,4 +190,10 @@ body {
 ::-webkit-scrollbar-track {
   border-radius: 5px;
   background: white;
+}
+
+z-tab-group {
+  --tab-active-color: var(--primary);/* Tailwind green-500 */
+  --tab-text-color: #050914; /* Tailwind gray-500 */
+  --tab-active-text-color: var(--primary); /* Tailwind gray-900 */
 }

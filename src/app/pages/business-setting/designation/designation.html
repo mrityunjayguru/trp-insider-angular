@@ -1,0 +1,78 @@
+<div class="mt-3">
+  <label class="text-sm text-[#050914]"> Add Designation<span class="text-primery">*</span></label>
+  <div class="w-full flex gap-2 items-center justify-center">
+    <div class="w-1/2">
+      <input
+        type="text"
+        placeholder="Add Office Designation"
+        class="mt-2 w-full border border-[#D2D2D2] rounded-md px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+      />
+    </div>
+    <button
+      class="bg-[#006842] mt-2 text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md px-3 py-2.5"
+    >
+      Submit
+    </button>
+  </div>
+
+  <div class="mt-10">
+    <h2 class="text-md font-semibold text-[#006842] mb-4">Designation List</h2>
+    <div class="overflow-hidden rounded-lg">
+      <table class="w-full">
+        <thead>
+          <tr class="bg-primary font-medium text-white">
+            <th class="px-6 py-3 text-left text-sm font-medium">Designation Name</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Status</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Action</th>
+          </tr>
+        </thead>
+
+        <tbody class="bg-white">
+          <tr
+            *ngFor="let deg of departments; let i = index"
+            [ngClass]="i % 2 === 0 ? 'bg-[#FBFAF7]  ' : 'bg-gray-50'"
+            class="hover:bg-gray-100 transition-colors border-t border-b border-[#E0F7E9]"
+          >
+            <td
+              class="px-6 py-4 text-sm"
+              [ngClass]="deg.isActive ? 'text-gray-900' : 'text-gray-400'"
+            >
+              {{ deg.name }}
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <!-- Toggle Switch -->
+                <button
+                  (click)="toggleStatus(deg)"
+                  class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none f cursor-pointer"
+                  [ngClass]="deg.isActive ? 'bg-[#E0F7E9]' : 'bg-[#EEF3F6]'"
+                >
+                  <span
+                    class="inline-block h-6 w-6 transform rounded-full transition-transform"
+                    [ngClass]="
+                      deg.isActive ? 'translate-x-6 bg-primary' : 'translate-x-1 bg-[#BCBCBC]'
+                    "
+                  ></span>
+                </button>
+                <span
+                  class="text-sm font-medium"
+                  [ngClass]="deg.isActive ? 'text-primary' : 'text-gray-400'"
+                >
+                  {{ deg.isActive ? 'Active' : 'Inactive' }}
+                </span>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <button
+                class="text-primary hover:text-primary/80 cursor-pointer transition-colors"
+                (click)="editDepartment(deg)"
+              >
+                <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5" />
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
