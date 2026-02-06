@@ -127,7 +127,7 @@ export class KnowYourBusiness implements OnInit {
   brandvalue: any;
   categoryvalue: any;
   seasonvalue: any;
-  sizes:any;
+  sizes: any;
 
 
 
@@ -207,7 +207,7 @@ export class KnowYourBusiness implements OnInit {
 
 
 
-previewUrl: string | ArrayBuffer | null = null;
+  previewUrl: string | ArrayBuffer | null = null;
   isSelected = true;
   businesstype = 'proprietor';
   gstin = '';
@@ -218,19 +218,19 @@ previewUrl: string | ArrayBuffer | null = null;
 
 
 
-/*
-   onFileSelected(event: any) {
-    const file = event.target.files[0];
-
-    if (file) {
-      // Preview Image
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.previewUrl = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }*/
+  /*
+     onFileSelected(event: any) {
+      const file = event.target.files[0];
+  
+      if (file) {
+        // Preview Image
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.previewUrl = reader.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }*/
 
   onBusinessTypeChange() {
     //alert(this.productsForm.value.businesstype);
@@ -680,13 +680,13 @@ previewUrl: string | ArrayBuffer | null = null;
   }
 
 
- 
-allState:any;
-departments:any;
-alldesignation:any;
-allworkmode:any;
-allcommission:any;
-allemploymenttype:any;
+
+  allState: any;
+  departments: any;
+  alldesignation: any;
+  allworkmode: any;
+  allcommission: any;
+  allemploymenttype: any;
 
 
 
@@ -696,7 +696,7 @@ allemploymenttype:any;
     this.productsForm = this.formBuilder
     this.showRow = true;
     this.imageUrls = [];
- 
+
     this.router = router;
     this.formData = new FormData();
     this.docTopimage = null;
@@ -770,122 +770,122 @@ allemploymenttype:any;
 
 
     this.apiService.getAllEmploymentType().subscribe(
-      (response : any) => {               
+      (response: any) => {
         this.allemploymenttype = response.data;
         console.log("getAllEmploymentType");
         console.log(this.allemploymenttype);
         console.log("getAllEmploymentType");
-          
+
       })
 
 
-this.apiService.getAllCommissionType().subscribe(
-      (response : any) => {               
+    this.apiService.getAllCommissionType().subscribe(
+      (response: any) => {
         this.allcommission = response.data;
         console.log("getAllCommissionType");
         console.log(this.allcommission);
         console.log("getAllCommissionType");
-          
+
       })
 
 
- this.apiService.getAllWorkMode().subscribe(
-      (response : any) => {               
+    this.apiService.getAllWorkMode().subscribe(
+      (response: any) => {
         this.allworkmode = response.data;
         console.log("getAllWorkMode");
         console.log(this.allworkmode);
         console.log("getAllWorkMode");
-          
+
       })
 
-    
+
     this.apiService.getAllSize().subscribe(
-      (response : any) => {
+      (response: any) => {
         this.sizes = response.data;
       })
 
 
-       this.apiService.getAllState().subscribe(
-      (response : any) => {
-               
+    this.apiService.getAllState().subscribe(
+      (response: any) => {
+
         this.allState = response.data;
         console.log("allState");
         console.log(this.allState);
-        console.log("allState");          
+        console.log("allState");
       })
 
 
 
-      this.apiService.getAllDepartment().subscribe(
-      (response : any) => {
-               
+    this.apiService.getAllDepartment().subscribe(
+      (response: any) => {
+
         this.departments = response.data;
         console.log("Department");
         console.log(this.departments);
         console.log("Department");
 
-          
+
       })
 
-      this.apiService.getAllDesignation().subscribe(
-      (response : any) => {               
+    this.apiService.getAllDesignation().subscribe(
+      (response: any) => {
         this.alldesignation = response.data;
         console.log("alldesignation");
         console.log(this.alldesignation);
         console.log("alldesignation");
-          
+
       })
 
 
     this.productsForm = this.formBuilder.group({
       topimage: [''],
       name: [''],
-      designationid:[''],
+      designationid: [''],
       designation: [''],
       department: [''],
       workmode: [''],
-      officelocation:[''],
+      officelocation: [''],
       contactnumber: [''],
-      address:[''],
+      address: [''],
       country: [''],
-      
-      staeid:[''],
 
-      state:[''],
+      staeid: [''],
 
-      city:[''],
-      pincode:[''],
-      reportingmanager:[''],
-      gender:[''],
-      dateofbirth:[''],
-      dateofjoining:[''],
-      pannumber:[''],
-      aadhaarnumber:[''],
-      uan:[''],
-      pfnumber:[''],
-      pfjoiningdate:[''],
-      esinumber:[''],
-      nameofbank:[''],
-      ifsccode:[''],
-      accountnumber:[''],
-      nameofaccountholder:[''],
-      upiid:[''],
-      bloodgroupofemployee:[''],
-      emergencycontactpersonname:[''],
-      relation:[''],
-      relationcontactnumber:[''],
-      typeofemployment:[''],
-      monthlyfixedsalary:[''],
-      minimumguaranteedsalary:[''],
-      monthlytargetvalue:[''],
-      commissiontype:[''],
-      commissionrate:[''],
+      state: [''],
 
-      department_id:[1],
-      workmodeid:[1],
-      typeofemploymentid:[''],
-      commissionid:[''],
-      
+      city: [''],
+      pincode: [''],
+      reportingmanager: [''],
+      gender: [''],
+      dateofbirth: [''],
+      dateofjoining: [''],
+      pannumber: [''],
+      aadhaarnumber: [''],
+      uan: [''],
+      pfnumber: [''],
+      pfjoiningdate: [''],
+      esinumber: [''],
+      nameofbank: [''],
+      ifsccode: [''],
+      accountnumber: [''],
+      nameofaccountholder: [''],
+      upiid: [''],
+      bloodgroupofemployee: [''],
+      emergencycontactpersonname: [''],
+      relation: [''],
+      relationcontactnumber: [''],
+      typeofemployment: [''],
+      monthlyfixedsalary: [''],
+      minimumguaranteedsalary: [''],
+      monthlytargetvalue: [''],
+      commissiontype: [''],
+      commissionrate: [''],
+
+      department_id: [1],
+      workmodeid: [1],
+      typeofemploymentid: [''],
+      commissionid: [''],
+
 
       businesstype: ['proprietor'],
       gstin: [''],
@@ -896,9 +896,9 @@ this.apiService.getAllCommissionType().subscribe(
 
 
 
-        pictureinput:[''],
-        pictureinput1:[''],
-        pictureinput2:[''],
+      pictureinput: [''],
+      pictureinput1: [''],
+      pictureinput2: [''],
 
       imgfile0: [''],
       imgfile1: [''],
@@ -966,7 +966,7 @@ this.apiService.getAllCommissionType().subscribe(
 
 
 
-    
+
 
 
 
@@ -986,7 +986,7 @@ this.apiService.getAllCommissionType().subscribe(
 
   onSubmit() {
 
-    
+
 
     console.log("this.productsForm");
 
@@ -998,22 +998,22 @@ this.apiService.getAllCommissionType().subscribe(
 
 
 
-const payload = {
-    ...this.productsForm.value,   // existing form fields
-    departmentobj: {
-      id: this.productsForm.value.department_id                  // or this.formsize.value.companyId
-    }
-  };
+    const payload = {
+      ...this.productsForm.value,   // existing form fields
+      departmentobj: {
+        id: this.productsForm.value.department_id                  // or this.formsize.value.companyId
+      }
+    };
 
 
 
 
-  
+
 
 
 
     this.imageData.forEach((element: any) => {
-  
+
       if (element != undefined) {
         this.formData.append('file', element, element.name);
       }
@@ -1025,26 +1025,26 @@ const payload = {
 
 
     //this.formData.append("eventProduct", JSON.stringify(this.productsForm.value));
-  
-   
-  this.formData.append(
-    'eventProduct',
-    JSON.stringify(payload)
-  );
-    
-  
-
-  console.log(" Employee Form data =========");
-  console.log(" Employee Form data =========");
-  console.log(" Employee Form data =========");
-  console.log(" Employee Form data =========");
-  console.log(this.formData);
-  console.log(" Employee Form data =========");
-  console.log(" Employee Form data =========");
-  console.log(" Employee Form data =========");
 
 
-  
+    this.formData.append(
+      'eventProduct',
+      JSON.stringify(payload)
+    );
+
+
+
+    console.log(" Employee Form data =========");
+    console.log(" Employee Form data =========");
+    console.log(" Employee Form data =========");
+    console.log(" Employee Form data =========");
+    console.log(this.formData);
+    console.log(" Employee Form data =========");
+    console.log(" Employee Form data =========");
+    console.log(" Employee Form data =========");
+
+
+
     this.apiService.saveKnowYourBusiness(this.formData).subscribe(
       (response: any) => {
 
@@ -1053,14 +1053,13 @@ const payload = {
 
           this.router.navigateByUrl('/getallemployee.component');
         }
-        else
-        {
+        else {
           console.log(response);
         }
       })
 
 
-    
+
 
 
   }
@@ -1081,8 +1080,8 @@ const payload = {
 
       reader.onload = () => {
 
-        this.imageSrc = reader.result as string;
-        this.setBackgroundImage(this.imageSrc);
+        this.previewUrl = reader.result as string;
+        this.setBackgroundImage(this.previewUrl);
       };
 
 
@@ -1904,120 +1903,120 @@ const payload = {
       event.preventDefault();
     }
   }
-  
 
-onStateChange(event: any) {
-  const selectedId = event.target.value;
 
-  const selectedState = this.allState.find(
-    (statedata: any) => statedata.id == selectedId
-  );
+  onStateChange(event: any) {
+    const selectedId = event.target.value;
 
-  if (selectedState) {
-    this.productsForm.patchValue({
-      state: selectedState.statename
-    });
-  } else {
-    this.productsForm.patchValue({
-      state: ''
-    });
+    const selectedState = this.allState.find(
+      (statedata: any) => statedata.id == selectedId
+    );
+
+    if (selectedState) {
+      this.productsForm.patchValue({
+        state: selectedState.statename
+      });
+    } else {
+      this.productsForm.patchValue({
+        state: ''
+      });
+    }
   }
-}
 
-onDepartmentChange(event: any) {
-  const deptid = event.target.value;
+  onDepartmentChange(event: any) {
+    const deptid = event.target.value;
 
-  const selectedDepartment = this.departments.find(
-    (departmentsdata: any) => departmentsdata.id == deptid
-  );
+    const selectedDepartment = this.departments.find(
+      (departmentsdata: any) => departmentsdata.id == deptid
+    );
 
-  if (selectedDepartment) {
-    this.productsForm.patchValue({
-      department: selectedDepartment.deptname
-    });
-  } else {
-    this.productsForm.patchValue({
-      department: ''
-    });
+    if (selectedDepartment) {
+      this.productsForm.patchValue({
+        department: selectedDepartment.deptname
+      });
+    } else {
+      this.productsForm.patchValue({
+        department: ''
+      });
+    }
   }
-}
 
 
-onDesignationChange(event: any) {
-  const designationid = event.target.value;
+  onDesignationChange(event: any) {
+    const designationid = event.target.value;
 
-  const selecteddesignation = this.alldesignation.find(
-    (designationdata: any) => designationdata.id == designationid
-  );
+    const selecteddesignation = this.alldesignation.find(
+      (designationdata: any) => designationdata.id == designationid
+    );
 
-  if (selecteddesignation) {
-    this.productsForm.patchValue({
-      designation: selecteddesignation.designationname
-    });
-  } else {
-    this.productsForm.patchValue({
-      designation: ''
-    });
+    if (selecteddesignation) {
+      this.productsForm.patchValue({
+        designation: selecteddesignation.designationname
+      });
+    } else {
+      this.productsForm.patchValue({
+        designation: ''
+      });
+    }
   }
-}
 
 
 
-onWorkModeChange(event: any) {
-  const workmodeid = event.target.value;
+  onWorkModeChange(event: any) {
+    const workmodeid = event.target.value;
 
-  const selectedworkmode = this.allworkmode.find(
-    (workmodedata: any) => workmodedata.id == workmodeid
-  );
+    const selectedworkmode = this.allworkmode.find(
+      (workmodedata: any) => workmodedata.id == workmodeid
+    );
 
-  if (selectedworkmode) {
-    this.productsForm.patchValue({
-      workmode: selectedworkmode.workmodename
-    });
-  } else {
-    this.productsForm.patchValue({
-      workmode: ''
-    });
+    if (selectedworkmode) {
+      this.productsForm.patchValue({
+        workmode: selectedworkmode.workmodename
+      });
+    } else {
+      this.productsForm.patchValue({
+        workmode: ''
+      });
+    }
   }
-}
 
 
-onEmploymentTypeChange(event: any) {
-  const employmenttypeid = event.target.value;
+  onEmploymentTypeChange(event: any) {
+    const employmenttypeid = event.target.value;
 
-  const selectedemploymenttype = this.allemploymenttype.find(
-    (employmenttypedata: any) => employmenttypedata.id == employmenttypeid
-  );
+    const selectedemploymenttype = this.allemploymenttype.find(
+      (employmenttypedata: any) => employmenttypedata.id == employmenttypeid
+    );
 
-  if (selectedemploymenttype) {
-    this.productsForm.patchValue({
-      typeofemployment: selectedemploymenttype.employmenttypename
-    });
-  } else {
-    this.productsForm.patchValue({
-      typeofemployment: ''
-    });
+    if (selectedemploymenttype) {
+      this.productsForm.patchValue({
+        typeofemployment: selectedemploymenttype.employmenttypename
+      });
+    } else {
+      this.productsForm.patchValue({
+        typeofemployment: ''
+      });
+    }
   }
-}
 
 
-onCommissionTypeChange(event: any) {
-  const commissiontypeid = event.target.value;
+  onCommissionTypeChange(event: any) {
+    const commissiontypeid = event.target.value;
 
-  const selectedcommissiontype = this.allcommission.find(
-    (commissiontypedata: any) => commissiontypedata.id == commissiontypeid
-  );
+    const selectedcommissiontype = this.allcommission.find(
+      (commissiontypedata: any) => commissiontypedata.id == commissiontypeid
+    );
 
-  if (selectedcommissiontype) {
-    this.productsForm.patchValue({
-      commissiontype: selectedcommissiontype.commitiontypename
-    });
-  } else {
-    this.productsForm.patchValue({
-      commissiontype: ''
-    });
+    if (selectedcommissiontype) {
+      this.productsForm.patchValue({
+        commissiontype: selectedcommissiontype.commitiontypename
+      });
+    } else {
+      this.productsForm.patchValue({
+        commissiontype: ''
+      });
+    }
   }
-}
 
 
 }
