@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder,FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../../../apiservice';
 
 
@@ -12,14 +12,14 @@ interface DesignationItem {
 
 @Component({
   selector: 'app-designation',
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './designation.html',
   styleUrl: './designation.css',
 })
 
 
 export class Designation {
-  formsize:any;
+  formsize!:FormGroup;
   formBuilder: any;
   apiService: ApiService;
   sizes:any;
@@ -92,12 +92,10 @@ departments: DesignationItem[] = [
    this.apiService.saveDesignation(formData).subscribe(
     (response : any) => {
       
-      this.logService.clog(response,false);
-
-
+     
       if(response.status ==200)
       {
-        alert("Size Added Successfully.");
+        alert("Data Added Successfully.");
       }
       else
       {
