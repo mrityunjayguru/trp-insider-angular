@@ -37,7 +37,7 @@ export class ApiService {
     this.http = http;
   
      
-      this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
+     this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
       //this.apiUrl = 'http://localhost:8085/api';
         
        // alert(" Niraj Updated "+this.apiUrl);
@@ -270,6 +270,21 @@ savePickupPoint(formData: any): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/workshift/getAllData",  { "headers": this.headers });
   }
   //====================================================================
+
+
+
+//=====================================
+  saveOfficeLocation(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/officelocation/save", formData, { "headers": this.headers });
+  }
+
+
+  
+  getAllOfficeLocation(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/officelocation/getAllData",  { "headers": this.headers });
+  }
+  //====================================================================
+
 
 
 

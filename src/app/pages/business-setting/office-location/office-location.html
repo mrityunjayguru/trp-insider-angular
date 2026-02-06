@@ -1,4 +1,6 @@
 <section class="w-full h-full">
+<form [formGroup]="formsize" (ngSubmit)="onSubmit()">
+
   <div class="mt-4">
     <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="">
@@ -7,7 +9,7 @@
             Add Office Name<span class="text-primary"> *</span>
           </label>
           <input
-            type="text"
+            type="text" formControlName="officename"
             placeholder="Add Office Location"
             class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
@@ -19,7 +21,7 @@
             Office Address<span class="text-primary"> *</span>
           </label>
           <input
-            type="text"
+            type="text"  formControlName="officeaddress"
             placeholder="Office Location"
             class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
@@ -70,6 +72,8 @@
     </div>
   </div>
 
+</form>
+
   <!-- Table  -->
   <div class="mt-10">
     <h2 class="text-md font-semibold text-[#006842] mb-4">Office Locations List</h2>
@@ -100,7 +104,7 @@
               class="px-6 py-4 text-sm"
               [ngClass]="off.isActive ? 'text-gray-900' : 'text-gray-400'"
             >
-              {{ off.name }}
+              {{ off.officename }}
             </td>
             <td class="px-6 py-4">
               <div class="flex items-center gap-3">
