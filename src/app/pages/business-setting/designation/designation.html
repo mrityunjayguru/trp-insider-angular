@@ -10,11 +10,14 @@
         class="mt-2 w-full border border-[#D2D2D2] rounded-md px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
       />
     </div>
-    <button
-      class="bg-[#006842] mt-2 text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md px-3 py-2.5"
-    >
-      Submit
-    </button>
+     <button 
+          class="bg-[#006842] mt-2 text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md px-3 py-2.5"
+        >
+          <label class="text-sm text-[#050914] text-white">
+              {{ isEditMode ? 'Update Designation' : 'Add Designation' }}
+              <span class="text-primery">*</span>
+            </label>
+        </button>
   </div>
 
 </form>

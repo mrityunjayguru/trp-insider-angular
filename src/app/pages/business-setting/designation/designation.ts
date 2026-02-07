@@ -27,6 +27,10 @@ export class Designation {
   logService : any;
   allallcompany:any;
 
+   isEditMode = false;
+   selectedDeptId: number | null = null;
+
+
 departments: DesignationItem[] = [
     { name: 'Director', isActive: true },
     { name: 'Supervisor', isActive: true },
@@ -38,10 +42,17 @@ departments: DesignationItem[] = [
     deg.isActive = !deg.isActive;
     console.log(`${deg.name} is now ${deg.isActive ? 'Active' : 'Inactive'}`);
   }
-  editDepartment(deg: DesignationItem) {
-    console.log('Edit department:', deg);
-    // Add your edit logic here
-  }
+
+
+   editDepartment(dept: any) {
+  this.isEditMode = true;
+  this.selectedDeptId = dept.id; // or dept._id based on backend
+
+  this.formsize.patchValue({
+    designationname: dept.designationname,
+    id:dept.id
+  });
+}
 
 
   constructor(formBuilder: FormBuilder,   apiService: ApiService){
@@ -50,6 +61,7 @@ departments: DesignationItem[] = [
     
     this.formsize = this.formBuilder.group({
       designationname:['',Validators.required],
+      id:['']
       
 
     });
@@ -69,10 +81,33 @@ departments: DesignationItem[] = [
 
 
   }
+
+  
+resetForm() {
+  this.formsize.reset();
+  this.isEditMode = false;
+  this.selectedDeptId = null;
+  window.location.reload();
+}
   
 
   onSubmit(){
+
+    if (this.isEditMode) {
+            this.updateData();
+           // this.resetForm();
+            
+      } else {
+            this.saveData();
+            //this.resetForm();
+           
+      }
   
+}
+
+
+saveData()
+{
   // var formData = new FormData();  
 
   // formData.append("sizemasterdata", JSON.stringify(this.formsize.value));
@@ -97,6 +132,15 @@ departments: DesignationItem[] = [
       if(response.status ==200)
       {
         alert("Data Added Successfully.");
+        this.resetForm();
+        this.apiService.getAllDesignation().subscribe(
+      (response : any) => {               
+        this.alldesignation = response.data;
+        console.log("alldesignation");
+        console.log(this.alldesignation);
+        console.log("alldesignation");
+          
+      })
       }
       else
       {
@@ -104,6 +148,43 @@ departments: DesignationItem[] = [
       }
     })
 
+}
+
+
+updateData()
+{
+  // var formData = new FormData();  
+
+  // formData.append("sizemasterdata", JSON.stringify(this.formsize.value));
+   
+  const payload = {
+    ...this.formsize.value,   // existing form fields
+    countrymasterobj: {
+      id: this.formsize.value.country_id                  // or this.formsize.value.companyId
+    }
+  };
+
+  const formData = new FormData();
+  formData.append(
+    'designationmasterData',
+    JSON.stringify(payload)
+  );
+   
+   this.apiService.updateDesignation(formData).subscribe(
+    (response : any) => {
+      
+     
+      if(response.status ==200)
+      {
+        alert("Data Updated Successfully.");
+        this.resetForm();
+
+      }
+      else
+      {
+         alert("Not Add");
+      }
+    })
 
 }
 
