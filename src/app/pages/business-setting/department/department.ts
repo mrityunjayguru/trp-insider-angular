@@ -5,6 +5,7 @@ import { ApiService } from '../../../apiservice';
 
 
 
+
 interface DepartmentItem {
   name: string;
   isActive: boolean;
@@ -27,22 +28,40 @@ export class Department {
   
   allallcompany:any;
 
+  isEditMode = false;
+  selectedDeptId: number | null = null;
+
   
 
   toggleStatus(dept: DepartmentItem) {
     dept.isActive = !dept.isActive;
     console.log(`${dept.name} is now ${dept.isActive ? 'Active' : 'Inactive'}`);
   }
-  editDepartment(dept: DepartmentItem) {
-    console.log('Edit department:', dept);
-    // Add your edit logic here
-  }
+  
+
+  editDepartment(dept: any) {
+  this.isEditMode = true;
+  this.selectedDeptId = dept.id; // or dept._id based on backend
+
+  this.formsize.patchValue({
+    deptname: dept.deptname,
+    id:dept.id
+  });
+}
+
+
+resetForm() {
+  this.formsize.reset();
+  this.isEditMode = false;
+  this.selectedDeptId = null;
+}
 
   constructor(formBuilder: FormBuilder,   apiService: ApiService){
     this.formBuilder=formBuilder;
     this.apiService = apiService;
     
     this.formsize = this.formBuilder.group({
+      id:[''],
       deptname:['',Validators.required],
       company_id:['12'],
       company_name:['NIIT Ltd'],     
@@ -81,6 +100,44 @@ export class Department {
 
   onSubmit(){
    
+
+     if (this.isEditMode) {
+            this.updateDepartment();
+            this.resetForm();
+            
+      } else {
+            this.saveDepartment();
+            this.resetForm();
+           
+      }
+           
+
+
+}
+
+
+showAllData()
+{
+
+  this.resetForm();
+   
+   this.apiService.getAllDepartment().subscribe(
+      (response : any) => {
+               
+        this.departments = response.data;
+        console.log("Department");
+        console.log(this.departments);
+        console.log("Department");
+        window.location.reload();
+
+          
+      })
+}
+
+saveDepartment()
+{
+
+    
   const payload = {
     ...this.formsize.value,   // existing form fields
     companyobj: {
@@ -102,15 +159,48 @@ export class Department {
 
       if(response.status ==200)
       {
-        alert("Size Added Successfully.");
+        alert("Data Added Successfully.");
+        this.showAllData();
       }
       else
       {
          alert("Not Add");
       }
     })
+}
 
 
+updateDepartment()
+{
+
+    
+    
+  const payload = {
+    ...this.formsize.value,   // existing form fields
+    companyobj: {
+      id: this.formsize.value.company_id                  // or this.formsize.value.companyId
+    }
+  };
+
+  const formData = new FormData();
+  formData.append(
+    'department',
+    JSON.stringify(payload)
+  );
+   
+   this.apiService.updateDepartment(formData).subscribe(
+    (response : any) => {
+
+      if(response.status ==200)
+      {
+        alert("Data Updated Successfully.");
+        this.showAllData();
+      }
+      else
+      {
+         alert("Not Updated");
+      }
+    })
 }
 
 

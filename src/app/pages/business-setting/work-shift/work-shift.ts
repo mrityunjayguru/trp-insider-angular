@@ -134,6 +134,8 @@ export class WorkShift {
 
 }
 
+loadAll(){}
+
 
 onCompanyChange(event: any) {
   
