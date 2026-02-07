@@ -887,13 +887,14 @@ this.apiService.getAllCommissionType().subscribe(
       commissionid:[''],
       
 
-      businesstype: ['proprietor'],
-      gstin: [''],
+      businesstype: ['proprietor' ],
+      gstin: ['' ],
       businessname: [''],
       registeredaddress: [''],
       proprietorname: [''],
       proprietorpan: [''],
 
+      
 
 
         pictureinput:[''],
@@ -986,13 +987,50 @@ this.apiService.getAllCommissionType().subscribe(
 
   onSubmit() {
 
-    
-
-    console.log("this.productsForm");
-
-    console.log(this.productsForm);
-
-    console.log("this.productsForm");
+  if (
+  this.productsForm.value.businesstype === undefined ||
+  this.productsForm.value.businesstype.length === 0
+) {
+  alert('businesstype is required');
+  return;
+}
+else if (
+  this.productsForm.value.gstin === undefined ||
+  this.productsForm.value.gstin.length === 0
+) {
+  alert('gstin is required');
+  return;
+}
+else if (
+  this.productsForm.value.businessname === undefined ||
+  this.productsForm.value.businessname.length === 0
+) {
+  alert('businessname is required');
+  return;
+}
+else if (
+  this.productsForm.value.registeredaddress === undefined ||
+  this.productsForm.value.registeredaddress.length === 0
+) {
+  alert('registeredaddress is required');
+  return;
+}
+else if (
+  this.productsForm.value.proprietorname === undefined ||
+  this.productsForm.value.proprietorname.length === 0
+) {
+  alert('proprietorname is required');
+  return;
+}
+else if (
+  this.productsForm.value.proprietorpan === undefined ||
+  this.productsForm.value.proprietorpan.length === 0
+) {
+  alert('proprietorpan is required');
+  return;
+}
+      else
+      {
 
 
 
@@ -1055,12 +1093,12 @@ const payload = {
         }
         else
         {
-          console.log(response);
+          alert(response);
         }
       })
 
 
-    
+  }
 
 
   }
