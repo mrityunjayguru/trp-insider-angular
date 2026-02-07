@@ -893,8 +893,10 @@ this.apiService.getAllCommissionType().subscribe(
       registeredaddress: [''],
       proprietorname: [''],
       proprietorpan: [''],
-
       
+     contactpersonname:[''],
+     contactpersondesignation:[''],
+     contactpersonmobile:[''],      
 
 
         pictureinput:[''],
@@ -987,41 +989,73 @@ this.apiService.getAllCommissionType().subscribe(
 
   onSubmit() {
 
+
+      console.log("Niraj Image "+ this.imageData[0]);
+
+
   if (
   this.productsForm.value.businesstype === undefined ||
   this.productsForm.value.businesstype.length === 0
 ) {
-  alert('businesstype is required');
+  alert('Business type is required');
   return;
 }
 else if (
   this.productsForm.value.gstin === undefined ||
   this.productsForm.value.gstin.length === 0
 ) {
-  alert('gstin is required');
+  alert('Gstin is required.');
   return;
 }
 else if (
   this.productsForm.value.businessname === undefined ||
   this.productsForm.value.businessname.length === 0
 ) {
-  alert('businessname is required');
+  alert('Business name is required.');
   return;
 }
 else if (
   this.productsForm.value.registeredaddress === undefined ||
   this.productsForm.value.registeredaddress.length === 0
 ) {
-  alert('registeredaddress is required');
+  alert('Registered address is required.');
   return;
 }
 else if (
   this.productsForm.value.proprietorname === undefined ||
   this.productsForm.value.proprietorname.length === 0
 ) {
-  alert('proprietorname is required');
+  alert('Proprietor name is required.');
   return;
 }
+else if (
+  this.productsForm.value.contactpersonname === undefined ||
+  this.productsForm.value.contactpersonname.length === 0
+) {
+  alert('Contact person name is required.');
+  return;
+}
+
+else if (
+  this.productsForm.value.contactpersondesignation === undefined ||
+  this.productsForm.value.contactpersondesignation.length === 0
+) {
+  alert('Contact person designation is required.');
+  return;
+}
+
+
+
+else if (
+  this.productsForm.value.contactpersonmobile === undefined ||
+  this.productsForm.value.contactpersonmobile.length === 0
+) {
+  alert('Contact person mobile is required.');
+  return;
+}
+
+
+
 else if (
   this.productsForm.value.proprietorpan === undefined ||
   this.productsForm.value.proprietorpan.length === 0
@@ -1029,14 +1063,34 @@ else if (
   alert('proprietorpan is required');
   return;
 }
+else if (
+  this.imageData[0] === null ||
+  this.imageData[0].name === undefined ||
+  this.imageData[0].name.length === 0
+) {
+  alert('Logo is required');
+  return;
+}
+else if (
+  this.imageData[1] === null ||
+  this.imageData[1].name === undefined ||
+  this.imageData[1].name.length === 0
+) {
+  alert('Proprietor PAN is required');
+  return;
+}
+else if (
+  this.imageData[2] === null ||
+  this.imageData[2].name === undefined ||
+  this.imageData[2].name.length === 0
+) {
+  alert('Aadhaar is required');
+  return;
+}
       else
       {
 
-
-
-
-
-const payload = {
+        const payload = {
     ...this.productsForm.value,   // existing form fields
     departmentobj: {
       id: this.productsForm.value.department_id                  // or this.formsize.value.companyId
