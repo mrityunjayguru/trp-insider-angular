@@ -28,7 +28,7 @@
 
             <option value="proprietor" selected>Proprietor</option>
 
-            <option value="private-public">Private / Public Limited</option>
+            <option value="private-public">Private Limited / Public Limited</option>
 
             <option value="partnership">Partnership</option>
             <option value="trust-society">Trust/Society Name</option>
@@ -93,22 +93,32 @@
             class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
         </div>
 
-                <div>
-          <label class="text-sm font-medium text-gray-700">
-            Contact Person Name <span class="text-primary">*</span>
-          </label>
+        <ng-container *ngIf="!isPartnership() && !isTrustSociety()">
+          <div>
+            <label class="text-sm font-medium text-gray-700">
+              Contact Person Name <span class="text-primary">*</span>
+            </label>
 
-          <input type="text"  placeholder="Enter Contact Person Name" required
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-        </div>
-                <div>
-          <label class="text-sm font-medium text-gray-700">
-          Contact Person Mobile  <span class="text-primary">*</span>
-          </label>
+            <input type="text" placeholder="Enter Contact Person Name" required
+              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-gray-700">
+              Contact Designation <span class="text-primary">*</span>
+            </label>
 
-          <input type="text"  placeholder="Enter Contact Person Mobile" required
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-        </div>
+            <input type="text" placeholder="Enter Contact Designation" required
+              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-gray-700">
+              Contact Person Mobile <span class="text-primary">*</span>
+            </label>
+
+            <input type="text" placeholder="Enter Contact Person Mobile" required
+              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+          </div>
+        </ng-container>
       </div>
     </div>
     <div class="mt-4">
