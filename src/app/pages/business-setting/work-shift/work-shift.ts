@@ -25,6 +25,10 @@ export class WorkShift {
   apiService: ApiService;
   sizes:any;
   departments:any;
+
+    isEditMode = false;
+    selectedDeptId: number | null = null;
+
   
   allallcompany:any;
 
@@ -53,10 +57,38 @@ export class WorkShift {
     wst.isActive = !wst.isActive;
     console.log(`${wst.name} is now ${wst.isActive ? 'Active' : 'Inactive'}`);
   }
-  editDepartment(wst: WorkShiftItem) {
-    console.log('Edit department:', wst);
-    // Add your edit logic here
-  }
+
+
+  editDepartment(dept: any) {
+
+
+  this.isEditMode = true;
+  this.selectedDeptId = dept.id; 
+
+  this.formsize.patchValue({
+        workshiftname: dept.workshiftname,
+        id:dept.id,
+        workshiftstarttime:this.formatTime(dept.workshiftstarttime),
+        workshiftendtime:this.formatTime(dept.workshiftendtime),
+    });
+}
+
+
+
+formatTime(timeArr: number[]): string {
+  if (!timeArr || timeArr.length !== 2) return '';
+  return `${timeArr[0].toString().padStart(2, '0')}:${timeArr[1].toString().padStart(2, '0')}`;
+}
+
+resetForm() {
+  this.formsize.reset();
+  this.isEditMode = false;
+  this.selectedDeptId = null;
+  window.location.reload();
+}
+
+
+
   constructor(formBuilder: FormBuilder,   apiService: ApiService){
     this.formBuilder=formBuilder;
     this.apiService = apiService;
@@ -65,17 +97,12 @@ export class WorkShift {
       workshiftname:['',Validators.required],
       workshiftstarttime:[''],
       workshiftendtime:[''],
+      id:[''],
       company_id:['12'],
       company_name:['NIIT Ltd'],     
     });
 
-
-
-
-    
-
-
-      
+     
 
     this.apiService.getAllWorkShift().subscribe(
       (response : any) => {
@@ -102,6 +129,58 @@ export class WorkShift {
 
   onSubmit(){
 
+
+    if (this.isEditMode) {
+            this.updateData();
+           // this.resetForm();
+            
+      } else {
+            this.saveData();
+            //this.resetForm();
+           
+      }
+
+}
+
+
+updateData()
+{
+  
+
+  const payload = {
+    ...this.formsize.value,   // existing form fields
+    companyobj: {
+      id: this.formsize.value.company_id                  // or this.formsize.value.companyId
+    }
+  };
+
+  const formData = new FormData();
+  formData.append(
+    'update',
+    JSON.stringify(payload)
+  );
+   
+   this.apiService.updateWorkShift(formData).subscribe(
+    (response : any) => {
+      
+      
+      if(response.status ==200)
+      {
+        alert("Data Updated Successfully.");
+        this.resetForm();
+      }
+      else
+      {
+         alert("Not Add");
+      }
+    })
+
+}
+
+
+saveData()
+{
+  
   const payload = {
     ...this.formsize.value,   // existing form fields
     companyobj: {
@@ -124,6 +203,7 @@ export class WorkShift {
       if(response.status ==200)
       {
         alert("Data Added Successfully.");
+        this.resetForm();
       }
       else
       {
@@ -131,10 +211,7 @@ export class WorkShift {
       }
     })
 
-
 }
-
-loadAll(){}
 
 
 onCompanyChange(event: any) {

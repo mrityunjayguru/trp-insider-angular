@@ -269,6 +269,10 @@ savePickupPoint(formData: any): Observable<any> {
   }
 
 
+
+  updateWorkShift(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/workshift/update", formData, { "headers": this.headers });
+  }
   
   getAllWorkShift(): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/workshift/getAllData",  { "headers": this.headers });
