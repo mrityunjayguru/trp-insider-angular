@@ -2,59 +2,90 @@
   <div class="mt-4">
     <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="">
-        <div>
-          <label class="text-sm text-[#050914]">
-            Add Office Name<span class="text-primary"> *</span>
-          </label>
-          <input type="text" placeholder="Add Office Location"
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-        </div>
-
-        <!-- Office Address -->
-        <div class="mt-2">
-          <label class="text-sm text-[#050914]">
-            Office Address<span class="text-primary"> *</span>
-          </label>
-          <input type="text" placeholder="Office Location"
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-        </div>
-
-        <!-- State + District -->
-        <div class="grid grid-cols-2 gap-4">
-          <!-- State -->
-          <div class="mt-2">
+        <form [formGroup]="officeLocationForm" (ngSubmit)="onSubmit()">
+          <div>
             <label class="text-sm text-[#050914]">
-              State<span class="text-primary"> *</span>
+              Add Office Name<span class="text-primary"> *</span>
             </label>
-            <select
-              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-              <option value="">Choose State</option>
-              <option *ngFor="let s of statesList" [value]="s">
-                {{ s }}
-              </option>
-            </select>
+            <input type="text" formControlName="officeName" placeholder="Add Office Location"
+              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+              [class.border-red-500]="officeLocationForm.get('officeName')?.touched && officeLocationForm.get('officeName')?.invalid" />
+            <div *ngIf="officeLocationForm.get('officeName')?.touched && officeLocationForm.get('officeName')?.invalid"
+              class="mt-1">
+              <p *ngIf="officeLocationForm.get('officeName')?.errors?.['required']" class="text-red-500 text-xs">
+                Office Name is required
+              </p>
+            </div>
           </div>
 
-          <!-- District -->
+          <!-- Office Address -->
           <div class="mt-2">
             <label class="text-sm text-[#050914]">
-              District<span class="text-primary"> *</span>
+              Office Address<span class="text-primary"> *</span>
             </label>
-            <select
-              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-              <option value="">Choose District</option>
-              <option *ngFor="let d of districtsList" [value]="d">
-                {{ d }}
-              </option>
-            </select>
+            <input type="text" formControlName="officeAddress" placeholder="Office Location"
+              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+              [class.border-red-500]="officeLocationForm.get('officeAddress')?.touched && officeLocationForm.get('officeAddress')?.invalid" />
+            <div
+              *ngIf="officeLocationForm.get('officeAddress')?.touched && officeLocationForm.get('officeAddress')?.invalid"
+              class="mt-1">
+              <p *ngIf="officeLocationForm.get('officeAddress')?.errors?.['required']" class="text-red-500 text-xs">
+                Office Address is required
+              </p>
+            </div>
           </div>
-        </div>
 
-        <!-- Submit Button -->
-        <button
-          class="bg-[#006842] text-white hover:bg-secondary hover:text-primary font-medium w-full cursor-pointer rounded-md p-2 mt-6">
-          Submit
-        </button>
+          <!-- State + District -->
+          <div class="grid grid-cols-2 gap-4">
+            <!-- State -->
+            <div class="mt-2">
+              <label class="text-sm text-[#050914]">
+                State<span class="text-primary"> *</span>
+              </label>
+              <select formControlName="state"
+                class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                [class.border-red-500]="officeLocationForm.get('state')?.touched && officeLocationForm.get('state')?.invalid">
+                <option value="">Choose State</option>
+                <option *ngFor="let s of statesList" [value]="s">
+                  {{ s }}
+                </option>
+              </select>
+              <div *ngIf="officeLocationForm.get('state')?.touched && officeLocationForm.get('state')?.invalid"
+                class="mt-1">
+                <p *ngIf="officeLocationForm.get('state')?.errors?.['required']" class="text-red-500 text-xs">
+                  State is required
+                </p>
+              </div>
+            </div>
+
+            <!-- District -->
+            <div class="mt-2">
+              <label class="text-sm text-[#050914]">
+                District<span class="text-primary"> *</span>
+              </label>
+              <select formControlName="district"
+                class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                [class.border-red-500]="officeLocationForm.get('district')?.touched && officeLocationForm.get('district')?.invalid">
+                <option value="">Choose District</option>
+                <option *ngFor="let d of districtsList" [value]="d">
+                  {{ d }}
+                </option>
+              </select>
+              <div *ngIf="officeLocationForm.get('district')?.touched && officeLocationForm.get('district')?.invalid"
+                class="mt-1">
+                <p *ngIf="officeLocationForm.get('district')?.errors?.['required']" class="text-red-500 text-xs">
+                  District is required
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit"
+            class="bg-[#006842] text-white hover:bg-secondary hover:text-primary font-medium w-full cursor-pointer rounded-md p-2 mt-6">
+            Submit
+          </button>
+        </form>
       </div>
 
       <div class="border rounded-lg overflow-hidden shadow-sm"></div>

@@ -1,8 +1,7 @@
-
 <div class="register-wrapper">
-  <div class="max-w-7xl w-full flex justify-center items-center gap-10">
+  <div class="max-w-7xl w-full flex flex-col lg:flex-row justify-center items-center gap-10 px-4 md:px-6">
     <!-- Form -->
-    <div class="bg-[#FBFAF7] w-1/2 flex justify-center items-center p-10 rounded-xl">
+    <div class="bg-[#FBFAF7] w-full lg:w-1/2 flex justify-center items-center p-6 md:p-10 rounded-xl">
       <div class="w-full">
         <h2 class="text-xl font-semibold text-primary">Register Company</h2>
         <p class="text-sm text-[#050914]">One Platform. Total Workforce Control.</p>
@@ -11,7 +10,7 @@
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
           <!-- Mobile Number -->
-          <div class="flex justify-between items-center mb-2">
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2 gap-1">
             <label class="text-sm font-medium text-[#1F1F1F]">
               Mobile Number <span class="text-primary">*</span>
             </label>
@@ -20,44 +19,38 @@
             </span>
           </div>
 
-          <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-white">
-            <input
-              type="text"
-              formControlName="mobile"
-              placeholder="Enter Mobile Number"
-              class="flex-1 px-4 py-3 text-sm outline-none"
-            />
+          <div class="flex items-center border rounded-lg overflow-hidden bg-white"
+            [class.border-red-500]="registerForm.get('mobile')?.touched && registerForm.get('mobile')?.invalid"
+            [class.border-gray-200]="!(registerForm.get('mobile')?.touched && registerForm.get('mobile')?.invalid)">
+            <input type="text" formControlName="mobile" placeholder="Enter Mobile Number"
+              class="flex-1 px-4 py-3 text-sm outline-none w-full" />
 
-            <button
-              type="button"
-              (click)="sendOtp()"
-              class="px-5 text-sm font-medium text-primary cursor-pointer"
-            >
+            <button type="button" (click)="sendOtp()"
+              class="px-5 text-sm font-medium text-primary cursor-pointer whitespace-nowrap">
               Verify
             </button>
           </div>
 
           <!-- Validation -->
-          <p
-            *ngIf="registerForm.get('mobile')?.touched && registerForm.get('mobile')?.invalid"
-            class="text-red-500 text-xs mt-2"
-          >
-            Enter a valid 10-digit mobile number
-          </p>
+          <div *ngIf="registerForm.get('mobile')?.touched && registerForm.get('mobile')?.invalid" class="mt-2">
+            <p *ngIf="registerForm.get('mobile')?.errors?.['required']" class="text-red-500 text-xs">
+              Mobile number is required
+            </p>
+            <p *ngIf="registerForm.get('mobile')?.errors?.['pattern']" class="text-red-500 text-xs">
+              Enter a valid 10-digit mobile number
+            </p>
+          </div>
 
           <!-- Continue -->
-          <button
-            type="submit"
-            [disabled]="registerForm.invalid"
-            class="mt-8 w-44 bg-[#006842] text-white py-3 rounded-lg font-medium hover:opacity-90 transition disabled:opacity-50"
-          >
+          <button type="submit"
+            class="mt-8 w-44 bg-[#006842] cursor-pointer text-white py-3 rounded-lg font-medium hover:opacity-90 transition disabled:opacity-50">
             Continue
           </button>
 
         </form>
 
         <!-- Safe Secure -->
-        <div class="flex items-center gap-3 mt-24">
+        <div class="flex items-center gap-3 mt-12 md:mt-24">
           <img src="assets/icons/secure.svg" alt="" class="h-12 w-12" />
           <div>
             <p class="text-sm font-semibold text-primary">Safe and Secure</p>
@@ -69,25 +62,20 @@
 
     <!-- Image -->
     <div class="hidden lg:flex w-1/2 items-center justify-center relative overflow-hidden">
-      <div class="relative w-96 h-96 rounded-full overflow-hidden shadow-xl">
-        <img
-          src="assets/iamges/reg.png"
-          alt="Register"
-          class="w-full h-full object-cover rounded-full"
-        />
+      <div class="relative w-80 h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden shadow-xl">
+        <img src="assets/iamges/reg.png" alt="Register" class="w-full h-full object-cover rounded-full" />
       </div>
     </div>
   </div>
 </div>
-<app-register-footer></app-register-footer>
 
 <style scoped>
   .register-wrapper {
-    min-height: calc(100vh - 128px); /* Adjust based on header and footer height */
+    min-height: calc(100vh - 230px);
+    /* Adjust based on header and footer height */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px 0;
   }
 </style>
-

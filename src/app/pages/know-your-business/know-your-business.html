@@ -55,7 +55,14 @@
 
           <input type="text" formControlName="businessname"
             [placeholder]="isTrustSociety() ? 'Enter Company Name' : 'Enter Company Name'" required
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [class.border-red-500]="productsForm.get('businessname')?.touched && productsForm.get('businessname')?.invalid"
+            [class.border-[#D2D2D2]]="!(productsForm.get('businessname')?.touched && productsForm.get('businessname')?.invalid)" />
+          <div *ngIf="productsForm.get('businessname')?.touched && productsForm.get('businessname')?.invalid"
+            class="text-red-500 text-xs mt-1">
+            <span *ngIf="isTrustSociety()">Trust/Society Name is required</span>
+            <span *ngIf="!isTrustSociety()">Business Name is required</span>
+          </div>
         </div>
         <div>
           <label class="text-sm font-medium text-gray-700">
@@ -65,7 +72,13 @@
           <input type="text" formControlName="registeredaddress" [placeholder]="
             isTrustSociety() ? 'Enter Trust/Society\'s Address' : 'Enter Company\'s Address'
           " required
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [class.border-red-500]="productsForm.get('registeredaddress')?.touched && productsForm.get('registeredaddress')?.invalid"
+            [class.border-[#D2D2D2]]="!(productsForm.get('registeredaddress')?.touched && productsForm.get('registeredaddress')?.invalid)" />
+          <div *ngIf="productsForm.get('registeredaddress')?.touched && productsForm.get('registeredaddress')?.invalid"
+            class="text-red-500 text-xs mt-1">
+            Registered Address is required
+          </div>
         </div>
         <div *ngIf="isProprietor()">
           <label class="text-sm font-medium text-gray-700">
@@ -73,7 +86,13 @@
           </label>
 
           <input type="text" formControlName="proprietorname" placeholder="Enter Contact Proprietor Name" required
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [class.border-red-500]="productsForm.get('proprietorname')?.touched && productsForm.get('proprietorname')?.invalid"
+            [class.border-[#D2D2D2]]="!(productsForm.get('proprietorname')?.touched && productsForm.get('proprietorname')?.invalid)" />
+          <div *ngIf="productsForm.get('proprietorname')?.touched && productsForm.get('proprietorname')?.invalid"
+            class="text-red-500 text-xs mt-1">
+            Proprietor Name is required
+          </div>
         </div>
         <div>
           <label class="text-sm font-medium text-gray-700">
@@ -90,7 +109,13 @@
                 ? 'Enter Company\'s PAN'
                 : 'Enter Trust/Society\'s PAN'
           " required
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [class.border-red-500]="productsForm.get('proprietorpan')?.touched && productsForm.get('proprietorpan')?.invalid"
+            [class.border-[#D2D2D2]]="!(productsForm.get('proprietorpan')?.touched && productsForm.get('proprietorpan')?.invalid)" />
+          <div *ngIf="productsForm.get('proprietorpan')?.touched && productsForm.get('proprietorpan')?.invalid"
+            class="text-red-500 text-xs mt-1">
+            PAN is required
+          </div>
         </div>
 
         <ng-container *ngIf="!isPartnership() && !isTrustSociety()">
@@ -99,24 +124,49 @@
               Contact Person Name <span class="text-primary">*</span>
             </label>
 
-            <input type="text" placeholder="Enter Contact Person Name" required
-              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+            <input type="text" formControlName="name" placeholder="Enter Contact Person Name" required
+              class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+              [class.border-red-500]="productsForm.get('name')?.touched && productsForm.get('name')?.invalid"
+              [class.border-[#D2D2D2]]="!(productsForm.get('name')?.touched && productsForm.get('name')?.invalid)" />
+            <div *ngIf="productsForm.get('name')?.touched && productsForm.get('name')?.invalid"
+              class="text-red-500 text-xs mt-1">
+              Contact Person Name is required
+            </div>
           </div>
           <div>
             <label class="text-sm font-medium text-gray-700">
               Contact Designation <span class="text-primary">*</span>
             </label>
 
-            <input type="text" placeholder="Enter Contact Designation" required
-              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+            <input type="text" formControlName="designation" placeholder="Enter Contact Designation" required
+              class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+              [class.border-red-500]="productsForm.get('designation')?.touched && productsForm.get('designation')?.invalid"
+              [class.border-[#D2D2D2]]="!(productsForm.get('designation')?.touched && productsForm.get('designation')?.invalid)" />
+            <div *ngIf="productsForm.get('designation')?.touched && productsForm.get('designation')?.invalid"
+              class="text-red-500 text-xs mt-1">
+              Contact Designation is required
+            </div>
           </div>
           <div>
             <label class="text-sm font-medium text-gray-700">
               Contact Person Mobile <span class="text-primary">*</span>
             </label>
 
-            <input type="text" placeholder="Enter Contact Person Mobile" required
-              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+            <input type="text" formControlName="contactnumber" placeholder="Enter Contact Person Mobile" required
+              class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+              [class.border-red-500]="productsForm.get('contactnumber')?.touched && productsForm.get('contactnumber')?.invalid"
+              [class.border-[#D2D2D2]]="!(productsForm.get('contactnumber')?.touched && productsForm.get('contactnumber')?.invalid)" />
+
+            <!-- Validation Messages -->
+            <div *ngIf="productsForm.get('contactnumber')?.touched && productsForm.get('contactnumber')?.invalid"
+              class="mt-1">
+              <p *ngIf="productsForm.get('contactnumber')?.errors?.['required']" class="text-red-500 text-xs">
+                Mobile number is required
+              </p>
+              <p *ngIf="productsForm.get('contactnumber')?.errors?.['pattern']" class="text-red-500 text-xs">
+                Enter a valid 10-digit mobile number
+              </p>
+            </div>
           </div>
         </ng-container>
       </div>
@@ -129,11 +179,17 @@
           <label class="text-sm text-[#050914]">
             Upload Logo <span class="text-primary">*</span>
           </label>
-          <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
+          <div class="mt-2 border rounded-lg h-32 flex items-center justify-center bg-white"
+            [class.border-red-500]="productsForm.get('topimage')?.touched && productsForm.get('topimage')?.invalid"
+            [class.border-gray-200]="!(productsForm.get('topimage')?.touched && productsForm.get('topimage')?.invalid)">
             <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
             <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
               <img src="assets/icons/upload.svg" alt="" />
             </div>
+          </div>
+          <div *ngIf="productsForm.get('topimage')?.touched && productsForm.get('topimage')?.invalid"
+            class="text-red-500 text-xs mt-1">
+            Logo is required
           </div>
           <button type="button" (click)="fileInput.click()"
             class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
@@ -146,11 +202,17 @@
           <label class="text-sm text-[#050914]">
             Upload Proprietor's PAN <span class="text-primary">*</span>
           </label>
-          <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
+          <div class="mt-2 border rounded-lg h-32 flex items-center justify-center bg-white"
+            [class.border-red-500]="productsForm.get('pictureinput')?.touched && productsForm.get('pictureinput')?.invalid"
+            [class.border-gray-200]="!(productsForm.get('pictureinput')?.touched && productsForm.get('pictureinput')?.invalid)">
             <img *ngIf="imageSrcbottom" [src]="imageSrcbottom" class="h-full object-contain rounded-md" />
             <div *ngIf="!imageSrcbottom" class="text-gray-400 text-3xl">
               <img src="assets/icons/upload.svg" alt="" />
             </div>
+          </div>
+          <div *ngIf="productsForm.get('pictureinput')?.touched && productsForm.get('pictureinput')?.invalid"
+            class="text-red-500 text-xs mt-1">
+            PAN image is required
           </div>
           <button type="button" (click)="panInput.click()"
             class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
@@ -163,11 +225,17 @@
           <label class="text-sm text-[#050914]">
             Aadhaar/DL/Passport <span class="text-primary">*</span>
           </label>
-          <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
+          <div class="mt-2 border rounded-lg h-32 flex items-center justify-center bg-white"
+            [class.border-red-500]="productsForm.get('pictureinput1')?.touched && productsForm.get('pictureinput1')?.invalid"
+            [class.border-gray-200]="!(productsForm.get('pictureinput1')?.touched && productsForm.get('pictureinput1')?.invalid)">
             <img *ngIf="imageSrcbottom1" [src]="imageSrcbottom1" class="h-full object-contain rounded-md" />
             <div *ngIf="!imageSrcbottom1" class="text-gray-400 text-3xl">
               <img src="assets/icons/upload.svg" alt="" />
             </div>
+          </div>
+          <div *ngIf="productsForm.get('pictureinput1')?.touched && productsForm.get('pictureinput1')?.invalid"
+            class="text-red-500 text-xs mt-1">
+            Document is required
           </div>
           <button type="button" (click)="aadhaarInput.click()"
             class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">

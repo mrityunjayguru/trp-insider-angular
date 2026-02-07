@@ -7,23 +7,12 @@ import { ApiService } from '../../apiservice';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
-
-
-
-
 @Component({
   selector: 'app-know-your-business',
   imports: [NgClass, NgIf, FormsModule, ReactiveFormsModule],
   templateUrl: './know-your-business.html',
   styleUrl: './know-your-business.css',
 })
-
-
-
-
-
-
-
 
 export class KnowYourBusiness implements OnInit {
   docTopimage: any;
@@ -838,14 +827,14 @@ export class KnowYourBusiness implements OnInit {
 
 
     this.productsForm = this.formBuilder.group({
-      topimage: [''],
-      name: [''],
+      topimage: ['', Validators.required],
+      name: ['', Validators.required],
       designationid: [''],
-      designation: [''],
+      designation: ['', Validators.required],
       department: [''],
       workmode: [''],
       officelocation: [''],
-      contactnumber: [''],
+      contactnumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
       address: [''],
       country: [''],
 
@@ -887,17 +876,17 @@ export class KnowYourBusiness implements OnInit {
       commissionid: [''],
 
 
-      businesstype: ['proprietor'],
+      businesstype: ['proprietor', Validators.required],
       gstin: [''],
-      businessname: [''],
-      registeredaddress: [''],
-      proprietorname: [''],
-      proprietorpan: [''],
+      businessname: ['', Validators.required],
+      registeredaddress: ['', Validators.required],
+      proprietorname: ['', Validators.required],
+      proprietorpan: ['', Validators.required],
 
 
 
-      pictureinput: [''],
-      pictureinput1: [''],
+      pictureinput: ['', Validators.required],
+      pictureinput1: ['', Validators.required],
       pictureinput2: [''],
 
       imgfile0: [''],
@@ -985,6 +974,10 @@ export class KnowYourBusiness implements OnInit {
   }
 
   onSubmit() {
+    if (this.productsForm.invalid) {
+      this.productsForm.markAllAsTouched();
+      return;
+    }
 
 
 

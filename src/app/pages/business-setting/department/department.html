@@ -1,22 +1,25 @@
 <div class="mt-3">
-   <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
-      <label class="text-sm text-[#050914]"> Add Department<span class="text-primery">*</span></label>
-      <div class="w-full flex gap-2 items-center justify-center">
-        <div class="w-1/2">
-          <input
-            type="text" formControlName="deptname"
-            placeholder="Add Office Department"
-            class="mt-2 w-full border border-[#D2D2D2] rounded-md px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
-          />
+  <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
+    <label class="text-sm text-[#050914]"> Add Department<span class="text-primery">*</span></label>
+    <div class="w-full flex gap-2 items-center justify-center">
+      <div class="w-1/2">
+        <input type="text" formControlName="deptname" placeholder="Add Office Department"
+          class="mt-2 w-full border rounded-md px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+          [class.border-red-500]="formsize.get('deptname')?.touched && formsize.get('deptname')?.invalid"
+          [class.border-[#D2D2D2]]="!(formsize.get('deptname')?.touched && formsize.get('deptname')?.invalid)" />
+        <div *ngIf="formsize.get('deptname')?.touched && formsize.get('deptname')?.invalid" class="mt-1">
+          <p *ngIf="formsize.get('deptname')?.errors?.['required']" class="text-red-500 text-xs">
+            Department name is required
+          </p>
         </div>
-        <button 
-          class="bg-[#006842] mt-2 text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md px-3 py-2.5"
-        >
-          Submit
-        </button>
       </div>
+      <button
+        class="bg-[#006842] mt-2 text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md px-3 py-2.5">
+        Submit
+      </button>
+    </div>
 
-</form>
+  </form>
 
   <div class="mt-10">
     <h2 class="text-md font-semibold text-[#006842] mb-4">Department List</h2>
@@ -31,38 +34,27 @@
         </thead>
 
         <tbody class="bg-white">
-          <tr
-            *ngFor="let dept of departments; let i = index"
-            [ngClass]="i % 2 === 0 ? 'bg-[#FBFAF7]  ' : 'bg-gray-50'"
-            class="hover:bg-gray-100 transition-colors border-t border-b border-[#E0F7E9]"
-          >
-            <td class="px-6 py-4 text-sm"  [ngClass]="dept.deleted ? 'text-gray-900' : 'text-gray-400'">{{ dept.deptname }}</td>
+          <tr *ngFor="let dept of departments; let i = index" [ngClass]="i % 2 === 0 ? 'bg-[#FBFAF7]  ' : 'bg-gray-50'"
+            class="hover:bg-gray-100 transition-colors border-t border-b border-[#E0F7E9]">
+            <td class="px-6 py-4 text-sm" [ngClass]="dept.deleted ? 'text-gray-900' : 'text-gray-400'">{{ dept.deptname
+              }}</td>
             <td class="px-6 py-4">
               <div class="flex items-center gap-3">
                 <!-- Toggle Switch -->
-                <button
-                  (click)="toggleStatus(dept)"
+                <button (click)="toggleStatus(dept)"
                   class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none f cursor-pointer"
-                  [ngClass]="dept.deleted ? 'bg-[#E0F7E9]' : 'bg-[#EEF3F6]'"
-                >
-                  <span
-                    class="inline-block h-6 w-6 transform rounded-full transition-transform"
-                    [ngClass]="dept.deleted ? 'translate-x-6 bg-primary' : 'translate-x-1 bg-[#BCBCBC]'"
-                  ></span>
+                  [ngClass]="dept.deleted ? 'bg-[#E0F7E9]' : 'bg-[#EEF3F6]'">
+                  <span class="inline-block h-6 w-6 transform rounded-full transition-transform"
+                    [ngClass]="dept.deleted ? 'translate-x-6 bg-primary' : 'translate-x-1 bg-[#BCBCBC]'"></span>
                 </button>
-                <span
-                  class="text-sm font-medium"
-                  [ngClass]="dept.deleted ? 'text-primary' : 'text-gray-400'"
-                >
+                <span class="text-sm font-medium" [ngClass]="dept.deleted ? 'text-primary' : 'text-gray-400'">
                   {{ dept.deleted ? 'Active' : 'Inactive' }}
                 </span>
               </div>
             </td>
             <td class="px-6 py-4">
-              <button
-                class="text-primary hover:text-primary/80 cursor-pointer transition-colors"
-                (click)="editDepartment(dept)"
-              >
+              <button class="text-primary hover:text-primary/80 cursor-pointer transition-colors"
+                (click)="editDepartment(dept)">
                 <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5" />
               </button>
             </td>
@@ -72,4 +64,3 @@
     </div>
   </div>
 </div>
-

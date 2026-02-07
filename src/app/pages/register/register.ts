@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { toast } from 'ngx-sonner';
 
 import { RegisterFooter } from "@/shared/register-footer/register-footer";
 import { ApiService } from '../../apiservice';
@@ -19,11 +20,6 @@ import { Router } from '@angular/router';
   styleUrl: './register.css',
 })
 
-
-
-
-
-
 export class Register implements OnInit {
   registerForm!: FormGroup;
 
@@ -31,11 +27,11 @@ export class Register implements OnInit {
     private fb: FormBuilder,
     private registerService: ApiService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      mobile: ['']      
+      mobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]]
     });
   }
 
@@ -47,45 +43,41 @@ export class Register implements OnInit {
 
     const mobile = this.registerForm.value.mobile;
 
-  /*  this.registerService.sendOtp(mobile).subscribe({
-      next: () => alert('OTP sent successfully'),
-      error: () => alert('Failed to send OTP')
-    });*/
+    /*  this.registerService.sendOtp(mobile).subscribe({
+        next: () => toast.success('OTP sent successfully'),
+        error: () => toast.error('Failed to send OTP')
+      });*/
   }
 
   onSubmit(): void {
-    
+
     if (this.registerForm.invalid) return;
-    if (this.registerForm.value.mobile != undefined && this.registerForm.value.mobile.length != 10)
-      {
-        
-        alert("Please enter a valid 10-digit mobile number");
+    if (this.registerForm.value.mobile != undefined && this.registerForm.value.mobile.length != 10) {
+      toast.error("Please enter a valid 10-digit mobile number");
+    }
+    else {
 
-      }
-      else
-      {
+      console.log("=======================");
+      console.log(this.registerForm.value);
+      console.log("=======================");
 
-              console.log("=======================");
-              console.log(this.registerForm.value);
-            console.log("=======================");
+      var formData = new FormData();
+      formData.append("mobile", this.registerForm.value.mobile);
+      formData.append("firstname", "demo");
+      formData.append("shopname", "demo");
 
-              var formData = new FormData();
-                formData.append("mobile",this.registerForm.value.mobile);
-                formData.append("firstname","demo");
-                formData.append("shopname","demo");
 
-              
 
-            
-              this.registerService.registerUser(formData).subscribe({
-                next: (res) => {
-                  console.log(res);
-                  this.router.navigate(['company/kyb']);
-                  //alert('Registration successful');
-                },
-                error: () => alert('Registration failed')
-              });
 
-     }
+      this.registerService.registerUser(formData).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.router.navigate(['company/kyb']);
+          toast.success('Registration successful');
+        },
+        error: () => toast.error('Registration failed')
+      });
+
+    }
   }
 }

@@ -1,517 +1,679 @@
 <section class="w-full h-full">
-    <!-- header -->
-    <div class="flex flex-col">
-        <h1 class="text-xl font-semibold text-primary">Add Employee</h1>
-    </div>
-    <hr class="border-[#D2D2D2] my-4" />
-    <div class="">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-                <label class="text-sm text-[#050914]">
-                    Employment Type<span class="text-primary"> *</span>
-                </label>
-                <select (change)="onEmploymentTypeChange($event)"
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    <option value="">Choose Employment Type</option>
-                    <option value="Regular">Regular</option>
-                    <option value="Target based">Target based</option>
-                    <option value="Commission based">Commission based</option>
-
-                </select>
-            </div>
-            <div>
-                <label class="text-sm text-[#050914]">
-                    Employee ID
-                </label>
-                <input type="text" value="TRPE0001" disabled
-                    class="mt-2 w-full border border-[#D2D2D2] bg-green-200 rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-            </div>
-            <div>
-                <label class="text-sm text-[#050914]">
-                    Name<span class="text-primary"> *</span>
-                </label>
-                <input type="text" placeholder="Enter Name"
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-            </div>
-            <div>
-                <label class="text-sm text-[#050914]">
-                    Mobile Number<span class="text-primary"> *</span>
-                </label>
-                <input type="text" placeholder="Enter Mobile Number"
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-            </div>
-            <div>
-                <label class="text-sm text-[#050914]">
-                    Department<span class="text-primary"> *</span>
-                </label>
-                <select
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    <option>Assign Department</option>
-                </select>
-            </div>
-            <div>
-                <label class="text-sm text-[#050914]">
-                    Designation<span class="text-primary"> *</span>
-                </label>
-                <select
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    <option>Assign Designation</option>
-                </select>
-            </div>
-
-            <div>
-                <label class="text-sm text-[#050914]">
-                    Office Location<span class="text-primary"> *</span>
-                </label>
-                <select
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    <option>Choose Office Branch Location</option>
-                </select>
-            </div>
-
-            <div>
-                <label class="text-sm text-[#050914]">
-                    Reporting Authority<span class="text-primary"> *</span>
-                </label>
-                <select
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    <option>Select Reporting Authority's Name</option>
-                </select>
-            </div>
-
-            <!-- Regular Employment Type Fields -->
-            <div *ngIf="employmentType === 'Regular'">
-                <label class="text-sm text-[#050914]">
-                    Monthly Fixed Salary<span class="text-primary"> *</span>
-                </label>
-                <input type="text" placeholder="Enter Monthly Fixed Salary in INR"
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-            </div>
-
-            <div *ngIf="employmentType === 'Regular'">
-                <label class="text-sm text-[#050914]">
-                    Work Mode<span class="text-primary"> *</span>
-                </label>
-                <select
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    <option>Select Work Mode</option>
-                </select>
-            </div>
-
-            <!-- Target Based Employment Type Fields -->
-            <div *ngIf="employmentType === 'Target based'">
-                <label class="text-sm text-[#050914]">
-                    Monthly Guaranteed Salary<span class="text-primary"> *</span>
-                </label>
-                <input type="text" placeholder="Enter Monthly Guaranteed Salary in INR"
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-            </div>
-
-            <div *ngIf="employmentType === 'Target based' || employmentType === 'Commission based'">
-                <label class="text-sm text-[#050914]">
-                    Target Type<span class="text-primary"> *</span>
-                </label>
-                <select
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    <option>Choose Target Type</option>
-                </select>
-            </div>
-
-            <div *ngIf="employmentType === 'Target based' || employmentType === 'Commission based'">
-                <label class="text-sm text-[#050914]">
-                    Monthly Target Value<span class="text-primary"> *</span>
-                </label>
-                <input type="text" placeholder="Enter Monthly Target Value"
-                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-            </div>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <!-- header -->
+        <div class="flex flex-col">
+            <h1 class="text-xl font-semibold text-primary">Add Employee</h1>
         </div>
-        <div class="mt-4">
-            <h1 class="text-xl font-semibold text-primary">Personal Information</h1>
-            <hr class="border-[#D2D2D2] my-4" />
-
+        <hr class="border-[#D2D2D2] my-4" />
+        <div class="">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
                 <div>
                     <label class="text-sm text-[#050914]">
-                        Gender<span class="text-primary"> *</span>
+                        Employment Type<span class="text-primary"> *</span>
                     </label>
-                    <select
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                        <option>Select Gender</option>
+                    <select formControlName="employmentType"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('employmentType')?.touched && employeeForm.get('employmentType')?.invalid">
+                        <option value="">Choose Employment Type</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Target based">Target based</option>
+                        <option value="Commission based">Commission based</option>
                     </select>
+                    <div *ngIf="employeeForm.get('employmentType')?.touched && employeeForm.get('employmentType')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Employment Type is required</p>
+                    </div>
                 </div>
-
                 <div>
                     <label class="text-sm text-[#050914]">
-                        Date of Birth<span class="text-primary"> *</span>
+                        Employee ID
                     </label>
-                    <div class="relative">
-                        <input type="date" placeholder="Enter Date of Birth"
-                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+                    <input type="text" value="TRPE0001" disabled
+                        class="mt-2 w-full border border-[#D2D2D2] bg-green-200 rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+                </div>
+                <div>
+                    <label class="text-sm text-[#050914]">
+                        Name<span class="text-primary"> *</span>
+                    </label>
+                    <input type="text" formControlName="employeeName" placeholder="Enter Name"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('employeeName')?.touched && employeeForm.get('employeeName')?.invalid" />
+                    <div *ngIf="employeeForm.get('employeeName')?.touched && employeeForm.get('employeeName')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Name is required</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm text-[#050914]">
+                        Mobile Number<span class="text-primary"> *</span>
+                    </label>
+                    <input type="text" formControlName="mobileNumber" placeholder="Enter Mobile Number"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('mobileNumber')?.touched && employeeForm.get('mobileNumber')?.invalid" />
+                    <div *ngIf="employeeForm.get('mobileNumber')?.touched && employeeForm.get('mobileNumber')?.invalid"
+                        class="mt-1">
+                        <p *ngIf="employeeForm.get('mobileNumber')?.errors?.['required']" class="text-red-500 text-xs">
+                            Mobile Number is required</p>
+                        <p *ngIf="employeeForm.get('mobileNumber')?.errors?.['pattern']" class="text-red-500 text-xs">
+                            Please enter a valid 10-digit mobile number</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm text-[#050914]">
+                        Department<span class="text-primary"> *</span>
+                    </label>
+                    <select formControlName="department"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid">
+                        <option value="">Assign Department</option>
+                    </select>
+                    <div *ngIf="employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Department is required</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm text-[#050914]">
+                        Designation<span class="text-primary"> *</span>
+                    </label>
+                    <select formControlName="designation"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid">
+                        <option value="">Assign Designation</option>
+                    </select>
+                    <div *ngIf="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Designation is required</p>
                     </div>
                 </div>
 
                 <div>
                     <label class="text-sm text-[#050914]">
-                        Address<span class="text-primary"> *</span>
+                        Office Location<span class="text-primary"> *</span>
                     </label>
-                    <input type="text" placeholder="Enter Address"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-green-500" />
+                    <select formControlName="officeLocation"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('officeLocation')?.touched && employeeForm.get('officeLocation')?.invalid">
+                        <option value="">Choose Office Branch Location</option>
+                    </select>
+                    <div *ngIf="employeeForm.get('officeLocation')?.touched && employeeForm.get('officeLocation')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Office Location is required</p>
+                    </div>
                 </div>
 
                 <div>
                     <label class="text-sm text-[#050914]">
-                        Pin Code<span class="text-primary"> *</span>
+                        Reporting Authority<span class="text-primary"> *</span>
                     </label>
-                    <input type="text" placeholder="Enter Pin"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-green-500" />
-                </div>
-
-                <div class="md:col-span-2">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-
-                        <div>
-                            <label class="text-sm text-[#050914]">
-                                Country<span class="text-primary"> *</span>
-                            </label>
-                            <input type="text" value="India" disabled
-                                class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-green-500" />
-                        </div>
-
-                        <div>
-                            <label class="text-sm text-[#050914]">
-                                State<span class="text-primary"> *</span>
-                            </label>
-                            <select
-                                class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                                <option>Choose State</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="text-sm text-[#050914]">
-                                District<span class="text-primary"> *</span>
-                            </label>
-                            <select
-                                class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                                <option>Choose District</option>
-                            </select>
-                        </div>
-
+                    <select formControlName="reportingAuthority"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('reportingAuthority')?.touched && employeeForm.get('reportingAuthority')?.invalid">
+                        <option value="">Select Reporting Authority's Name</option>
+                    </select>
+                    <div *ngIf="employeeForm.get('reportingAuthority')?.touched && employeeForm.get('reportingAuthority')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Reporting Authority is required</p>
                     </div>
                 </div>
 
+                <!-- Regular Employment Type Fields -->
+                <div *ngIf="employmentType === 'Regular'">
+                    <label class="text-sm text-[#050914]">
+                        Monthly Fixed Salary<span class="text-primary"> *</span>
+                    </label>
+                    <input type="text" formControlName="monthlyFixedSalary"
+                        placeholder="Enter Monthly Fixed Salary in INR"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('monthlyFixedSalary')?.touched && employeeForm.get('monthlyFixedSalary')?.invalid" />
+                    <div *ngIf="employeeForm.get('monthlyFixedSalary')?.touched && employeeForm.get('monthlyFixedSalary')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Monthly Fixed Salary is required</p>
+                    </div>
+                </div>
+
+                <div *ngIf="employmentType === 'Regular'">
+                    <label class="text-sm text-[#050914]">
+                        Work Mode<span class="text-primary"> *</span>
+                    </label>
+                    <select formControlName="workMode"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('workMode')?.touched && employeeForm.get('workMode')?.invalid">
+                        <option value="">Select Work Mode</option>
+                        <option value="WFH">WFH</option>
+                        <option value="Office">Office</option>
+                    </select>
+                    <div *ngIf="employeeForm.get('workMode')?.touched && employeeForm.get('workMode')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Work Mode is required</p>
+                    </div>
+                </div>
+
+                <!-- Target Based Employment Type Fields -->
+                <div *ngIf="employmentType === 'Target based'">
+                    <label class="text-sm text-[#050914]">
+                        Monthly Guaranteed Salary<span class="text-primary"> *</span>
+                    </label>
+                    <input type="text" formControlName="monthlyGuaranteedSalary"
+                        placeholder="Enter Monthly Guaranteed Salary in INR"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('monthlyGuaranteedSalary')?.touched && employeeForm.get('monthlyGuaranteedSalary')?.invalid" />
+                    <div *ngIf="employeeForm.get('monthlyGuaranteedSalary')?.touched && employeeForm.get('monthlyGuaranteedSalary')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Monthly Guaranteed Salary is required</p>
+                    </div>
+                </div>
+
+                <div *ngIf="employmentType === 'Target based' || employmentType === 'Commission based'">
+                    <label class="text-sm text-[#050914]">
+                        Target Type<span class="text-primary"> *</span>
+                    </label>
+                    <select formControlName="targetType"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('targetType')?.touched && employeeForm.get('targetType')?.invalid">
+                        <option value="">Choose Target Type</option>
+                    </select>
+                    <div *ngIf="employeeForm.get('targetType')?.touched && employeeForm.get('targetType')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Target Type is required</p>
+                    </div>
+                </div>
+
+                <div *ngIf="employmentType === 'Target based' || employmentType === 'Commission based'">
+                    <label class="text-sm text-[#050914]">
+                        Monthly Target Value<span class="text-primary"> *</span>
+                    </label>
+                    <input type="text" formControlName="monthlyTargetValue" placeholder="Enter Monthly Target Value"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('monthlyTargetValue')?.touched && employeeForm.get('monthlyTargetValue')?.invalid" />
+                    <div *ngIf="employeeForm.get('monthlyTargetValue')?.touched && employeeForm.get('monthlyTargetValue')?.invalid"
+                        class="mt-1">
+                        <p class="text-red-500 text-xs">Monthly Target Value is required</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="mt-4">
-            <h1 class="text-xl font-semibold text-primary">Employment Information</h1>
-            <hr class="border-[#D2D2D2] my-4" />
+            <div class="mt-4">
+                <h1 class="text-xl font-semibold text-primary">Personal Information</h1>
+                <hr class="border-[#D2D2D2] my-4" />
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Date of Joining<span class="text-primary"> *</span>
-                    </label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <div class="">
-                        <input type="date" placeholder="Enter Joining Date" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-                 focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-
-
-                    </div>
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        UAN
-                    </label>
-                    <input type="text" placeholder="Enter Universal Account Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        PAN<span class="text-primary"> *</span>
-                    </label>
-                    <input type="text" placeholder="Enter Employee's PAN" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Aadhaar Number<span class="text-primary"> *</span>
-                    </label>
-                    <input type="text" placeholder="Enter Employee's Aadhaar" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                </div>
-                <div class="md:col-span-2">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-                        <div>
-                            <label class="text-sm text-[#050914]">
-                                PF Number
-                            </label>
-                            <input type="text" placeholder="Enter PF Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Gender<span class="text-primary"> *</span>
+                        </label>
+                        <select formControlName="gender"
+                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                            [class.border-red-500]="employeeForm.get('gender')?.touched && employeeForm.get('gender')?.invalid">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <div *ngIf="employeeForm.get('gender')?.touched && employeeForm.get('gender')?.invalid"
+                            class="mt-1">
+                            <p class="text-red-500 text-xs">Gender is required</p>
                         </div>
+                    </div>
 
-                        <div>
-                            <label class="text-sm text-[#050914]">
-                                PF Joining Date
-                            </label>
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Date of Birth<span class="text-primary"> *</span>
+                        </label>
+                        <div class="relative">
+                            <input type="date" formControlName="dob" placeholder="Enter Date of Birth"
+                                class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                                [class.border-red-500]="employeeForm.get('dob')?.touched && employeeForm.get('dob')?.invalid" />
+                        </div>
+                        <div *ngIf="employeeForm.get('dob')?.touched && employeeForm.get('dob')?.invalid" class="mt-1">
+                            <p class="text-red-500 text-xs">Date of Birth is required</p>
+                        </div>
+                    </div>
 
-                            <div class="">
-                                <input type="date" placeholder="Choose PF Joining Date" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-                 focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Address<span class="text-primary"> *</span>
+                        </label>
+                        <input type="text" formControlName="address" placeholder="Enter Address"
+                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
+                            [class.border-red-500]="employeeForm.get('address')?.touched && employeeForm.get('address')?.invalid" />
+                        <div *ngIf="employeeForm.get('address')?.touched && employeeForm.get('address')?.invalid"
+                            class="mt-1">
+                            <p class="text-red-500 text-xs">Address is required</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Pin Code<span class="text-primary"> *</span>
+                        </label>
+                        <input type="text" formControlName="pinCode" placeholder="Enter Pin"
+                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
+                            [class.border-red-500]="employeeForm.get('pinCode')?.touched && employeeForm.get('pinCode')?.invalid" />
+                        <div *ngIf="employeeForm.get('pinCode')?.touched && employeeForm.get('pinCode')?.invalid"
+                            class="mt-1">
+                            <p *ngIf="employeeForm.get('pinCode')?.errors?.['required']" class="text-red-500 text-xs">
+                                Pin Code is required</p>
+                            <p *ngIf="employeeForm.get('pinCode')?.errors?.['pattern']" class="text-red-500 text-xs">
+                                Please enter a valid 6-digit pin code</p>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+
+                            <div>
+                                <label class="text-sm text-[#050914]">
+                                    Country<span class="text-primary"> *</span>
+                                </label>
+                                <input type="text" value="India" disabled
+                                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-green-500" />
+                            </div>
+
+                            <div>
+                                <label class="text-sm text-[#050914]">
+                                    State<span class="text-primary"> *</span>
+                                </label>
+                                <select formControlName="state"
+                                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                                    [class.border-red-500]="employeeForm.get('state')?.touched && employeeForm.get('state')?.invalid">
+                                    <option value="">Choose State</option>
+                                </select>
+                                <div *ngIf="employeeForm.get('state')?.touched && employeeForm.get('state')?.invalid"
+                                    class="mt-1">
+                                    <p class="text-red-500 text-xs">State is required</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="text-sm text-[#050914]">
+                                    District<span class="text-primary"> *</span>
+                                </label>
+                                <select formControlName="district"
+                                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                                    [class.border-red-500]="employeeForm.get('district')?.touched && employeeForm.get('district')?.invalid">
+                                    <option value="">Choose District</option>
+                                </select>
+                                <div *ngIf="employeeForm.get('district')?.touched && employeeForm.get('district')?.invalid"
+                                    class="mt-1">
+                                    <p class="text-red-500 text-xs">District is required</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="mt-4">
+                <h1 class="text-xl font-semibold text-primary">Employment Information</h1>
+                <hr class="border-[#D2D2D2] my-4" />
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Date of Joining<span class="text-primary"> *</span>
+                        </label>
+
+                        <div class="">
+                            <input type="date" formControlName="joiningDate" placeholder="Enter Joining Date" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                 focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                                [class.border-red-500]="employeeForm.get('joiningDate')?.touched && employeeForm.get('joiningDate')?.invalid" />
+                        </div>
+                        <div *ngIf="employeeForm.get('joiningDate')?.touched && employeeForm.get('joiningDate')?.invalid"
+                            class="mt-1">
+                            <p class="text-red-500 text-xs">Joining Date is required</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            UAN
+                        </label>
+                        <input type="text" formControlName="uan" placeholder="Enter Universal Account Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            PAN<span class="text-primary"> *</span>
+                        </label>
+                        <input type="text" formControlName="pan" placeholder="Enter Employee's PAN" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+               focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                            [class.border-red-500]="employeeForm.get('pan')?.touched && employeeForm.get('pan')?.invalid" />
+                        <div *ngIf="employeeForm.get('pan')?.touched && employeeForm.get('pan')?.invalid" class="mt-1">
+                            <p *ngIf="employeeForm.get('pan')?.errors?.['required']" class="text-red-500 text-xs">PAN is
+                                required</p>
+                            <p *ngIf="employeeForm.get('pan')?.errors?.['pattern']" class="text-red-500 text-xs">Please
+                                enter a valid PAN (e.g., ABCDE1234F)</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Aadhaar Number<span class="text-primary"> *</span>
+                        </label>
+                        <input type="text" formControlName="aadhaar" placeholder="Enter Employee's Aadhaar" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+               focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                            [class.border-red-500]="employeeForm.get('aadhaar')?.touched && employeeForm.get('aadhaar')?.invalid" />
+                        <div *ngIf="employeeForm.get('aadhaar')?.touched && employeeForm.get('aadhaar')?.invalid"
+                            class="mt-1">
+                            <p *ngIf="employeeForm.get('aadhaar')?.errors?.['required']" class="text-red-500 text-xs">
+                                Aadhaar Number is required</p>
+                            <p *ngIf="employeeForm.get('aadhaar')?.errors?.['pattern']" class="text-red-500 text-xs">
+                                Please enter a valid 12-digit Aadhaar number</p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                            <div>
+                                <label class="text-sm text-[#050914]">
+                                    PF Number
+                                </label>
+                                <input type="text" formControlName="pfNumber" placeholder="Enter PF Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+                            </div>
+
+                            <div>
+                                <label class="text-sm text-[#050914]">
+                                    PF Joining Date
+                                </label>
+
+                                <div class="">
+                                    <input type="date" formControlName="pfJoiningDate"
+                                        placeholder="Choose PF Joining Date" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                  focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-sm text-[#050914]">
+                                    ESI Number
+                                </label>
+                                <input type="text" formControlName="esiNumber" placeholder="Enter ESI Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+
                             </div>
                         </div>
-                        <div>
-                            <label class="text-sm text-[#050914]">
-                                ESI Number
-                            </label>
-                            <input type="text" placeholder="Enter ESI Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="mt-4">
-            <h1 class="text-xl font-semibold text-primary">Transport Details</h1>
-            <hr class="border-[#D2D2D2] my-4" />
+            <div class="mt-4">
+                <h1 class="text-xl font-semibold text-primary">Transport Details</h1>
+                <hr class="border-[#D2D2D2] my-4" />
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Choose Vehicle<span class="text-primary"> *</span>
-                    </label>
-                    <select
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                        <option>Choose Vehicle</option>
-                    </select>
-                </div>
-                <div class="mt-6">
-                    <p class="text-sm text-[#050914]"> <span class="text-primary">*</span> If the vehicle is not listed
-                        in the database
-                    </p>
-                    <h1 class="text-[#006842] text-md font-semibold cursor-pointer hover:underline"
-                        (click)="togglePersonalVehicleForm()">Add Employee
-                        Personal Vehicle</h1>
-
-                </div>
-                <!-- Personal Vehicle Form -->
-                <div *ngIf="showPersonalVehicleForm" class="mt-2 md:col-span-2 border p-4 rounded-md ">
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="text-sm font-medium text-[#050914]">
-                                Add Vehicle Type<span class="text-primary">*</span>
-                            </label>
-                            <select
-                                class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
-                                <option>Add Vehicle Type</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-sm font-medium text-[#050914]">
-                                Vehicle Make/Brand<span class="text-primary">*</span>
-                            </label>
-                            <input type="text" placeholder="Add Vehicle Number"
-                                class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:outline-none" />
-                        </div>
-
-                        <div>
-                            <label class="text-sm font-medium text-[#050914]">
-                                Vehicle Registration Number<span class="text-primary">*</span>
-                            </label>
-                            <select
-                                class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
-                                <option>Add Vehicle Number</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="text-sm font-medium text-[#050914]">
-                                Fuel Type<span class="text-primary">*</span>
-                            </label>
-                            <select
-                                class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
-                                <option>Vehicle Fuel Type</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-sm font-medium text-[#050914]">
-                                GPS Device ID<span class="text-primary">*</span>
-                            </label>
-                            <select
-                                class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
-                                <option>Choose GPS Device</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-sm font-medium text-[#050914]">
-                                Owned by<span class="text-primary">*</span>
-                            </label>
-                            <input type="text" disabled value="Personal Vehicle"
-                                class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm bg-[#E7F9EE] text-[#006842]" />
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Choose Vehicle<span class="text-primary"> *</span>
+                        </label>
+                        <select formControlName="vehicleId"
+                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                            [class.border-red-500]="employeeForm.get('vehicleId')?.touched && employeeForm.get('vehicleId')?.invalid">
+                            <option value="">Choose Vehicle</option>
+                        </select>
+                        <div *ngIf="employeeForm.get('vehicleId')?.touched && employeeForm.get('vehicleId')?.invalid"
+                            class="mt-1">
+                            <p class="text-red-500 text-xs">Vehicle is required</p>
                         </div>
                     </div>
+                    <div class="mt-6">
+                        <p class="text-sm text-[#050914]"> <span class="text-primary">*</span> If the vehicle is not
+                            listed
+                            in the database
+                        </p>
+                        <h1 class="text-[#006842] text-md font-semibold cursor-pointer hover:underline"
+                            (click)="togglePersonalVehicleForm()">Add Employee
+                            Personal Vehicle</h1>
 
+                    </div>
+                    <!-- Personal Vehicle Form -->
+                    <div *ngIf="showPersonalVehicleForm" class="mt-2 md:col-span-2 border p-4 rounded-md ">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="text-sm font-medium text-[#050914]">
+                                    Add Vehicle Type<span class="text-primary">*</span>
+                                </label>
+                                <select
+                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
+                                    <option>Add Vehicle Type</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-[#050914]">
+                                    Vehicle Make/Brand<span class="text-primary">*</span>
+                                </label>
+                                <input type="text" placeholder="Add Vehicle Number"
+                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:outline-none" />
+                            </div>
+
+                            <div>
+                                <label class="text-sm font-medium text-[#050914]">
+                                    Vehicle Registration Number<span class="text-primary">*</span>
+                                </label>
+                                <select
+                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
+                                    <option>Add Vehicle Number</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="text-sm font-medium text-[#050914]">
+                                    Fuel Type<span class="text-primary">*</span>
+                                </label>
+                                <select
+                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
+                                    <option>Vehicle Fuel Type</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-[#050914]">
+                                    GPS Device ID<span class="text-primary">*</span>
+                                </label>
+                                <select
+                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
+                                    <option>Choose GPS Device</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-[#050914]">
+                                    Owned by<span class="text-primary">*</span>
+                                </label>
+                                <input type="text" disabled value="Personal Vehicle"
+                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm bg-[#E7F9EE] text-[#006842]" />
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="mt-4">
-            <h1 class="text-xl font-semibold text-primary">Bank Details</h1>
-            <hr class="border-[#D2D2D2] my-4" />
+            <div class="mt-4">
+                <h1 class="text-xl font-semibold text-primary">Bank Details</h1>
+                <hr class="border-[#D2D2D2] my-4" />
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Bank Name
-                    </label>
-                    <select class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Bank Name
+                        </label>
+                        <select formControlName="bankName" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                        <option>Choose Name of Bank</option>
-                    </select>
-                </div>
+                            <option value="">Choose Name of Bank</option>
+                        </select>
+                    </div>
 
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        IFSC Code
-                    </label>
-                    <input type="text" placeholder="Enter IFSC Code" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            IFSC Code
+                        </label>
+                        <input type="text" formControlName="ifscCode" placeholder="Enter IFSC Code" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+               focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                            [class.border-red-500]="employeeForm.get('ifscCode')?.touched && employeeForm.get('ifscCode')?.invalid" />
+                        <div *ngIf="employeeForm.get('ifscCode')?.touched && employeeForm.get('ifscCode')?.invalid"
+                            class="mt-1">
+                            <p class="text-red-500 text-xs">Please enter a valid IFSC code (e.g., ABCD0123456)</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Account Number
+                        </label>
+                        <input type="text" formControlName="accountNumber" placeholder="Enter Account Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                </div>
+                    </div>
 
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Account Number
-                    </label>
-                    <input type="text" placeholder="Enter Account Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Account Holder Name
+                        </label>
+                        <input type="text" formControlName="accountHolderName" placeholder="Enter Account Holder Name"
+                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                </div>
+                    </div>
 
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Account Holder Name
-                    </label>
-                    <input type="text" placeholder="Enter Account Holder Name" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            UPI Detail
+                        </label>
+                        <input type="text" formControlName="upiDetail" placeholder="Enter UPI ID" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                </div>
+                    </div>
 
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        UPI Detail
-                    </label>
-                    <input type="text" placeholder="Enter UPI ID" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
                 </div>
-
             </div>
-        </div>
-        <div class="mt-4">
-            <h1 class="text-xl font-semibold text-primary">Emergency Details</h1>
-            <hr class="border-[#D2D2D2] my-4" />
+            <div class="mt-4">
+                <h1 class="text-xl font-semibold text-primary">Emergency Details</h1>
+                <hr class="border-[#D2D2D2] my-4" />
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Employee’s Blood Group
-                    </label>
-                    <select class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Employee’s Blood Group
+                        </label>
+                        <select formControlName="bloodGroup" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                        <option>Choose Blood Group</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Emergency Contact Person
-                    </label>
-                    <input type="text" placeholder="Enter Emergency Contact Name" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                            <option value="">Choose Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Emergency Contact Person
+                        </label>
+                        <input type="text" formControlName="emergencyContactPerson"
+                            placeholder="Enter Emergency Contact Name" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Emergency Contact Number
-                    </label>
-                    <input type="text" placeholder="Enter Emergency Contact Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                    </div>
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Emergency Contact Number
+                        </label>
+                        <input type="text" formControlName="emergencyContactNumber"
+                            placeholder="Enter Emergency Contact Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+               focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                            [class.border-red-500]="employeeForm.get('emergencyContactNumber')?.touched && employeeForm.get('emergencyContactNumber')?.invalid" />
+                        <div *ngIf="employeeForm.get('emergencyContactNumber')?.touched && employeeForm.get('emergencyContactNumber')?.invalid"
+                            class="mt-1">
+                            <p class="text-red-500 text-xs">Please enter a valid 10-digit contact number</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Relation with Employee
+                        </label>
+                        <input type="text" formControlName="relationWithEmployee"
+                            placeholder="Enter Relationship with Employee" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Relation with Employee
-                    </label>
-                    <input type="text" placeholder="Enter Relationship with Employee" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                </div>
+                    </div>
 
-            </div>
-        </div>
-        <div class="mt-4">
-            <h1 class="text-xl font-semibold text-primary">Upload Documents</h1>
-            <hr class="border-[#D2D2D2] my-4" />
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-center">
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Employee Photo<span class="text-primary"> *</span>
-                    </label>
-                    <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-                        <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
-                        <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
-                            <img src="assets/icons/upload.svg" alt="" />
-                        </div>
-                    </div>
-                    <button type="button" (click)="fileInput.click()"
-                        class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-                        Upload File
-                    </button>
-                    <input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Aadhaar/VoterID/Passport <span class="text-primary">*</span>
-                    </label>
-                    <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-                        <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
-                        <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
-                            <img src="assets/icons/upload.svg" alt="" />
-                        </div>
-                    </div>
-                    <button type="button" (click)="fileInput.click()"
-                        class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-                        Upload File
-                    </button>
-                    <input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Driving Licence<span class="text-primary">*</span>
-                    </label>
-                    <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-                        <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
-                        <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
-                            <img src="assets/icons/upload.svg" alt="" />
-                        </div>
-                    </div>
-                    <button type="button" (click)="fileInput.click()"
-                        class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-                        Upload File
-                    </button>
-                    <input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
-                </div>
-                <div>
-                    <p class="text-gray-400 text-sm">
-                        <span class="text-primary">*</span>
-                        Driving Licence is mandatory if <br>
-                        designated as Driver
-                    </p>
                 </div>
             </div>
+            <div class="mt-4">
+                <h1 class="text-xl font-semibold text-primary">Upload Documents</h1>
+                <hr class="border-[#D2D2D2] my-4" />
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-center">
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Employee Photo<span class="text-primary"> *</span>
+                        </label>
+                        <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white"
+                            [class.border-red-500]="employeeForm.get('employeePhoto')?.touched && employeeForm.get('employeePhoto')?.invalid">
+                            <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
+                            <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
+                                <img src="assets/icons/upload.svg" alt="" />
+                            </div>
+                        </div>
+                        <div *ngIf="employeeForm.get('employeePhoto')?.touched && employeeForm.get('employeePhoto')?.invalid"
+                            class="mt-1">
+                            <p class="text-red-500 text-xs">Employee Photo is required</p>
+                        </div>
+                        <button type="button" (click)="fileInput.click()"
+                            class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
+                            Upload File
+                        </button>
+                        <input #fileInput type="file" accept="image/*" class="hidden"
+                            (change)="onFileSelected($event)" />
+                    </div>
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Aadhaar/VoterID/Passport <span class="text-primary">*</span>
+                        </label>
+                        <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white"
+                            [class.border-red-500]="employeeForm.get('idProof')?.touched && employeeForm.get('idProof')?.invalid">
+                            <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
+                            <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
+                                <img src="assets/icons/upload.svg" alt="" />
+                            </div>
+                        </div>
+                        <div *ngIf="employeeForm.get('idProof')?.touched && employeeForm.get('idProof')?.invalid"
+                            class="mt-1">
+                            <p class="text-red-500 text-xs">ID Proof is required</p>
+                        </div>
+                        <button type="button" (click)="idProofInput.click()"
+                            class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
+                            Upload File
+                        </button>
+                        <input #idProofInput type="file" accept="image/*" class="hidden"
+                            (change)="onFileSelected($event)" />
+                    </div>
+                    <div>
+                        <label class="text-sm text-[#050914]">
+                            Driving Licence<span class="text-primary">*</span>
+                        </label>
+                        <div
+                            class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
+                            <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
+                            <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
+                                <img src="assets/icons/upload.svg" alt="" />
+                            </div>
+                        </div>
+                        <button type="button" (click)="dlInput.click()"
+                            class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
+                            Upload File
+                        </button>
+                        <input #dlInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+                    </div>
+                    <div>
+                        <p class="text-gray-400 text-sm">
+                            <span class="text-primary">*</span>
+                            Driving Licence is mandatory if <br>
+                            designated as Driver
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <button
-        class="bg-[#006842] text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md p-2 mt-6">
-        Submit
-    </button>
+        <button type="submit"
+            class="bg-[#006842] text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md p-2 mt-6">
+            Submit
+        </button>
+    </form>
 </section>
