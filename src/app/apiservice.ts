@@ -287,6 +287,10 @@ savePickupPoint(formData: any): Observable<any> {
   }
 
 
+  updateOfficeLocation(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/officelocation/update", formData, { "headers": this.headers });
+  }
+
   
   getAllOfficeLocation(): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/officelocation/getAllData",  { "headers": this.headers });

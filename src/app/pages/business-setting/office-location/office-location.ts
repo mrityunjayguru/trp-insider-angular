@@ -29,13 +29,15 @@ export class OfficeLocation implements AfterViewInit{
   
   allallcompany:any;
 
+  isEditMode = false;
+  selectedDeptId: number | null = null;
   
     map:any;
     marker:any;
     @ViewChild('searchBox') searchBox!: ElementRef;
 
 
-officeName = '';
+  officeName = '';
   officeAddress = '';
   state = '';
   district = '';
@@ -46,16 +48,45 @@ officeName = '';
     off.isActive = !off.isActive;
     console.log(`${off.name} is now ${off.isActive ? 'Active' : 'Inactive'}`);
   }
-  editDepartment(deg: OffLocation) {
-    console.log('Edit department:', deg);
-    // Add your edit logic here
-  }
+   editDepartment(dept: any) {
+
+    console.log(" Editadble Data ");
+    console.log(dept);
+    console.log(" Editadble Data ");
+
+
+  this.isEditMode = true;
+  this.selectedDeptId = dept.id; 
+
+  this.formsize.patchValue({
+      id:dept.id,    
+      officename:dept.officename,
+      officeaddress:dept.officeaddress,
+      stateid:dept.stateid,
+      statename:dept.statename, 
+      districtid:dept.districtid,
+      districtname:dept.districtname,
+      latitude:dept.latitude,
+      longitude: dept.longitude,
+      address:dept.address,
+        
+        
+    });
+}
+
+resetForm() {
+  this.formsize.reset();
+  this.isEditMode = false;
+  this.selectedDeptId = null;
+  window.location.reload();
+}
 
   constructor(formBuilder: FormBuilder,   apiService: ApiService){
     this.formBuilder=formBuilder;
     this.apiService = apiService;
     
     this.formsize = this.formBuilder.group({
+      id:[''],
       officename:['',Validators.required],
       officeaddress:[''],
       stateid:[''],
@@ -103,6 +134,50 @@ officeName = '';
 
   onSubmit(){
 
+  if (this.isEditMode) {
+            this.updateData();
+           // this.resetForm();
+            
+      } else {
+            this.saveData();
+            //this.resetForm();
+           
+      }
+
+
+}
+
+updateData()
+{
+  const payload = {
+    ...this.formsize.value,   // existing form fields
+    companyobj: {
+      id: this.formsize.value.company_id                  // or this.formsize.value.companyId
+    }
+  };
+
+  const formData = new FormData();
+  formData.append(
+    'update',
+    JSON.stringify(payload)
+  );
+   
+   this.apiService.updateOfficeLocation(formData).subscribe(
+    (response : any) => {
+      
+      if(response.status ==200)
+      {
+        alert("Data updated Successfully.");
+      }
+      else
+      {
+         alert("Not Add");
+      }
+    })
+}
+
+saveData()
+{
   const payload = {
     ...this.formsize.value,   // existing form fields
     companyobj: {
@@ -128,8 +203,6 @@ officeName = '';
          alert("Not Add");
       }
     })
-
-
 }
 
 

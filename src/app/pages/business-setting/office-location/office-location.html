@@ -63,15 +63,18 @@
         </div>
 
         <!-- Submit Button -->
-        <button
-          class="bg-[#006842] text-white hover:bg-secondary hover:text-primary font-medium w-full cursor-pointer rounded-md p-2 mt-6"
+          <button 
+          class="bg-[#006842] mt-2 text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md px-3 py-2.5"
         >
-          Submit
+          <label class="text-sm text-[#050914] text-white">
+              {{ isEditMode ? 'Update Office Location' : 'Add Office Location' }}
+              <span class="text-primery">*</span>
+            </label>
         </button>
       </div>
 
       <div class="border rounded-lg overflow-hidden shadow-sm">
-          Niraj MAP
+          
           <div id="map" class="map-container"></div>
       </div>
     </div>
