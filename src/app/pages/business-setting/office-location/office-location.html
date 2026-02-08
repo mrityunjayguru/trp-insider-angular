@@ -21,8 +21,10 @@
             Office Address<span class="text-primary"> *</span>
           </label>
           <input
+            #searchBox
             type="text"  formControlName="officeaddress"
             placeholder="Office Location"
+            id="searchaddress"
             class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
           />
         </div>
@@ -68,7 +70,10 @@
         </button>
       </div>
 
-      <div class="border rounded-lg overflow-hidden shadow-sm"></div>
+      <div class="border rounded-lg overflow-hidden shadow-sm">
+          Niraj MAP
+          <div id="map" class="map-container"></div>
+      </div>
     </div>
   </div>
 
@@ -143,3 +148,4 @@
     </div>
   </div>
 </section>
+
