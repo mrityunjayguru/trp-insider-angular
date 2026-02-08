@@ -168,6 +168,7 @@ updateData()
       if(response.status ==200)
       {
         alert("Data updated Successfully.");
+        this.resetForm();
       }
       else
       {
@@ -197,6 +198,7 @@ saveData()
       if(response.status ==200)
       {
         alert("Data Added Successfully.");
+        this.resetForm();
       }
       else
       {
