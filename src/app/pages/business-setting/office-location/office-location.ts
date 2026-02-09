@@ -134,15 +134,51 @@ resetForm() {
 
   onSubmit(){
 
-  if (this.isEditMode) {
-            this.updateData();
-           // this.resetForm();
-            
-      } else {
-            this.saveData();
-            //this.resetForm();
-           
+    if (
+            this.formsize.value.officename === undefined ||
+            this.formsize.value.officename.length === 0
+      ) {
+
+          alert(" Office Name is required.");
+          return;
       }
+      else if (
+            this.formsize.value.officeaddress === undefined ||
+            this.formsize.value.officeaddress.length === 0
+      ) {
+
+          alert(" Office address is required.");
+          return;
+      }
+      else if (
+            this.formsize.value.statename === undefined ||
+            this.formsize.value.statename.length === 0
+      ) {
+
+          alert(" Office state name is required.");
+          return;
+      }
+      else if (
+            this.formsize.value.districtname === undefined ||
+            this.formsize.value.districtname.length === 0
+      ) {
+
+          alert(" Office district name is required.");
+          return;
+      }
+      else
+      {
+
+        if (this.isEditMode) {
+                  this.updateData();
+                // this.resetForm();
+                  
+            } else {
+                  this.saveData();
+                  //this.resetForm();
+                
+            }
+        }
 
 
 }
