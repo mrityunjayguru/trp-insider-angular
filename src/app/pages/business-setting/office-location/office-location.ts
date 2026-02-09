@@ -50,7 +50,9 @@ export class OfficeLocation implements AfterViewInit{
     off.isActive = !off.isActive;
     console.log(`${off.name} is now ${off.isActive ? 'Active' : 'Inactive'}`);
   }
-   editDepartment(dept: any) {
+
+
+    editDepartment(dept: any) {
 
     console.log(" Editadble Data ");
     console.log(dept);
@@ -59,6 +61,9 @@ export class OfficeLocation implements AfterViewInit{
 
   this.isEditMode = true;
   this.selectedDeptId = dept.id; 
+
+ 
+
 
   this.formsize.patchValue({
       id:dept.id,    
@@ -75,6 +80,25 @@ export class OfficeLocation implements AfterViewInit{
         
         
     });
+
+
+// 2️⃣ Load districts based on state
+  this.apiService.getDistrictsByState(dept.stateid).subscribe(
+    (response: any) => {
+      this.allDistrict = response.data;
+      console.log('Districts', this.allDistrict);
+
+      // 3️⃣ Patch district ONLY after districts are loaded
+      this.formsize.patchValue({
+        districtid: Number(dept.districtid), // ensure type match
+        districtname: dept.districtname
+      });
+    },
+    (error) => {
+      console.error('Error loading districts', error);
+    }
+  );
+
 }
 
 resetForm() {
