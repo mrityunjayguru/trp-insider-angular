@@ -101,15 +101,28 @@ resetForm() {
   onSubmit(){
    
 
-     if (this.isEditMode) {
-            this.updateDepartment();
-            this.resetForm();
-            
-      } else {
-            this.saveDepartment();
-            this.resetForm();
-           
+    if (
+            this.formsize.value.deptname === undefined ||
+            this.formsize.value.deptname.length === 0
+      ) {
+
+          alert(" Department name is required.");
+          return;
       }
+
+      else
+      {
+
+            if (this.isEditMode) {
+                    this.updateDepartment();
+                    this.resetForm();
+                    
+              } else {
+                    this.saveDepartment();
+                    this.resetForm();
+                  
+              }
+    }
            
 
 
