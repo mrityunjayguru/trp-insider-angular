@@ -28,6 +28,8 @@ export class OfficeLocation implements AfterViewInit{
   departments:any;
   
   allallcompany:any;
+  allStae:any;
+  allDistrict:any;
 
   isEditMode = false;
   selectedDeptId: number | null = null;
@@ -130,9 +132,55 @@ resetForm() {
       })
 
 
+      this.apiService.getAllState().subscribe(
+      (response : any) => {
+        this.allStae = response.data;
+        console.log("======this.allStae=============");
+        console.log(this.allStae);
+        console.log("======this.allStae=============");
+
+        
+      })
+
+
+       this.apiService.getDistrictsByState(10).subscribe(
+      (response : any) => {
+        this.allDistrict = response.data;
+        console.log(" Distric ");
+        console.log( this.allDistrict );
+        console.log(" Distric ");
+     
+      })
+
+
+
+
+
   }
   
   
+onStateChange(event: Event): void {
+  const stateId = (event.target as HTMLSelectElement).value;
+  alert(" stateId "+stateId);
+  
+
+  const selectedState = this.allStae.find(
+    (s: any) => s.id == stateId
+  );
+
+  if (selectedState) {
+    this.formsize.patchValue({
+      statename: selectedState.statename
+    });
+  } else {
+    this.formsize.patchValue({
+      statename: ''
+    });
+  }
+}
+
+
+
 
   onSubmit(){
 

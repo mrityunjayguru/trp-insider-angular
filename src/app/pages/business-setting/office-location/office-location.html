@@ -50,15 +50,28 @@
             <label class="text-sm text-[#050914]">
               State<span class="text-primary"> *</span>
             </label>
-            <select  formControlName="statename"
+            <select  formControlName="stateid" (change)="onStateChange($event)"
               class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
             >
               <option value="">Choose State</option>
-              <option *ngFor="let s of statesList" [value]="s">
-                {{ s }}
+              <option *ngFor="let s of allStae" [value]="s.id">
+                {{ s.statename }}
               </option>
             </select>
           </div>
+
+
+           <div class="mt-2">
+          <label class="text-sm text-[#050914]">
+            State Name <span class="text-primary"> *</span>
+          </label>
+          <input
+            type="text"  formControlName="statename"
+            placeholder="State Name"
+            id="statename"
+            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+          />
+        </div>
 
           <!-- District -->
           <div class="mt-2">
