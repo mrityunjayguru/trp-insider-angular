@@ -80,13 +80,13 @@
               class="px-6 py-4 text-sm"
               [ngClass]="wst.isActive ? 'text-gray-900' : 'text-gray-400'"
             >
-              {{ wst.workshiftstarttime }}
+              {{ formatTime(wst.workshiftstarttime) }}
             </td>
              <td
               class="px-6 py-4 text-sm"
               [ngClass]="wst.isActive ? 'text-gray-900' : 'text-gray-400'"
             >
-              {{ wst.workshiftendtime }}
+              {{formatTime( wst.workshiftendtime) }}
             </td>
 
             <td class="px-6 py-4">
