@@ -157,12 +157,46 @@ resetForm() {
 
 
   }
+
+  
+onDistrictChange(event: Event): void {
+  const districid = (event.target as HTMLSelectElement).value;
+  
+
+  const selectedState = this.allDistrict.find(
+    (s: any) => s.id == districid
+  );
+
+  if (selectedState) {
+    this.formsize.patchValue({
+      districtname: selectedState.districtName
+    });
+  } else {
+    this.formsize.patchValue({
+      districtname: ''
+    });
+  }
+}
+
+
   
   
 onStateChange(event: Event): void {
   const stateId = (event.target as HTMLSelectElement).value;
-  alert(" stateId "+stateId);
   
+
+ this.apiService.getDistrictsByState(stateId).subscribe(
+      (response : any) => {
+        this.allDistrict = response.data;
+        console.log(" Distric ");
+        console.log( this.allDistrict );
+        console.log(" Distric ");
+     
+      })
+
+
+
+
 
   const selectedState = this.allStae.find(
     (s: any) => s.id == stateId

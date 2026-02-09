@@ -74,19 +74,39 @@
         </div>
 
           <!-- District -->
-          <div class="mt-2">
-            <label class="text-sm text-[#050914]">
-              District<span class="text-primary"> *</span>
-            </label>
-            <select formControlName="districtname"
-              class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-            >
-              <option value="">Choose District</option>
-              <option *ngFor="let d of districtsList" [value]="d">
-                {{ d }}
-              </option>
-            </select>
-          </div>
+         <div class="mt-2">
+  <label class="text-sm text-[#050914]">
+    District<span class="text-primary"> *</span>
+  </label>
+
+  <select
+    formControlName="districtid"
+    (change)="onDistrictChange($event)"
+    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+  >
+    <option value="">Choose District</option>
+    <option *ngFor="let d of allDistrict" [value]="d.id">
+      {{ d.districtName }}
+    </option>
+  </select>
+</div>
+
+
+
+
+            <div class="mt-2">
+          <label class="text-sm text-[#050914]">
+            District Name <span class="text-primary"> *</span>
+          </label>
+          <input
+            type="text"  formControlName="districtname"
+            placeholder="State Name"
+            id="District"
+            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+          />
+        </div>
+
+
         </div>
 
         <!-- Submit Button -->
