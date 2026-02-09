@@ -409,6 +409,7 @@ initMap(): void {
       return;
     }
 
+    
     const lat = place.geometry.location.lat();
     const lng = place.geometry.location.lng();
 
@@ -458,7 +459,8 @@ initMap(): void {
     this.formsize.patchValue({
       latitude: lat,
       longitude: lng,
-      address:this.searchBox.nativeElement.value
+      address:this.searchBox.nativeElement.value,
+      officeaddress:this.searchBox.nativeElement.value
     });
 
     
