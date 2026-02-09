@@ -206,6 +206,32 @@ savePickupPoint(formData: any): Observable<any> {
 
 
 
+
+  //=====================================
+    saveAddVehicles(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/addvehicles/save", formData, { "headers": this.headers });
+  }
+
+
+  updateAddVehicles(formData: any): Observable<any> {
+        return this.http.post<any>(this.apiUrl + "/addvehicles/update", formData, { "headers": this.headers });
+  }
+
+  
+  getAllAddVehicles(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/addvehicles/getAllData",  { "headers": this.headers });
+  }
+  //====================================================================
+
+
+
+
+
+
+
+
+
+
   
   //=====================================
   saveState(formData: any): Observable<any> {

@@ -1,4 +1,6 @@
 <section class="h-full w-full">
+
+  <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
   <div class="">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
@@ -6,7 +8,7 @@
           Add Vehicle Type <span class="text-primary">*</span>
         </label>
 
-        <select
+        <select formControlName="vehicletypename"
           class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
         >
           <option selected disabled>Add Vehicle Type</option>
@@ -86,6 +88,9 @@
       Submit
     </button>
   </div>
+
+</form>
+
   <div class="mt-8">
       <div class="my-3 flex justify-between items-center
       ">
@@ -127,13 +132,13 @@
 
           <tbody class="bg-white">
             <tr
-              *ngFor="let vehicle of vehicleList; let i = index"
+              *ngFor="let vehicle of departments; let i = index"
               [ngClass]="i % 2 === 0 ? 'bg-[#FBFAF7]' : 'bg-gray-50'"
               class="hover:bg-gray-100 transition-colors border-t border-b border-[#E0F7E9]"
             >
               <!-- Vehicle -->
               <td class="px-6 py-4 text-sm">
-                {{ vehicle.vehicle }}
+                {{ vehicle.vehicletypename }}
               </td>
 
               <!-- Registration No -->
