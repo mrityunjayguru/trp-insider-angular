@@ -62,6 +62,7 @@ export class OfficeLocation implements AfterViewInit{
       id:dept.id,    
       officename:dept.officename,
       officeaddress:dept.officeaddress,
+      detailofficeaddress:dept.detailofficeaddress,
       stateid:dept.stateid,
       statename:dept.statename, 
       districtid:dept.districtid,
@@ -89,6 +90,7 @@ resetForm() {
       id:[''],
       officename:['',Validators.required],
       officeaddress:[''],
+      detailofficeaddress:[''],
       stateid:[''],
       statename:[''], 
       districtid:[''],
@@ -148,6 +150,14 @@ resetForm() {
       ) {
 
           alert(" Office address is required.");
+          return;
+      }
+      else if (
+            this.formsize.value.detailofficeaddress === undefined ||
+            this.formsize.value.detailofficeaddress.length === 0
+      ) {
+
+          alert(" Office detail address is required.");
           return;
       }
       else if (
