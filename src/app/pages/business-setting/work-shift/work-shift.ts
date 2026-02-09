@@ -128,20 +128,41 @@ resetForm() {
   }
 
   onSubmit(){
+    if (
+            this.formsize.value.workshiftname === undefined ||
+            this.formsize.value.workshiftname.length === 0
+      ) {
 
-
-      
-
-
-    if (this.isEditMode) {
-            this.updateData();
-           // this.resetForm();
-            
-      } else {
-            this.saveData();
-            //this.resetForm();
-           
+          alert(" Work shift name   is required.");
+          return;
       }
+      
+    else if (
+            this.formsize.value.workshiftstarttime === undefined ||
+            this.formsize.value.workshiftstarttime.length === 0
+      ) {
+
+          alert(" Work shift start time is required.");
+          return;
+      }
+      else if (
+            this.formsize.value.workshiftendtime === undefined ||
+            this.formsize.value.workshiftendtime.length === 0
+      ) {
+
+          alert(" Work shift end time is required.");
+          return;
+      }
+    else
+    {
+          if (this.isEditMode) {
+                  this.updateData();
+                // this.resetForm();
+            } else {
+                  this.saveData();
+                  //this.resetForm();
+            }
+    }
 
 }
 

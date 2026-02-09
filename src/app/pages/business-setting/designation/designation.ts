@@ -93,19 +93,27 @@ resetForm() {
 
   onSubmit(){
 
-    
+    if (
+            this.formsize.value.designationname === undefined ||
+            this.formsize.value.designationname.length === 0
+      ) {
 
-
-    if (this.isEditMode) {
-            this.updateData();
-           // this.resetForm();
-            
-      } else {
-            this.saveData();
-            //this.resetForm();
-           
+          alert(" Designation name  is required.");
+          return;
       }
-  
+      else
+      {
+
+            if (this.isEditMode) {
+                    this.updateData();
+                  // this.resetForm();
+                    
+              } else {
+                    this.saveData();
+                    //this.resetForm();
+                  
+              }
+     }
 }
 
 
