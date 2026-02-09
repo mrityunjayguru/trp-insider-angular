@@ -30,6 +30,12 @@ interface OffLocation {
   styleUrl: './vehicles.css',
 })
 export class Vehicles implements AfterViewInit {
+
+vehicleTypes:any;
+vehicleTypesBrands:any;
+
+fuelTypes:any;
+
   vehicleList: VehicleItem[] = [
   {
     vehicle: 'Truck',
@@ -121,16 +127,19 @@ export class Vehicles implements AfterViewInit {
 
   this.formsize.patchValue({
       id:dept.id,    
-      officename:dept.officename,
-      officeaddress:dept.officeaddress,
-      detailofficeaddress:dept.detailofficeaddress,
-      stateid:dept.stateid,
-      statename:dept.statename, 
-      districtid:dept.districtid,
-      districtname:dept.districtname,
-      latitude:dept.latitude,
-      longitude: dept.longitude,
-      address:dept.address,
+      vehicletypename:dept.vehicletypename,
+      vehicletypeid:dept.vehicletypeid,
+      vehicletypemakerorbrand:dept.vehicletypemakerorbrand,
+    vehicletypemakerorbrandid:dept.vehicletypemakerorbrandid,
+    vehicletyperegname:dept.vehicletyperegname,
+    fuletypename:dept.fuletypename,
+    fuletypeid:dept.fuletypeid,
+
+    gpsdevicename:dept.gpsdevicename,
+    gpsdeviceid:dept.gpsdeviceid,
+
+    ownedbyname:dept.ownedbyname,
+     ownedbyid:dept.ownedbyid,
         
         
     });
@@ -188,8 +197,27 @@ resetForm() {
 
 
 
-    
 
+    this.apiService.getAllVehicleType().subscribe(
+      (response : any) => {               
+        this.vehicleTypes = response.data;
+        console.log("this.vehicleTypes");
+        console.log(this.vehicleTypes);
+        console.log("this.vehicleTypes");          
+      })
+
+    
+      
+
+
+      
+    this.apiService.getAllFuelType().subscribe(
+      (response : any) => {               
+        this.fuelTypes = response.data;
+        console.log("this.fuelTypes");
+        console.log(this.fuelTypes);
+        console.log("this.fuelTypes");          
+      })
 
       
 
@@ -296,9 +324,83 @@ onStateChange(event: Event): void {
 }
 
 
+ 
+onVehicletypeChange(event: Event): void {
+  const stateId = (event.target as HTMLSelectElement).value;
+//getVehicleTypeBrandByVehicleType
+
+this.apiService.getVehicleTypeBrandByVehicleType(stateId).subscribe(
+      (response : any) => {
+        this.vehicleTypesBrands = response.data;
+        console.log(" vehicleTypesBrands ");
+        console.log( this.vehicleTypesBrands );
+        console.log(" vehicleTypesBrands ");
+     
+      })
+
+  const selectedState = this.vehicleTypes.find(
+    (s: any) => s.id == stateId
+  );
+
+  if (selectedState) {
+    this.formsize.patchValue({
+      vehicletypename: selectedState.vehicletypename
+    });
+  } else {
+    this.formsize.patchValue({
+      vehicletypename: ''
+    });
+  }
+}
+
+
+
+onVehicletypeBrandChange(event: Event): void {
+  
+  const stateId = (event.target as HTMLSelectElement).value;
+  
+  const selectedState = this.vehicleTypesBrands.find(
+    (s: any) => s.id == stateId
+  );
+
+  if (selectedState) {
+    this.formsize.patchValue({
+      vehicletypemakerorbrand: selectedState.vehicletypebrandname
+    });
+  } else {
+    this.formsize.patchValue({
+      vehicletypemakerorbrand: ''
+    });
+  }
+
+  
+}
+
+
+onFuleTypeChange(event: Event): void {
+  
+  const stateId = (event.target as HTMLSelectElement).value;
+  const selectedState = this.fuelTypes.find(
+    (s: any) => s.id == stateId
+  );
+
+  if (selectedState) {
+    this.formsize.patchValue({
+      fuletypename: selectedState.fueltypename
+    });
+  } else {
+    this.formsize.patchValue({
+      fuletypename: ''
+    });
+  }
+
+  
+}
 
 
   onSubmit(){
+
+    
 
     if (
             this.formsize.value.vehicletypename === undefined ||
@@ -309,6 +411,47 @@ onStateChange(event: Event): void {
           return;
       }
      
+      else if (
+            this.formsize.value.vehicletypemakerorbrand === undefined ||
+            this.formsize.value.vehicletypemakerorbrand.length === 0
+      ) {
+
+          alert(" Vehicle type maker or brand is required.");
+          return;
+      }
+    else if (
+            this.formsize.value.vehicletyperegname === undefined ||
+            this.formsize.value.vehicletyperegname.length === 0
+      ) {
+
+          alert(" Vehicle type regname is required.");
+          return;
+      }
+      else if (
+            this.formsize.value.fuletypename === undefined ||
+            this.formsize.value.fuletypename.length === 0
+      ) {
+
+          alert(" Fule type name  is required.");
+          return;
+      }
+      else if (
+            this.formsize.value.gpsdevicename === undefined ||
+            this.formsize.value.gpsdevicename.length === 0
+      ) {
+
+          alert(" Gps device name  is required.");
+          return;
+      }
+      else if (
+            this.formsize.value.ownedbyname === undefined ||
+            this.formsize.value.ownedbyname.length === 0
+      ) {
+
+          alert(" Owned by name  is required.");
+          return;
+      }
+
       else
       {
 
