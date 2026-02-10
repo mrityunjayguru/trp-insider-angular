@@ -7,23 +7,12 @@ import { ApiService } from '../../apiservice';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
-
-
-
-
 @Component({
   selector: 'app-know-your-business',
   imports: [NgClass, NgIf, FormsModule, ReactiveFormsModule],
   templateUrl: './know-your-business.html',
   styleUrl: './know-your-business.css',
 })
-
-
-
-
-
-
-
 
 export class KnowYourBusiness implements OnInit {
   docTopimage: any;
@@ -127,7 +116,7 @@ export class KnowYourBusiness implements OnInit {
   brandvalue: any;
   categoryvalue: any;
   seasonvalue: any;
-  sizes:any;
+  sizes: any;
 
 
 
@@ -207,8 +196,9 @@ export class KnowYourBusiness implements OnInit {
 
 
 
-previewUrl: string | ArrayBuffer | null = null;
+  previewUrl: string | ArrayBuffer | null = null;
   isSelected = true;
+  submitted = false;
   businesstype = 'proprietor';
   gstin = '';
   businessname = '';
@@ -218,19 +208,19 @@ previewUrl: string | ArrayBuffer | null = null;
 
 
 
-/*
-   onFileSelected(event: any) {
-    const file = event.target.files[0];
-
-    if (file) {
-      // Preview Image
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.previewUrl = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }*/
+  /*
+     onFileSelected(event: any) {
+      const file = event.target.files[0];
+  
+      if (file) {
+        // Preview Image
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.previewUrl = reader.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }*/
 
   onBusinessTypeChange() {
     //alert(this.productsForm.value.businesstype);
@@ -680,13 +670,13 @@ previewUrl: string | ArrayBuffer | null = null;
   }
 
 
- 
-allState:any;
-departments:any;
-alldesignation:any;
-allworkmode:any;
-allcommission:any;
-allemploymenttype:any;
+
+  allState: any;
+  departments: any;
+  alldesignation: any;
+  allworkmode: any;
+  allcommission: any;
+  allemploymenttype: any;
 
 
 
@@ -696,9 +686,8 @@ allemploymenttype:any;
     this.productsForm = this.formBuilder
     this.showRow = true;
     this.imageUrls = [];
- 
+
     this.router = router;
-    this.formData = new FormData();
     this.docTopimage = null;
     this.docPictureinput = null;
     this.docPictureinput1 = null;
@@ -770,138 +759,138 @@ allemploymenttype:any;
 
 
     this.apiService.getAllEmploymentType().subscribe(
-      (response : any) => {               
+      (response: any) => {
         this.allemploymenttype = response.data;
         console.log("getAllEmploymentType");
         console.log(this.allemploymenttype);
         console.log("getAllEmploymentType");
-          
+
       })
 
 
-this.apiService.getAllCommissionType().subscribe(
-      (response : any) => {               
+    this.apiService.getAllCommissionType().subscribe(
+      (response: any) => {
         this.allcommission = response.data;
         console.log("getAllCommissionType");
         console.log(this.allcommission);
         console.log("getAllCommissionType");
-          
+
       })
 
 
- this.apiService.getAllWorkMode().subscribe(
-      (response : any) => {               
+    this.apiService.getAllWorkMode().subscribe(
+      (response: any) => {
         this.allworkmode = response.data;
         console.log("getAllWorkMode");
         console.log(this.allworkmode);
         console.log("getAllWorkMode");
-          
+
       })
 
-    
+
     this.apiService.getAllSize().subscribe(
-      (response : any) => {
+      (response: any) => {
         this.sizes = response.data;
       })
 
 
-       this.apiService.getAllState().subscribe(
-      (response : any) => {
-               
+    this.apiService.getAllState().subscribe(
+      (response: any) => {
+
         this.allState = response.data;
         console.log("allState");
         console.log(this.allState);
-        console.log("allState");          
+        console.log("allState");
       })
 
 
 
-      this.apiService.getAllDepartment().subscribe(
-      (response : any) => {
-               
+    this.apiService.getAllDepartment().subscribe(
+      (response: any) => {
+
         this.departments = response.data;
         console.log("Department");
         console.log(this.departments);
         console.log("Department");
 
-          
+
       })
 
-      this.apiService.getAllDesignation().subscribe(
-      (response : any) => {               
+    this.apiService.getAllDesignation().subscribe(
+      (response: any) => {
         this.alldesignation = response.data;
         console.log("alldesignation");
         console.log(this.alldesignation);
         console.log("alldesignation");
-          
+
       })
 
 
     this.productsForm = this.formBuilder.group({
-      topimage: [''],
-      name: [''],
-      designationid:[''],
-      designation: [''],
+      topimage: ['', Validators.required],
+      name: ['', Validators.required],
+      designationid: [''],
+      designation: ['', Validators.required],
       department: [''],
       workmode: [''],
-      officelocation:[''],
-      contactnumber: [''],
-      address:[''],
+      officelocation: [''],
+      contactnumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      address: [''],
       country: [''],
-      
-      staeid:[''],
 
-      state:[''],
+      staeid: [''],
 
-      city:[''],
-      pincode:[''],
-      reportingmanager:[''],
-      gender:[''],
-      dateofbirth:[''],
-      dateofjoining:[''],
-      pannumber:[''],
-      aadhaarnumber:[''],
-      uan:[''],
-      pfnumber:[''],
-      pfjoiningdate:[''],
-      esinumber:[''],
-      nameofbank:[''],
-      ifsccode:[''],
-      accountnumber:[''],
-      nameofaccountholder:[''],
-      upiid:[''],
-      bloodgroupofemployee:[''],
-      emergencycontactpersonname:[''],
-      relation:[''],
-      relationcontactnumber:[''],
-      typeofemployment:[''],
-      monthlyfixedsalary:[''],
-      minimumguaranteedsalary:[''],
-      monthlytargetvalue:[''],
-      commissiontype:[''],
-      commissionrate:[''],
+      state: [''],
 
-      department_id:[1],
-      workmodeid:[1],
-      typeofemploymentid:[''],
-      commissionid:[''],
-      
+      city: [''],
+      pincode: [''],
+      reportingmanager: [''],
+      gender: [''],
+      dateofbirth: [''],
+      dateofjoining: [''],
+      pannumber: [''],
+      aadhaarnumber: [''],
+      uan: [''],
+      pfnumber: [''],
+      pfjoiningdate: [''],
+      esinumber: [''],
+      nameofbank: [''],
+      ifsccode: [''],
+      accountnumber: [''],
+      nameofaccountholder: [''],
+      upiid: [''],
+      bloodgroupofemployee: [''],
+      emergencycontactpersonname: [''],
+      relation: [''],
+      relationcontactnumber: [''],
+      typeofemployment: [''],
+      monthlyfixedsalary: [''],
+      minimumguaranteedsalary: [''],
+      monthlytargetvalue: [''],
+      commissiontype: [''],
+      commissionrate: [''],
 
-      businesstype: ['proprietor' ],
-      gstin: ['' ],
-      businessname: [''],
-      registeredaddress: [''],
-      proprietorname: [''],
-      proprietorpan: [''],
-      
-     contactpersonname:[''],
-     contactpersondesignation:[''],
-     contactpersonmobile:[''],      
+      department_id: [1],
+      workmodeid: [1],
+      typeofemploymentid: [''],
+      commissionid: [''],
 
 
-        pictureinput:[''],
-        pictureinput1:[''],
-        pictureinput2:[''],
+      businesstype: ['proprietor', Validators.required],
+      gstin: ['', Validators.required],
+      businessname: ['', Validators.required],
+      registeredaddress: ['', Validators.required],
+      proprietorname: ['', Validators.required],
+      proprietorpan: ['', Validators.required],
+
+      contactpersonname: ['', Validators.required],
+      contactpersondesignation: ['', Validators.required],
+      contactpersonmobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+
+
+      pictureinput: ['', Validators.required],
+      pictureinput1: ['', Validators.required],
+      pictureinput2: [''],
 
       imgfile0: [''],
       imgfile1: [''],
@@ -969,7 +958,7 @@ this.apiService.getAllCommissionType().subscribe(
 
 
 
-    
+
 
 
 
@@ -988,124 +977,42 @@ this.apiService.getAllCommissionType().subscribe(
   }
 
   onSubmit() {
+    this.submitted = true;
+    this.formData = new FormData();
 
-
-      console.log("Niraj Image "+ this.imageData[0]);
-
-
-  if (
-  this.productsForm.value.businesstype === undefined ||
-  this.productsForm.value.businesstype.length === 0
-) {
-  alert('Business type is required');
-  return;
-}
-else if (
-  this.productsForm.value.gstin === undefined ||
-  this.productsForm.value.gstin.length === 0
-) {
-  alert('Gstin is required.');
-  return;
-}
-else if (
-  this.productsForm.value.businessname === undefined ||
-  this.productsForm.value.businessname.length === 0
-) {
-  alert('Business name is required.');
-  return;
-}
-else if (
-  this.productsForm.value.registeredaddress === undefined ||
-  this.productsForm.value.registeredaddress.length === 0
-) {
-  alert('Registered address is required.');
-  return;
-}
-else if (
-  this.productsForm.value.proprietorname === undefined ||
-  this.productsForm.value.proprietorname.length === 0
-) {
-  alert('Proprietor name is required.');
-  return;
-}
-else if (
-  this.productsForm.value.contactpersonname === undefined ||
-  this.productsForm.value.contactpersonname.length === 0
-) {
-  alert('Contact person name is required.');
-  return;
-}
-
-else if (
-  this.productsForm.value.contactpersondesignation === undefined ||
-  this.productsForm.value.contactpersondesignation.length === 0
-) {
-  alert('Contact person designation is required.');
-  return;
-}
-
-
-
-else if (
-  this.productsForm.value.contactpersonmobile === undefined ||
-  this.productsForm.value.contactpersonmobile.length === 0
-) {
-  alert('Contact person mobile is required.');
-  return;
-}
-
-
-
-else if (
-  this.productsForm.value.proprietorpan === undefined ||
-  this.productsForm.value.proprietorpan.length === 0
-) {
-  alert('proprietorpan is required');
-  return;
-}
-else if (
-  this.imageData[0] === null ||
-  this.imageData[0].name === undefined ||
-  this.imageData[0].name.length === 0
-) {
-  alert('Logo is required');
-  return;
-}
-else if (
-  this.imageData[1] === null ||
-  this.imageData[1].name === undefined ||
-  this.imageData[1].name.length === 0
-) {
-  alert('Proprietor PAN is required');
-  return;
-}
-else if (
-  this.imageData[2] === null ||
-  this.imageData[2].name === undefined ||
-  this.imageData[2].name.length === 0
-) {
-  alert('Aadhaar is required');
-  return;
-}
-      else
-      {
-
-        const payload = {
-    ...this.productsForm.value,   // existing form fields
-    departmentobj: {
-      id: this.productsForm.value.department_id                  // or this.formsize.value.companyId
+    if (this.productsForm.invalid) {
+      this.productsForm.markAllAsTouched();
+      return;
     }
-  };
+
+    // Manual check for mandatory images if they aren't fully covered by form validators
+    if (!this.imageData[0] || !this.imageData[0].name) {
+      // We'll show an inline message for this too in HTML
+      return;
+    }
+    if (!this.imageData[1] || !this.imageData[1].name) {
+      return;
+    }
+    if (!this.imageData[2] || !this.imageData[2].name) {
+      return;
+    }
+
+    const payload = {
+      ...this.productsForm.value,   // existing form fields
+      departmentobj: {
+        id: this.productsForm.value.department_id                  // or this.formsize.value.companyId
+      }
+    };
 
 
 
 
-  
+
 
 
 
     this.imageData.forEach((element: any) => {
-  
+
       if (element != undefined) {
         this.formData.append('file', element, element.name);
       }
@@ -1117,26 +1024,26 @@ else if (
 
 
     //this.formData.append("eventProduct", JSON.stringify(this.productsForm.value));
-  
-   
-  this.formData.append(
-    'eventProduct',
-    JSON.stringify(payload)
-  );
-    
-  
-
-  console.log(" Employee Form data =========");
-  console.log(" Employee Form data =========");
-  console.log(" Employee Form data =========");
-  console.log(" Employee Form data =========");
-  console.log(this.formData);
-  console.log(" Employee Form data =========");
-  console.log(" Employee Form data =========");
-  console.log(" Employee Form data =========");
 
 
-  
+    this.formData.append(
+      'eventProduct',
+      JSON.stringify(payload)
+    );
+
+
+
+    console.log(" Employee Form data =========");
+    console.log(" Employee Form data =========");
+    console.log(" Employee Form data =========");
+    console.log(" Employee Form data =========");
+    console.log(this.formData);
+    console.log(" Employee Form data =========");
+    console.log(" Employee Form data =========");
+    console.log(" Employee Form data =========");
+
+
+
     this.apiService.saveKnowYourBusiness(this.formData).subscribe(
       (response: any) => {
 
@@ -1145,8 +1052,7 @@ else if (
 
           this.router.navigateByUrl('/getallemployee.component');
         }
-        else
-        {
+        else {
           alert(response);
         }
       })
@@ -1154,8 +1060,6 @@ else if (
 
   }
 
-
-  }
   onFileSelected(event: any): void {
     this.docTopimage = event.target.files[0];
     this.imageData[0] = this.docTopimage;
@@ -1172,18 +1076,9 @@ else if (
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-
-        this.imageSrc = reader.result as string;
-        this.setBackgroundImage(this.imageSrc);
+        this.previewUrl = reader.result as string;
       };
-
-
     }
-
-
-
-
-
   }
   onFileSelectBottom(event: any): void {
 
@@ -1197,10 +1092,7 @@ else if (
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.imageSrcbottom = reader.result as string;
-        this.setBackgroundImage(this.imageSrcbottom);
-
       };
-
     }
 
   }
@@ -1219,7 +1111,6 @@ else if (
       reader.readAsDataURL(file1);
       reader.onload = () => {
         this.imageSrcbottom1 = reader.result as string;
-        this.setBackgroundImage1(this.imageSrcbottom1);
       };
     }
   }
@@ -1245,10 +1136,7 @@ else if (
       reader.readAsDataURL(file2);
       reader.onload = () => {
         this.imageSrcbottom2 = reader.result as string;
-        this.setBackgroundImage2(this.imageSrcbottom2);
-
       };
-
     }
 
   }
@@ -1996,120 +1884,120 @@ else if (
       event.preventDefault();
     }
   }
-  
 
-onStateChange(event: any) {
-  const selectedId = event.target.value;
 
-  const selectedState = this.allState.find(
-    (statedata: any) => statedata.id == selectedId
-  );
+  onStateChange(event: any) {
+    const selectedId = event.target.value;
 
-  if (selectedState) {
-    this.productsForm.patchValue({
-      state: selectedState.statename
-    });
-  } else {
-    this.productsForm.patchValue({
-      state: ''
-    });
+    const selectedState = this.allState.find(
+      (statedata: any) => statedata.id == selectedId
+    );
+
+    if (selectedState) {
+      this.productsForm.patchValue({
+        state: selectedState.statename
+      });
+    } else {
+      this.productsForm.patchValue({
+        state: ''
+      });
+    }
   }
-}
 
-onDepartmentChange(event: any) {
-  const deptid = event.target.value;
+  onDepartmentChange(event: any) {
+    const deptid = event.target.value;
 
-  const selectedDepartment = this.departments.find(
-    (departmentsdata: any) => departmentsdata.id == deptid
-  );
+    const selectedDepartment = this.departments.find(
+      (departmentsdata: any) => departmentsdata.id == deptid
+    );
 
-  if (selectedDepartment) {
-    this.productsForm.patchValue({
-      department: selectedDepartment.deptname
-    });
-  } else {
-    this.productsForm.patchValue({
-      department: ''
-    });
+    if (selectedDepartment) {
+      this.productsForm.patchValue({
+        department: selectedDepartment.deptname
+      });
+    } else {
+      this.productsForm.patchValue({
+        department: ''
+      });
+    }
   }
-}
 
 
-onDesignationChange(event: any) {
-  const designationid = event.target.value;
+  onDesignationChange(event: any) {
+    const designationid = event.target.value;
 
-  const selecteddesignation = this.alldesignation.find(
-    (designationdata: any) => designationdata.id == designationid
-  );
+    const selecteddesignation = this.alldesignation.find(
+      (designationdata: any) => designationdata.id == designationid
+    );
 
-  if (selecteddesignation) {
-    this.productsForm.patchValue({
-      designation: selecteddesignation.designationname
-    });
-  } else {
-    this.productsForm.patchValue({
-      designation: ''
-    });
+    if (selecteddesignation) {
+      this.productsForm.patchValue({
+        designation: selecteddesignation.designationname
+      });
+    } else {
+      this.productsForm.patchValue({
+        designation: ''
+      });
+    }
   }
-}
 
 
 
-onWorkModeChange(event: any) {
-  const workmodeid = event.target.value;
+  onWorkModeChange(event: any) {
+    const workmodeid = event.target.value;
 
-  const selectedworkmode = this.allworkmode.find(
-    (workmodedata: any) => workmodedata.id == workmodeid
-  );
+    const selectedworkmode = this.allworkmode.find(
+      (workmodedata: any) => workmodedata.id == workmodeid
+    );
 
-  if (selectedworkmode) {
-    this.productsForm.patchValue({
-      workmode: selectedworkmode.workmodename
-    });
-  } else {
-    this.productsForm.patchValue({
-      workmode: ''
-    });
+    if (selectedworkmode) {
+      this.productsForm.patchValue({
+        workmode: selectedworkmode.workmodename
+      });
+    } else {
+      this.productsForm.patchValue({
+        workmode: ''
+      });
+    }
   }
-}
 
 
-onEmploymentTypeChange(event: any) {
-  const employmenttypeid = event.target.value;
+  onEmploymentTypeChange(event: any) {
+    const employmenttypeid = event.target.value;
 
-  const selectedemploymenttype = this.allemploymenttype.find(
-    (employmenttypedata: any) => employmenttypedata.id == employmenttypeid
-  );
+    const selectedemploymenttype = this.allemploymenttype.find(
+      (employmenttypedata: any) => employmenttypedata.id == employmenttypeid
+    );
 
-  if (selectedemploymenttype) {
-    this.productsForm.patchValue({
-      typeofemployment: selectedemploymenttype.employmenttypename
-    });
-  } else {
-    this.productsForm.patchValue({
-      typeofemployment: ''
-    });
+    if (selectedemploymenttype) {
+      this.productsForm.patchValue({
+        typeofemployment: selectedemploymenttype.employmenttypename
+      });
+    } else {
+      this.productsForm.patchValue({
+        typeofemployment: ''
+      });
+    }
   }
-}
 
 
-onCommissionTypeChange(event: any) {
-  const commissiontypeid = event.target.value;
+  onCommissionTypeChange(event: any) {
+    const commissiontypeid = event.target.value;
 
-  const selectedcommissiontype = this.allcommission.find(
-    (commissiontypedata: any) => commissiontypedata.id == commissiontypeid
-  );
+    const selectedcommissiontype = this.allcommission.find(
+      (commissiontypedata: any) => commissiontypedata.id == commissiontypeid
+    );
 
-  if (selectedcommissiontype) {
-    this.productsForm.patchValue({
-      commissiontype: selectedcommissiontype.commitiontypename
-    });
-  } else {
-    this.productsForm.patchValue({
-      commissiontype: ''
-    });
+    if (selectedcommissiontype) {
+      this.productsForm.patchValue({
+        commissiontype: selectedcommissiontype.commitiontypename
+      });
+    } else {
+      this.productsForm.patchValue({
+        commissiontype: ''
+      });
+    }
   }
-}
 
 
 }

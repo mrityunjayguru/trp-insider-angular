@@ -1,224 +1,273 @@
- <form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
-<section class="w-full h-full">
-  <!-- header -->
-  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-    <div class="flex flex-col">
-      <h1 class="text-xl font-semibold text-primary">Know Your Business</h1>
-      <p class="text-xs text-[#050914]">Complete KYB to avail online payment services</p>
-    </div>
-    <div class="flex flex-col items-start md:items-center">
-      <h1 class="font-normal text-sm text-[#050914]">Company ID</h1>
-      <p class="font-normal text-sm text-primary">TRPE0001</p>
-    </div>
-  </div>
-  <hr class="border-[#D2D2D2] my-4" />
-
-  <!-- business details -->
-  <div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <label class="text-sm text-[#050914]">
-          Business Type <span class="text-primary"> *</span>
-        </label>
-
-        <select formControlName="businesstype" (ngModelChange)="onBusinessTypeChange()"
-          [ngClass]="{ 'text-[#BCBCBC]': !isSelected }"
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
-          <option value="" class="text-[#BCBCBC]" disabled>Choose a Business Type</option>
-
-          <option value="proprietor" selected>Proprietor</option>
-
-          <option value="private-public">Private / Public Limited</option>
-
-          <option value="partnership">Partnership</option>
-          <option value="trust-society">Trust/Society Name</option>
-        </select>
+<form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
+  <section class="w-full h-full">
+    <!-- header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="flex flex-col">
+        <h1 class="text-xl font-semibold text-primary">Know Your Business</h1>
+        <p class="text-xs text-[#050914]">Complete KYB to avail online payment services</p>
       </div>
-      <div>
-        <label class="text-sm f text-[#050914]"> GSTIN </label>
-
-        <input type="text" formControlName="gstin"  placeholder="Goods and Services Tax Identification Number"
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+      <div class="flex flex-col items-start md:items-center">
+        <h1 class="font-normal text-sm text-[#050914]">Company ID</h1>
+        <p class="font-normal text-sm text-primary">TRPE0001</p>
       </div>
     </div>
-  </div>
-  <div class="mt-4">
-    <h1 class="text-xl font-semibold text-primary">Business Details</h1>
     <hr class="border-[#D2D2D2] my-4" />
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <label class="text-sm font-medium text-gray-700">
-          <span *ngIf="isProprietor() || isPrivatePublicLimited() || isPartnership()">Business Name</span>
-          <span *ngIf="isTrustSociety()">Trust/Society Name</span>
-          <span class="text-primary">*</span>
-        </label>
 
-        <input type="text" formControlName="businessname" [placeholder]="isTrustSociety() ? 'Enter Company Name' : 'Enter Company Name'" required
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+    <!-- business details -->
+    <div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="text-sm text-[#050914]">
+            Business Type <span class="text-primary"> *</span>
+          </label>
+
+          <select formControlName="businesstype" (ngModelChange)="onBusinessTypeChange()"
+            [ngClass]="{ 'text-[#BCBCBC]': !isSelected, 'border-red-500': submitted && productsForm.get('businesstype')?.errors }"
+            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none">
+            <option value="" class="text-[#BCBCBC]" disabled>Choose a Business Type</option>
+
+            <option value="proprietor" selected>Proprietor</option>
+
+            <option value="private-public">Private Limited / Public Limited</option>
+
+            <option value="partnership">Partnership</option>
+            <option value="trust-society">Trust/Society Name</option>
+          </select>
+          <div *ngIf="submitted && productsForm.get('businesstype')?.errors" class="text-red-500 text-xs mt-1">
+            Business type is required.
+          </div>
+        </div>
+        <div>
+          <label class="text-sm f text-[#050914]"> GSTIN </label>
+
+          <input type="text" formControlName="gstin" placeholder="Goods and Services Tax Identification Number"
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{ 'border-red-500': submitted && productsForm.get('gstin')?.errors, 'border-[#D2D2D2]': !(submitted && productsForm.get('gstin')?.errors) }" />
+          <div *ngIf="submitted && productsForm.get('gstin')?.errors" class="text-red-500 text-xs mt-1">
+            GSTIN is required.
+          </div>
+        </div>
       </div>
-      <div>
-        <label class="text-sm font-medium text-gray-700">
-          Registered Address <span class="text-primary">*</span>
-        </label>
+    </div>
+    <div class="mt-4">
+      <h1 class="text-xl font-semibold text-primary">Business Details</h1>
+      <hr class="border-[#D2D2D2] my-4" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="text-sm font-medium text-gray-700">
+            <span *ngIf="isProprietor() || isPrivatePublicLimited() || isPartnership()">Business Name</span>
+            <span *ngIf="isTrustSociety()">Trust/Society Name</span>
+            <span class="text-primary">*</span>
+          </label>
 
-        <input type="text" formControlName="registeredaddress" [placeholder]="
+          <input type="text" formControlName="businessname"
+            [placeholder]="isTrustSociety() ? 'Enter Company Name' : 'Enter Company Name'" required
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [class.border-red-500]="(submitted || productsForm.get('businessname')?.touched) && productsForm.get('businessname')?.invalid"
+            [class.border-[#D2D2D2]]="!((submitted || productsForm.get('businessname')?.touched) && productsForm.get('businessname')?.invalid)" />
+          <div
+            *ngIf="(submitted || productsForm.get('businessname')?.touched) && productsForm.get('businessname')?.invalid"
+            class="text-red-500 text-xs mt-1">
+            <span *ngIf="isTrustSociety()">Trust/Society Name is required</span>
+            <span *ngIf="!isTrustSociety()">Business Name is required</span>
+          </div>
+        </div>
+        <div>
+          <label class="text-sm font-medium text-gray-700">
+            Registered Address <span class="text-primary">*</span>
+          </label>
+
+          <input type="text" formControlName="registeredaddress" [placeholder]="
             isTrustSociety() ? 'Enter Trust/Society\'s Address' : 'Enter Company\'s Address'
           " required
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-      </div>
-      <div *ngIf="isProprietor()">
-        <label class="text-sm font-medium text-gray-700">
-          Proprietor Name <span class="text-primary">*</span>
-        </label>
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [class.border-red-500]="(submitted || productsForm.get('registeredaddress')?.touched) && productsForm.get('registeredaddress')?.invalid"
+            [class.border-[#D2D2D2]]="!((submitted || productsForm.get('registeredaddress')?.touched) && productsForm.get('registeredaddress')?.invalid)" />
+          <div
+            *ngIf="(submitted || productsForm.get('registeredaddress')?.touched) && productsForm.get('registeredaddress')?.invalid"
+            class="text-red-500 text-xs mt-1">
+            Registered Address is required
+          </div>
+        </div>
+        <div *ngIf="isProprietor()">
+          <label class="text-sm font-medium text-gray-700">
+            Proprietor Name <span class="text-primary">*</span>
+          </label>
 
-        <input type="text" formControlName="proprietorname" placeholder="Enter Contact Proprietor Name" required
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-      </div>
-      <div>
-        <label class="text-sm font-medium text-gray-700">
-          <span *ngIf="isProprietor()">Proprietor's PAN</span>
-          <span *ngIf="isPrivatePublicLimited() || isPartnership()">Company PAN</span>
-          <span *ngIf="isTrustSociety()">Trust/Society PAN</span>
-          <span class="text-primary">*</span>
-        </label>
+          <input type="text" formControlName="proprietorname" placeholder="Enter Contact Proprietor Name" required
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [class.border-red-500]="(submitted || productsForm.get('proprietorname')?.touched) && productsForm.get('proprietorname')?.invalid"
+            [class.border-[#D2D2D2]]="!((submitted || productsForm.get('proprietorname')?.touched) && productsForm.get('proprietorname')?.invalid)" />
+          <div
+            *ngIf="(submitted || productsForm.get('proprietorname')?.touched) && productsForm.get('proprietorname')?.invalid"
+            class="text-red-500 text-xs mt-1">
+            Proprietor Name is required
+          </div>
+        </div>
+        <div>
+          <label class="text-sm font-medium text-gray-700">
+            <span *ngIf="isProprietor()">Proprietor's PAN</span>
+            <span *ngIf="isPrivatePublicLimited() || isPartnership()">Company PAN</span>
+            <span *ngIf="isTrustSociety()">Trust/Society PAN</span>
+            <span class="text-primary">*</span>
+          </label>
 
-        <input type="text" formControlName="proprietorpan" [placeholder]="
+          <input type="text" formControlName="proprietorpan" [placeholder]="
             isProprietor()
               ? 'Enter Proprietor\'s PAN'
               : isPrivatePublicLimited() || isPartnership()
                 ? 'Enter Company\'s PAN'
                 : 'Enter Trust/Society\'s PAN'
           " required
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-      </div>
-
-      <div>
-        <label class="text-sm f text-[#050914]"> Contact Person Name <span class="text-primary">*</span> </label>
-        <input type="text" formControlName="contactpersonname"  placeholder="Enter Contact Person Name"
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-      </div>
-
-
-      <div>
-        <label class="text-sm f text-[#050914]"> Contact Person Designation <span class="text-primary">*</span> </label>
-        <input type="text" formControlName="contactpersondesignation"  placeholder="Enter Contact Person Designation"
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-      </div>
-
-      <div>
-        <label class="text-sm f text-[#050914]"> Contact Person Mobile <span class="text-primary">*</span> </label>
-        <input type="text" formControlName="contactpersonmobile"  placeholder="Enter Contact Person Mobile"
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-      </div>
-
-
-    </div>
-  </div>
-
-
-  <div class="mt-4">
-    <h1 class="text-xl font-semibold text-primary">Upload Documents</h1>
-    <hr class="border-[#D2D2D2] my-4" />
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <div>
-        <label class="text-sm text-[#050914]">
-          Upload Logo <span class="text-primary">*</span>
-        </label>
-        <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-          <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
-          <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
-   <img src="assets/icons/upload.svg" alt="" />
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{ 'border-red-500': submitted && productsForm.get('proprietorpan')?.errors, 'border-[#D2D2D2]': !(submitted && productsForm.get('proprietorpan')?.errors) }" />
+          <div *ngIf="submitted && productsForm.get('proprietorpan')?.errors" class="text-red-500 text-xs mt-1">
+            PAN is required.
           </div>
         </div>
-        <button type="button" (click)="fileInput.click()"
-          class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-          Upload Logo
-        </button>
-        <input #fileInput type="file"  formControlName="topimage" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
-      
-                    
-      
-      
+
+        <div>
+          <label class="text-sm f text-[#050914]"> Contact Person Name <span class="text-primary">*</span> </label>
+          <input type="text" formControlName="contactpersonname" placeholder="Enter Contact Person Name"
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{ 'border-red-500': submitted && productsForm.get('contactpersonname')?.errors, 'border-[#D2D2D2]': !(submitted && productsForm.get('contactpersonname')?.errors) }" />
+          <div *ngIf="submitted && productsForm.get('contactpersonname')?.errors" class="text-red-500 text-xs mt-1">
+            Contact person name is required.
+          </div>
+        </div>
+
+
+        <div>
+          <label class="text-sm f text-[#050914]"> Contact Person Designation <span class="text-primary">*</span>
+          </label>
+          <input type="text" formControlName="contactpersondesignation" placeholder="Enter Contact Person Designation"
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{ 'border-red-500': submitted && productsForm.get('contactpersondesignation')?.errors, 'border-[#D2D2D2]': !(submitted && productsForm.get('contactpersondesignation')?.errors) }" />
+          <div *ngIf="submitted && productsForm.get('contactpersondesignation')?.errors"
+            class="text-red-500 text-xs mt-1">
+            Contact person designation is required.
+          </div>
+        </div>
+
+        <div>
+          <label class="text-sm f text-[#050914]"> Contact Person Mobile <span class="text-primary">*</span> </label>
+          <input type="text" formControlName="contactpersonmobile" placeholder="Enter Contact Person Mobile"
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{ 'border-red-500': submitted && productsForm.get('contactpersonmobile')?.errors, 'border-[#D2D2D2]': !(submitted && productsForm.get('contactpersonmobile')?.errors) }" />
+          <div *ngIf="submitted && productsForm.get('contactpersonmobile')?.errors" class="text-red-500 text-xs mt-1">
+            <span *ngIf="productsForm.get('contactpersonmobile')?.errors?.['required']">Contact person mobile is
+              required.</span>
+            <span *ngIf="productsForm.get('contactpersonmobile')?.errors?.['pattern']">Please enter a valid 10-digit
+              mobile number.</span>
+          </div>
+        </div>
+
+
       </div>
-      <div>
-        <label class="text-sm text-[#050914]">
-          Upload Proprietor's PAN <span class="text-primary">*</span>
-        </label>
-           
-        
-          <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-                
-                <label class="picture backgroundElement" for="picture__input" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom + ')'" id="backgroundElement">
-                     
-               Upload  <br>      Proprietor's PAN
-                </label>
-                <input type="file" (change)="onFileSelectBottom($event)" name="picture__input" id="picture__input" style="display:none;"
-                    formControlName="pictureinput">
-                    
+    </div>
+
+
+    <div class="mt-4">
+      <h1 class="text-xl font-semibold text-primary">Upload Documents</h1>
+      <hr class="border-[#D2D2D2] my-4" />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div>
+          <label class="text-sm text-[#050914]">
+            Upload Logo <span class="text-primary">*</span>
+          </label>
+          <div
+            class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white overflow-hidden">
+            <img *ngIf="previewUrl" [src]="previewUrl" class="h-full w-full object-contain" />
+            <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
+              <img src="assets/icons/upload.svg" alt="" />
             </div>
-
-
-
-            
-
-
-            
-
-
-      </div>
-      <div>
-        <label class="text-sm text-[#050914]">
-          Aadhaar/DL/Passport <span class="text-primary">*</span>
-        </label>
-        <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-                
-                <label class="picture backgroundElement" for="picture__input1" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom1 + ')'" id="backgroundElement1">
-                Upload  <br>   Aadhaar/DL/Passport
-                </label>
-    
-                <input type="file" (change)="onFileSelectBottoms($event)" name="picture__input" id="picture__input1" style="display:none;"
-                    formControlName="pictureinput1" >
-                <input id="textaa" name="color1" type="text" class="mim"
-                    formControlName="imgcolor1"  style="display: none;">
-                    <input type="button" class="remove-button" (click)="removeColumn('column1')" value="-" style="display: none;">
-            
+          </div>
+          <button type="button" (click)="logoInput.click()"
+            class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
+            Upload Logo
+          </button>
+          <input #logoInput type="file" formControlName="topimage" accept="image/*" class="hidden"
+            (change)="onFileSelected($event)" />
+          <div *ngIf="submitted && (!imageData[0] || !imageData[0].name)" class="text-red-500 text-xs mt-1">
+            Logo is required.
           </div>
         </div>
-       
-        
-    
-      
-      <div>
-        <label class="text-sm text-[#050914]"> GSTIN Certificate </label>
-        <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-                
-                <label class="picture backgroundElement" for="picture__input2" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom2 + ')'" id="backgroundElement2">
-                    Upload <br>GSTIN Certificate
-                </label>
-    
-                <input type="file" (change)="onFileSelectBottom2($event)" name="picture__input" id="picture__input2" style="display:none;"
-                    formControlName="pictureinput2" >
-                </div>
-        
-      
-      </div>
-    </div>
+        <div>
+          <label class="text-sm text-[#050914]">
+            Upload Proprietor's PAN <span class="text-primary">*</span>
+          </label>
 
-    <div class="mt-2 flex items-start gap-2">
-      <input type="checkbox" name="" id="" class="mt-1 shrink-0" />
-      <p class="text-sm text-[#050914]">
-        By Submiting, you agree to our
-        <a href="" class="text-primary hover:underline"> Terms of Service </a>
-        and
-        <a href="" class="text-primary hover:underline"> Privacy Policy. </a>
-      </p>
+
+          <div
+            class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white overflow-hidden">
+            <img *ngIf="imageSrcbottom" [src]="imageSrcbottom" class="h-full w-full object-contain" />
+            <div *ngIf="!imageSrcbottom" class="text-gray-400 text-3xl">
+              <img src="assets/icons/upload.svg" alt="" />
+            </div>
+          </div>
+          <button type="button" (click)="panInput.click()"
+            class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
+            Upload PAN
+          </button>
+          <input #panInput type="file" (change)="onFileSelectBottom($event)" name="picture__input" class="hidden"
+            formControlName="pictureinput">
+          <div *ngIf="submitted && (!imageData[1] || !imageData[1].name)" class="text-red-500 text-xs mt-1">
+            Proprietor PAN is required.
+          </div>
+        </div>
+        <div>
+          <label class="text-sm text-[#050914]">
+            Aadhaar/DL/Passport <span class="text-primary">*</span>
+          </label>
+          <div
+            class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white overflow-hidden">
+            <img *ngIf="imageSrcbottom1" [src]="imageSrcbottom1" class="h-full w-full object-contain" />
+            <div *ngIf="!imageSrcbottom1" class="text-gray-400 text-3xl">
+              <img src="assets/icons/upload.svg" alt="" />
+            </div>
+          </div>
+          <button type="button" (click)="aadhaarInput.click()"
+            class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
+            Upload Document
+          </button>
+          <input #aadhaarInput type="file" formControlName="pictureinput1" accept="image/*" class="hidden"
+            (change)="onFileSelectBottoms($event)" />
+          <div *ngIf="submitted && (!imageData[2] || !imageData[2].name)" class="text-red-500 text-xs mt-1">
+            Aadhaar/DL/Passport is required.
+          </div>
+        </div>
+        <div>
+          <label class="text-sm text-[#050914]"> GSTIN Certificate </label>
+          <div
+            class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white overflow-hidden">
+            <img *ngIf="imageSrcbottom2" [src]="imageSrcbottom2" class="h-full w-full object-contain" />
+            <div *ngIf="!imageSrcbottom2" class="text-gray-400 text-3xl">
+              <img src="assets/icons/upload.svg" alt="" />
+            </div>
+          </div>
+          <button type="button" (click)="gstinCertInput.click()"
+            class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
+            Upload Certificate
+          </button>
+          <input #gstinCertInput type="file" formControlName="pictureinput2" accept="image/*" class="hidden"
+            (change)="onFileSelectBottom2($event)" />
+        </div>
+      </div>
+
+      <div class="mt-2 flex items-start gap-2">
+        <input type="checkbox" name="" id="" class="mt-1 shrink-0" />
+        <p class="text-sm text-[#050914]">
+          By Submiting, you agree to our
+          <a href="" class="text-primary hover:underline"> Terms of Service </a>
+          and
+          <a href="" class="text-primary hover:underline"> Privacy Policy. </a>
+        </p>
+      </div>
+      <button
+        class="bg-[#006842] text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 rounded-md p-2 mt-6">
+        Submit
+      </button>
     </div>
-    <button
-     class="bg-[#006842] text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 rounded-md p-2 mt-6"
-  >
-    Submit
-  </button>
-  </div>
-</section>
+  </section>
 
 </form>

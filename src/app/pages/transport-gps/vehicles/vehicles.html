@@ -1,177 +1,150 @@
 <section class="h-full w-full">
 
   <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
-  <div class="">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <label class="text-sm text-[#050914]">
-          Add Vehicle Type <span class="text-primary">*</span>
-        </label>
+    <div class="">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="text-sm text-[#050914]">
+            Add Vehicle Type <span class="text-primary">*</span>
+          </label>
 
-          <select
-            formControlName="vehicletypeid" (change)="onVehicletypeChange($event)"
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-          >
-             <option value="" disabled>Add Vehicle Type</option>
-              <option *ngFor="let vehicle of vehicleTypes" [value]="vehicle.id">
-                {{ vehicle.vehicletypename }}
-              </option>
+          <select formControlName="vehicletypeid" (change)="onVehicletypeChange($event)"
+            class="mt-2 w-full border rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{'border-red-500': submitted && formsize.get('vehicletypeid')?.errors, 'border-[#D2D2D2]': !(submitted && formsize.get('vehicletypeid')?.errors)}">
+            <option value="" disabled>Add Vehicle Type</option>
+            <option *ngFor="let vehicle of vehicleTypes" [value]="vehicle.id">
+              {{ vehicle.vehicletypename }}
+            </option>
           </select>
-      </div>
+        </div>
 
-      <div style="display: none;">
-        <label class="text-sm text-[#050914]">
-          Vehicle Type<span class="text-primary"> *</span>
-        </label>
- 
-        <input
-          type="text" formControlName="vehicletypename" readonly
-          placeholder="Add Vehicle Number"
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
-        />
-      </div>
+        <div style="display: none;">
+          <label class="text-sm text-[#050914]">
+            Vehicle Type<span class="text-primary"> *</span>
+          </label>
+
+          <input type="text" formControlName="vehicletypename" readonly placeholder="Add Vehicle Number"
+            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+        </div>
 
 
         <div>
-        <label class="text-sm text-[#050914]">
-          Vehicle Make/Brand<span class="text-primary"> *</span>
-        </label>
+          <label class="text-sm text-[#050914]">
+            Vehicle Make/Brand<span class="text-primary"> *</span>
+          </label>
 
-          <select
-            formControlName="vehicletypemakerorbrandid" (change)="onVehicletypeBrandChange($event)"
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-          >
-             <option value="" disabled>Add Vehicle Type Brand</option>
-              <option *ngFor="let vehicle of vehicleTypesBrands" [value]="vehicle.id">
-                {{ vehicle.vehicletypebrandname }}
-              </option>
+          <select formControlName="vehicletypemakerorbrandid" (change)="onVehicletypeBrandChange($event)"
+            class="mt-2 w-full border rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{'border-red-500': submitted && formsize.get('vehicletypemakerorbrandid')?.errors, 'border-[#D2D2D2]': !(submitted && formsize.get('vehicletypemakerorbrandid')?.errors)}">
+            <option value="" disabled>Add Vehicle Type Brand</option>
+            <option *ngFor="let vehicle of vehicleTypesBrands" [value]="vehicle.id">
+              {{ vehicle.vehicletypebrandname }}
+            </option>
           </select>
-      </div>
+        </div>
 
-      <div style="display: none;">
-        <label class="text-sm text-[#050914]">
-          Vehicle Type<span class="text-primary"> *</span>
-        </label>
- 
-        <input
-          type="text" formControlName="vehicletypemakerorbrand"
-          placeholder="Add Vehicle Type Makeror Brand" readonly
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
-        />
-      </div>
+        <div style="display: none;">
+          <label class="text-sm text-[#050914]">
+            Vehicle Type<span class="text-primary"> *</span>
+          </label>
 
+          <input type="text" formControlName="vehicletypemakerorbrand" placeholder="Add Vehicle Type Makeror Brand"
+            readonly
+            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+        </div>
+        <div>
+          <label class="text-sm text-[#050914]">
+            Vehicle Registration Number<span class="text-primary"> *</span>
+          </label>
 
+          <input type="text" formControlName="vehicletyperegname" placeholder="Add Vehicle Registration Number"
+            class="mt-2 w-full border rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{'border-red-500': submitted && formsize.get('vehicletyperegname')?.errors, 'border-[#D2D2D2]': !(submitted && formsize.get('vehicletyperegname')?.errors)}" />
+          <div *ngIf="submitted && formsize.get('vehicletyperegname')?.errors" class="text-red-500 text-xs mt-1">
+            Registration number is required.
+          </div>
+        </div>
+        <div>
+          <label class="text-sm text-[#050914]">
+            Fuel Type<span class="text-primary"> *</span>
+          </label>
 
-
-
-
-
-      <div>
-        <label class="text-sm text-[#050914]">
-           Vehicle Registration Number<span class="text-primary"> *</span>
-        </label>
-
-        <input
-          type="text" formControlName="vehicletyperegname"
-
-          placeholder="Add Vehicle Registration Number"
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
-        />
-      </div>
-      
-
-
-      <div>
-        <label class="text-sm text-[#050914]">
-          Fuel Type<span class="text-primary"> *</span>
-        </label>
-
-        <select
-            formControlName="fuletypeid" (change)="onFuleTypeChange($event)"
-            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-          >
-             <option value="" disabled>Add Vehicle Type</option>
-              <option *ngFor="let vehicle of fuelTypes" [value]="vehicle.id">
-                {{ vehicle.fueltypename }}
-              </option>
+          <select formControlName="fuletypeid" (change)="onFuleTypeChange($event)"
+            class="mt-2 w-full border rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{'border-red-500': submitted && formsize.get('fuletypeid')?.errors, 'border-[#D2D2D2]': !(submitted && formsize.get('fuletypeid')?.errors)}">
+            <option value="" disabled>Add Vehicle Type</option>
+            <option *ngFor="let vehicle of fuelTypes" [value]="vehicle.id">
+              {{ vehicle.fueltypename }}
+            </option>
           </select>
+        </div>
+        <div style="display: none;">
+          <label class="text-sm text-[#050914]">
+            Fule Type Name<span class="text-primary"> *</span>
+          </label>
+
+          <input type="text" formControlName="fuletypename" placeholder="Add fuletypename" readonly
+            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="text-sm text-[#050914]">
+            GPS Device ID<span class="text-primary"> *</span>
+          </label>
+
+          <select formControlName="gpsdevicename"
+            class="mt-2 w-full border rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{'border-red-500': submitted && formsize.get('gpsdevicename')?.errors, 'border-[#D2D2D2]': !(submitted && formsize.get('gpsdevicename')?.errors)}">
+            <option selected disabled>Choose GPS Device</option>
+            <option>GPS-1001</option>
+            <option>GPS-2002</option>
+          </select>
+          <div *ngIf="submitted && formsize.get('gpsdevicename')?.errors" class="text-red-500 text-xs mt-1">
+            GPS Device ID is required.
+          </div>
+        </div>
+        <div>
+          <label class="text-sm text-[#050914]"> Owned by<span class="text-primary"> *</span> </label>
+
+          <select formControlName="ownedbyname"
+            class="mt-2 w-full border rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            [ngClass]="{'border-red-500': submitted && formsize.get('ownedbyname')?.errors, 'border-[#D2D2D2]': !(submitted && formsize.get('ownedbyname')?.errors)}">
+            <option selected disabled value="">Ownership of Vehicle</option>
+            <option value="Company">Company</option>
+            <option value="Personal">Personal</option>
+            <option value="Rental">Rental</option>
+          </select>
+          <div *ngIf="submitted && formsize.get('ownedbyname')?.errors" class="text-red-500 text-xs mt-1">
+            Owned by is required.
+          </div>
+        </div>
       </div>
+      <button
+        class="bg-[#006842] mt-2 text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md px-3 py-2.5">
 
+        {{ isEditMode ? 'Update vehicle' : 'Add vehicle' }}
 
-
-
-      <div style="display: none;">
-        <label class="text-sm text-[#050914]">
-           Fule Type Name<span class="text-primary"> *</span>
-        </label>
-
-        <input
-          type="text" formControlName="fuletypename"
-
-          placeholder="Add fuletypename" readonly
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
-        />
-      </div>
-
-
-      <div>
-        <label class="text-sm text-[#050914]">
-          GPS Device ID<span class="text-primary"> *</span>
-        </label>
-
-        <select formControlName="gpsdevicename"
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-        >
-          <option selected disabled>Choose GPS Device</option>
-          <option>GPS-1001</option>
-          <option>GPS-2002</option>
-        </select>
-      </div>
-      <div>
-        <label class="text-sm text-[#050914]"> Owned by<span class="text-primary"> *</span> </label>
-
-        <select formControlName="ownedbyname"
-          class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-        >
-          <option selected disabled>Ownership of Vehicle</option>
-          <option>Company</option>
-          <option>Personal</option>
-          <option>Rental</option>
-        </select>
-      </div>
+      </button>
     </div>
-    <button 
-          class="bg-[#006842] mt-2 text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md px-3 py-2.5"
-        >
-          <label class="text-sm text-[#050914] text-white">
-              {{ isEditMode ? 'Update vehicle' : 'Add vehicle' }}
-              <span class="text-primery">*</span>
-            </label>
-        </button>
-  </div>
 
-</form>
+  </form>
 
   <div class="mt-8">
-      <div class="my-3 flex justify-between items-center
+    <div class="my-3 flex justify-between items-center
       ">
       <div class="">
 
-          <h1 class="text-xl font-semibold text-[#006842]">Vehicle List</h1>
-        </div>
+        <h1 class="text-xl font-semibold text-[#006842]">Vehicle List</h1>
+      </div>
       <div class="flex gap-4">
-         <input type="text" placeholder="search..."
+        <input type="text" placeholder="search..."
           class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-      <select
-        name="filter"
-        id=""
-        class="mt-2 border border-primary rounded-sm px-3 py-2 text-sm text-[#006842]"
-      >
-        <option value="" disabled selected>Filter vehicle by</option>
-        <option value="all">All Devices</option>
-        <option value="active">Active Devices</option>
-        <option value="inactive">Inactive Devices</option>
-      </select>
+        <select name="filter" id="" class="mt-2 border border-primary rounded-sm px-3 py-2 text-sm text-[#006842]">
+          <option value="" disabled selected>Filter vehicle by</option>
+          <option value="all">All Devices</option>
+          <option value="active">Active Devices</option>
+          <option value="inactive">Inactive Devices</option>
+        </select>
       </div>
     </div>
     <div class="mt-2">
@@ -192,11 +165,9 @@
           </thead>
 
           <tbody class="bg-white">
-            <tr
-              *ngFor="let vehicle of departments; let i = index"
+            <tr *ngFor="let vehicle of departments; let i = index"
               [ngClass]="i % 2 === 0 ? 'bg-[#FBFAF7]' : 'bg-gray-50'"
-              class="hover:bg-gray-100 transition-colors border-t border-b border-[#E0F7E9]"
-            >
+              class="hover:bg-gray-100 transition-colors border-t border-b border-[#E0F7E9]">
               <!-- Vehicle -->
               <td class="px-6 py-4 text-sm">
                 {{ vehicle.vehicletypename }}
@@ -235,23 +206,15 @@
               <!-- Status Toggle -->
               <td class="px-6 py-4">
                 <div class="flex items-center gap-3">
-                  <button
-                    (click)="toggleStatus(vehicle)"
+                  <button (click)="toggleStatus(vehicle)"
                     class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer"
-                    [ngClass]="vehicle.deleted ? 'bg-[#E0F7E9]' : 'bg-[#EEF3F6]'"
-                  >
-                    <span
-                      class="inline-block h-6 w-6 transform rounded-full transition-transform"
-                      [ngClass]="
+                    [ngClass]="vehicle.deleted ? 'bg-[#E0F7E9]' : 'bg-[#EEF3F6]'">
+                    <span class="inline-block h-6 w-6 transform rounded-full transition-transform" [ngClass]="
                         vehicle.deleted ? 'translate-x-6 bg-primary' : 'translate-x-1 bg-[#BCBCBC]'
-                      "
-                    ></span>
+                      "></span>
                   </button>
 
-                  <span
-                    class="text-sm font-medium"
-                    [ngClass]="vehicle.deleted ? 'text-primary' : 'text-gray-400'"
-                  >
+                  <span class="text-sm font-medium" [ngClass]="vehicle.deleted ? 'text-primary' : 'text-gray-400'">
                     {{ vehicle.deleted ? 'Active' : 'Inactive' }}
                   </span>
                 </div>
@@ -259,10 +222,8 @@
 
               <!-- Action -->
               <td class="px-2 py-4">
-                <button
-                  class="text-primary hover:text-primary/80 cursor-pointer transition-colors"
-                  (click)="editDepartment(vehicle)"
-                >
+                <button class="text-primary hover:text-primary/80 cursor-pointer transition-colors"
+                  (click)="editDepartment(vehicle)">
                   <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5" />
                 </button>
               </td>

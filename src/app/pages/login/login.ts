@@ -174,14 +174,14 @@ import { ApiService } from '../../apiservice';
 import { AuthService } from '../../authservice';
 import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ElementRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastrService } from 'ngx-toastr';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // 👈 ADD THIS
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.html',
 })
 export class Login implements OnInit, OnDestroy {
@@ -191,21 +191,21 @@ export class Login implements OnInit, OnDestroy {
     private apiService: ApiService,
     private authService: AuthService,
     private router: Router,
-    private ngZone: NgZone, private toastr: ToastrService    
+    private ngZone: NgZone
   ) {
-    
+
     this.loginForm = this.formBuilder.group({
-      mobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-      otp: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern(/^-?(0|[0-9]\d*)?$/)]],
+      mobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      otp: [''],
       // recaptcha: ['',[Validators.required]] 
-     recaptcha: ['']
+      recaptcha: ['']
       //recaptcha: [''] // Remove the reCAPTCHA field
 
     });
   }
 
-@ViewChildren('otpInput') otpInputs!: QueryList<ElementRef>;
-   mobile = '';
+  @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef>;
+  mobile = '';
   otpVisible = false;
   otpBoxes = Array(6);
   otp: string[] = Array(6).fill('');
@@ -227,6 +227,10 @@ export class Login implements OnInit, OnDestroy {
   }
 
   showOtp() {
+    if (this.loginForm.get('mobile')?.invalid) {
+      this.loginForm.get('mobile')?.markAsTouched();
+      return;
+    }
     this.otpVisible = true;
     this.startTimer();
 
@@ -269,7 +273,7 @@ export class Login implements OnInit, OnDestroy {
       });
     }
 
-    alert("OTP Resent Successfully");
+    toast.success("OTP Resent Successfully");
     this.startTimer();
     setTimeout(() => {
       this.focusOtpInput(0);
@@ -328,11 +332,11 @@ export class Login implements OnInit, OnDestroy {
   validateOtp() {
     const otpValue = this.getOtpValue();
 
-  //  alert("Mobile: " + this.mobile + ", OTP: " + otpValue);
+    //  alert("Mobile: " + this.mobile + ", OTP: " + otpValue);
 
     if (otpValue.length === 6) {
 
-      this.onSubmit(this.mobile, otpValue);
+      this.onSubmit(this.loginForm.get('mobile')?.value, otpValue);
 
       this.isValidating = true;
       this.errorMessage = '';
@@ -343,7 +347,7 @@ export class Login implements OnInit, OnDestroy {
         this.isValidating = false;
 
         if (otpValue === '123456') {
-          alert('OTP Verified Successfully! ✅');
+          toast.success('OTP Verified Successfully! ✅');
 
         } else {
 
@@ -365,30 +369,30 @@ export class Login implements OnInit, OnDestroy {
   }
 
 
-  onSubmit(mobile:any, otp:any) {
-
-    
-    
-
-      
-      var formData = new FormData();
-      formData.append("mobile", mobile);
-      formData.append("otp", otp);
-
-     // this.openUniWebViewURL(this.loginForm.value.mobile, this.loginForm.value.otp);
-
-      this.authService.login(mobile,otp);
+  onSubmit(mobile: any, otp: any) {
 
 
-      
-    
+
+
+
+    var formData = new FormData();
+    formData.append("mobile", mobile);
+    formData.append("otp", otp);
+
+    // this.openUniWebViewURL(this.loginForm.value.mobile, this.loginForm.value.otp);
+
+    this.authService.login(mobile, otp);
+
+
+
+
   }
   get f() {
     return this.loginForm.controls;
   }
 
 
-  
+
   ngOnInit(): void {
     setTimeout(() => {
       var mobile = localStorage.getItem("mobile");
@@ -412,9 +416,9 @@ export class Login implements OnInit, OnDestroy {
 
 
     // Create a link with custom scheme and message
- //   var link = 'uniwebview://ShowAlert?message=' + mobile + '&otp=' + otp;
+    //   var link = 'uniwebview://ShowAlert?message=' + mobile + '&otp=' + otp;
     // Trigger the link
-   // document.location.href = link;
+    // document.location.href = link;
   }
 
 

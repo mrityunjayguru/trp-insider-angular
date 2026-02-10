@@ -1,6 +1,12 @@
 <div class="login-wrapper">
   <div class="max-w-4xl w-full flex justify-center items-center gap-10 mx-5 md:mx-0">
-    <div class="bg-primary w-full  p-10 rounded-xl">
+    <div class="relative bg-primary w-full  p-10 rounded-xl">
+      <div *ngIf="errorMessage" class="absolute bg-[#D32F2F] p-2 top-0 left-10 rounded-b-xl">
+        <p class="text-white text-sm font-semibold flex items-center gap-2">
+          <span><img src="assets/icons/warning.svg" alt=""></span>
+          Unable to log in. Please check your OTP and try again.
+        </p>
+      </div>
       <div class="w-full flex sm:justify-center md:justify-end items-end">
         <h2 class="text-white text-xl  md:text-3xl font-normal
           text-center md:text-right leading-snug">
@@ -21,13 +27,27 @@
         </p>
 
 
-        <div class="flex items-center bg-white rounded-md px-2 py-3 mb-4">
-          <span class="mr-2 text-sm">🇮🇳</span>
-          <span class="mr-2 text-gray-500 text-sm">+91</span>
+        <form [formGroup]="loginForm">
+          <div class="flex items-center bg-white rounded-md px-2 py-3 mb-4"
+            [class.border-red-500]="loginForm.get('mobile')?.touched && loginForm.get('mobile')?.invalid"
+            [class.border]="loginForm.get('mobile')?.touched && loginForm.get('mobile')?.invalid">
+            <span class="mr-2 text-sm">🇮🇳</span>
+            <span class="mr-2 text-gray-500 text-sm">+91</span>
 
-          <input type="text" placeholder="0000000000" type="phone" class="w-full outline-none text-sm text-gray-700" [(ngModel)]="mobile" />
+            <input type="text" placeholder="0000000000" type="phone" class="w-full outline-none text-sm text-gray-700"
+              formControlName="mobile" />
+          </div>
 
-        </div>
+          <!-- Validation Messages -->
+          <div *ngIf="loginForm.get('mobile')?.touched && loginForm.get('mobile')?.invalid" class="mb-4">
+            <p *ngIf="loginForm.get('mobile')?.errors?.['required']" class="text-red-500 text-xs">
+              Mobile number is required
+            </p>
+            <p *ngIf="loginForm.get('mobile')?.errors?.['pattern']" class="text-red-500 text-xs">
+              Enter a valid 10-digit mobile number
+            </p>
+          </div>
+        </form>
         <div *ngIf="otpVisible" class="mt-4">
           <p class="text-white/70 text-xs mb-1">Verify OTP</p>
 
@@ -53,11 +73,6 @@
               </button>
 
             </div>
-          </div>
-          <div *ngIf="errorMessage" class="mt-2 mb-3">
-            <p class="text-red-500 text-xs font-normal flex items-center gap-1">
-              <span>{{ errorMessage }}</span>
-            </p>
           </div>
           <div *ngIf="isValidating" class="mt-2 mb-3">
             <p class="text-white text-xs flex items-center gap-2">
