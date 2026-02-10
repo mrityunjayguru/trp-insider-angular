@@ -46,9 +46,20 @@ export class OfficeLocation implements AfterViewInit{
   statesList = ['Tamil Nadu', 'Kerala', 'Karnataka'];
   districtsList = ['Chennai', 'Coimbatore', 'Madurai'];
 
-  toggleStatus(off: OffLocation) {
-    off.isActive = !off.isActive;
-    console.log(`${off.name} is now ${off.isActive ? 'Active' : 'Inactive'}`);
+   toggleStatus(dept: any) {
+          var isConfirmed = confirm("Are you sure about the transaction?");
+          if(isConfirmed)
+          {
+                  dept.deleted = !dept.deleted;
+                  const formData = new FormData();
+                  formData.append('id', dept.id);
+                  formData.append('deleted', dept.deleted);
+                  this.apiService.updateOfficeLocationDeleted(formData).subscribe(
+                  (response:any) => {
+                    alert(response.mesage);
+                    window.location.reload();
+                  })
+          }
   }
 
 
@@ -123,7 +134,8 @@ resetForm() {
       districtname:[''],
       latitude:[''],
       longitude: [''],
-      address:['']
+      address:[''],
+      deleted:['']
            
     });
 

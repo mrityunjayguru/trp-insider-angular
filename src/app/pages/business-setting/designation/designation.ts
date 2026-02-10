@@ -38,9 +38,20 @@ departments: DesignationItem[] = [
     { name: 'Delivery Driver', isActive: true }
   ];
 
-  toggleStatus(deg: DesignationItem) {
-    deg.isActive = !deg.isActive;
-    console.log(`${deg.name} is now ${deg.isActive ? 'Active' : 'Inactive'}`);
+  toggleStatus(dept: any) {
+          var isConfirmed = confirm("Are you sure about the transaction?");
+          if(isConfirmed)
+          {
+                  dept.deleted = !dept.deleted;
+                  const formData = new FormData();
+                  formData.append('id', dept.id);
+                  formData.append('deleted', dept.deleted);
+                  this.apiService.updateDesignationDeleted(formData).subscribe(
+                  (response:any) => {
+                    alert(response.mesage);
+                    window.location.reload();
+                  })
+          }
   }
 
 
@@ -61,6 +72,7 @@ departments: DesignationItem[] = [
     
     this.formsize = this.formBuilder.group({
       designationname:['',Validators.required],
+      deleted:[''],
       id:['']
       
 

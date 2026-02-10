@@ -53,9 +53,20 @@ export class WorkShift {
     }
   }
 
-    toggleStatus(wst: WorkShiftItem) {
-    wst.isActive = !wst.isActive;
-    console.log(`${wst.name} is now ${wst.isActive ? 'Active' : 'Inactive'}`);
+   toggleStatus(dept: any) {
+          var isConfirmed = confirm("Are you sure about the transaction?");
+          if(isConfirmed)
+          {
+                  dept.deleted = !dept.deleted;
+                  const formData = new FormData();
+                  formData.append('id', dept.id);
+                  formData.append('deleted', dept.deleted);
+                  this.apiService.updateWorkShiftDeleted(formData).subscribe(
+                  (response:any) => {
+                    alert(response.mesage);
+                    window.location.reload();
+                  })
+          }
   }
 
 
@@ -99,7 +110,8 @@ resetForm() {
       workshiftendtime:[''],
       id:[''],
       company_id:['12'],
-      company_name:['NIIT Ltd'],     
+      company_name:['NIIT Ltd'],  
+      deleted:['']   
     });
 
      

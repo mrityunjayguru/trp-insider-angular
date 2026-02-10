@@ -33,9 +33,20 @@ export class Department {
 
   
 
-  toggleStatus(dept: DepartmentItem) {
-    dept.isActive = !dept.isActive;
-    console.log(`${dept.name} is now ${dept.isActive ? 'Active' : 'Inactive'}`);
+  toggleStatus(dept: any) {
+          var isConfirmed = confirm("Are you sure about the transaction?");
+          if(isConfirmed)
+          {
+                  dept.deleted = !dept.deleted;
+                  const formData = new FormData();
+                  formData.append('id', dept.id);
+                  formData.append('deleted', dept.deleted);
+                  this.apiService.updateDepartmentDeleted(formData).subscribe(
+                  (response:any) => {
+                    alert(response.mesage);
+                    window.location.reload();
+                  })
+          }
   }
   
 
@@ -63,6 +74,7 @@ resetForm() {
     this.formsize = this.formBuilder.group({
       id:[''],
       deptname:['',Validators.required],
+      deleted:[''],
       company_id:['12'],
       company_name:['NIIT Ltd'],     
     });
