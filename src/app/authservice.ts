@@ -12,7 +12,8 @@ export class AuthService {
 
    isUserLoggedIn: boolean = false;
 
-   login(userName: any, password: any): Observable<any>  {
+   login(userName: any, password: any): Observable<any>  
+   {
        
 
         const formData = new FormData();
@@ -109,8 +110,8 @@ export class AuthService {
     formData.append("otp", password);
 
   
-await  this.apiService.loginUser(formData).subscribe(
-    (response: any) => {
+      await  this.apiService.loginUser(formData).subscribe(
+        (response: any) => {
 
 
      

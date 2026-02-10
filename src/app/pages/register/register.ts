@@ -79,9 +79,23 @@ export class Register implements OnInit {
             
               this.registerService.registerUser(formData).subscribe({
                 next: (res) => {
+                  
+                  
+                  console.log("register");
+                  console.log("register");
                   console.log(res);
-                  this.router.navigate(['company/kyb']);
-                  //alert('Registration successful');
+                  console.log("register");
+                  console.log("register");
+
+                  if (res.mesage && res.mesage.includes(' User allready exists')) {
+                     // redirect to login if user already exists
+                     alert("User allready exists");
+                      this.router.navigate(['/login']);
+                    }
+                    else
+                    {
+                                        this.router.navigate(['company/kyb']);
+                    }
                 },
                 error: () => alert('Registration failed')
               });
