@@ -72,7 +72,6 @@ departments: DesignationItem[] = [
     
     this.formsize = this.formBuilder.group({
       designationname:['',Validators.required],
-      deleted:[''],
       id:['']
       
 

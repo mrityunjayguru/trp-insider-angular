@@ -134,8 +134,7 @@ resetForm() {
       districtname:[''],
       latitude:[''],
       longitude: [''],
-      address:[''],
-      deleted:['']
+      address:['']      
            
     });
 

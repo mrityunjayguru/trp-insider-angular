@@ -110,8 +110,8 @@ resetForm() {
       workshiftendtime:[''],
       id:[''],
       company_id:['12'],
-      company_name:['NIIT Ltd'],  
-      deleted:['']   
+      company_name:['NIIT Ltd'] 
+        
     });
 
      

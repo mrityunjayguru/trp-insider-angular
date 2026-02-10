@@ -202,7 +202,7 @@ resetForm() {
 
     ownedbyname:[''],
      ownedbyid:[''],
-     deleted:[''],
+    
            
     });
 

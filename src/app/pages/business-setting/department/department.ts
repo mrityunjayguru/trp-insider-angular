@@ -74,7 +74,7 @@ resetForm() {
     this.formsize = this.formBuilder.group({
       id:[''],
       deptname:['',Validators.required],
-      deleted:[''],
+      
       company_id:['12'],
       company_name:['NIIT Ltd'],     
     });
