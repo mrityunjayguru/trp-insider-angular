@@ -38,7 +38,7 @@ export class ApiService {
   
      
       this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
-      //this.apiUrl = 'http://localhost:8085/api';
+     // this.apiUrl = 'http://localhost:8085/api';
         
        // alert(" Niraj Updated "+this.apiUrl);
 
@@ -227,6 +227,11 @@ savePickupPoint(formData: any): Observable<any> {
   getAllAddVehicles(): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/addvehicles/getAllData",  { "headers": this.headers });
   }
+
+updateAddVehiclesDeleted(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/addvehicles/updateDeletedFlag", formData, { "headers": this.headers });
+  }
+
   //====================================================================
 
 

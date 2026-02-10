@@ -238,21 +238,21 @@
                   <button
                     (click)="toggleStatus(vehicle)"
                     class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer"
-                    [ngClass]="vehicle.isActive ? 'bg-[#E0F7E9]' : 'bg-[#EEF3F6]'"
+                    [ngClass]="vehicle.deleted ? 'bg-[#E0F7E9]' : 'bg-[#EEF3F6]'"
                   >
                     <span
                       class="inline-block h-6 w-6 transform rounded-full transition-transform"
                       [ngClass]="
-                        vehicle.isActive ? 'translate-x-6 bg-primary' : 'translate-x-1 bg-[#BCBCBC]'
+                        vehicle.deleted ? 'translate-x-6 bg-primary' : 'translate-x-1 bg-[#BCBCBC]'
                       "
                     ></span>
                   </button>
 
                   <span
                     class="text-sm font-medium"
-                    [ngClass]="vehicle.isActive ? 'text-primary' : 'text-gray-400'"
+                    [ngClass]="vehicle.deleted ? 'text-primary' : 'text-gray-400'"
                   >
-                    {{ vehicle.isActive ? 'Active' : 'Inactive' }}
+                    {{ vehicle.deleted ? 'Active' : 'Inactive' }}
                   </span>
                 </div>
               </td>
