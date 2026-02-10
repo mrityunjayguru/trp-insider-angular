@@ -198,6 +198,7 @@ export class KnowYourBusiness implements OnInit {
 
   previewUrl: string | ArrayBuffer | null = null;
   isSelected = true;
+  submitted = false;
   businesstype = 'proprietor';
   gstin = '';
   businessname = '';
@@ -687,7 +688,6 @@ export class KnowYourBusiness implements OnInit {
     this.imageUrls = [];
 
     this.router = router;
-    this.formData = new FormData();
     this.docTopimage = null;
     this.docPictureinput = null;
     this.docPictureinput1 = null;
@@ -877,12 +877,15 @@ export class KnowYourBusiness implements OnInit {
 
 
       businesstype: ['proprietor', Validators.required],
-      gstin: [''],
+      gstin: ['', Validators.required],
       businessname: ['', Validators.required],
       registeredaddress: ['', Validators.required],
       proprietorname: ['', Validators.required],
       proprietorpan: ['', Validators.required],
 
+      contactpersonname: ['', Validators.required],
+      contactpersondesignation: ['', Validators.required],
+      contactpersonmobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
 
 
       pictureinput: ['', Validators.required],
@@ -974,22 +977,25 @@ export class KnowYourBusiness implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+    this.formData = new FormData();
+
     if (this.productsForm.invalid) {
       this.productsForm.markAllAsTouched();
       return;
     }
 
-
-
-    console.log("this.productsForm");
-
-    console.log(this.productsForm);
-
-    console.log("this.productsForm");
-
-
-
-
+    // Manual check for mandatory images if they aren't fully covered by form validators
+    if (!this.imageData[0] || !this.imageData[0].name) {
+      // We'll show an inline message for this too in HTML
+      return;
+    }
+    if (!this.imageData[1] || !this.imageData[1].name) {
+      return;
+    }
+    if (!this.imageData[2] || !this.imageData[2].name) {
+      return;
+    }
 
     const payload = {
       ...this.productsForm.value,   // existing form fields
@@ -1047,15 +1053,13 @@ export class KnowYourBusiness implements OnInit {
           this.router.navigateByUrl('/getallemployee.component');
         }
         else {
-          console.log(response);
+          alert(response);
         }
       })
 
 
-
-
-
   }
+
   onFileSelected(event: any): void {
     this.docTopimage = event.target.files[0];
     this.imageData[0] = this.docTopimage;
@@ -1072,18 +1076,9 @@ export class KnowYourBusiness implements OnInit {
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-
         this.previewUrl = reader.result as string;
-        this.setBackgroundImage(this.previewUrl);
       };
-
-
     }
-
-
-
-
-
   }
   onFileSelectBottom(event: any): void {
 
@@ -1097,10 +1092,7 @@ export class KnowYourBusiness implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.imageSrcbottom = reader.result as string;
-        this.setBackgroundImage(this.imageSrcbottom);
-
       };
-
     }
 
   }
@@ -1119,7 +1111,6 @@ export class KnowYourBusiness implements OnInit {
       reader.readAsDataURL(file1);
       reader.onload = () => {
         this.imageSrcbottom1 = reader.result as string;
-        this.setBackgroundImage1(this.imageSrcbottom1);
       };
     }
   }
@@ -1145,10 +1136,7 @@ export class KnowYourBusiness implements OnInit {
       reader.readAsDataURL(file2);
       reader.onload = () => {
         this.imageSrcbottom2 = reader.result as string;
-        this.setBackgroundImage2(this.imageSrcbottom2);
-
       };
-
     }
 
   }

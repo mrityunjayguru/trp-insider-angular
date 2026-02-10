@@ -41,6 +41,12 @@ export class ApiService {
     // this.apiUrl = 'http://localhost:8085/api';
 
     // alert(" Niraj Updated "+this.apiUrl);
+  
+     
+     this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
+      //this.apiUrl = 'http://localhost:8085/api';
+        
+       // alert(" Niraj Updated "+this.apiUrl);
 
 
     this.headers = new HttpHeaders({
@@ -194,11 +200,52 @@ export class ApiService {
   }
 
 
+  updateDepartment(formData: any): Observable<any> {
+        return this.http.post<any>(this.apiUrl + "/department/update", formData, { "headers": this.headers });
+  }
+
 
   getAllDepartment(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/department/getAllDepartments", { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/department/getAllDepartments",  { "headers": this.headers });
   }
+
+
+  updateDepartmentDeleted(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/department/updateDeletedFlag", formData, { "headers": this.headers });
+  }
+
   //====================================================================
+
+
+
+
+  //=====================================
+    saveAddVehicles(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/addvehicles/save", formData, { "headers": this.headers });
+  }
+
+
+  updateAddVehicles(formData: any): Observable<any> {
+        return this.http.post<any>(this.apiUrl + "/addvehicles/update", formData, { "headers": this.headers });
+  }
+
+  
+  getAllAddVehicles(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/addvehicles/getAllData",  { "headers": this.headers });
+  }
+
+updateAddVehiclesDeleted(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/addvehicles/updateDeletedFlag", formData, { "headers": this.headers });
+  }
+
+  //====================================================================
+
+
+
+
+
+
+
 
 
 
@@ -257,6 +304,55 @@ export class ApiService {
     return this.http.get<any>(this.apiUrl + "/bankname/getAllData", { "headers": this.headers });
   }
   //====================================================================
+
+
+  //=====================================
+  saveWorkShift(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/workshift/save", formData, { "headers": this.headers });
+  }
+
+
+
+  updateWorkShift(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/workshift/update", formData, { "headers": this.headers });
+  }
+  
+  getAllWorkShift(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/workshift/getAllData",  { "headers": this.headers });
+  }
+
+
+  updateWorkShiftDeleted(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/workshift/updateDeletedFlag", formData, { "headers": this.headers });
+  }
+
+  //====================================================================
+
+
+
+//=====================================
+  saveOfficeLocation(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/officelocation/save", formData, { "headers": this.headers });
+  }
+
+
+  updateOfficeLocation(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/officelocation/update", formData, { "headers": this.headers });
+  }
+
+  
+  getAllOfficeLocation(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/officelocation/getAllData",  { "headers": this.headers });
+  }
+
+
+  updateOfficeLocationDeleted(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/officelocation/updateDeletedFlag", formData, { "headers": this.headers });
+  }
+
+  //====================================================================
+
+
 
 
   //=====================================
@@ -328,8 +424,17 @@ export class ApiService {
 
 
 
+  updateDesignation(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/designationmaster/update", formData, { "headers": this.headers });
+  }
+  
   getAllDesignation(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/designationmaster/getAllDesignationMaster", { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/designationmaster/getAllDesignationMaster",  { "headers": this.headers });
+  }
+
+  
+  updateDesignationDeleted(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/designationmaster/updateDeletedFlag", formData, { "headers": this.headers });
   }
   //====================================================================
 

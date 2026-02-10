@@ -1,21 +1,25 @@
 <div class="mt-3">
+  <!-- Success/Error Message -->
+  <div *ngIf="message" class="mb-4 p-3 rounded-md text-sm"
+    [ngClass]="{ 'bg-green-100 text-green-700': isSuccess, 'bg-red-100 text-red-700': isError }">
+    {{ message }}
+  </div>
+
   <form [formGroup]="formsize" (ngSubmit)="onSubmit()">
     <label class="text-sm text-[#050914]"> Add Department<span class="text-primery">*</span></label>
     <div class="w-full flex gap-2 items-center justify-center">
       <div class="w-1/2">
         <input type="text" formControlName="deptname" placeholder="Add Office Department"
           class="mt-2 w-full border rounded-md px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
-          [class.border-red-500]="formsize.get('deptname')?.touched && formsize.get('deptname')?.invalid"
-          [class.border-[#D2D2D2]]="!(formsize.get('deptname')?.touched && formsize.get('deptname')?.invalid)" />
-        <div *ngIf="formsize.get('deptname')?.touched && formsize.get('deptname')?.invalid" class="mt-1">
-          <p *ngIf="formsize.get('deptname')?.errors?.['required']" class="text-red-500 text-xs">
-            Department name is required
-          </p>
+          [ngClass]="{ 'border-red-500': submitted && formsize.get('deptname')?.errors, 'border-[#D2D2D2]': !(submitted && formsize.get('deptname')?.errors) }" />
+        <div *ngIf="submitted && formsize.get('deptname')?.errors" class="text-red-500 text-xs mt-1">
+          Department name is required.
         </div>
       </div>
       <button
         class="bg-[#006842] mt-2 text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md px-3 py-2.5">
-        Submit
+        <span *ngIf="isEditMode">Update </span>
+        <span *ngIf="!isEditMode">Submit</span>
       </button>
     </div>
 

@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from '../../../apiservice';
+
 
 interface WorkShiftItem {
   name: string;
@@ -15,35 +17,49 @@ interface WorkShiftItem {
   templateUrl: './work-shift.html',
   styleUrl: './work-shift.css',
 })
+
+
 export class WorkShift {
   workShiftForm!: FormGroup;
+  sizes: any;
+  departments: any;
 
-  departments: WorkShiftItem[] = [
-    { name: 'Morning Shift', startTime: "5:45", endTime: "6:08", isActive: true },
-    { name: 'Evening Shift', startTime: "5:45", endTime: "6:08", isActive: true },
-    { name: 'Afternoon Shift', startTime: "5:45", endTime: "6:08", isActive: false },
-    { name: 'Night Shift', startTime: "5:45", endTime: "6:08", isActive: true }
-  ];
+  isEditMode = false;
+  selectedDeptId: number | null = null;
+  allallcompany: any;
+
+  submitted = false;
+  isSuccess = false;
+  isError = false;
+  message = '';
 
   startPeriod: string = 'AM';
   endPeriod: string = 'AM';
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private apiService: ApiService
+  ) {
     this.initForm();
+  }
+
+  ngOnInit() {
+    this.fetchWorkShifts();
   }
 
   initForm() {
     this.workShiftForm = this.fb.group({
-      name: ['', Validators.required],
-      startTime: ['', Validators.required],
-      endTime: ['', Validators.required]
+      id: [''],
+      workshiftname: ['', Validators.required],
+      workshiftstarttime: ['', Validators.required],
+      workshiftendtime: ['', Validators.required]
     });
 
-    this.workShiftForm.get('startTime')?.valueChanges.subscribe(value => {
+    this.workShiftForm.get('workshiftstarttime')?.valueChanges.subscribe(value => {
       this.updatePeriod(value, 'start');
     });
 
-    this.workShiftForm.get('endTime')?.valueChanges.subscribe(value => {
+    this.workShiftForm.get('workshiftendtime')?.valueChanges.subscribe(value => {
       this.updatePeriod(value, 'end');
     });
   }
@@ -70,18 +86,129 @@ export class WorkShift {
   }
 
 
-  toggleStatus(wst: WorkShiftItem) {
-    wst.isActive = !wst.isActive;
-    console.log(`${wst.name} is now ${wst.isActive ? 'Active' : 'Inactive'}`);
-  }
-  editDepartment(wst: WorkShiftItem) {
-    console.log('Edit department:', wst);
-  }
   onSubmit() {
+    this.submitted = true;
+    this.isSuccess = false;
+    this.isError = false;
+    this.message = '';
+
     if (this.workShiftForm.invalid) {
       this.workShiftForm.markAllAsTouched();
       return;
     }
-    console.log('Form Submitted', this.workShiftForm.value);
+
+    if (this.isEditMode) {
+      this.updateData();
+    } else {
+      this.saveData();
+    }
+  }
+
+  saveData() {
+    const payload = {
+      ...this.workShiftForm.value
+    };
+
+    const formData = new FormData();
+    formData.append('workshift', JSON.stringify(payload));
+
+    this.apiService.saveWorkShift(formData).subscribe(
+      (response: any) => {
+        if (response.status == 200) {
+          this.isSuccess = true;
+          this.message = "Work shift added successfully.";
+          this.resetForm();
+          this.fetchWorkShifts();
+        } else {
+          this.isError = true;
+          this.message = response.mesage || "Failed to add work shift.";
+        }
+      },
+      (error) => {
+        this.isError = true;
+        this.message = "An error occurred while saving.";
+      });
+  }
+
+  updateData() {
+    const payload = {
+      ...this.workShiftForm.value
+    };
+
+    const formData = new FormData();
+    formData.append('workshift', JSON.stringify(payload));
+
+    this.apiService.updateWorkShift(formData).subscribe(
+      (response: any) => {
+        if (response.status == 200) {
+          this.isSuccess = true;
+          this.message = "Work shift updated successfully.";
+          this.resetForm();
+          this.fetchWorkShifts();
+        } else {
+          this.isError = true;
+          this.message = response.mesage || "Failed to update work shift.";
+        }
+      },
+      (error) => {
+        this.isError = true;
+        this.message = "An error occurred while updating.";
+      });
+  }
+
+  fetchWorkShifts() {
+    this.apiService.getAllWorkShift().subscribe(
+      (response: any) => {
+        this.departments = response.data;
+      });
+  }
+
+  resetForm() {
+    this.workShiftForm.reset();
+    this.isEditMode = false;
+    this.selectedDeptId = null;
+    this.submitted = false;
+  }
+
+  formatTime(time: string): string {
+    if (!time) return '';
+    const [hours, minutes] = time.split(':');
+    let h = parseInt(hours);
+    const m = minutes;
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12;
+    h = h ? h : 12; // the hour '0' should be '12'
+    return `${h}:${m} ${ampm}`;
+  }
+
+  toggleStatus(wst: any) {
+    var isConfirmed = confirm("Are you sure about the transaction?");
+    if (isConfirmed) {
+      wst.deleted = !wst.deleted;
+      const formData = new FormData();
+      formData.append('id', wst.id);
+      formData.append('deleted', wst.deleted);
+      this.apiService.updateWorkShiftDeleted(formData).subscribe(
+        (response: any) => {
+          this.isSuccess = true;
+          this.message = response.mesage || "Status updated successfully.";
+          this.fetchWorkShifts();
+        },
+        (error) => {
+          this.isError = true;
+          this.message = "An error occurred while updating status.";
+        });
+    }
+  }
+
+  editDepartment(wst: any) {
+    this.isEditMode = true;
+    this.selectedDeptId = wst.id;
+    this.workShiftForm.patchValue({
+      id: wst.id,
+      workshiftname: wst.workshiftname,
+      workshiftstarttime: wst.workshiftstarttime,
+      workshiftendtime: wst.workshiftendtime
+    });
   }
 }
