@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 
 export class ApiService {
 
-  private apitoken =          'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaXJhamFkbWluIn0.4nNbvscnxlhI1lR1s7d7_ACoN6P7WCNq4gG0tP-Q2ZHO_la2q58ukf9VtEETllyj_8PIUJ61fV_vptUeYUccjQ';
-  private apitokenVendor  =   'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaXJhamFkbWluIn0.4nNbvscnxlhI1lR1s7d7_ACoN6P7WCNq4gG0tP-Q2ZHO_la2q58ukf9VtEETllyj_8PIUJ61fV_vptUeYUccjQ';
-  private apitokenMerchan =   'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaXJhamFkbWluIn0.4nNbvscnxlhI1lR1s7d7_ACoN6P7WCNq4gG0tP-Q2ZHO_la2q58ukf9VtEETllyj_8PIUJ61fV_vptUeYUccjQ';
-  private apitokenUser =      'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaXJhamFkbWluIn0.4nNbvscnxlhI1lR1s7d7_ACoN6P7WCNq4gG0tP-Q2ZHO_la2q58ukf9VtEETllyj_8PIUJ61fV_vptUeYUccjQ';
+  private apitoken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaXJhamFkbWluIn0.4nNbvscnxlhI1lR1s7d7_ACoN6P7WCNq4gG0tP-Q2ZHO_la2q58ukf9VtEETllyj_8PIUJ61fV_vptUeYUccjQ';
+  private apitokenVendor = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaXJhamFkbWluIn0.4nNbvscnxlhI1lR1s7d7_ACoN6P7WCNq4gG0tP-Q2ZHO_la2q58ukf9VtEETllyj_8PIUJ61fV_vptUeYUccjQ';
+  private apitokenMerchan = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaXJhamFkbWluIn0.4nNbvscnxlhI1lR1s7d7_ACoN6P7WCNq4gG0tP-Q2ZHO_la2q58ukf9VtEETllyj_8PIUJ61fV_vptUeYUccjQ';
+  private apitokenUser = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaXJhamFkbWluIn0.4nNbvscnxlhI1lR1s7d7_ACoN6P7WCNq4gG0tP-Q2ZHO_la2q58ukf9VtEETllyj_8PIUJ61fV_vptUeYUccjQ';
   private apitokenUserAdmin = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaXJhamFkbWluIn0.4nNbvscnxlhI1lR1s7d7_ACoN6P7WCNq4gG0tP-Q2ZHO_la2q58ukf9VtEETllyj_8PIUJ61fV_vptUeYUccjQ';
   headers: any;
   headersAdmin: any;
@@ -21,7 +21,7 @@ export class ApiService {
   headersVendor: any;
 
 
-   apiUrl = 'http://localhost:8085/api';
+  apiUrl = 'http://localhost:8085/api';
 
   http: HttpClient;
 
@@ -35,12 +35,12 @@ export class ApiService {
     this.apitokenUserAdmin = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuaXJhamFkbWluIiwiaWF0IjoxNzY5MDU3NTcxLCJleHAiOjE3NzE2NDk1NzF9.BoM5OEdczAZlL1TGaV8uNI-fn5-nIH2Agk-9t52wbRQ';
 
     this.http = http;
-  
-     
-      this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
-     // this.apiUrl = 'http://localhost:8085/api';
-        
-       // alert(" Niraj Updated "+this.apiUrl);
+
+
+    this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
+    // this.apiUrl = 'http://localhost:8085/api';
+
+    // alert(" Niraj Updated "+this.apiUrl);
 
 
     this.headers = new HttpHeaders({
@@ -117,11 +117,11 @@ export class ApiService {
   }
 
 
-saveCompany(formData: any): Observable<any> {
+  saveCompany(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/company/save", formData, { "headers": this.headers });
   }
 
-  
+
 
 
   getAllCompany(page: any): Observable<any> {
@@ -141,11 +141,11 @@ saveCompany(formData: any): Observable<any> {
 
 
   //=====================================
-    saveEmployee(formData: any): Observable<any> {
+  saveEmployee(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/employee/save", formData, { "headers": this.headers });
   }
 
-  
+
 
   updateemployeebyid(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/employee/update", formData, { "headers": this.headersVendor });
@@ -163,7 +163,7 @@ saveCompany(formData: any): Observable<any> {
 
 
 
-showEmployee(page: any): Observable<any> {
+  showEmployee(page: any): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/employee/getAllEmployee?page=" + page.page + "&size=" + page.size, { "headers": this.headers });
   }
 
@@ -174,13 +174,13 @@ showEmployee(page: any): Observable<any> {
 
 
   //=====================Pickup Point ===========================
-savePickupPoint(formData: any): Observable<any> {
+  savePickupPoint(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/pickuppoint/save", formData, { "headers": this.headers });
   }
 
 
   getAllPickupPoint(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/pickuppoint/getAllPickuppoints",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/pickuppoint/getAllPickuppoints", { "headers": this.headers });
   }
 
 
@@ -189,29 +189,29 @@ savePickupPoint(formData: any): Observable<any> {
 
 
   //=====================================
-    saveDepartment(formData: any): Observable<any> {
+  saveDepartment(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/department/save", formData, { "headers": this.headers });
   }
 
 
-  
+
   getAllDepartment(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/department/getAllDepartments",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/department/getAllDepartments", { "headers": this.headers });
   }
   //====================================================================
 
 
 
-  
+
   //=====================================
   saveState(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/statemaster/save", formData, { "headers": this.headers });
   }
 
 
-  
+
   getAllState(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/statemaster/getAllStates",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/statemaster/getAllStates", { "headers": this.headers });
   }
   //====================================================================
 
@@ -222,13 +222,13 @@ savePickupPoint(formData: any): Observable<any> {
   }
 
 
-  
+
   getAllDistrict(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/districtmaster/getAllDistricts",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/districtmaster/getAllDistricts", { "headers": this.headers });
   }
 
   getDistrictsByState(stateId: any): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/districtmaster/getDistrictsByState?stateId=" + stateId,  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/districtmaster/getDistrictsByState?stateId=" + stateId, { "headers": this.headers });
   }
   //====================================================================
 
@@ -239,9 +239,9 @@ savePickupPoint(formData: any): Observable<any> {
   }
 
 
-  
+
   getAllVehicleType(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/vehicletype/getAllVehicleType",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/vehicletype/getAllVehicleType", { "headers": this.headers });
   }
   //====================================================================
 
@@ -252,9 +252,9 @@ savePickupPoint(formData: any): Observable<any> {
   }
 
 
-  
+
   getAllBankName(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/bankname/getAllData",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/bankname/getAllData", { "headers": this.headers });
   }
   //====================================================================
 
@@ -265,9 +265,9 @@ savePickupPoint(formData: any): Observable<any> {
   }
 
 
-  
+
   getAllLicenseType(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/licencetype/getAllData",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/licencetype/getAllData", { "headers": this.headers });
   }
   //====================================================================
 
@@ -278,42 +278,42 @@ savePickupPoint(formData: any): Observable<any> {
   }
 
 
-  
+
   getAllFuelType(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/fueltype/getAllData",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/fueltype/getAllData", { "headers": this.headers });
   }
   //====================================================================
 
 
 
 
-//=====================================
+  //=====================================
   saveBloodGroup(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/bloodgroup/save", formData, { "headers": this.headers });
   }
 
 
-  
+
   getAllBloodGroup(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/bloodgroup/getAllBloodGroups",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/bloodgroup/getAllBloodGroups", { "headers": this.headers });
   }
   //====================================================================
 
 
 
-   //=====================================
+  //=====================================
   saveVehicleTypeBrand(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/vehicletypebrand/save", formData, { "headers": this.headers });
   }
 
 
-  
+
   getAllVehicleTypeBrand(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/vehicletypebrand/getAllVehicleTypeBrands",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/vehicletypebrand/getAllVehicleTypeBrands", { "headers": this.headers });
   }
 
   getVehicleTypeBrandByVehicleType(vehicleTypeId: any): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/vehicletypebrand/getVehicleTypeBrandsByVehicleType?vehicleTypeId=" + vehicleTypeId,  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/vehicletypebrand/getVehicleTypeBrandsByVehicleType?vehicleTypeId=" + vehicleTypeId, { "headers": this.headers });
   }
   //====================================================================
 
@@ -327,9 +327,9 @@ savePickupPoint(formData: any): Observable<any> {
   }
 
 
-  
+
   getAllDesignation(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/designationmaster/getAllDesignationMaster",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/designationmaster/getAllDesignationMaster", { "headers": this.headers });
   }
   //====================================================================
 
@@ -343,7 +343,7 @@ savePickupPoint(formData: any): Observable<any> {
 
 
   getAllWorkMode(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/workmodemaster/getAllWorkModeMaster",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/workmodemaster/getAllWorkModeMaster", { "headers": this.headers });
   }
   //====================================================================
 
@@ -356,13 +356,13 @@ savePickupPoint(formData: any): Observable<any> {
 
 
   getAllEmploymentType(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/employmenttypemaster/getAllMaster",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/employmenttypemaster/getAllMaster", { "headers": this.headers });
   }
   //====================================================================
 
 
 
-    //================Commission Type=====================
+  //================Commission Type=====================
   saveCommissionType(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/commitiontype/save", formData, { "headers": this.headers });
   }
@@ -370,7 +370,7 @@ savePickupPoint(formData: any): Observable<any> {
 
 
   getAllCommissionType(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/commitiontype/getAllMaster",  { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/commitiontype/getAllMaster", { "headers": this.headers });
   }
   //====================================================================
 
@@ -409,7 +409,7 @@ savePickupPoint(formData: any): Observable<any> {
 
   //======================== Know Your Business =========================
 
-  
+
   saveKnowYourBusiness(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/knowyourbusiness/save", formData, { "headers": this.headers });
   }
@@ -642,14 +642,14 @@ savePickupPoint(formData: any): Observable<any> {
   }
 
 
-getImage(fileName: string) {
+  getImage(fileName: string) {
 
-  const url = `https://trpinsiderbackend.routerosterpro.com/imageevent/${fileName}`;
-  return this.http.get(url, {
-    responseType: 'blob',
-    headers: this.headers
-  });
-}
+    const url = `https://trpinsiderbackend.routerosterpro.com/imageevent/${fileName}`;
+    return this.http.get(url, {
+      responseType: 'blob',
+      headers: this.headers
+    });
+  }
 
 }
 

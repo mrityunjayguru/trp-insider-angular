@@ -12,6 +12,7 @@ import { ZardIconComponent } from "@/shared/components/icon";
 })
 export class Sidebar {
   companyOpen = false;
+  employeeOpen = false;
 
   constructor(private router: Router) { }
 
@@ -19,9 +20,18 @@ export class Sidebar {
     this.companyOpen = !this.companyOpen;
   }
 
+  toggleEmployee() {
+    this.employeeOpen = !this.employeeOpen;
+  }
+
   isCompanyRouteActive(): boolean {
     return this.router.url.includes('/company/business-setting') ||
       this.router.url.includes('/company/transport-gps') ||
       this.router.url.includes('/company/kyb');
+  }
+
+  isEmployeeRouteActive(): boolean {
+    return this.router.url.includes('/company/manage-employee') ||
+      this.router.url.includes('/company/employee-details')
   }
 }

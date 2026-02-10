@@ -10,6 +10,7 @@ import { TransportGps } from './pages/transport-gps/transport-gps';
 import { EmployeeDetails } from './pages/employee-details/employee-details';
 import { Route } from './pages/route/route';
 import { Settings } from './pages/settings/settings';
+import { ManageEmployee } from './pages/manage-employee/manage-employee';
 
 
 export const routes: Routes = [
@@ -26,6 +27,7 @@ export const routes: Routes = [
       { path: 'business-setting', component: BusinessSetting },
       { path: 'transport-gps', component: TransportGps },
       { path: 'employee-details', component: EmployeeDetails },
+      { path: 'manage-employee', component: ManageEmployee },
       { path: 'routes', component: Route },
       { path: 'settings', component: Settings }
     ]
