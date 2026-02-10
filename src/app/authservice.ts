@@ -72,7 +72,8 @@ export class AuthService {
 
               localStorage.setItem("otheruserData", JSON.stringify(response.data));
 
-              this.router.navigate([user], { queryParams: { user: response.data } });
+              this.router.navigate(['company/kyb']);
+            //  this.router.navigate([user], { queryParams: { user: response.data } });
 
             } else {
               alert(" Bad Credential "+response.mesage);
