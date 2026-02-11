@@ -94,8 +94,11 @@ export class WorkShift {
 
     if (this.workShiftForm.invalid) {
       this.workShiftForm.markAllAsTouched();
+      alert(" I ma here");
       return;
     }
+
+    alert(" this.isEditMode "+this.isEditMode);
 
     if (this.isEditMode) {
       this.updateData();
@@ -117,6 +120,7 @@ export class WorkShift {
         if (response.status == 200) {
           this.isSuccess = true;
           this.message = "Work shift added successfully.";
+          alert(" Data ");
           this.resetForm();
           this.fetchWorkShifts();
         } else {
@@ -168,6 +172,7 @@ export class WorkShift {
     this.isEditMode = false;
     this.selectedDeptId = null;
     this.submitted = false;
+     window.location.reload();
   }
 
   formatTime(time: string): string {

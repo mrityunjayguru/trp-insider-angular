@@ -108,6 +108,7 @@ export class Designation {
     this.isEditMode = false;
     this.selectedDeptId = null;
     this.submitted = false;
+     window.location.reload();
   }
 
 
