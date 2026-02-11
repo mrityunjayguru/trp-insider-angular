@@ -74,7 +74,7 @@ export class WorkShift {
 
       console.log(" time Str "+timeStr);
 
-      const hour = Number(timeStr.split(',')[0]);
+      const hour = Number(timeStr.split(':')[0]);
       const period = hour >= 12 ? 'PM' : 'AM';
       if (type === 'start') {
         this.startPeriod = period;
@@ -186,7 +186,10 @@ export class WorkShift {
     if (!time) return '';
 
     const timeStr = String(time);
-    const [hours, minutes] = timeStr.split(':');
+
+    console.log("timeStr at show "+timeStr);
+
+    const [hours, minutes] = timeStr.split(',');
     let h = parseInt(hours);
     const m = minutes;
     const ampm = h >= 12 ? 'PM' : 'AM';
@@ -217,7 +220,12 @@ export class WorkShift {
 
   editDepartment(wst: any) {
     
-    alert(" ON EDIT ");
+    wst.workshiftstarttime = String(wst.workshiftstarttime).replace(',', ':');
+    wst.workshiftendtime = String(wst.workshiftendtime).replace(',', ':');
+
+
+
+
 
     this.isEditMode = true;
     this.selectedDeptId = wst.id;
@@ -227,5 +235,7 @@ export class WorkShift {
       workshiftstarttime: wst.workshiftstarttime,
       workshiftendtime: wst.workshiftendtime
     });
+
+
   }
 }
