@@ -75,6 +75,7 @@ export class Department {
     this.isEditMode = false;
     this.selectedDeptId = null;
     this.submitted = false;
+    window.location.reload();
   }
 
   constructor(formBuilder: FormBuilder, apiService: ApiService) {

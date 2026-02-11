@@ -828,13 +828,13 @@ export class KnowYourBusiness implements OnInit {
 
     this.productsForm = this.formBuilder.group({
       topimage: ['', Validators.required],
-      name: ['', Validators.required],
+      name: [''],
       designationid: [''],
-      designation: ['', Validators.required],
+      designation: [''],
       department: [''],
       workmode: [''],
       officelocation: [''],
-      contactnumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      contactnumber: [''],
       address: [''],
       country: [''],
 
@@ -981,6 +981,7 @@ export class KnowYourBusiness implements OnInit {
     this.formData = new FormData();
 
     if (this.productsForm.invalid) {
+      alert(" Need to fill all required data");
       this.productsForm.markAllAsTouched();
       return;
     }
@@ -988,6 +989,7 @@ export class KnowYourBusiness implements OnInit {
     // Manual check for mandatory images if they aren't fully covered by form validators
     if (!this.imageData[0] || !this.imageData[0].name) {
       // We'll show an inline message for this too in HTML
+
       return;
     }
     if (!this.imageData[1] || !this.imageData[1].name) {
@@ -997,6 +999,7 @@ export class KnowYourBusiness implements OnInit {
       return;
     }
 
+    alert("ON check");
     const payload = {
       ...this.productsForm.value,   // existing form fields
       departmentobj: {
@@ -1033,17 +1036,6 @@ export class KnowYourBusiness implements OnInit {
 
 
 
-    console.log(" Employee Form data =========");
-    console.log(" Employee Form data =========");
-    console.log(" Employee Form data =========");
-    console.log(" Employee Form data =========");
-    console.log(this.formData);
-    console.log(" Employee Form data =========");
-    console.log(" Employee Form data =========");
-    console.log(" Employee Form data =========");
-
-
-
     this.apiService.saveKnowYourBusiness(this.formData).subscribe(
       (response: any) => {
 
@@ -1064,11 +1056,7 @@ export class KnowYourBusiness implements OnInit {
     this.docTopimage = event.target.files[0];
     this.imageData[0] = this.docTopimage;
 
-    //  this.formData.append('file', this.docTopimage,this.docTopimage.name);
-
-
-
-
+   
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {
