@@ -66,7 +66,10 @@ export class WorkShift {
 
   updatePeriod(timeValue: string, type: 'start' | 'end') {
     if (timeValue) {
-      const hour = Number(timeValue.split(':')[0]);
+
+      //nnnn
+      const timeStr = String(timeValue);
+      const hour = Number(timeStr.split(':')[0]);
       const period = hour >= 12 ? 'PM' : 'AM';
       if (type === 'start') {
         this.startPeriod = period;
@@ -94,11 +97,10 @@ export class WorkShift {
 
     if (this.workShiftForm.invalid) {
       this.workShiftForm.markAllAsTouched();
-      alert(" I ma here");
+      
       return;
     }
 
-    alert(" this.isEditMode "+this.isEditMode);
 
     if (this.isEditMode) {
       this.updateData();
@@ -120,7 +122,7 @@ export class WorkShift {
         if (response.status == 200) {
           this.isSuccess = true;
           this.message = "Work shift added successfully.";
-          alert(" Data ");
+          
           this.resetForm();
           this.fetchWorkShifts();
         } else {
@@ -177,7 +179,9 @@ export class WorkShift {
 
   formatTime(time: string): string {
     if (!time) return '';
-    const [hours, minutes] = time.split(':');
+
+    const timeStr = String(time);
+    const [hours, minutes] = timeStr.split(':');
     let h = parseInt(hours);
     const m = minutes;
     const ampm = h >= 12 ? 'PM' : 'AM';
