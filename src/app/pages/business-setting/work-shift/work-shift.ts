@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../../apiservice';
+import { ZardAlertDialogService } from '../../../shared/components/alert-dialog/alert-dialog.service';
 
 
 interface WorkShiftItem {
@@ -38,7 +39,8 @@ export class WorkShift {
 
   constructor(
     private fb: FormBuilder,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private alertDialogService: ZardAlertDialogService
   ) {
     this.initForm();
   }
@@ -69,10 +71,10 @@ export class WorkShift {
 
       //nnnn
 
-      
+
       const timeStr = String(timeValue);
 
-      console.log(" time Str "+timeStr);
+      console.log(" time Str " + timeStr);
 
       const hour = Number(timeStr.split(':')[0]);
       const period = hour >= 12 ? 'PM' : 'AM';
@@ -102,7 +104,7 @@ export class WorkShift {
 
     if (this.workShiftForm.invalid) {
       this.workShiftForm.markAllAsTouched();
-      
+
       return;
     }
 
@@ -127,7 +129,7 @@ export class WorkShift {
         if (response.status == 200) {
           this.isSuccess = true;
           this.message = "Work shift added successfully.";
-          
+
           this.resetForm();
           this.fetchWorkShifts();
         } else {
@@ -179,7 +181,7 @@ export class WorkShift {
     this.isEditMode = false;
     this.selectedDeptId = null;
     this.submitted = false;
-     window.location.reload();
+    window.location.reload();
   }
 
   formatTime(time: string): string {
@@ -187,7 +189,7 @@ export class WorkShift {
 
     const timeStr = String(time);
 
-    console.log("timeStr at show "+timeStr);
+    console.log("timeStr at show " + timeStr);
 
     const [hours, minutes] = timeStr.split(',');
     let h = parseInt(hours);
@@ -199,27 +201,33 @@ export class WorkShift {
   }
 
   toggleStatus(wst: any) {
-    var isConfirmed = confirm("Are you sure about the transaction?");
-    if (isConfirmed) {
-      wst.deleted = !wst.deleted;
-      const formData = new FormData();
-      formData.append('id', wst.id);
-      formData.append('deleted', wst.deleted);
-      this.apiService.updateWorkShiftDeleted(formData).subscribe(
-        (response: any) => {
-          this.isSuccess = true;
-          this.message = response.mesage || "Status updated successfully.";
-          this.fetchWorkShifts();
-        },
-        (error) => {
-          this.isError = true;
-          this.message = "An error occurred while updating status.";
-        });
-    }
+    const dialogRef = this.alertDialogService.confirm({
+      zTitle: 'Confirm Status Change',
+      zContent: 'Are you sure you want to change the status of this work shift?',
+      zOkText: 'Confirm',
+      zCancelText: 'Cancel',
+      zOnOk: () => {
+        wst.deleted = !wst.deleted;
+        const formData = new FormData();
+        formData.append('id', wst.id);
+        formData.append('deleted', wst.deleted);
+        this.apiService.updateWorkShiftDeleted(formData).subscribe(
+          (response: any) => {
+            this.isSuccess = true;
+            this.message = response.mesage || "Status updated successfully.";
+            this.fetchWorkShifts();
+          },
+          (error) => {
+            this.isError = true;
+            this.message = "An error occurred while updating status.";
+          }
+        );
+      }
+    });
   }
 
   editDepartment(wst: any) {
-    
+
     wst.workshiftstarttime = String(wst.workshiftstarttime).replace(',', ':');
     wst.workshiftendtime = String(wst.workshiftendtime).replace(',', ':');
 

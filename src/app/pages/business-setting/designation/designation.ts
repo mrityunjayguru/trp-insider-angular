@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../../../apiservice';
+import { ZardAlertDialogService } from '../../../shared/components/alert-dialog/alert-dialog.service';
 
 
 
@@ -22,6 +23,7 @@ export class Designation {
   formsize!: FormGroup;
   formBuilder: any;
   apiService: ApiService;
+  alertDialogService: ZardAlertDialogService;
   sizes: any;
   alldesignation: any;
   logService: any;
@@ -44,23 +46,29 @@ export class Designation {
   ];
 
   toggleStatus(dept: any) {
-    var isConfirmed = confirm("Are you sure about the transaction?");
-    if (isConfirmed) {
-      dept.deleted = !dept.deleted;
-      const formData = new FormData();
-      formData.append('id', dept.id);
-      formData.append('deleted', dept.deleted);
-      this.apiService.updateDesignationDeleted(formData).subscribe(
-        (response: any) => {
-          this.isSuccess = true;
-          this.message = response.mesage || "Status updated successfully.";
-          this.fetchDesignations();
-        },
-        (error) => {
-          this.isError = true;
-          this.message = "An error occurred while updating status.";
-        })
-    }
+    const dialogRef = this.alertDialogService.confirm({
+      zTitle: 'Confirm Status Change',
+      zContent: 'Are you sure you want to change the status of this designation?',
+      zOkText: 'Confirm',
+      zCancelText: 'Cancel',
+      zOnOk: () => {
+        dept.deleted = !dept.deleted;
+        const formData = new FormData();
+        formData.append('id', dept.id);
+        formData.append('deleted', dept.deleted);
+        this.apiService.updateDesignationDeleted(formData).subscribe(
+          (response: any) => {
+            this.isSuccess = true;
+            this.message = response.mesage || "Status updated successfully.";
+            this.fetchDesignations();
+          },
+          (error) => {
+            this.isError = true;
+            this.message = "An error occurred while updating status.";
+          }
+        );
+      }
+    });
   }
 
 
@@ -75,9 +83,10 @@ export class Designation {
   }
 
 
-  constructor(formBuilder: FormBuilder, apiService: ApiService) {
+  constructor(formBuilder: FormBuilder, apiService: ApiService, alertDialogService: ZardAlertDialogService) {
     this.formBuilder = formBuilder;
     this.apiService = apiService;
+    this.alertDialogService = alertDialogService;
 
     this.formsize = this.formBuilder.group({
       designationname: ['', Validators.required],
@@ -108,7 +117,7 @@ export class Designation {
     this.isEditMode = false;
     this.selectedDeptId = null;
     this.submitted = false;
-     window.location.reload();
+    window.location.reload();
   }
 
 

@@ -1,0 +1,27 @@
+<div class="flex justify-center items-center gap-5">
+    <!-- Previous Button -->
+    <button (click)="previousPage()" [disabled]="!canGoPrevious()"
+        class="w-8 h-8 flex items-center cursor-pointer justify-center rounded-full border border-primary text-primary hover:bg-primary hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        aria-label="Previous page">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+    </button>
+
+    <!-- Page Numbers -->
+    <button *ngFor="let page of pageNumbers()" (click)="goToPage(page)"
+        [ngClass]="currentPage() === page ? 'bg-primary text-white' : 'bg-white text-primary border border-primary hover:bg-primary hover:text-white'"
+        class="w-8 cursor-pointer h-8 flex items-center justify-center rounded-full transition-colors text-sm font-medium"
+        [attr.aria-label]="'Go to page ' + page" [attr.aria-current]="currentPage() === page ? 'page' : null">
+        {{ page }}
+    </button>
+
+    <!-- Next Button -->
+    <button (click)="nextPage()" [disabled]="!canGoNext()"
+        class="w-8 h-8 flex items-center cursor-pointer justify-center rounded-full border border-primary text-primary hover:bg-primary hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        aria-label="Next page">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+    </button>
+</div>

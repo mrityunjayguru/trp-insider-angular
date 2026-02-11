@@ -8,16 +8,19 @@ import { KnowYourBusiness } from './pages/know-your-business/know-your-business'
 import { BusinessSetting } from './pages/business-setting/business-setting';
 import { TransportGps } from './pages/transport-gps/transport-gps';
 import { EmployeeDetails } from './pages/employee-details/employee-details';
-import { Route } from './pages/route/route';
 import { Settings } from './pages/settings/settings';
 import { ManageEmployee } from './pages/manage-employee/manage-employee';
 
+import { CreateStop } from './pages/route/create-stop/create-stop';
+import { ManageRoute } from './pages/route/manage-route/manage-route';
+import { CreateRoute } from './pages/route/create-route/create-route';
+
 
 export const routes: Routes = [
-     { path: '', component: Landing },
-     { path: 'register', component: Register },
-     { path: 'login', component: Login },
-     {
+  { path: '', component: Landing },
+  { path: 'register', component: Register },
+  { path: 'login', component: Login },
+  {
     path: 'company',
     component: CompanyLayout,
     children: [
@@ -28,7 +31,9 @@ export const routes: Routes = [
       { path: 'transport-gps', component: TransportGps },
       { path: 'employee-details', component: EmployeeDetails },
       { path: 'manage-employee', component: ManageEmployee },
-      { path: 'routes', component: Route },
+      { path: 'manage-routes', component: ManageRoute },
+      { path: 'create-route', component: CreateRoute },
+      { path: 'create-stop', component: CreateStop },
       { path: 'settings', component: Settings }
     ]
   }
