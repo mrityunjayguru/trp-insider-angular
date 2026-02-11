@@ -68,8 +68,13 @@ export class WorkShift {
     if (timeValue) {
 
       //nnnn
+
+      
       const timeStr = String(timeValue);
-      const hour = Number(timeStr.split(':')[0]);
+
+      console.log(" time Str "+timeStr);
+
+      const hour = Number(timeStr.split(',')[0]);
       const period = hour >= 12 ? 'PM' : 'AM';
       if (type === 'start') {
         this.startPeriod = period;
@@ -211,6 +216,9 @@ export class WorkShift {
   }
 
   editDepartment(wst: any) {
+    
+    alert(" ON EDIT ");
+
     this.isEditMode = true;
     this.selectedDeptId = wst.id;
     this.workShiftForm.patchValue({
