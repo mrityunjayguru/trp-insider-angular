@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../../apiservice';
+import { ZardAlertDialogService } from '../../../shared/components/alert-dialog/alert-dialog.service';
 
 
 
@@ -23,6 +24,7 @@ export class Department {
   formsize!: FormGroup;
   formBuilder: any;
   apiService: ApiService;
+  alertDialogService: ZardAlertDialogService;
   sizes: any;
   departments: any;
 
@@ -39,23 +41,29 @@ export class Department {
 
 
   toggleStatus(dept: any) {
-    var isConfirmed = confirm("Are you sure about the transaction?");
-    if (isConfirmed) {
-      dept.deleted = !dept.deleted;
-      const formData = new FormData();
-      formData.append('id', dept.id);
-      formData.append('deleted', dept.deleted);
-      this.apiService.updateDepartmentDeleted(formData).subscribe(
-        (response: any) => {
-          this.isSuccess = true;
-          this.message = response.mesage || "Status updated successfully.";
-          this.showAllData();
-        },
-        (error) => {
-          this.isError = true;
-          this.message = "An error occurred while updating status.";
-        })
-    }
+    const dialogRef = this.alertDialogService.confirm({
+      zTitle: 'Confirm Status Change',
+      zContent: 'Are you sure you want to change the status of this department?',
+      zOkText: 'Confirm',
+      zCancelText: 'Cancel',
+      zOnOk: () => {
+        dept.deleted = !dept.deleted;
+        const formData = new FormData();
+        formData.append('id', dept.id);
+        formData.append('deleted', dept.deleted);
+        this.apiService.updateDepartmentDeleted(formData).subscribe(
+          (response: any) => {
+            this.isSuccess = true;
+            this.message = response.mesage || "Status updated successfully.";
+            this.showAllData();
+          },
+          (error) => {
+            this.isError = true;
+            this.message = "An error occurred while updating status.";
+          }
+        );
+      }
+    });
   }
 
 
@@ -78,9 +86,10 @@ export class Department {
     window.location.reload();
   }
 
-  constructor(formBuilder: FormBuilder, apiService: ApiService) {
+  constructor(formBuilder: FormBuilder, apiService: ApiService, alertDialogService: ZardAlertDialogService) {
     this.formBuilder = formBuilder;
     this.apiService = apiService;
+    this.alertDialogService = alertDialogService;
 
     this.formsize = this.formBuilder.group({
       id: [''],

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Component } from '@angular/core';
 import { ApiService } from '../../../apiservice';
 import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { ZardAlertDialogService } from '../../../shared/components/alert-dialog/alert-dialog.service';
 
 
 interface OffLocation {
@@ -24,6 +25,7 @@ export class OfficeLocation implements AfterViewInit {
   formsize!: FormGroup;
   formBuilder: any;
   apiService: ApiService;
+  alertDialogService: ZardAlertDialogService;
   sizes: any;
   departments: any;
 
@@ -47,18 +49,24 @@ export class OfficeLocation implements AfterViewInit {
   districtsList = ['Chennai', 'Coimbatore', 'Madurai'];
 
   toggleStatus(dept: any) {
-    var isConfirmed = confirm("Are you sure about the transaction?");
-    if (isConfirmed) {
-      dept.deleted = !dept.deleted;
-      const formData = new FormData();
-      formData.append('id', dept.id);
-      formData.append('deleted', dept.deleted);
-      this.apiService.updateOfficeLocationDeleted(formData).subscribe(
-        (response: any) => {
-          alert(response.mesage);
-          window.location.reload();
-        })
-    }
+    const dialogRef = this.alertDialogService.confirm({
+      zTitle: 'Confirm Status Change',
+      zContent: 'Are you sure you want to change the status of this office location?',
+      zOkText: 'Confirm',
+      zCancelText: 'Cancel',
+      zOnOk: () => {
+        dept.deleted = !dept.deleted;
+        const formData = new FormData();
+        formData.append('id', dept.id);
+        formData.append('deleted', dept.deleted);
+        this.apiService.updateOfficeLocationDeleted(formData).subscribe(
+          (response: any) => {
+            alert(response.mesage);
+            window.location.reload();
+          }
+        );
+      }
+    });
   }
 
 
@@ -118,9 +126,10 @@ export class OfficeLocation implements AfterViewInit {
     window.location.reload();
   }
 
-  constructor(formBuilder: FormBuilder, apiService: ApiService) {
+  constructor(formBuilder: FormBuilder, apiService: ApiService, alertDialogService: ZardAlertDialogService) {
     this.formBuilder = formBuilder;
     this.apiService = apiService;
+    this.alertDialogService = alertDialogService;
 
     this.formsize = this.formBuilder.group({
       id: [''],

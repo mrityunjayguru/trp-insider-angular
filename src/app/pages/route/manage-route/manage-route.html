@@ -1,0 +1,91 @@
+<section class="w-full h-full p-6 bg-[#FCFCFC]">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-semibold text-[#3BB48B]">Manage Route</h1>
+        <div class="relative w-80">
+            <input type="text" placeholder="Search..." [ngModel]="searchQuery()"
+                (input)="searchQuery.set($any($event.target).value); onSearch()"
+                class="w-full border border-gray-200 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#3BB48B] placeholder:text-gray-300">
+            <span class="absolute right-3 top-2.5 text-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div class="overflow-hidden rounded-lg">
+        <table class="w-full">
+            <thead class="">
+                <tr class="bg-primary font-medium text-white">
+                    <th class="px-6 py-3 text-left text-sm font-medium">Route Name</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium">Total Stops</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium">Office Location</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium">Transport</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium">Status</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium">Action</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                <tr *ngFor="let route of paginatedRoutes(); let i = index" [ngClass]="i % 2 !== 0 ? '' : 'bg-gray-50'"
+                    class="hover:bg-gray-100 transition-colors border-b border-gray-200">
+                    <td class="px-6 py-4 text-sm text-[#050914]">{{ route.name }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914]">{{ route.totalStops }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914]">{{ route.officeLocation }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914]">{{ route.transport }}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <button (click)="toggleStatus(route)"
+                                class="relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-200 focus:outline-none cursor-pointer"
+                                [class.bg-[#D1F2E8]]="route.isActive" [class.bg-gray-200]="!route.isActive">
+                                <span
+                                    class="inline-block h-5 w-5 transform rounded-full transition-transform duration-200"
+                                    [class.translate-x-5]="route.isActive" [class.translate-x-1]="!route.isActive"
+                                    [class.bg-[#3BB48B]]="route.isActive" [class.bg-gray-400]="!route.isActive">
+                                </span>
+                            </button>
+                            <span class="text-sm font-medium" [class.text-[#3BB48B]]="route.isActive"
+                                [class.text-gray-400]="!route.isActive">
+                                {{ route.isActive ? 'Active' : 'Inactive' }}
+                            </span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-5">
+                        <div class="flex items-center gap-4">
+                            <button (click)="viewRoute(route)"
+                                class="text-[#006842] hover:text-[#006842]/80 transition-colors cursor-pointer"
+                                title="View">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12.0001 8.13762C9.86911 8.13762 8.1377 9.86903 8.1377 12C8.1377 14.131 9.86911 15.8624 12.0001 15.8624C14.131 15.8624 15.8624 14.131 15.8624 12C15.8624 9.86903 14.131 8.13762 12.0001 8.13762ZM11.7071 10.8546C11.2276 10.8546 10.828 11.2542 10.828 11.7336H9.54946C9.5761 10.535 10.535 9.57602 11.7071 9.57602V10.8546Z"
+                                        fill="currentColor" />
+                                    <path
+                                        d="M23.7203 11.2009C22.4151 9.57603 17.7536 4.27525 12 4.27525C6.24639 4.27525 1.58491 9.57603 0.279689 11.2009C-0.0932297 11.6537 -0.0932297 12.3196 0.279689 12.7991C1.58491 14.424 6.24639 19.7248 12 19.7248C17.7536 19.7248 22.4151 14.424 23.7203 12.7991C24.0932 12.3463 24.0932 11.6804 23.7203 11.2009ZM12 17.5938C8.9101 17.5938 6.40622 15.0899 6.40622 12C6.40622 8.9101 8.9101 6.40622 12 6.40622C15.0899 6.40622 17.5938 8.9101 17.5938 12C17.5938 15.0899 15.0899 17.5938 12 17.5938Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </button>
+                            <button (click)="editRoute(route)"
+                                class="text-[#006842] hover:text-[#006842]/80 transition-colors cursor-pointer"
+                                title="Edit">
+                                <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5" />
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="filteredRoutes().length === 0">
+                    <td colspan="6" class="px-6 py-10 text-center text-gray-400 text-sm">
+                        No routes found matching your search.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-8 flex justify-center">
+        <app-pagination [currentPage]="currentPage()" [totalPages]="totalPages()" (pageChange)="onPageChange($event)">
+        </app-pagination>
+    </div>
+</section>

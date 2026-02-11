@@ -1,0 +1,162 @@
+<section class="w-full h-full p-6">
+    <div class="mb-6">
+        <h1 class="text-2xl font-semibold text-primary">Create Route</h1>
+        <hr class="border-[#D2D2D2] mt-4" />
+    </div>
+    <div *ngIf="!isRouteCreated" class="bg-white rounded-lg">
+        <form [formGroup]="routeForm" (ngSubmit)="onSubmit()" class="space-y-6">
+            <div class="flex flex-wrap gap-6">
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-[#050914] mb-2">
+                        Route Name<span class="text-primary">*</span>
+                    </label>
+                    <input type="text" formControlName="routeName" placeholder="Enter Route Name"
+                        class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:outline-none placeholder:text-[#BCBCBC]" />
+                </div>
+
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-[#050914] mb-2">
+                        Office<span class="text-primary">*</span>
+                    </label>
+                    <select formControlName="office"
+                        class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
+                        <option value="">Choose Office Location</option>
+                        <option value="Sector 3">Sector 3</option>
+                        <option value="Main Office">Main Office</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-[#050914] mb-2">
+                        Mode of Transport<span class="text-primary">*</span>
+                    </label>
+                    <select formControlName="modeOfTransport"
+                        class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:outline-none ">
+                        <option value="">Select Transport Vehicle</option>
+                        <option value="Truck">Truck</option>
+                        <option value="Van">Van</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex">
+                <button type="submit" [disabled]="routeForm.invalid"
+                    class="bg-[#006842] text-white px-8 py-3 w-1/2 cursor-pointer rounded-md font-medium hover:bg-[#005234] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    Save Route
+                </button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="isRouteCreated" class="space-y-6 animate-in fade-in duration-500">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 bg-[#F9FAFB] p-6 rounded-lg border border-gray-100">
+            <div>
+                <p class="text-sm text-gray-500 mb-1">Route Name</p>
+                <p class="font-medium text-[#050914]">{{ routeData?.routeName }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500 mb-1">Office</p>
+                <p class="font-medium text-[#050914]">{{ routeData?.office }}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500 mb-1">Mode of Transport</p>
+                <p class="font-medium text-[#050914]">{{ routeData?.modeOfTransport }}</p>
+            </div>
+        </div>
+        <div class="w-full h-[300px] rounded-lg overflow-hidden border border-gray-200">
+            <iframe src="https://www.google.com/maps?q=Dubai&output=embed" width="100%" height="100%" style="border:0;"
+                allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+        <!-- <div class="flex justify-end gap-4 mt-6 w-full">
+            <button (click)="editRoute()"
+                class="px-6 py-2.5 border border-primary w-2/3 text-primary rounded-md font-medium hover:bg-gray-50">
+                Edit Route Info
+            </button>
+        </div> -->
+        <div class="mt-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-md font-semibold text-[#006842]">List of Stops</h2>
+                <div class="flex gap-4">
+                    <div class="relative w-64">
+                        <input type="text" [ngModel]="searchTerm()" (input)="onSearch($any($event.target).value)"
+                            placeholder="Search..."
+                            class="pl-4 pr-10 py-2 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-primary w-64">
+                        <span class="absolute right-3 top-2.5 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <select *ngIf="!isSettingOrder"
+                        class="px-4 py-2 border border-[#006842] text-[#006842] rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-white">
+                        <option>Department</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="overflow-hidden rounded-lg">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-primary font-medium text-white">
+                            <th class="px-6 py-3 text-left text-sm font-medium w-12"></th>
+                            <th class="px-6 py-3 text-left text-sm font-medium">Stop Name</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium">Address</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium">Department</th>
+                            <th *ngIf="isSettingOrder" class="px-6 py-3 text-left text-sm font-medium">Route Order</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100" cdkDropList (cdkDropListDropped)="onDrop($event)">
+                        <tr *ngFor="let stop of paginatedStops(); let i = index" [class.bg-gray-50]="i % 2 !== 0"
+                            class="hover:bg-gray-50 transition-colors bg-white" cdkDrag
+                            [cdkDragDisabled]="!isSettingOrder">
+                            <td class="px-6 py-4">
+                                <input *ngIf="!isSettingOrder" type="checkbox" [(ngModel)]="stop.selected"
+                                    class="rounded text-primary accent-primary h-4 w-4 focus:ring-primary">
+                                <div *ngIf="isSettingOrder" class="text-gray-400 cursor-move" cdkDragHandle>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 8h16M4 16h16" />
+                                    </svg>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.name }}</td>
+                            <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.address }}</td>
+                            <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.department }}</td>
+                            <td *ngIf="isSettingOrder" class="px-6 py-4 text-sm text-[#050914] font-medium">{{
+                                stop.order }}</td>
+                        </tr>
+                        <tr *ngIf="filteredStops().length === 0">
+                            <td colspan="5" class="px-6 py-10 text-center text-gray-500">
+                                No stops found matching your search.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!isSettingOrder && totalPages() > 0" class="p-6 flex justify-center">
+                <app-pagination [currentPage]="currentPage()" [totalPages]="totalPages()"
+                    (pageChange)="onPageChange($event)">
+                </app-pagination>
+            </div>
+
+            <div *ngIf="!isSettingOrder" class="p-6 flex justify-end">
+                <button (click)="setStopOrder()"
+                    class="px-12 py-3 bg-[#1A6341] cursor-pointer text-white rounded-md font-medium hover:bg-secondary hover:text-primary ">
+                    Set Stop Order
+                </button>
+            </div>
+            <div *ngIf="isSettingOrder" class="p-6 flex justify-end gap-6 items-center">
+                <button (click)="manageStops()"
+                    class="px-12 py-3 bg-[#1A6341] cursor-pointer text-white rounded-md font-medium hover:bg-secondary hover:text-primary ">
+                    Manage Stops
+                </button>
+                <button (click)="saveRoute()"
+                    class="px-12 py-3 bg-[#1A6341] cursor-pointer text-white rounded-md font-medium hover:bg-secondary hover:text-primary ">
+                    Save Route
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
