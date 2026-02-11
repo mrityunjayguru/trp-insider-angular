@@ -113,7 +113,7 @@ export class WorkShift {
     };
 
     const formData = new FormData();
-    formData.append('workshift', JSON.stringify(payload));
+    formData.append('save', JSON.stringify(payload));
 
     this.apiService.saveWorkShift(formData).subscribe(
       (response: any) => {
@@ -140,7 +140,7 @@ export class WorkShift {
     };
 
     const formData = new FormData();
-    formData.append('workshift', JSON.stringify(payload));
+    formData.append('update', JSON.stringify(payload));
 
     this.apiService.updateWorkShift(formData).subscribe(
       (response: any) => {
