@@ -44,7 +44,7 @@ export class ApiService {
   
      
     this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
-    //  this.apiUrl = 'http://localhost:8085/api';
+     // this.apiUrl = 'http://localhost:8085/api';
         
        // alert(" Niraj Updated "+this.apiUrl);
 
@@ -327,6 +327,35 @@ updateAddVehiclesDeleted(formData: any): Observable<any> {
   }
 
   //====================================================================
+
+
+
+//=====================================
+  saveAddWorkingDays(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/addworkingdays/save", formData, { "headers": this.headers });
+  }
+
+
+
+  updateAddWorkingDays(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/addworkingdays/update", formData, { "headers": this.headers });
+  }
+  
+  getAllAddWorkingDays(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/addworkingdays/getAllData",  { "headers": this.headers });
+  }
+
+
+  updateAddWorkingDaysDeleted(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/addworkingdays/updateDeletedFlag", formData, { "headers": this.headers });
+  }
+
+  //====================================================================
+
+
+
+
+
 
 
 
