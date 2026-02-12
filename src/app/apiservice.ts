@@ -44,7 +44,7 @@ export class ApiService {
   
      
      this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
-      //this.apiUrl = 'http://localhost:8085/api';
+    //  this.apiUrl = 'http://localhost:8085/api';
         
        // alert(" Niraj Updated "+this.apiUrl);
 
@@ -517,6 +517,14 @@ updateAddVehiclesDeleted(formData: any): Observable<any> {
 
   saveKnowYourBusiness(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/knowyourbusiness/save", formData, { "headers": this.headers });
+  }
+
+  getAllKnowYourBusiness(formData: any): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/knowyourbusiness/getAllKnowYourBusiness", { "headers": this.headers });
+  }
+
+getKnowYourBusinessById(id: any): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/knowyourbusiness/getKybById?id=" + id, { "headers": this.headers });
   }
 
   //===========================  ========================================

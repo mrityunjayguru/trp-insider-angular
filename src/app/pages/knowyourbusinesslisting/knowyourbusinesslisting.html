@@ -1,0 +1,57 @@
+
+
+<div class="mt-10">
+    <h2 class="text-md font-semibold text-[#006842] mb-4">Know Your Business List</h2>
+    <div class="overflow-hidden rounded-lg ">
+      <table class="w-full">
+        <thead>
+          <tr class="bg-primary font-medium text-white">
+            
+            <th class="px-6 py-3 text-left text-sm font-medium">Business Name</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">GSTIN</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Proprietor PAN</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Business Type</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Contact Person Designation</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Contact Person Name</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Contact Person Mobile</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Registered Address</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Action</th>
+          </tr>
+        </thead>
+
+        <tbody class="bg-white">
+          <tr *ngFor="let dept of departments; let i = index" 
+            class="hover:bg-gray-100 transition-colors border-t border-b border-[#E0F7E9]">
+           
+           <td class="px-6 py-4">
+              <button class="text-primary hover:text-primary/80 cursor-pointer transition-colors"
+                (click)="editDepartment(dept)">
+                <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5" />
+              </button>
+            <td class="px-6 py-4 text-sm" [ngClass]="dept.deleted ? 'text-gray-900' : 'text-gray-400'">{{ dept.businessname
+              }}</td>
+           
+              <td class="px-6 py-4 text-sm" [ngClass]="dept.deleted ? 'text-gray-900' : 'text-gray-400'">{{ dept.gstin 
+              }}</td>
+              <td class="px-6 py-4 text-sm" [ngClass]="dept.deleted ? 'text-gray-900' : 'text-gray-400'">{{ dept.proprietorpan }}</td>
+              
+              
+              <td class="px-6 py-4 text-sm" [ngClass]="dept.deleted ? 'text-gray-900' : 'text-gray-400'">{{ dept.businesstype
+              }}</td>
+              <td class="px-6 py-4 text-sm" [ngClass]="dept.deleted ? 'text-gray-900' : 'text-gray-400'">{{ dept.contactpersondesignation}}</td>
+              <td class="px-6 py-4 text-sm" [ngClass]="dept.deleted ? 'text-gray-900' : 'text-gray-400'">{{ dept.contactpersonname }}</td>
+            
+              <td class="px-6 py-4 text-sm" [ngClass]="dept.deleted ? 'text-gray-900' : 'text-gray-400'">{{ dept.contactpersonmobile }}</td>
+              <td class="px-6 py-4 text-sm" [ngClass]="dept.deleted ? 'text-gray-900' : 'text-gray-400'">{{ dept.registeredaddress }}</td>
+            <td class="px-6 py-4">
+              <button class="text-primary hover:text-primary/80 cursor-pointer transition-colors"
+                (click)="editDepartment(dept)">
+                <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5" />
+              </button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

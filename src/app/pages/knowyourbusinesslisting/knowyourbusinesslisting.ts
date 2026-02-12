@@ -1,20 +1,25 @@
 import { ZardTabComponent, ZardTabGroupComponent } from '@/shared/components/tabs';
 import { NgClass, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ApiService } from '../../apiservice';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-know-your-business',
-  imports: [NgClass, NgIf, FormsModule, ReactiveFormsModule],
-  templateUrl: './know-your-business.html',
-  styleUrl: './know-your-business.css',
+  selector: 'app-knowyourbusinesslisting',
+  imports: [CommonModule,NgClass,ReactiveFormsModule],
+  templateUrl: './knowyourbusinesslisting.html',
+  styleUrl: './knowyourbusinesslisting.css',
 })
 
-export class KnowYourBusiness implements OnInit {
+
+
+
+
+export class Knowyourbusinesslisting implements OnInit,AfterViewInit  {
   docTopimage: any;
   file0: any;
 
@@ -678,9 +683,17 @@ export class KnowYourBusiness implements OnInit {
   allcommission: any;
   allemploymenttype: any;
 
+editDepartment(bus:any)
+{
+
+}
+
+
 
 
   constructor(formBuilder: FormBuilder, apiService: ApiService, router: Router) {
+
+    
     this.apiService = apiService;
     this.formBuilder = formBuilder;
     this.productsForm = this.formBuilder
@@ -805,13 +818,21 @@ export class KnowYourBusiness implements OnInit {
 
 
 
-    this.apiService.getAllDepartment().subscribe(
+    this.apiService.getAllKnowYourBusiness().subscribe(
       (response: any) => {
 
-        this.departments = response.data;
-        console.log("Department");
+        this.departments = response.data.content;
+
+
+        console.log("business");
+        console.log("business");
+        console.log("business");
+
         console.log(this.departments);
-        console.log("Department");
+        console.log("business");
+        console.log("business");
+        console.log("business");
+        console.log("business");
 
 
       })
@@ -964,6 +985,31 @@ export class KnowYourBusiness implements OnInit {
 
     });
   }
+  ngAfterViewInit(): void {
+    
+
+    this.apiService.getAllKnowYourBusiness().subscribe(
+      (response: any) => {
+
+        this.departments = response.data.content;
+
+
+        console.log("business");
+        console.log("business");
+        console.log("business");
+
+        console.log(this.departments);
+        //window.location.reload();
+
+        alert(" After View");
+        console.log("business");
+        console.log("business");
+        console.log("business");
+        console.log("business");
+
+
+      })
+  }
 
 
 
@@ -999,7 +1045,6 @@ export class KnowYourBusiness implements OnInit {
       return;
     }
 
-    alert("ON check");
     const payload = {
       ...this.productsForm.value,   // existing form fields
       departmentobj: {
@@ -1041,15 +1086,10 @@ export class KnowYourBusiness implements OnInit {
 
         alert(response.mesage);
         if (response.mesage == "Data Stored successfully." || response.status == 200) {
+
           alert(" Indise if for routing");
          
-
-          console.log("response.data");
-          console.log(response.data);
-          console.log("response.data");
-
-          this.router.navigate(['/company/editkyb', response.data.id]);
-         //this.router.navigate(['company/editkyb']);
+         this.router.navigate(['company/knowyourbusinesslisting']);
         }
         else {
           alert(response);

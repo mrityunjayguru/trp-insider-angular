@@ -68,10 +68,6 @@ export class WorkShift {
 
   updatePeriod(timeValue: string, type: 'start' | 'end') {
     if (timeValue) {
-
-      //nnnn
-
-
       const timeStr = String(timeValue);
 
       console.log(" time Str " + timeStr);
@@ -230,10 +226,6 @@ export class WorkShift {
 
     wst.workshiftstarttime = String(wst.workshiftstarttime).replace(',', ':');
     wst.workshiftendtime = String(wst.workshiftendtime).replace(',', ':');
-
-
-
-
 
     this.isEditMode = true;
     this.selectedDeptId = wst.id;

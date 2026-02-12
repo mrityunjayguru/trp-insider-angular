@@ -14,8 +14,8 @@ import { ManageEmployee } from './pages/manage-employee/manage-employee';
 import { CreateStop } from './pages/route/create-stop/create-stop';
 import { ManageRoute } from './pages/route/manage-route/manage-route';
 import { CreateRoute } from './pages/route/create-route/create-route';
-
-
+import { Knowyourbusinesslisting } from './pages/knowyourbusinesslisting/knowyourbusinesslisting';
+import { Editkyb } from './pages/editkyb/editkyb';
 export const routes: Routes = [
   { path: '', component: Landing },
   { path: 'register', component: Register },
@@ -27,6 +27,9 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: Dashboard },
       { path: 'kyb', component: KnowYourBusiness },
+      {
+           path: 'editkyb/:id', component: Editkyb
+      },
       { path: 'business-setting', component: BusinessSetting },
       { path: 'transport-gps', component: TransportGps },
       { path: 'employee-details', component: EmployeeDetails },
@@ -34,7 +37,8 @@ export const routes: Routes = [
       { path: 'manage-routes', component: ManageRoute },
       { path: 'create-route', component: CreateRoute },
       { path: 'create-stop', component: CreateStop },
-      { path: 'settings', component: Settings }
+      { path: 'settings', component: Settings },
+      { path: 'knowyourbusinesslisting', component: Knowyourbusinesslisting }
     ]
   }
 ];

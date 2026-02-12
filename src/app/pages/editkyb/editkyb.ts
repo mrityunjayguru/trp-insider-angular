@@ -1,3 +1,5 @@
+
+import { ActivatedRoute } from '@angular/router';
 import { ZardTabComponent, ZardTabGroupComponent } from '@/shared/components/tabs';
 import { NgClass, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,14 +9,17 @@ import { ApiService } from '../../apiservice';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
+
 @Component({
-  selector: 'app-know-your-business',
+  selector: 'app-editkyb',
   imports: [NgClass, NgIf, FormsModule, ReactiveFormsModule],
-  templateUrl: './know-your-business.html',
-  styleUrl: './know-your-business.css',
+  templateUrl: './editkyb.html',
+  styleUrl: './editkyb.css',
 })
 
-export class KnowYourBusiness implements OnInit {
+
+
+export class Editkyb implements OnInit {
   docTopimage: any;
   file0: any;
 
@@ -680,7 +685,7 @@ export class KnowYourBusiness implements OnInit {
 
 
 
-  constructor(formBuilder: FormBuilder, apiService: ApiService, router: Router) {
+  constructor(private route: ActivatedRoute,formBuilder: FormBuilder, apiService: ApiService, router: Router) {
     this.apiService = apiService;
     this.formBuilder = formBuilder;
     this.productsForm = this.formBuilder
@@ -966,10 +971,19 @@ export class KnowYourBusiness implements OnInit {
   }
 
 
+ngOnInit() {
+  const id = this.route.snapshot.paramMap.get('id');
 
-  ngOnInit(): void {
-
-  }
+  this.apiService.getKnowYourBusinessById(id).subscribe(
+    (response: any) => {
+      console.log('Edit KYB Response:', response);
+      this.productsForm.patchValue(response.data);
+    },
+    (error: any) => {
+      console.error('Error fetching KYB details:', error);
+    }
+  );
+}
 
 
   toggleRowVisibility(): void {
