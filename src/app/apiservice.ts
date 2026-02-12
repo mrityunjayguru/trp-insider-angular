@@ -338,6 +338,7 @@ updateAddVehiclesDeleted(formData: any): Observable<any> {
 
 
   updateAddWorkingDays(formData: any): Observable<any> {
+    
     return this.http.post<any>(this.apiUrl + "/addworkingdays/update", formData, { "headers": this.headers });
   }
   

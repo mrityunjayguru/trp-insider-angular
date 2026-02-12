@@ -82,25 +82,15 @@ export class WorkingDays  {
     this.isEditMode = true;
     this.selectedDeptId = dept.id;
 
-
-
-
     this.formsize.patchValue({
-      id: dept.id,
-      vehicletypename: dept.vehicletypename,
-      vehicletypeid: dept.vehicletypeid,
-      vehicletypemakerorbrand: dept.vehicletypemakerorbrand,
-      vehicletypemakerorbrandid: dept.vehicletypemakerorbrandid,
-      vehicletyperegname: dept.vehicletyperegname,
-      fuletypename: dept.fuletypename,
-      fuletypeid: dept.fuletypeid,
-
-      gpsdevicename: dept.gpsdevicename,
-      gpsdeviceid: dept.gpsdeviceid,
-
-      ownedbyname: dept.ownedbyname,
-      ownedbyid: dept.ownedbyid,
-
+       monday: dept.monday=="true" ? true : false,
+      tuesday: dept.tuesday=="true" ? true : false,
+      wednessday: dept.wednessday=="true" ? true : false,
+      thursday: dept.thursday=="true" ? true : false,
+      friday: dept.friday=="true" ? true : false,
+      saturday: dept.saturday=="true" ? true : false,
+      sunday: dept.sunday=="true" ? true : false,
+      id:dept.id
 
     });
 
@@ -128,6 +118,7 @@ export class WorkingDays  {
       friday: [false],
       saturday: [false],
       sunday: [false],
+      id:[''],
     }, { validators: this.atLeastOneCheckedValidator() });
 
 
@@ -148,9 +139,9 @@ export class WorkingDays  {
   onSubmit() {
     this.submitted = true;
 
-    this.saveData();
+    
 
-   /* if (this.formsize.invalid) {
+    if (this.formsize.invalid) {
       return;
     }
 
@@ -158,10 +149,13 @@ export class WorkingDays  {
       this.updateData();
     } else {
       this.saveData();
-    }*/
+    }
   }
 
   updateData() {
+
+
+
     const payload = {
       ...this.formsize.value,   // existing form fields
       companyobj: {
@@ -175,7 +169,7 @@ export class WorkingDays  {
       JSON.stringify(payload)
     );
 
-    this.apiService.updateAddVehicles(formData).subscribe(
+    this.apiService.updateAddWorkingDays(formData).subscribe(
       (response: any) => {
 
         if (response.status == 200) {

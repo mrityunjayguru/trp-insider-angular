@@ -67,6 +67,7 @@
         <th class="border px-3 py-2">Saturday</th>
         <th class="border px-3 py-2">Sunday</th>
         <th class="border px-3 py-2">Selected Days</th>
+        <th class="border px-3 py-2">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -79,6 +80,13 @@
         <td class="border px-3 py-2">{{ item.saturday=="true" ? '✔' : '-' }}</td>
         <td class="border px-3 py-2">{{ item.sunday =="true" ? '✔' : '-' }}</td>
         <td class="border px-3 py-2 text-left">{{ item.selectedDays }}</td>
+     <!-- Action -->
+              <td class="px-2 py-4">
+                <button class="text-primary hover:text-primary/80 cursor-pointer transition-colors"
+                  (click)="editDepartment(item)">
+                  <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5" />
+                </button>
+              </td>
       </tr>
     </tbody>
   </table>
