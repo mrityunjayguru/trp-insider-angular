@@ -3,142 +3,25 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toast } from 'ngx-sonner';
 
+
 import {  OnInit } from '@angular/core';
 
 import { ApiService } from '../../apiservice';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-employee-details',
   imports: [NgIf, CommonModule, ReactiveFormsModule],
   templateUrl: './employee-details.html',
   styleUrl: './employee-details.css',
 })
 
-/*
-
-export class EmployeeDetails {
-  employeeForm!: FormGroup;
-  showPersonalVehicleForm = false;
-  employmentType: string = '';
-
-  constructor(private fb: FormBuilder) {
-    this.initForm();
-  }
-
-  initForm() {
-    this.employeeForm = this.fb.group({
-      employmentType: ['', Validators.required],
-      employeeName: ['', Validators.required],
-      mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      department: ['', Validators.required],
-      designation: ['', Validators.required],
-      officeLocation: ['', Validators.required],
-      reportingAuthority: ['', Validators.required],
-      monthlyFixedSalary: [''],
-      workMode: [''],
-      monthlyGuaranteedSalary: [''],
-      targetType: [''],
-      monthlyTargetValue: [''],
-      gender: ['', Validators.required],
-      dob: ['', Validators.required],
-      address: ['', Validators.required],
-      pinCode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
-      state: ['', Validators.required],
-      district: ['', Validators.required],
-      joiningDate: ['', Validators.required],
-      uan: [''],
-      pan: ['', [Validators.required, Validators.pattern('[A-Z]{5}[0-9]{4}[A-Z]{1}')]],
-      aadhaar: ['', [Validators.required, Validators.pattern('^[0-9]{12}$')]],
-      pfNumber: [''],
-      pfJoiningDate: [''],
-      esiNumber: [''],
-      vehicleId: ['', Validators.required],
-      bankName: [''],
-      ifscCode: ['', Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')],
-      accountNumber: [''],
-      accountHolderName: [''],
-      upiDetail: [''],
-      bloodGroup: [''],
-      emergencyContactPerson: [''],
-      emergencyContactNumber: ['', Validators.pattern('^[0-9]{10}$')],
-      relationWithEmployee: [''],
-      employeePhoto: ['', Validators.required],
-      idProof: ['', Validators.required],
-      drivingLicense: ['']
-    });
-
-    this.employeeForm.get('employmentType')?.valueChanges.subscribe(value => {
-      this.employmentType = value;
-      this.updateConditionalValidators(value);
-    });
-  }
-
-  updateConditionalValidators(type: string) {
-    const regularFields = ['monthlyFixedSalary', 'workMode'];
-    const targetFields = ['monthlyGuaranteedSalary', 'targetType', 'monthlyTargetValue'];
-    const commissionFields = ['targetType', 'monthlyTargetValue'];
-
-    [...regularFields, ...targetFields].forEach(field => {
-      this.employeeForm.get(field)?.clearValidators();
-      this.employeeForm.get(field)?.updateValueAndValidity({ emitEvent: false });
-    });
-
-    if (type === 'Regular') {
-      regularFields.forEach(field => this.employeeForm.get(field)?.setValidators(Validators.required));
-    } else if (type === 'Target based') {
-      targetFields.forEach(field => this.employeeForm.get(field)?.setValidators(Validators.required));
-    } else if (type === 'Commission based') {
-      commissionFields.forEach(field => this.employeeForm.get(field)?.setValidators(Validators.required));
-    }
-
-    [...regularFields, ...targetFields].forEach(field => {
-      this.employeeForm.get(field)?.updateValueAndValidity({ emitEvent: false });
-    });
-  }
-
-  togglePersonalVehicleForm() {
-    this.showPersonalVehicleForm = !this.showPersonalVehicleForm;
-  }
-
-  onEmploymentTypeChange(event: any) {
-    // Logic handled by valueChanges subscription
-  }
-
-  onSubmit() {
-    if (this.employeeForm.invalid) {
-      this.employeeForm.markAllAsTouched();
-      toast.error('Please fill all required fields correctly');
-      return;
-    }
-    toast.success('Employee details submitted successfully');
-    console.log('Form Submitted', this.employeeForm.value);
-  }
-
-  previewUrl: string | ArrayBuffer | null = null;
-  isSelected = true;
-
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.previewUrl = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-}
-
-
-*/
-
 
 
 export class EmployeeDetails implements OnInit {
 
-employeeForm!: FormGroup;
+  employeeForm!: FormGroup;
   showPersonalVehicleForm = false;
   employmentType: string = '';
 
@@ -227,7 +110,7 @@ employeeForm!: FormGroup;
   setBackgroundImage: any;
   showRow: boolean = true;
   columns: number[] = [];
-  productsForm: any;
+  
   formBuilder: any;
   imageUrls: any;
   apiService: any;
@@ -758,53 +641,6 @@ allemploymenttype:any;
 
 
 
-  initForm() {
-    this.employeeForm = this.formBuilder.group({
-      employmentType: ['', Validators.required],
-      employeeName: ['', Validators.required],
-      mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      department: ['', Validators.required],
-      designation: ['', Validators.required],
-      officeLocation: ['', Validators.required],
-      reportingAuthority: ['', Validators.required],
-      monthlyFixedSalary: [''],
-      workMode: [''],
-      monthlyGuaranteedSalary: [''],
-      targetType: [''],
-      monthlyTargetValue: [''],
-      gender: ['', Validators.required],
-      dob: ['', Validators.required],
-      address: ['', Validators.required],
-      pinCode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
-      state: ['', Validators.required],
-      district: ['', Validators.required],
-      joiningDate: ['', Validators.required],
-      uan: [''],
-      pan: ['', [Validators.required, Validators.pattern('[A-Z]{5}[0-9]{4}[A-Z]{1}')]],
-      aadhaar: ['', [Validators.required, Validators.pattern('^[0-9]{12}$')]],
-      pfNumber: [''],
-      pfJoiningDate: [''],
-      esiNumber: [''],
-      vehicleId: ['', Validators.required],
-      bankName: [''],
-      ifscCode: ['', Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')],
-      accountNumber: [''],
-      accountHolderName: [''],
-      upiDetail: [''],
-      bloodGroup: [''],
-      emergencyContactPerson: [''],
-      emergencyContactNumber: ['', Validators.pattern('^[0-9]{10}$')],
-      relationWithEmployee: [''],
-      employeePhoto: ['', Validators.required],
-      idProof: ['', Validators.required],
-      drivingLicense: ['']
-    });
-
-    this.employeeForm.get('employmentType')?.valueChanges.subscribe(value => {
-      this.employmentType = value;
-      this.updateConditionalValidators(value);
-    });
-  }
 
 
     updateConditionalValidators(type: string) {
@@ -844,7 +680,7 @@ allemploymenttype:any;
   constructor(formBuilder: FormBuilder, apiService: ApiService, router: Router) {
     this.apiService = apiService;
     this.formBuilder = formBuilder;
-    this.productsForm = this.formBuilder
+    this.employeeForm = this.formBuilder
     this.showRow = true;
     this.imageUrls = [];
  
@@ -988,13 +824,13 @@ this.apiService.getAllCommissionType().subscribe(
       })
 
 
-    this.productsForm = this.formBuilder.group({
+    this.employeeForm = this.formBuilder.group({
       topimage: [''],
       name: [''],
       designationid:[''],
       designation: [''],
       department: [''],
-      workmode: [''],
+      workmode: ['wokmode'],
       officelocation:[''],
       contactnumber: [''],
       address:[''],
@@ -1124,40 +960,38 @@ this.apiService.getAllCommissionType().subscribe(
     this.showRow = !this.showRow;
   }
 
+
   onSubmit() {
 
+    alert(" On Submit");
+    console.log("this.productsForm=================== ");
+    console.log(this.employeeForm.value);
+    console.log("this.employeeForm ===============");
+    alert("  Niraj  " + this.employeeForm.value.name);
 
-    console.log("this.productsForm");
-
-    console.log(this.productsForm);
-
-    console.log("this.productsForm");
-
-
-
-    if (this.productsForm.value.name.length == 0) {
+    if (this.employeeForm.value.name.length == 0) {
       alert("Kinldy enter the Employee name.");
       return;
     }
-    else if (this.productsForm.value.topimage.length == 0) {
+    else if (this.employeeForm.value.topimage.length == 0) {
       alert("Kinldy select the topimage  ");
       return;
     }
-    else if (this.productsForm.value.designation.length == 0) {
+    else if (this.employeeForm.value.designation.length == 0) {
       alert("Kinldy enter  the employee designation ");
       return;
     }
     
 
-    else if (this.productsForm.value.workmode.length == 0) {
+    else if (this.employeeForm.value.workmode.length == 0) {
       alert("Kinldy enter  the work mode");
       return;
     }
-    else if (this.productsForm.value.contactnumber.length == 0 || this.productsForm.value.contactnumber == 0) {
+    else if (this.employeeForm.value.contactnumber.length == 0 || this.employeeForm.value.contactnumber == 0) {
       alert("Kinldy enter  the mobile number");
       return;
     }
-    else if (this.productsForm.value.department.length == 0 || this.productsForm.value.department == 0) {
+    else if (this.employeeForm.value.department.length == 0 || this.employeeForm.value.department == 0) {
       alert("Kinldy Enter  the department number");
       return;
     }
@@ -1167,9 +1001,9 @@ this.apiService.getAllCommissionType().subscribe(
 
 
 const payload = {
-    ...this.productsForm.value,   // existing form fields
+    ...this.employeeForm.value,   // existing form fields
     departmentobj: {
-      id: this.productsForm.value.department_id                  // or this.formsize.value.companyId
+      id: this.employeeForm.value.department_id                  // or this.formsize.value.companyId
     }
   };
 
@@ -2070,7 +1904,7 @@ const payload = {
 
 
   get f() {
-    return this.productsForm.controls;
+    return this.employeeForm.controls;
 
   }
 
@@ -2093,11 +1927,11 @@ onStateChange(event: any) {
   );
 
   if (selectedState) {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       state: selectedState.statename
     });
   } else {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       state: ''
     });
   }
@@ -2111,11 +1945,11 @@ onDepartmentChange(event: any) {
   );
 
   if (selectedDepartment) {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       department: selectedDepartment.deptname
     });
   } else {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       department: ''
     });
   }
@@ -2130,11 +1964,11 @@ onDesignationChange(event: any) {
   );
 
   if (selecteddesignation) {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       designation: selecteddesignation.designationname
     });
   } else {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       designation: ''
     });
   }
@@ -2150,11 +1984,11 @@ onWorkModeChange(event: any) {
   );
 
   if (selectedworkmode) {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       workmode: selectedworkmode.workmodename
     });
   } else {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       workmode: ''
     });
   }
@@ -2169,11 +2003,11 @@ onEmploymentTypeChange(event: any) {
   );
 
   if (selectedemploymenttype) {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       typeofemployment: selectedemploymenttype.employmenttypename
     });
   } else {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       typeofemployment: ''
     });
   }
@@ -2188,11 +2022,11 @@ onCommissionTypeChange(event: any) {
   );
 
   if (selectedcommissiontype) {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       commissiontype: selectedcommissiontype.commitiontypename
     });
   } else {
-    this.productsForm.patchValue({
+    this.employeeForm.patchValue({
       commissiontype: ''
     });
   }

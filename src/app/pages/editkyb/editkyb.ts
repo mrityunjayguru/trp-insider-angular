@@ -837,7 +837,7 @@ export class Editkyb implements OnInit {
       designationid: [''],
       designation: [''],
       department: [''],
-      workmode: [''],
+      workmode: ['workmode'],
       officelocation: [''],
       contactnumber: [''],
       address: [''],
