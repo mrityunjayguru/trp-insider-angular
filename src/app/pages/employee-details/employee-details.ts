@@ -1026,7 +1026,7 @@ const payload = {
     this.apiService.saveEmployee(this.formData).subscribe(
       (response: any) => {
 
-        alert(response.mesage);
+        alert("Niraj "+response.mesage);
         if (response.mesage == "Data Stored successfully." || response.status == 200) {
 
           this.router.navigateByUrl('/getallemployee.component');
