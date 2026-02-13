@@ -1,679 +1,918 @@
-<section class="w-full h-full">
-    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-        <!-- header -->
-        <div class="flex flex-col">
-            <h1 class="text-xl font-semibold text-primary">Add Employee</h1>
-        </div>
-        <hr class="border-[#D2D2D2] my-4" />
-        <div class="">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Employment Type<span class="text-primary"> *</span>
-                    </label>
-                    <select formControlName="employmentType"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('employmentType')?.touched && employeeForm.get('employmentType')?.invalid">
-                        <option value="">Choose Employment Type</option>
-                        <option value="Regular">Regular</option>
-                        <option value="Target based">Target based</option>
-                        <option value="Commission based">Commission based</option>
-                    </select>
-                    <div *ngIf="employeeForm.get('employmentType')?.touched && employeeForm.get('employmentType')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Employment Type is required</p>
-                    </div>
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Employee ID
-                    </label>
-                    <input type="text" value="TRPE0001" disabled
-                        class="mt-2 w-full border border-[#D2D2D2] bg-green-200 rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Name<span class="text-primary"> *</span>
-                    </label>
-                    <input type="text" formControlName="employeeName" placeholder="Enter Name"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('employeeName')?.touched && employeeForm.get('employeeName')?.invalid" />
-                    <div *ngIf="employeeForm.get('employeeName')?.touched && employeeForm.get('employeeName')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Name is required</p>
-                    </div>
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Mobile Number<span class="text-primary"> *</span>
-                    </label>
-                    <input type="text" formControlName="mobileNumber" placeholder="Enter Mobile Number"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('mobileNumber')?.touched && employeeForm.get('mobileNumber')?.invalid" />
-                    <div *ngIf="employeeForm.get('mobileNumber')?.touched && employeeForm.get('mobileNumber')?.invalid"
-                        class="mt-1">
-                        <p *ngIf="employeeForm.get('mobileNumber')?.errors?.['required']" class="text-red-500 text-xs">
-                            Mobile Number is required</p>
-                        <p *ngIf="employeeForm.get('mobileNumber')?.errors?.['pattern']" class="text-red-500 text-xs">
-                            Please enter a valid 10-digit mobile number</p>
-                    </div>
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Department<span class="text-primary"> *</span>
-                    </label>
-                    <select formControlName="department"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid">
-                        <option value="">Assign Department</option>
-                    </select>
-                    <div *ngIf="employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Department is required</p>
-                    </div>
-                </div>
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Designation<span class="text-primary"> *</span>
-                    </label>
-                    <select formControlName="designation"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid">
-                        <option value="">Assign Designation</option>
-                    </select>
-                    <div *ngIf="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Designation is required</p>
-                    </div>
-                </div>
 
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Office Location<span class="text-primary"> *</span>
-                    </label>
-                    <select formControlName="officeLocation"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('officeLocation')?.touched && employeeForm.get('officeLocation')?.invalid">
-                        <option value="">Choose Office Branch Location</option>
-                    </select>
-                    <div *ngIf="employeeForm.get('officeLocation')?.touched && employeeForm.get('officeLocation')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Office Location is required</p>
-                    </div>
-                </div>
+    
+<div style="padding: 100px 20px 249px 20px;">
+    <form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
+    
+       
 
-                <div>
-                    <label class="text-sm text-[#050914]">
-                        Reporting Authority<span class="text-primary"> *</span>
-                    </label>
-                    <select formControlName="reportingAuthority"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('reportingAuthority')?.touched && employeeForm.get('reportingAuthority')?.invalid">
-                        <option value="">Select Reporting Authority's Name</option>
-                    </select>
-                    <div *ngIf="employeeForm.get('reportingAuthority')?.touched && employeeForm.get('reportingAuthority')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Reporting Authority is required</p>
-                    </div>
-                </div>
 
-                <!-- Regular Employment Type Fields -->
-                <div *ngIf="employmentType === 'Regular'">
-                    <label class="text-sm text-[#050914]">
-                        Monthly Fixed Salary<span class="text-primary"> *</span>
-                    </label>
-                    <input type="text" formControlName="monthlyFixedSalary"
-                        placeholder="Enter Monthly Fixed Salary in INR"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('monthlyFixedSalary')?.touched && employeeForm.get('monthlyFixedSalary')?.invalid" />
-                    <div *ngIf="employeeForm.get('monthlyFixedSalary')?.touched && employeeForm.get('monthlyFixedSalary')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Monthly Fixed Salary is required</p>
-                    </div>
-                </div>
 
-                <div *ngIf="employmentType === 'Regular'">
-                    <label class="text-sm text-[#050914]">
-                        Work Mode<span class="text-primary"> *</span>
-                    </label>
-                    <select formControlName="workMode"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('workMode')?.touched && employeeForm.get('workMode')?.invalid">
-                        <option value="">Select Work Mode</option>
-                        <option value="WFH">WFH</option>
-                        <option value="Office">Office</option>
-                    </select>
-                    <div *ngIf="employeeForm.get('workMode')?.touched && employeeForm.get('workMode')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Work Mode is required</p>
-                    </div>
-                </div>
-
-                <!-- Target Based Employment Type Fields -->
-                <div *ngIf="employmentType === 'Target based'">
-                    <label class="text-sm text-[#050914]">
-                        Monthly Guaranteed Salary<span class="text-primary"> *</span>
-                    </label>
-                    <input type="text" formControlName="monthlyGuaranteedSalary"
-                        placeholder="Enter Monthly Guaranteed Salary in INR"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('monthlyGuaranteedSalary')?.touched && employeeForm.get('monthlyGuaranteedSalary')?.invalid" />
-                    <div *ngIf="employeeForm.get('monthlyGuaranteedSalary')?.touched && employeeForm.get('monthlyGuaranteedSalary')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Monthly Guaranteed Salary is required</p>
-                    </div>
-                </div>
-
-                <div *ngIf="employmentType === 'Target based' || employmentType === 'Commission based'">
-                    <label class="text-sm text-[#050914]">
-                        Target Type<span class="text-primary"> *</span>
-                    </label>
-                    <select formControlName="targetType"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('targetType')?.touched && employeeForm.get('targetType')?.invalid">
-                        <option value="">Choose Target Type</option>
-                    </select>
-                    <div *ngIf="employeeForm.get('targetType')?.touched && employeeForm.get('targetType')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Target Type is required</p>
-                    </div>
-                </div>
-
-                <div *ngIf="employmentType === 'Target based' || employmentType === 'Commission based'">
-                    <label class="text-sm text-[#050914]">
-                        Monthly Target Value<span class="text-primary"> *</span>
-                    </label>
-                    <input type="text" formControlName="monthlyTargetValue" placeholder="Enter Monthly Target Value"
-                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('monthlyTargetValue')?.touched && employeeForm.get('monthlyTargetValue')?.invalid" />
-                    <div *ngIf="employeeForm.get('monthlyTargetValue')?.touched && employeeForm.get('monthlyTargetValue')?.invalid"
-                        class="mt-1">
-                        <p class="text-red-500 text-xs">Monthly Target Value is required</p>
-                    </div>
-                </div>
+        <div class="row rowstyle">
+    
+            <div class="col padd" style="margin: 23px 0px;">
+                <label>
+                    Employee Name
+                </label><br>
+                <input type="text" name="style" id="style" formControlName="name">
             </div>
-            <div class="mt-4">
-                <h1 class="text-xl font-semibold text-primary">Personal Information</h1>
-                <hr class="border-[#D2D2D2] my-4" />
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Gender<span class="text-primary"> *</span>
-                        </label>
-                        <select formControlName="gender"
-                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('gender')?.touched && employeeForm.get('gender')?.invalid">
-                            <option value="">Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                        <div *ngIf="employeeForm.get('gender')?.touched && employeeForm.get('gender')?.invalid"
-                            class="mt-1">
-                            <p class="text-red-500 text-xs">Gender is required</p>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Date of Birth<span class="text-primary"> *</span>
-                        </label>
-                        <div class="relative">
-                            <input type="date" formControlName="dob" placeholder="Enter Date of Birth"
-                                class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                                [class.border-red-500]="employeeForm.get('dob')?.touched && employeeForm.get('dob')?.invalid" />
-                        </div>
-                        <div *ngIf="employeeForm.get('dob')?.touched && employeeForm.get('dob')?.invalid" class="mt-1">
-                            <p class="text-red-500 text-xs">Date of Birth is required</p>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Address<span class="text-primary"> *</span>
-                        </label>
-                        <input type="text" formControlName="address" placeholder="Enter Address"
-                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
-                            [class.border-red-500]="employeeForm.get('address')?.touched && employeeForm.get('address')?.invalid" />
-                        <div *ngIf="employeeForm.get('address')?.touched && employeeForm.get('address')?.invalid"
-                            class="mt-1">
-                            <p class="text-red-500 text-xs">Address is required</p>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Pin Code<span class="text-primary"> *</span>
-                        </label>
-                        <input type="text" formControlName="pinCode" placeholder="Enter Pin"
-                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
-                            [class.border-red-500]="employeeForm.get('pinCode')?.touched && employeeForm.get('pinCode')?.invalid" />
-                        <div *ngIf="employeeForm.get('pinCode')?.touched && employeeForm.get('pinCode')?.invalid"
-                            class="mt-1">
-                            <p *ngIf="employeeForm.get('pinCode')?.errors?.['required']" class="text-red-500 text-xs">
-                                Pin Code is required</p>
-                            <p *ngIf="employeeForm.get('pinCode')?.errors?.['pattern']" class="text-red-500 text-xs">
-                                Please enter a valid 6-digit pin code</p>
-                        </div>
-                    </div>
-
-                    <div class="md:col-span-2">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-
-                            <div>
-                                <label class="text-sm text-[#050914]">
-                                    Country<span class="text-primary"> *</span>
-                                </label>
-                                <input type="text" value="India" disabled
-                                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-green-500" />
-                            </div>
-
-                            <div>
-                                <label class="text-sm text-[#050914]">
-                                    State<span class="text-primary"> *</span>
-                                </label>
-                                <select formControlName="state"
-                                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                                    [class.border-red-500]="employeeForm.get('state')?.touched && employeeForm.get('state')?.invalid">
-                                    <option value="">Choose State</option>
-                                </select>
-                                <div *ngIf="employeeForm.get('state')?.touched && employeeForm.get('state')?.invalid"
-                                    class="mt-1">
-                                    <p class="text-red-500 text-xs">State is required</p>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="text-sm text-[#050914]">
-                                    District<span class="text-primary"> *</span>
-                                </label>
-                                <select formControlName="district"
-                                    class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                                    [class.border-red-500]="employeeForm.get('district')?.touched && employeeForm.get('district')?.invalid">
-                                    <option value="">Choose District</option>
-                                </select>
-                                <div *ngIf="employeeForm.get('district')?.touched && employeeForm.get('district')?.invalid"
-                                    class="mt-1">
-                                    <p class="text-red-500 text-xs">District is required</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="mt-4">
-                <h1 class="text-xl font-semibold text-primary">Employment Information</h1>
-                <hr class="border-[#D2D2D2] my-4" />
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Date of Joining<span class="text-primary"> *</span>
-                        </label>
-
-                        <div class="">
-                            <input type="date" formControlName="joiningDate" placeholder="Enter Joining Date" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-                 focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                                [class.border-red-500]="employeeForm.get('joiningDate')?.touched && employeeForm.get('joiningDate')?.invalid" />
-                        </div>
-                        <div *ngIf="employeeForm.get('joiningDate')?.touched && employeeForm.get('joiningDate')?.invalid"
-                            class="mt-1">
-                            <p class="text-red-500 text-xs">Joining Date is required</p>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            UAN
-                        </label>
-                        <input type="text" formControlName="uan" placeholder="Enter Universal Account Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                    </div>
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            PAN<span class="text-primary"> *</span>
-                        </label>
-                        <input type="text" formControlName="pan" placeholder="Enter Employee's PAN" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('pan')?.touched && employeeForm.get('pan')?.invalid" />
-                        <div *ngIf="employeeForm.get('pan')?.touched && employeeForm.get('pan')?.invalid" class="mt-1">
-                            <p *ngIf="employeeForm.get('pan')?.errors?.['required']" class="text-red-500 text-xs">PAN is
-                                required</p>
-                            <p *ngIf="employeeForm.get('pan')?.errors?.['pattern']" class="text-red-500 text-xs">Please
-                                enter a valid PAN (e.g., ABCDE1234F)</p>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Aadhaar Number<span class="text-primary"> *</span>
-                        </label>
-                        <input type="text" formControlName="aadhaar" placeholder="Enter Employee's Aadhaar" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('aadhaar')?.touched && employeeForm.get('aadhaar')?.invalid" />
-                        <div *ngIf="employeeForm.get('aadhaar')?.touched && employeeForm.get('aadhaar')?.invalid"
-                            class="mt-1">
-                            <p *ngIf="employeeForm.get('aadhaar')?.errors?.['required']" class="text-red-500 text-xs">
-                                Aadhaar Number is required</p>
-                            <p *ngIf="employeeForm.get('aadhaar')?.errors?.['pattern']" class="text-red-500 text-xs">
-                                Please enter a valid 12-digit Aadhaar number</p>
-                        </div>
-                    </div>
-                    <div class="md:col-span-2">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-                            <div>
-                                <label class="text-sm text-[#050914]">
-                                    PF Number
-                                </label>
-                                <input type="text" formControlName="pfNumber" placeholder="Enter PF Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                            </div>
-
-                            <div>
-                                <label class="text-sm text-[#050914]">
-                                    PF Joining Date
-                                </label>
-
-                                <div class="">
-                                    <input type="date" formControlName="pfJoiningDate"
-                                        placeholder="Choose PF Joining Date" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-                  focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                                </div>
-                            </div>
-                            <div>
-                                <label class="text-sm text-[#050914]">
-                                    ESI Number
-                                </label>
-                                <input type="text" formControlName="esiNumber" placeholder="Enter ESI Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-
-                            </div>
-                        </div>
+             <div class="row">
+                 <label>
+                    Employee Image
+                </label><br>
+            <div class="file-uploa">
+                <div class="image-upload-wrap" [style.backgroundImage]="'url(' + imageSrc + ')'" id="backgroundElement">
+                    <input type="file"  (change)="onFileSelected($event)" accept="image/*"  class="file-upload-input" name="topimage" id="topimage"
+                        formControlName="topimage" >
+                        
+                    <div class="drag-text">
+                        <img src="assets/icon.png" width="50px;">
+                        <h3>Upload Employee Images</h3>
                     </div>
                 </div>
-            </div>
-            <div class="mt-4">
-                <h1 class="text-xl font-semibold text-primary">Transport Details</h1>
-                <hr class="border-[#D2D2D2] my-4" />
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Choose Vehicle<span class="text-primary"> *</span>
-                        </label>
-                        <select formControlName="vehicleId"
-                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('vehicleId')?.touched && employeeForm.get('vehicleId')?.invalid">
-                            <option value="">Choose Vehicle</option>
-                        </select>
-                        <div *ngIf="employeeForm.get('vehicleId')?.touched && employeeForm.get('vehicleId')?.invalid"
-                            class="mt-1">
-                            <p class="text-red-500 text-xs">Vehicle is required</p>
-                        </div>
-                    </div>
-                    <div class="mt-6">
-                        <p class="text-sm text-[#050914]"> <span class="text-primary">*</span> If the vehicle is not
-                            listed
-                            in the database
-                        </p>
-                        <h1 class="text-[#006842] text-md font-semibold cursor-pointer hover:underline"
-                            (click)="togglePersonalVehicleForm()">Add Employee
-                            Personal Vehicle</h1>
-
-                    </div>
-                    <!-- Personal Vehicle Form -->
-                    <div *ngIf="showPersonalVehicleForm" class="mt-2 md:col-span-2 border p-4 rounded-md ">
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="text-sm font-medium text-[#050914]">
-                                    Add Vehicle Type<span class="text-primary">*</span>
-                                </label>
-                                <select
-                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
-                                    <option>Add Vehicle Type</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-sm font-medium text-[#050914]">
-                                    Vehicle Make/Brand<span class="text-primary">*</span>
-                                </label>
-                                <input type="text" placeholder="Add Vehicle Number"
-                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:outline-none" />
-                            </div>
-
-                            <div>
-                                <label class="text-sm font-medium text-[#050914]">
-                                    Vehicle Registration Number<span class="text-primary">*</span>
-                                </label>
-                                <select
-                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
-                                    <option>Add Vehicle Number</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="text-sm font-medium text-[#050914]">
-                                    Fuel Type<span class="text-primary">*</span>
-                                </label>
-                                <select
-                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
-                                    <option>Vehicle Fuel Type</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-sm font-medium text-[#050914]">
-                                    GPS Device ID<span class="text-primary">*</span>
-                                </label>
-                                <select
-                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
-                                    <option>Choose GPS Device</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-sm font-medium text-[#050914]">
-                                    Owned by<span class="text-primary">*</span>
-                                </label>
-                                <input type="text" disabled value="Personal Vehicle"
-                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm bg-[#E7F9EE] text-[#006842]" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="mt-4">
-                <h1 class="text-xl font-semibold text-primary">Bank Details</h1>
-                <hr class="border-[#D2D2D2] my-4" />
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Bank Name
-                        </label>
-                        <select formControlName="bankName" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                            <option value="">Choose Name of Bank</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            IFSC Code
-                        </label>
-                        <input type="text" formControlName="ifscCode" placeholder="Enter IFSC Code" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('ifscCode')?.touched && employeeForm.get('ifscCode')?.invalid" />
-                        <div *ngIf="employeeForm.get('ifscCode')?.touched && employeeForm.get('ifscCode')?.invalid"
-                            class="mt-1">
-                            <p class="text-red-500 text-xs">Please enter a valid IFSC code (e.g., ABCD0123456)</p>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Account Number
-                        </label>
-                        <input type="text" formControlName="accountNumber" placeholder="Enter Account Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Account Holder Name
-                        </label>
-                        <input type="text" formControlName="accountHolderName" placeholder="Enter Account Holder Name"
-                            class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            UPI Detail
-                        </label>
-                        <input type="text" formControlName="upiDetail" placeholder="Enter UPI ID" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                    </div>
-
-                </div>
-            </div>
-            <div class="mt-4">
-                <h1 class="text-xl font-semibold text-primary">Emergency Details</h1>
-                <hr class="border-[#D2D2D2] my-4" />
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Employee’s Blood Group
-                        </label>
-                        <select formControlName="bloodGroup" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                            <option value="">Choose Blood Group</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Emergency Contact Person
-                        </label>
-                        <input type="text" formControlName="emergencyContactPerson"
-                            placeholder="Enter Emergency Contact Name" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                    </div>
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Emergency Contact Number
-                        </label>
-                        <input type="text" formControlName="emergencyContactNumber"
-                            placeholder="Enter Emergency Contact Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('emergencyContactNumber')?.touched && employeeForm.get('emergencyContactNumber')?.invalid" />
-                        <div *ngIf="employeeForm.get('emergencyContactNumber')?.touched && employeeForm.get('emergencyContactNumber')?.invalid"
-                            class="mt-1">
-                            <p class="text-red-500 text-xs">Please enter a valid 10-digit contact number</p>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Relation with Employee
-                        </label>
-                        <input type="text" formControlName="relationWithEmployee"
-                            placeholder="Enter Relationship with Employee" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
-               focus:ring-2 focus:ring-teal-500 focus:outline-none" />
-                    </div>
-
-                </div>
-            </div>
-            <div class="mt-4">
-                <h1 class="text-xl font-semibold text-primary">Upload Documents</h1>
-                <hr class="border-[#D2D2D2] my-4" />
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-center">
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Employee Photo<span class="text-primary"> *</span>
-                        </label>
-                        <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white"
-                            [class.border-red-500]="employeeForm.get('employeePhoto')?.touched && employeeForm.get('employeePhoto')?.invalid">
-                            <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
-                            <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
-                                <img src="assets/icons/upload.svg" alt="" />
-                            </div>
-                        </div>
-                        <div *ngIf="employeeForm.get('employeePhoto')?.touched && employeeForm.get('employeePhoto')?.invalid"
-                            class="mt-1">
-                            <p class="text-red-500 text-xs">Employee Photo is required</p>
-                        </div>
-                        <button type="button" (click)="fileInput.click()"
-                            class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-                            Upload File
-                        </button>
-                        <input #fileInput type="file" accept="image/*" class="hidden"
-                            (change)="onFileSelected($event)" />
-                    </div>
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Aadhaar/VoterID/Passport <span class="text-primary">*</span>
-                        </label>
-                        <div class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white"
-                            [class.border-red-500]="employeeForm.get('idProof')?.touched && employeeForm.get('idProof')?.invalid">
-                            <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
-                            <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
-                                <img src="assets/icons/upload.svg" alt="" />
-                            </div>
-                        </div>
-                        <div *ngIf="employeeForm.get('idProof')?.touched && employeeForm.get('idProof')?.invalid"
-                            class="mt-1">
-                            <p class="text-red-500 text-xs">ID Proof is required</p>
-                        </div>
-                        <button type="button" (click)="idProofInput.click()"
-                            class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-                            Upload File
-                        </button>
-                        <input #idProofInput type="file" accept="image/*" class="hidden"
-                            (change)="onFileSelected($event)" />
-                    </div>
-                    <div>
-                        <label class="text-sm text-[#050914]">
-                            Driving Licence<span class="text-primary">*</span>
-                        </label>
-                        <div
-                            class="mt-2 border border-gray-200 rounded-lg h-32 flex items-center justify-center bg-white">
-                            <img *ngIf="previewUrl" [src]="previewUrl" class="h-full object-contain rounded-md" />
-                            <div *ngIf="!previewUrl" class="text-gray-400 text-3xl">
-                                <img src="assets/icons/upload.svg" alt="" />
-                            </div>
-                        </div>
-                        <button type="button" (click)="dlInput.click()"
-                            class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">
-                            Upload File
-                        </button>
-                        <input #dlInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
-                    </div>
-                    <div>
-                        <p class="text-gray-400 text-sm">
-                            <span class="text-primary">*</span>
-                            Driving Licence is mandatory if <br>
-                            designated as Driver
-                        </p>
-                    </div>
-                </div>
+               
             </div>
         </div>
-        <button type="submit"
-            class="bg-[#006842] text-white hover:bg-secondary hover:text-primary font-medium w-full md:w-1/2 cursor-pointer rounded-md p-2 mt-6">
-            Submit
-        </button>
+
+
+    <div class="col padd" style="margin: 23px 0px;">
+    <label>Select Designation </label><br>
+    <select formControlName="designationid" class="form-control"   (change)="onDesignationChange($event)">
+        <option value="">-- Select Designation --</option>
+        <option *ngFor="let dept of alldesignation"
+                [value]="dept.id">
+               {{dept.designationname}}
+        </option>
+    </select>
+</div>
+
+
+            <div class="col">
+                <label>Designation</label><br>
+                
+
+                <input type="text" name="style" id="style" formControlName="designation" readonly>
+            </div>
+            
+
+<div class="col padd" style="margin: 23px 0px;">
+    <label>Select Department </label><br>
+    <select formControlName="department_id" class="form-control"   (change)="onDepartmentChange($event)">
+        <option value="">-- Select Department --</option>
+        <option *ngFor="let dept of departments"
+                [value]="dept.id">
+            {{dept.deptname}}
+        </option>
+    </select>
+</div>
+
+<div class="col padd" style="margin: 23px 0px;">
+                <label>
+                    Department Name
+                </label><br>
+                <input type="text" name="style" id="style" formControlName="department" readonly>
+            </div>
+
+
+
+        </div>
+    
+        <div class="row rowstyle">
+
+            
+
+
+            <div class="col padd" style="margin: 23px 0px;">
+                <label>Select Work Mode </label><br>
+                <select formControlName="workmodeid" class="form-control"   (change)="onWorkModeChange($event)">
+                    <option value="">-- Select work mode --</option>
+                    <option *ngFor="let wm of allworkmode"
+                            [value]="wm.id">
+                             {{wm.workmodename}}
+                    </option>
+                </select>
+            </div>
+
+    
+            <div class="col padd">
+                <label style="margin-top: 20px;">
+                    Work Mode 
+                </label><br>
+                
+                <input type="text" name="style" id="style" formControlName="workmode">
+            
+            </div>
+            <div class="col mty">
+                <label class="mst" style="margin-top: 10px;"> Office Location </label><br>
+                <input type="text" id="officelocation" name="officelocation" formControlName="officelocation" >
+            </div>
+            <div class="col mty">
+                <label class="mst" style="margin-top: 7px;">
+                    Contact number
+                </label><br>
+                <input type="text" name="contactnumber" id="contactnumber" formControlName="contactnumber">
+            </div>
+        </div>
+        <div class="row rowstyle">
+    
+            <div class="col padd myt">
+                <label>
+                  Address
+                </label><br>
+                <input type="text" name="address" id="address" formControlName="address">
+            </div>
+
+            <div class="col mty">
+                <label>
+                  Country
+                </label><br>
+                <input type="text" name="country" id="country" formControlName="country">
+               
+            </div>
+            
+
+            <div class="col padd" style="margin: 23px 0px;">
+                <label> Select State </label><br>
+                <select formControlName="staeid" class="form-control" (change)="onStateChange($event)">
+                    <option value="">-- Select State --</option>
+                    <option *ngFor="let dept of allState"
+                            [value]="dept.id">
+                        {{ dept.statename }}
+                    </option>
+                </select>
+            </div>
+
+            
+          
+            <div class="col mty">   
+                     <label>
+                          State Name
+                    </label><br>
+                        <input type="text" name="state" id="state" formControlName="state" readonly>
+            </div>
+        
+        </div>
+        
+
+
+
+        <div class="row rowstyle">
+    
+            <div class="col padd myt">
+                <label>
+                  City
+                </label><br>
+                <input type="text" name="city" id="city" formControlName="city">
+            </div>
+
+            
+            
+            
+            <div class="col mty">   
+                <label>
+                  PIN Code
+                </label><br>
+                <input type="text" name="pincode" id="pincode" formControlName="pincode">
+                 
+            </div>
+        
+        </div>
+
+        
+
+
+        
+        <div class="row rowstyle">
+    
+            <div class="col padd myt">
+                <label>
+                  Reporting Manager
+                </label><br>
+                <input type="text" name="reportingmanager" id="reportingmanager" formControlName="reportingmanager">
+            </div>
+
+            <div class="col mty">
+
+                
+                 <label>
+                  Gender
+                </label><br>
+                <input type="text" name="gender" id="gender" formControlName="gender">
+           
+                
+            </div>
+            
+            <div class="col mty">   
+                
+                 <label>
+                  Date of birth
+                </label><br>
+                <input type="date" name="dateofbirth" id="dateofbirth" formControlName="dateofbirth">
+           
+                 
+            </div>
+
+
+            
+            <div class="col mty">   
+                
+                 <label>
+                     Date of joining
+                </label><br>
+                <input type="date" name="dateofjoining" id="dateofjoining" formControlName="dateofjoining">
+           
+                 
+            </div>
+
+
+            
+            
+            
+            <div class="col mty">   
+                
+                 <label>
+                     PAN Number
+                </label><br>
+                <input type="text" name="pannumber" id="pannumber" formControlName="pannumber">
+           
+                 
+            </div>
+
+            <div class="col mty">   
+                
+                 <label>
+                     Aadhaar Number
+                </label><br>
+                <input type="text" name="aadhaarnumber" id="aadhaarnumber" formControlName="aadhaarnumber">
+           
+                 
+            </div>
+
+            <div class="col mty">   
+                
+                 <label>
+                     UAN Number
+                </label><br>
+                <input type="text" name="uan" id="uan" formControlName="uan">
+           
+                 
+            </div>
+
+            <div class="col mty">   
+                
+                 <label>
+                     PF Number
+                </label><br>
+                <input type="text" name="pfnumber" id="pfnumber" formControlName="pfnumber">
+           
+                 
+            </div>
+
+            
+
+            
+            <div class="col mty">   
+                
+                 <label>
+                     PF Joining Date
+                </label><br>
+                <input type="date" name="pfjoiningdate" id="pfjoiningdate" formControlName="pfjoiningdate">
+           
+                 
+            </div>
+
+
+            <div class="col mty">   
+                
+                 <label>
+                     ESI Number
+                </label><br>
+                <input type="text" name="esinumber" id="esinumber" formControlName="esinumber">
+           
+                 
+            </div>
+
+
+            
+            <div class="col mty">   
+                
+                 <label>
+                     Name of Bank
+                </label><br>
+                <input type="text" name="nameofbank" id="nameofbank" formControlName="nameofbank">
+           
+                 
+            </div>
+
+            <div class="col mty">   
+                
+                 <label>
+                     IFSC Code
+                </label><br>
+                <input type="text" name="ifsccode" id="ifsccode" formControlName="ifsccode">
+           
+                 
+            </div>
+
+
+            
+             <div class="col mty">   
+                
+                 <label>
+                     Account Number
+                </label><br>
+                <input type="text" name="accountnumber" id="accountnumber" formControlName="accountnumber">
+           
+                 
+            </div>
+
+
+            <div class="col mty">   
+                
+                 <label>
+                     Name of Account Holder
+                </label><br>
+                <input type="text" name="nameofaccountholder" id="nameofaccountholder" formControlName="nameofaccountholder">
+           
+                 
+            </div>
+
+            <div class="col mty">   
+                
+                 <label>
+                     UPI ID
+                </label><br>
+                <input type="text" name="upiid" id="upiid" formControlName="upiid">
+           
+                 
+            </div>
+
+            <div class="col mty">   
+                
+                 <label>
+                     Blood Group of Employee
+                </label><br>
+                <input type="text" name="bloodgroupofemployee" id="bloodgroupofemployee" formControlName="bloodgroupofemployee">
+           
+                 
+            </div>
+
+            <div class="col mty">   
+                
+                 <label>
+                     Emergency Contact Person Name
+                </label><br>
+                <input type="text" name="emergencycontactpersonname" id="emergencycontactpersonname" formControlName="emergencycontactpersonname">
+           
+                 
+            </div>
+
+
+             <div class="col mty">   
+                
+                 <label>
+                     Relation
+                </label><br>
+                <input type="text" name="relation" id="relation" formControlName="relation">
+           
+                 
+            </div>
+
+            <div class="col mty">   
+                
+                 <label>
+                     Relation Contact Number
+                </label><br>
+                <input type="text" name="relationcontactnumber" id="relationcontactnumber" formControlName="relationcontactnumber">
+           
+                 
+            </div>
+
+
+            
+            <div class="col padd" style="margin: 23px 0px;">
+                <label> Select Employment Type </label><br>
+                <select formControlName="typeofemploymentid" class="form-control" (change)="onEmploymentTypeChange($event)">
+                    <option value="">-- Select Employment Type --</option>
+                    <option *ngFor="let dept of allemploymenttype"
+                            [value]="dept.id">
+                        {{ dept.employmenttypename }}
+                    </option>
+                </select>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="col mty">   
+                
+                 <label>
+                     Type of Employment
+                </label><br>
+                <input type="text" name="typeofemployment" id="typeofemployment" formControlName="typeofemployment">
+           
+                 
+            </div>
+
+
+            
+            <div class="col mty">   
+                
+                 <label>
+                     Monthly Fixed Salary
+                </label><br>
+                <input type="number" name="monthlyfixedsalary" id="monthlyfixedsalary" formControlName="monthlyfixedsalary">
+           
+                 
+            </div>
+
+
+            <div class="col mty">   
+                
+                 <label>
+                     Minimum Guaranteed Salary
+                </label><br>
+                <input type="number" name="minimumguaranteedsalary" id="minimumguaranteedsalary" formControlName="minimumguaranteedsalary">
+           
+                 
+            </div>
+
+            <div class="col mty">   
+                
+                 <label>
+                     Monthly Target Value
+                </label><br>
+                <input type="number" name="monthlytargetvalue" id="monthlytargetvalue" formControlName="monthlytargetvalue">
+           
+                 
+            </div>
+
+
+        <div class="col padd" style="margin: 23px 0px;">
+                <label> Select Commission Type </label><br>
+                <select formControlName="commissionid" class="form-control" (change)="onCommissionTypeChange($event)">
+                    <option value="">-- Select Commission Type --</option>
+                    <option *ngFor="let dept of allcommission"
+                            [value]="dept.id">
+                        {{ dept.commitiontypename }}
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="col mty">   
+                
+                 <label>
+                     Commission Type
+                </label><br>
+                <input type="text" name="commissiontype" id="commissiontype" formControlName="commissiontype">
+           
+                 
+            </div>
+
+            <div class="col mty">   
+                
+                 <label>
+                     Commission Rate
+                </label><br>
+                <input type="number" name="commissionrate" id="commissionrate" formControlName="commissionrate">
+           
+                 
+            </div>
+
+</div>
+        
+
+        
+
+
+    
+    
+        <div class="row md"  style="display: none;">
+            <div class="col1"><button type="button" class="btn subbtn" (click)="toggleRowVisibility()">Add Color</button></div>
+            
+        </div>
+        <div class="row2 var" *ngIf="showRow">
+            <div class="row" style="display: flex;">
+              
+            <div class="column1" style="display: none;">
+                
+                <label class="picture backgroundElement" for="picture__input" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom + ')'" id="backgroundElement">
+                     
+               Upload  <br>      Company <br>  Identity  <br> Document
+                </label>
+                <input type="file" (change)="onFileSelectBottom($event)" name="picture__input" id="picture__input" style="display:none;"
+                    formControlName="pictureinput">
+                    
+                <input id="textaa" name="color" type="text" class="mim"
+                    formControlName="imgcolor0" style="display: none;">
+                    
+                    
+            </div>
+          
+            <div class="column1"  *ngIf="showColumn1" style="display: none;">
+                
+                <label class="picture backgroundElement" for="picture__input1" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom1 + ')'" id="backgroundElement1">
+                Upload  <br>    Company <br> Upload <br>Document
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottoms($event)" name="picture__input" id="picture__input1" style="display:none;"
+                    formControlName="pictureinput1" >
+                <input id="textaa" name="color1" type="text" class="mim"
+                    formControlName="imgcolor1"  style="display: none;">
+                    <input type="button" class="remove-button" (click)="removeColumn('column1')" value="-" style="display: none;">
+            </div>
+            <div class="column1" *ngIf="showColumn2">
+                
+                <label class="picture backgroundElement" for="picture__input2" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom2 + ')'" id="backgroundElement2">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom2($event)" name="picture__input" id="picture__input2" style="display:none;"
+                    formControlName="pictureinput2" >
+                <input id="textaa" name="color2" type="text" class="mim"
+                    formControlName="imgcolor2"  style="display: none;">
+                    <input type="button" class="remove-button" (click)="removeColumn('column2')" value="-" style="display: none;">
+            </div>
+            <div class="column1" *ngIf="showColumn3">
+                
+                <label class="picture backgroundElement" for="picture__input3" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom3 + ')'" id="backgroundElement3">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom3($event)" name="picture__input" id="picture__input3" style="display:none;"
+                    formControlName="pictureinput3" >
+                <input id="textaa" name="color3" type="text" class="mim"
+                    formControlName="imgcolor3" >
+                    <input type="button" class="remove-button" (click)="removeColumn('column3')" value="-">
+            </div>
+            <div class="column1" *ngIf="showColumn4">
+                
+                <label class="picture backgroundElement" for="picture__input4" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom4 + ')'" id="backgroundElement4">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom4($event)" name="picture__input" id="picture__input4" style="display:none;"
+                    formControlName="pictureinput4" >
+                <input id="textaa" name="color4" type="text" class="mim"
+                    formControlName="imgcolor4" >
+                    <input type="button" class="remove-button" (click)="removeColumn('column4')" value="-">
+            </div>
+            <div class="column1" *ngIf="showColumn5">
+                
+                <label class="picture backgroundElement" for="picture__input5" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom5 + ')'" id="backgroundElement5">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom5($event)" name="picture__input" id="picture__input5" style="display:none;"
+                    formControlName="pictureinput5" >
+                <input id="textaa" name="color4" type="text" class="mim"
+                    formControlName="imgcolor5" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column5')" value="-">  
+            </div>
+            <div class="column1" *ngIf="showColumn6">
+                
+                <label class="picture backgroundElement" for="picture__input6" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom6 + ')'" id="backgroundElement6">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom6($event)" name="picture__input" id="picture__input6" style="display:none;"
+                    formControlName="pictureinput6" >
+                <input id="textaa" name="color6" type="text" class="mim"
+                    formControlName="imgcolor6" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column6')" value="-">  
+            </div>
+            <div class="column1" *ngIf="showColumn7">
+                
+                <label class="picture backgroundElement" for="picture__input7" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom7 + ')'" id="backgroundElement7">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom7($event)" name="picture__input" id="picture__input7" style="display:none;"
+                    formControlName="pictureinput7" >
+                <input id="textaa" name="imgcolor7" type="text" class="mim"
+                    formControlName="imgcolor7" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column7')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn8">
+                
+                <label class="picture backgroundElement" for="picture__input8" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom8 + ')'" id="backgroundElement8">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom8($event)" name="picture__input" id="picture__input8" style="display:none;"
+                    formControlName="pictureinput8" >
+                <input id="textaa" name="imgcolor8" type="text" class="mim"
+                    formControlName="imgcolor8" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column8')" value="-">  
+            </div>
+            <div class="column1" *ngIf="showColumn9">
+                
+                <label class="picture backgroundElement" for="picture__input9" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom9 + ')'" id="backgroundElement9">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom9($event)" name="picture__input" id="picture__input9" style="display:none;"
+                    formControlName="pictureinput9" >
+                <input id="textaa" name="imgcolor9" type="text" class="mim"
+                    formControlName="imgcolor9" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column9')" value="-">  
+            </div>
+            <div class="column1" *ngIf="showColumn10">
+                
+                <label class="picture backgroundElement" for="picture__input10" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom10 + ')'" id="backgroundElement10">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom10($event)" name="picture__input" id="picture__input10" style="display:none;"
+                    formControlName="pictureinput10" >
+                <input id="textaa" name="imgcolor10" type="text" class="mim"
+                    formControlName="imgcolor10" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column10')" value="-">  
+            </div>
+            
+            <div class="column1" *ngIf="showColumn11">
+                
+                <label class="picture backgroundElement" for="picture__input11" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom11 + ')'" id="backgroundElement11">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom11($event)" name="picture__input" id="picture__input11" style="display:none;"
+                    formControlName="pictureinput11" >
+                <input id="textaa" name="imgcolor11" type="text" class="mim"
+                    formControlName="imgcolor11" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column11')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn12">
+                
+                <label class="picture backgroundElement" for="picture__input12" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom12 + ')'" id="backgroundElement12">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom12($event)" name="picture__input" id="picture__input12" style="display:none;"
+                    formControlName="pictureinput12" >
+                <input id="textaa" name="imgcolor12" type="text" class="mim"
+                    formControlName="imgcolor12" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column12')" value="-">  
+            </div>
+            <div class="column1" *ngIf="showColumn13">
+                
+                <label class="picture backgroundElement" for="picture__input13" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom13 + ')'" id="backgroundElement13">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom13($event)" name="picture__input" id="picture__input13" style="display:none;"
+                    formControlName="pictureinput13" >
+                <input id="textaa" name="imgcolor13" type="text" class="mim"
+                    formControlName="imgcolor13" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column13')" value="-">  
+            </div>
+            <div class="column1" *ngIf="showColumn14">
+                
+                <label class="picture backgroundElement" for="picture__input14" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom14 + ')'" id="backgroundElement14">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom14($event)" name="picture__input" id="picture__input14" style="display:none;"
+                    formControlName="pictureinput14" >
+                <input id="textaa" name="imgcolor14" type="text" class="mim"
+                    formControlName="imgcolor14" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column14')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn15">
+                
+                <label class="picture backgroundElement" for="picture__input15" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom15 + ')'" id="backgroundElement15">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom15($event)" name="picture__input" id="picture__input15" style="display:none;"
+                    formControlName="pictureinput15" >
+                <input id="textaa" name="imgcolor15" type="text" class="mim"
+                    formControlName="imgcolor15" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column15')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn16">
+                
+                <label class="picture backgroundElement" for="picture__input16" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom16 + ')'" id="backgroundElement16">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom16($event)" name="picture__input" id="picture__input16" style="display:none;"
+                    formControlName="pictureinput16" >
+                <input id="textaa" name="imgcolor16" type="text" class="mim"
+                    formControlName="imgcolor16" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column16')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn17">
+                
+                <label class="picture backgroundElement" for="picture__input17" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom17 + ')'" id="backgroundElement17">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom17($event)" name="picture__input" id="picture__input17" style="display:none;"
+                    formControlName="pictureinput17" >
+                <input id="textaa" name="imgcolor17" type="text" class="mim"
+                    formControlName="imgcolor17" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column17')" value="-">  
+            </div>
+            <div class="column1" *ngIf="showColumn18">
+                
+                <label class="picture backgroundElement" for="picture__input18" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom18 + ')'" id="backgroundElement18">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom18($event)" name="picture__input" id="picture__input18" style="display:none;"
+                    formControlName="pictureinput18" >
+                <input id="textaa" name="imgcolor18" type="text" class="mim"
+                    formControlName="imgcolor18" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column18')" value="-">  
+            </div>
+    
+    
+            <div class="column1" *ngIf="showColumn19">
+                
+                <label class="picture backgroundElement" for="picture__input19" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom19 + ')'" id="backgroundElement19">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom19($event)" name="picture__input" id="picture__input19" style="display:none;"
+                    formControlName="pictureinput19" >
+                <input id="textaa" name="imgcolor19" type="text" class="mim"
+                    formControlName="imgcolor19" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column19')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn20">
+                
+                <label class="picture backgroundElement" for="picture__input20" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom20 + ')'" id="backgroundElement20">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom20($event)" name="picture__input" id="picture__input20" style="display:none;"
+                    formControlName="pictureinput20" >
+                <input id="textaa" name="imgcolor20" type="text" class="mim"
+                    formControlName="imgcolor20" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column20')" value="-">  
+            </div>
+            <div class="column1" *ngIf="showColumn21">
+                
+                <label class="picture backgroundElement" for="picture__input21" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom21 + ')'" id="backgroundElement21">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom21($event)" name="picture__input" id="picture__input21" style="display:none;"
+                    formControlName="pictureinput21" >
+                <input id="textaa" name="imgcolor21" type="text" class="mim"
+                    formControlName="imgcolor21" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column21')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn22">
+                
+                <label class="picture backgroundElement" for="picture__input22" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom22 + ')'" id="backgroundElement22">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom22($event)" name="picture__input" id="picture__input22" style="display:none;"
+                    formControlName="pictureinput22" >
+                <input id="textaa" name="imgcolor22" type="text" class="mim"
+                    formControlName="imgcolor22" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column22')" value="-">  
+            </div>
+            <div class="column1" *ngIf="showColumn23">
+                
+                <label class="picture backgroundElement" for="picture__input23" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom23 + ')'" id="backgroundElement23">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom23($event)" name="picture__input" id="picture__input23" style="display:none;"
+                    formControlName="pictureinput23" >
+                <input id="textaa" name="imgcolor23" type="text" class="mim"
+                    formControlName="imgcolor23" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column23')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn24">
+                
+                <label class="picture backgroundElement" for="picture__input24" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom24 + ')'" id="backgroundElement24">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom24($event)" name="picture__input" id="picture__input24" style="display:none;"
+                    formControlName="pictureinput24" >
+                <input id="textaa" name="imgcolor24" type="text" class="mim"
+                    formControlName="imgcolor24" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column24')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn25">
+                
+                <label class="picture backgroundElement" for="picture__input25" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom25 + ')'" id="backgroundElement25">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom25($event)" name="picture__input" id="picture__input25" style="display:none;"
+                    formControlName="pictureinput25" >
+                <input id="textaa" name="imgcolor25" type="text" class="mim"
+                    formControlName="imgcolor25" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column25')" value="-">  
+            </div>
+    
+    
+            <div class="column1" *ngIf="showColumn26">
+                
+                <label class="picture backgroundElement" for="picture__input26" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom26 + ')'" id="backgroundElement26">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom26($event)" name="picture__input" id="picture__input26" style="display:none;"
+                    formControlName="pictureinput26" >
+                <input id="textaa" name="imgcolor26" type="text" class="mim"
+                    formControlName="imgcolor26" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column26')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn27">
+                
+                <label class="picture backgroundElement" for="picture__input27" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom27 + ')'" id="backgroundElement27">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom27($event)" name="picture__input" id="picture__input27" style="display:none;"
+                    formControlName="pictureinput27" >
+                <input id="textaa" name="imgcolor27" type="text" class="mim"
+                    formControlName="imgcolor27" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column27')" value="-">  
+            </div>
+    
+            <div class="column1" *ngIf="showColumn28">
+                
+                <label class="picture backgroundElement" for="picture__input28" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom28 + ')'" id="backgroundElement28">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom28($event)" name="picture__input" id="picture__input28" style="display:none;"
+                    formControlName="pictureinput28" >
+                <input id="textaa" name="imgcolor28" type="text" class="mim"
+                    formControlName="imgcolor28" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column28')" value="-">  
+            </div>
+            <div class="column1" *ngIf="showColumn29">
+                
+                <label class="picture backgroundElement" for="picture__input29" tabindex="0" [style.backgroundImage]="'url(' + imageSrcbottom29 + ')'" id="backgroundElement29">
+                    Upload <br>Image
+                </label>
+    
+                <input type="file" (change)="onFileSelectBottom29($event)" name="picture__input" id="picture__input29" style="display:none;"
+                    formControlName="pictureinput29" >
+                <input id="textaa" name="imgcolor29" type="text" class="mim"
+                    formControlName="imgcolor29" >
+                    <input type="button" class="remove-button" class="remove-button" (click)="removeColumn('column29')" value="-">  
+            </div>
+    
+        
+            <div class="col" >
+                <div class="plus-icon" *ngIf="!showColumn31" (click)="showNextColumn()" style="display: none;">
+                    +
+                </div>
+            </div>
+            
+        </div>
+        
+        </div>
+        <div class="row2" style="display:flex;margin-top: 20px;">
+           
+        </div>
+    
+        <div class="row md">
+            <div class="col1"><button type="submit" class="btn subbtn" [disabled]="!productsForm.valid">Submit</button></div>
+            
+    
+        </div>
+
+        <div class="row md">
+              
+
+              <button class="btn subbtn" routerLink="/getallemployee.component">
+                 Show Employees
+                </button>
+        </div>
+    
+    
     </form>
-</section>
+
+    <table>
+
+        
+    </table>
+    
+    </div>
