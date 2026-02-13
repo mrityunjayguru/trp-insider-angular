@@ -825,6 +825,9 @@ this.apiService.getAllCommissionType().subscribe(
 
 
     this.employeeForm = this.formBuilder.group({
+
+      employmentType:[''],
+
       topimage: [''],
       name: [''],
       designationid:[''],
@@ -832,6 +835,7 @@ this.apiService.getAllCommissionType().subscribe(
       department: [''],
       workmode: ['wokmode'],
       officelocation:[''],
+      reportingauthority:[''],
       contactnumber: [''],
       address:[''],
       country: [''],

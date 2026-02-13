@@ -11,15 +11,15 @@
                     <label class="text-sm text-[#050914]">
                         Employment Type<span class="text-primary"> *</span>
                     </label>
-                    <select formControlName="employmentType"
+                    <select formControlName="typeofemployment"
                         class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('employmentType')?.touched && employeeForm.get('employmentType')?.invalid">
+                        [class.border-red-500]="employeeForm.get('typeofemployment')?.touched && employeeForm.get('typeofemployment')?.invalid">
                         <option value="">Choose Employment Type</option>
                         <option value="Regular">Regular</option>
                         <option value="Target based">Target based</option>
                         <option value="Commission based">Commission based</option>
                     </select>
-                    <div *ngIf="employeeForm.get('employmentType')?.touched && employeeForm.get('employmentType')?.invalid"
+                    <div *ngIf="employeeForm.get('typeofemployment')?.touched && employeeForm.get('typeofemployment')?.invalid"
                         class="mt-1">
                         <p class="text-red-500 text-xs">Employment Type is required</p>
                     </div>
@@ -105,16 +105,16 @@
                     <label class="text-sm text-[#050914]">
                         Office Location<span class="text-primary"> *</span>
                     </label>
-                    <select formControlName="officeLocation"
+                    <select formControlName="officelocation"
                         class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('officeLocation')?.touched && employeeForm.get('officeLocation')?.invalid">
+                        [class.border-red-500]="employeeForm.get('officelocation')?.touched && employeeForm.get('officelocation')?.invalid">
                         <option value="">Choose Office Branch Location</option>
                         <option value="New Delhi">New Delhi</option>
                         <option value="Mumbai">Mumbai</option>
                         <option value="Bangalore">Bangalore</option>
 
                     </select>
-                    <div *ngIf="employeeForm.get('officeLocation')?.touched && employeeForm.get('officeLocation')?.invalid"
+                    <div *ngIf="employeeForm.get('officelocation')?.touched && employeeForm.get('officelocation')?.invalid"
                         class="mt-1">
                         <p class="text-red-500 text-xs">Office Location is required</p>
                     </div>
