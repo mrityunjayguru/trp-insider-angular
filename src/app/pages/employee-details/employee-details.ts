@@ -827,6 +827,14 @@ this.apiService.getAllCommissionType().subscribe(
     this.employeeForm = this.formBuilder.group({
 
       employmentType:[''],
+      
+      pan:[''],
+      district:[''],
+      joiningdate:[''],
+      vehicleid:[''],
+      emergencycontactnumber:[''],
+      relationwithemployee:[''],
+      
 
       topimage: [''],
       name: [''],
@@ -863,6 +871,9 @@ this.apiService.getAllCommissionType().subscribe(
       upiid:[''],
       bloodgroupofemployee:[''],
       emergencycontactpersonname:[''],
+     
+      
+
       relation:[''],
       relationcontactnumber:[''],
       typeofemployment:[''],
@@ -1064,6 +1075,12 @@ const payload = {
   
     this.apiService.saveEmployee(this.formData).subscribe(
       (response: any) => {
+
+
+        console.log(" Save Empluee API response ");
+        console.log(response);
+        console.log(" Save Empluee API response ");
+
 
         alert(response.mesage);
         if (response.mesage == "Data Stored successfully." || response.status == 200) {

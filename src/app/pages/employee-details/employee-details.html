@@ -268,14 +268,14 @@
                         <label class="text-sm text-[#050914]">
                             Pin Code<span class="text-primary"> *</span>
                         </label>
-                        <input type="text" formControlName="pinCode" placeholder="Enter Pin"
+                        <input type="text" formControlName="pincode" placeholder="Enter Pin"
                             class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
-                            [class.border-red-500]="employeeForm.get('pinCode')?.touched && employeeForm.get('pinCode')?.invalid" />
-                        <div *ngIf="employeeForm.get('pinCode')?.touched && employeeForm.get('pinCode')?.invalid"
+                            [class.border-red-500]="employeeForm.get('pincode')?.touched && employeeForm.get('pincode')?.invalid" />
+                        <div *ngIf="employeeForm.get('pincode')?.touched && employeeForm.get('pincode')?.invalid"
                             class="mt-1">
-                            <p *ngIf="employeeForm.get('pinCode')?.errors?.['required']" class="text-red-500 text-xs">
+                            <p *ngIf="employeeForm.get('pincode')?.errors?.['required']" class="text-red-500 text-xs">
                                 Pin Code is required</p>
-                            <p *ngIf="employeeForm.get('pinCode')?.errors?.['pattern']" class="text-red-500 text-xs">
+                            <p *ngIf="employeeForm.get('pincode')?.errors?.['pattern']" class="text-red-500 text-xs">
                                 Please enter a valid 6-digit pin code</p>
                         </div>
                     </div>
@@ -344,11 +344,11 @@
                         </label>
 
                         <div class="">
-                            <input type="date" formControlName="joiningDate" placeholder="Enter Joining Date" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                            <input type="date" formControlName="joiningdate" placeholder="Enter Joining Date" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                  focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                                [class.border-red-500]="employeeForm.get('joiningDate')?.touched && employeeForm.get('joiningDate')?.invalid" />
+                                [class.border-red-500]="employeeForm.get('joiningdate')?.touched && employeeForm.get('joiningdate')?.invalid" />
                         </div>
-                        <div *ngIf="employeeForm.get('joiningDate')?.touched && employeeForm.get('joiningDate')?.invalid"
+                        <div *ngIf="employeeForm.get('joiningdate')?.touched && employeeForm.get('joiningdate')?.invalid"
                             class="mt-1">
                             <p class="text-red-500 text-xs">Joining Date is required</p>
                         </div>
@@ -364,13 +364,13 @@
                         <label class="text-sm text-[#050914]">
                             PAN<span class="text-primary"> *</span>
                         </label>
-                        <input type="text" formControlName="pan" placeholder="Enter Employee's PAN" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                        <input type="text" formControlName="pannumber" placeholder="Enter Employee's PAN" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('pan')?.touched && employeeForm.get('pan')?.invalid" />
-                        <div *ngIf="employeeForm.get('pan')?.touched && employeeForm.get('pan')?.invalid" class="mt-1">
-                            <p *ngIf="employeeForm.get('pan')?.errors?.['required']" class="text-red-500 text-xs">PAN is
+                            [class.border-red-500]="employeeForm.get('pannumber')?.touched && employeeForm.get('pannumber')?.invalid" />
+                        <div *ngIf="employeeForm.get('pannumber')?.touched && employeeForm.get('pannumber')?.invalid" class="mt-1">
+                            <p *ngIf="employeeForm.get('pannumber')?.errors?.['required']" class="text-red-500 text-xs">PAN is
                                 required</p>
-                            <p *ngIf="employeeForm.get('pan')?.errors?.['pattern']" class="text-red-500 text-xs">Please
+                            <p *ngIf="employeeForm.get('pannumber')?.errors?.['pattern']" class="text-red-500 text-xs">Please
                                 enter a valid PAN (e.g., ABCDE1234F)</p>
                         </div>
                     </div>
@@ -378,12 +378,12 @@
                         <label class="text-sm text-[#050914]">
                             Aadhaar Number<span class="text-primary"> *</span>
                         </label>
-                        <input type="text" formControlName="aadhaar" placeholder="Enter Employee's Aadhaar" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                        <input type="text" formControlName="aadhaarnumber" placeholder="Enter Employee's Aadhaar" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('aadhaar')?.touched && employeeForm.get('aadhaar')?.invalid" />
-                        <div *ngIf="employeeForm.get('aadhaar')?.touched && employeeForm.get('aadhaar')?.invalid"
+                            [class.border-red-500]="employeeForm.get('aadhaarnumber')?.touched && employeeForm.get('aadhaarnumber')?.invalid" />
+                        <div *ngIf="employeeForm.get('aadhaarnumber')?.touched && employeeForm.get('aadhaarnumber')?.invalid"
                             class="mt-1">
-                            <p *ngIf="employeeForm.get('aadhaar')?.errors?.['required']" class="text-red-500 text-xs">
+                            <p *ngIf="employeeForm.get('aadhaarnumber')?.errors?.['required']" class="text-red-500 text-xs">
                                 Aadhaar Number is required</p>
                             <p *ngIf="employeeForm.get('aadhaar')?.errors?.['pattern']" class="text-red-500 text-xs">
                                 Please enter a valid 12-digit Aadhaar number</p>
@@ -396,7 +396,7 @@
                                 <label class="text-sm text-[#050914]">
                                     PF Number
                                 </label>
-                                <input type="text" formControlName="pfNumber" placeholder="Enter PF Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                                <input type="text" formControlName="pfnumber" placeholder="Enter PF Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
                             </div>
 
@@ -406,7 +406,7 @@
                                 </label>
 
                                 <div class="">
-                                    <input type="date" formControlName="pfJoiningDate"
+                                    <input type="date" formControlName="pfjoiningdate"
                                         placeholder="Choose PF Joining Date" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                   focus:ring-2 focus:ring-teal-500 focus:outline-none" />
                                 </div>
@@ -415,7 +415,7 @@
                                 <label class="text-sm text-[#050914]">
                                     ESI Number
                                 </label>
-                                <input type="text" formControlName="esiNumber" placeholder="Enter ESI Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                                <input type="text" formControlName="esinumber" placeholder="Enter ESI Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
 
                             </div>
@@ -432,14 +432,14 @@
                         <label class="text-sm text-[#050914]">
                             Choose Vehicle<span class="text-primary"> *</span>
                         </label>
-                        <select formControlName="vehicleId"
+                        <select formControlName="vehicleid"
                             class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('vehicleId')?.touched && employeeForm.get('vehicleId')?.invalid">
+                            [class.border-red-500]="employeeForm.get('vehicleid')?.touched && employeeForm.get('vehicleid')?.invalid">
                             <option value="">Choose Vehicle</option>
                             <option value="Car">Car</option>
                             <option value="Bike">Bike</option>
                         </select>
-                        <div *ngIf="employeeForm.get('vehicleId')?.touched && employeeForm.get('vehicleId')?.invalid"
+                        <div *ngIf="employeeForm.get('vehicleid')?.touched && employeeForm.get('vehicleid')?.invalid"
                             class="mt-1">
                             <p class="text-red-500 text-xs">Vehicle is required</p>
                         </div>
@@ -526,7 +526,7 @@
                         <label class="text-sm text-[#050914]">
                             Bank Name
                         </label>
-                        <select formControlName="bankName" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                        <select formControlName="nameofbank" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none">
                             <option value="">Choose Name of Bank</option>
                         </select>
@@ -536,10 +536,10 @@
                         <label class="text-sm text-[#050914]">
                             IFSC Code
                         </label>
-                        <input type="text" formControlName="ifscCode" placeholder="Enter IFSC Code" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                        <input type="text" formControlName="ifsccode" placeholder="Enter IFSC Code" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('ifscCode')?.touched && employeeForm.get('ifscCode')?.invalid" />
-                        <div *ngIf="employeeForm.get('ifscCode')?.touched && employeeForm.get('ifscCode')?.invalid"
+                            [class.border-red-500]="employeeForm.get('ifsccode')?.touched && employeeForm.get('ifsccode')?.invalid" />
+                        <div *ngIf="employeeForm.get('ifsccode')?.touched && employeeForm.get('ifsccode')?.invalid"
                             class="mt-1">
                             <p class="text-red-500 text-xs">Please enter a valid IFSC code (e.g., ABCD0123456)</p>
                         </div>
@@ -549,7 +549,7 @@
                         <label class="text-sm text-[#050914]">
                             Account Number
                         </label>
-                        <input type="text" formControlName="accountNumber" placeholder="Enter Account Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                        <input type="text" formControlName="accountnumber" placeholder="Enter Account Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
                     </div>
 
@@ -557,7 +557,7 @@
                         <label class="text-sm text-[#050914]">
                             Account Holder Name
                         </label>
-                        <input type="text" formControlName="accountHolderName" placeholder="Enter Account Holder Name"
+                        <input type="text" formControlName="nameofaccountholder" placeholder="Enter Account Holder Name"
                             class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
                     </div>
@@ -566,7 +566,7 @@
                         <label class="text-sm text-[#050914]">
                             UPI Detail
                         </label>
-                        <input type="text" formControlName="upiDetail" placeholder="Enter UPI ID" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                        <input type="text" formControlName="upiid" placeholder="Enter UPI ID" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
                     </div>
 
@@ -582,7 +582,7 @@
                         <label class="text-sm text-[#050914]">
                             Employee’s Blood Group
                         </label>
-                        <select formControlName="bloodGroup" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                        <select formControlName="bloodgroupofemployee" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none">
                             <option value="">Choose Blood Group</option>
                             <option value="A+">A+</option>
@@ -599,7 +599,7 @@
                         <label class="text-sm text-[#050914]">
                             Emergency Contact Person
                         </label>
-                        <input type="text" formControlName="emergencyContactPerson"
+                        <input type="text" formControlName="emergencycontactpersonname"
                             placeholder="Enter Emergency Contact Name" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
                     </div>
@@ -607,11 +607,11 @@
                         <label class="text-sm text-[#050914]">
                             Emergency Contact Number
                         </label>
-                        <input type="text" formControlName="emergencyContactNumber"
+                        <input type="text" formControlName="emergencycontactnumber"
                             placeholder="Enter Emergency Contact Number" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                            [class.border-red-500]="employeeForm.get('emergencyContactNumber')?.touched && employeeForm.get('emergencyContactNumber')?.invalid" />
-                        <div *ngIf="employeeForm.get('emergencyContactNumber')?.touched && employeeForm.get('emergencyContactNumber')?.invalid"
+                            [class.border-red-500]="employeeForm.get('emergencycontactnumber')?.touched && employeeForm.get('emergencycontactnumber')?.invalid" />
+                        <div *ngIf="employeeForm.get('emergencycontactnumber')?.touched && employeeForm.get('emergencycontactnumber')?.invalid"
                             class="mt-1">
                             <p class="text-red-500 text-xs">Please enter a valid 10-digit contact number</p>
                         </div>
@@ -620,7 +620,7 @@
                         <label class="text-sm text-[#050914]">
                             Relation with Employee
                         </label>
-                        <input type="text" formControlName="relationWithEmployee"
+                        <input type="text" formControlName="relationwithemployee"
                             placeholder="Enter Relationship with Employee" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
                focus:ring-2 focus:ring-teal-500 focus:outline-none" />
                     </div>
