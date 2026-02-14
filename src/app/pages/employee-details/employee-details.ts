@@ -848,14 +848,14 @@ this.apiService.getAllCommissionType().subscribe(
       address:[''],
       country: [''],
       
-      staeid:[''],
+      staeid:['1'],
 
-      state:[''],
+      state:['up'],
 
-      city:[''],
+      city:['varanasi'],
       pincode:[''],
       reportingmanager:[''],
-      gender:[''],
+      gender:['male'],
       dateofbirth:[''],
       dateofjoining:[''],
       pannumber:[''],
@@ -883,7 +883,7 @@ this.apiService.getAllCommissionType().subscribe(
       commissiontype:[''],
       commissionrate:[''],
 
-      department_id:[1],
+      department_id:[35],
       workmodeid:[1],
       typeofemploymentid:[''],
       commissionid:[''],
