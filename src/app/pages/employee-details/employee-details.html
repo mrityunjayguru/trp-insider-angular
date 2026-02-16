@@ -73,17 +73,31 @@
                     <label class="text-sm text-[#050914]">
                         Department<span class="text-primary"> *</span>
                     </label>
-                    <select formControlName="department"
+
+                    
+
+                    <select formControlName="department_id" (change)="onDepartmentChange($event)"
                         class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid">
+                        [class.border-red-500]="employeeForm.get('department_id')?.touched && employeeForm.get('department_id')?.invalid">
                         <option value="">Assign Department</option>
-                        <option value="IT">IT</option>
+                       <option *ngFor="let item of departments; index as i" [value]="item.id">
+                                                {{ item.deptname}}
+                                           </option>
                     </select>
-                    <div *ngIf="employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid"
+                    <div *ngIf="employeeForm.get('department_id')?.touched && employeeForm.get('department_id')?.invalid"
                         class="mt-1">
                         <p class="text-red-500 text-xs">Department is required</p>
                     </div>
                 </div>
+
+
+                <input type="text" formControlName="departmentname" readonly
+                        placeholder="Select Department"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('departmentname')?.touched && employeeForm.get('departmentname')?.invalid" />
+
+
+
                 <div>
                     <label class="text-sm text-[#050914]">
                         Designation<span class="text-primary"> *</span>
@@ -296,36 +310,65 @@
                                 <label class="text-sm text-[#050914]">
                                     State<span class="text-primary"> *</span>
                                 </label>
-                                <select formControlName="state"
+                                <select formControlName="staeid"  (change)="onStateChange($event)"
                                     class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                                    [class.border-red-500]="employeeForm.get('state')?.touched && employeeForm.get('state')?.invalid">
-                                    <option value="">Choose State</option>
-                                    <option value="Maharashtra">Maharashtra</option>
-                                    <option value="Karnataka">Karnataka</option>
-                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                     [class.border-red-500]="employeeForm.get('staeid')?.touched && employeeForm.get('staeid')?.invalid">
+  
+                                          <option value="">Choose State</option>
+                                          <option *ngFor="let item of allState; index as i" [value]="item.id">
+                                                {{ item.statename}}
+                                           </option>
+
                                 </select>
-                                <div *ngIf="employeeForm.get('state')?.touched && employeeForm.get('state')?.invalid"
+
+                                <div *ngIf="employeeForm.get('staeid')?.touched && employeeForm.get('staeid')?.invalid"
                                     class="mt-1">
                                     <p class="text-red-500 text-xs">State is required</p>
                                 </div>
                             </div>
 
+
+                            
+                            <div>
+                                <label class="text-sm text-[#050914]">
+                                    State<span class="text-primary"> *</span>
+                                </label>
+
+                        <input type="text" formControlName="state" placeholder="Select State " class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+               focus:ring-2 focus:ring-teal-500 focus:outline-none" readonly/>
+                               
+
+                            </div>
+
+
                             <div>
                                 <label class="text-sm text-[#050914]">
                                     District<span class="text-primary"> *</span>
                                 </label>
-                                <select formControlName="district"
+                                <select formControlName="districtid" (change)="onDistrictChange($event)"
                                     class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                                    [class.border-red-500]="employeeForm.get('district')?.touched && employeeForm.get('district')?.invalid">
-                                    <option value="">Choose District</option>
-                                    <option value="Mumbai">Mumbai</option>
-                                    <option value="Pune">Pune</option>
-                                    <option value="Nagpur">Nagpur</option>
+                                    [class.border-red-500]="employeeForm.get('districtid')?.touched && employeeForm.get('districtid')?.invalid">
+                                   <option value="">Choose District</option>
+                                          <option *ngFor="let item of allDistrict; index as i" [value]="item.id">
+                                                {{ item.districtName}}
+                                           </option>
                                 </select>
-                                <div *ngIf="employeeForm.get('district')?.touched && employeeForm.get('district')?.invalid"
+                                <div *ngIf="employeeForm.get('districtid')?.touched && employeeForm.get('districtid')?.invalid"
                                     class="mt-1">
                                     <p class="text-red-500 text-xs">District is required</p>
                                 </div>
+                            </div>
+
+                            
+                            <div>
+                                <label class="text-sm text-[#050914]">
+                                    District<span class="text-primary"> *</span>
+                                </label>
+
+                        <input type="text" formControlName="district" placeholder="Select State " class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+               focus:ring-2 focus:ring-teal-500 focus:outline-none" readonly/>
+                               
+
                             </div>
 
                         </div>

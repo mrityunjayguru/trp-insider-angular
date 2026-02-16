@@ -44,7 +44,7 @@ export class ApiService {
   
      
     this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
-    // this.apiUrl = 'http://localhost:8085/api';
+   // this.apiUrl = 'http://localhost:8085/api';
         
        // alert(" Niraj Updated "+this.apiUrl);
 

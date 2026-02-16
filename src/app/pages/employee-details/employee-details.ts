@@ -633,6 +633,7 @@ export class EmployeeDetails implements OnInit {
 
  
 allState:any;
+allDistrict:any;
 departments:any;
 alldesignation:any;
 allworkmode:any;
@@ -830,6 +831,7 @@ this.apiService.getAllCommissionType().subscribe(
       
       pan:[''],
       district:[''],
+      districtid:[''],
       joiningdate:[''],
       vehicleid:[''],
       emergencycontactnumber:[''],
@@ -846,11 +848,12 @@ this.apiService.getAllCommissionType().subscribe(
       reportingauthority:[''],
       contactnumber: [''],
       address:[''],
-      country: [''],
+      country: ['India'],
+      countryid:['1'],
       
-      staeid:['1'],
+      staeid:[''],
 
-      state:['up'],
+      state:[''],
 
       city:['varanasi'],
       pincode:[''],
@@ -883,7 +886,8 @@ this.apiService.getAllCommissionType().subscribe(
       commissiontype:[''],
       commissionrate:[''],
 
-      department_id:[35],
+      departmentname:[''],
+      department_id:['35'],
       workmodeid:[1],
       typeofemploymentid:[''],
       commissionid:[''],
@@ -978,11 +982,11 @@ this.apiService.getAllCommissionType().subscribe(
 
   onSubmit() {
 
-    alert(" On Submit");
-    console.log("this.productsForm=================== ");
-    console.log(this.employeeForm.value);
-    console.log("this.employeeForm ===============");
-    alert("  Niraj  " + this.employeeForm.value.name);
+    //alert(" On Submit"+ this.employeeForm.value.department_id+" department "+this.employeeForm.value.department);
+    //console.log("this.productsForm=================== ");
+    //console.log(this.employeeForm.value);
+   // console.log("this.employeeForm ===============");
+    //alert("  Niraj  " + this.employeeForm.value.name);
 
     if (this.employeeForm.value.name.length == 0) {
       alert("Kinldy enter the Employee name.");
@@ -1006,8 +1010,8 @@ this.apiService.getAllCommissionType().subscribe(
       alert("Kinldy enter  the mobile number");
       return;
     }
-    else if (this.employeeForm.value.department.length == 0 || this.employeeForm.value.department == 0) {
-      alert("Kinldy Enter  the department number");
+    else if (this.employeeForm.value.departmentname.length == 0 || this.employeeForm.value.departmentname == 0) {
+      alert("Kinldy select  the department name");
       return;
     }
     else {
@@ -1943,6 +1947,19 @@ const payload = {
 onStateChange(event: any) {
   const selectedId = event.target.value;
 
+
+ this.apiService.getDistrictsByState(selectedId).subscribe(
+      (response: any) => {
+        this.allDistrict = response.data;
+        console.log(" Distric ");
+        console.log(this.allDistrict);
+        console.log(" Distric ");
+
+      })
+
+
+
+
   const selectedState = this.allState.find(
     (statedata: any) => statedata.id == selectedId
   );
@@ -1958,6 +1975,28 @@ onStateChange(event: any) {
   }
 }
 
+
+
+  onDistrictChange(event: Event): void {
+    const districid = (event.target as HTMLSelectElement).value;
+
+
+    const selectedState = this.allDistrict.find(
+      (s: any) => s.id == districid
+    );
+
+    if (selectedState) {
+      this.employeeForm.patchValue({
+        district: selectedState.districtName
+      });
+    } else {
+      this.employeeForm.patchValue({
+        district: ''
+      });
+    }
+  }
+
+
 onDepartmentChange(event: any) {
   const deptid = event.target.value;
 
@@ -1967,10 +2006,12 @@ onDepartmentChange(event: any) {
 
   if (selectedDepartment) {
     this.employeeForm.patchValue({
+      departmentname: selectedDepartment.deptname,
       department: selectedDepartment.deptname
     });
   } else {
     this.employeeForm.patchValue({
+      departmentname: '',
       department: ''
     });
   }
