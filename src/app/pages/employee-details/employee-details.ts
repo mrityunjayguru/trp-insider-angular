@@ -642,6 +642,8 @@ allemploymenttype:any;
 allofficelocation:any;
 AllEmployeeByDesignationIDEmployees:any;
 getAllEmployeeHavingDesignationEmployees:any;
+allbank:any;
+
 
 
 
@@ -761,6 +763,17 @@ getAllEmployeeHavingDesignationEmployees:any;
 
 
     
+
+
+  this.apiService.getAllBankName().subscribe(
+      (response : any) => {               
+        this.allbank = response.data;
+        console.log("allbank");
+        console.log(this.allbank);
+        console.log("getAllBankName");
+          
+      })
+
 
 
     this.apiService.getAllOfficeLocation().subscribe(
@@ -898,6 +911,7 @@ this.apiService.getAllCommissionType().subscribe(
       pfjoiningdate:[''],
       esinumber:[''],
       nameofbank:[''],
+      nameofbankid:[''],
       ifsccode:[''],
       accountnumber:[''],
       nameofaccountholder:[''],
@@ -1980,6 +1994,23 @@ onReportingauthorityChange(event: any) {
 }
 
 
+
+onBankChange(event: Event): void {
+    const selectedbankid = (event.target as HTMLSelectElement).value;
+    const selectedState = this.allbank.find(
+      (s: any) => s.id == selectedbankid
+    );
+
+    if (selectedState) {
+      this.employeeForm.patchValue({
+        nameofbank: selectedState.bankname
+      });
+    } else {
+      this.employeeForm.patchValue({
+        nameofbank: ''
+      });
+    }
+  }
 
 
 
