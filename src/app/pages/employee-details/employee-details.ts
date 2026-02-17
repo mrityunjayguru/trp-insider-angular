@@ -640,6 +640,8 @@ allworkmode:any;
 allcommission:any;
 allemploymenttype:any;
 allofficelocation:any;
+AllEmployeeByDesignationIDEmployees:any;
+getAllEmployeeHavingDesignationEmployees:any;
 
 
 
@@ -771,6 +773,18 @@ allofficelocation:any;
       })
 
 
+      
+
+      this.apiService.getAllEmployeeHavingDesignationEmployees().subscribe(
+      (response : any) => {               
+        this.getAllEmployeeHavingDesignationEmployees = response.data;
+        console.log("getAllEmployeeHavingDesignationEmployees");
+        console.log(this.getAllEmployeeHavingDesignationEmployees);
+        console.log("getAllEmployeeHavingDesignationEmployees");
+          
+      })
+
+
     this.apiService.getAllEmploymentType().subscribe(
       (response : any) => {               
         this.allemploymenttype = response.data;
@@ -873,6 +887,7 @@ this.apiService.getAllCommissionType().subscribe(
       city:['varanasi'],
       pincode:[''],
       reportingmanager:[''],
+      reportingmanagername:[''],
       gender:['male'],
       dateofbirth:[''],
       dateofjoining:[''],
@@ -1946,6 +1961,28 @@ const payload = {
       event.preventDefault();
     }
   }
+
+onReportingauthorityChange(event: any) {
+  const selectedId = event.target.value;
+  
+
+ this.apiService.getAllEmployeeByDesignationIDEmployees(selectedId).subscribe(
+      (response: any) => {
+        this.AllEmployeeByDesignationIDEmployees = response.data;
+        console.log(" On onReportingauthorityChange ");
+        console.log(this.AllEmployeeByDesignationIDEmployees);
+        console.log(" onReportingauthorityChange ");
+
+      })
+
+
+
+}
+
+
+
+
+
   
 
 onStateChange(event: any) {

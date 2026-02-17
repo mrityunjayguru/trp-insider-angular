@@ -43,7 +43,7 @@ export class ApiService {
     // alert(" Niraj Updated "+this.apiUrl);
   
      
-    this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
+   this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
    // this.apiUrl = 'http://localhost:8085/api';
         
        // alert(" Niraj Updated "+this.apiUrl);
@@ -144,6 +144,15 @@ export class ApiService {
     return this.http.get<any>(this.apiUrl + "/company/getCompanyById?id=" + id, { "headers": this.headers });
   }
 
+
+   getAllEmployeeByDesignationIDEmployees(designation: any): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/employee/getAllEmployeeByDesignationIDEmployees?designation=" + designation, { "headers": this.headers });
+  }
+
+  
+  getAllEmployeeHavingDesignationEmployees(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/employee/getAllEmployeeHavingDesignationEmployees", { "headers": this.headers });
+  }
 
 
   //=====================================
