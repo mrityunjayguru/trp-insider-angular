@@ -101,18 +101,30 @@
                 <div>
                     <label class="text-sm text-[#050914]">
                         Designation<span class="text-primary"> *</span>
+                        designationid
+                        
                     </label>
-                    <select formControlName="designation"
+
+                    <select formControlName="designationid" (change)="onDesignationChange($event)"
                         class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid">
+                        [class.border-red-500]="employeeForm.get('designationid')?.touched && employeeForm.get('designationid')?.invalid">
                         <option value="">Assign Designation</option>
-                        <option value="Manager">Manager</option>
-                        <option value="Developer">Developer</option>
+                         <option *ngFor="let item of alldesignation; index as i" [value]="item.id">
+                                                {{ item.designationname}}
+                         </option>
                     </select>
-                    <div *ngIf="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid"
+                    <div *ngIf="employeeForm.get('designationid')?.touched && employeeForm.get('designationid')?.invalid"
                         class="mt-1">
                         <p class="text-red-500 text-xs">Designation is required</p>
                     </div>
+
+
+                     <input type="text" formControlName="designation" readonly
+                        placeholder="Select Designation"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid" />
+
+
                 </div>
 
                 <div>

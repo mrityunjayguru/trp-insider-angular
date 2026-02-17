@@ -959,12 +959,6 @@ this.apiService.getAllCommissionType().subscribe(
       imgcolor30: [''],
 
 
-
-
-    
-
-
-
     });
   }
 
@@ -982,12 +976,7 @@ this.apiService.getAllCommissionType().subscribe(
 
   onSubmit() {
 
-    //alert(" On Submit"+ this.employeeForm.value.department_id+" department "+this.employeeForm.value.department);
-    //console.log("this.productsForm=================== ");
-    //console.log(this.employeeForm.value);
-   // console.log("this.employeeForm ===============");
-    //alert("  Niraj  " + this.employeeForm.value.name);
-
+    
     if (this.employeeForm.value.name.length == 0) {
       alert("Kinldy enter the Employee name.");
       return;
