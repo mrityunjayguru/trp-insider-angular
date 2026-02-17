@@ -639,6 +639,8 @@ alldesignation:any;
 allworkmode:any;
 allcommission:any;
 allemploymenttype:any;
+allofficelocation:any;
+
 
 
 
@@ -755,6 +757,18 @@ allemploymenttype:any;
       this.docPictureinput30
     ];
 
+
+    
+
+
+    this.apiService.getAllOfficeLocation().subscribe(
+      (response : any) => {               
+        this.allofficelocation = response.data;
+        console.log("allofficelocation");
+        console.log(this.allofficelocation);
+        console.log("getAllOfficeLocation");
+          
+      })
 
 
     this.apiService.getAllEmploymentType().subscribe(
