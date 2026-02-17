@@ -859,6 +859,7 @@ this.apiService.getAllCommissionType().subscribe(
       department: [''],
       workmode: ['wokmode'],
       officelocation:[''],
+      officelocationid:[''],
       reportingauthority:[''],
       contactnumber: [''],
       address:[''],
@@ -2038,6 +2039,25 @@ onDesignationChange(event: any) {
     });
   }
 }
+
+onOfficeLocationChange(event: any) {
+  const officelocationid = event.target.value;
+
+  const selectedofficelocation = this.allofficelocation.find(
+    (officelocationdata: any) => officelocationdata.id == officelocationid
+  );
+
+  if (selectedofficelocation) {
+    this.employeeForm.patchValue({
+      officelocation: selectedofficelocation.officename
+    });
+  } else {
+    this.employeeForm.patchValue({
+      officelocation: ''
+    });
+  }
+}
+
 
 
 

@@ -133,19 +133,26 @@
                    
                    
                     </label>
-                    <select formControlName="officelocation"
+                    <select formControlName="officelocationid" (change)="onOfficeLocationChange($event)"
                         class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                        [class.border-red-500]="employeeForm.get('officelocation')?.touched && employeeForm.get('officelocation')?.invalid">
+                        [class.border-red-500]="employeeForm.get('officelocationid')?.touched && employeeForm.get('officelocationid')?.invalid">
                         <option value="">Choose Office Branch Location</option>
                          <option *ngFor="let item of allofficelocation; index as i" [value]="item.id">
                                                 {{ item.officename}}
                          </option>
 
                     </select>
-                    <div *ngIf="employeeForm.get('officelocation')?.touched && employeeForm.get('officelocation')?.invalid"
+                    <div *ngIf="employeeForm.get('officelocationid')?.touched && employeeForm.get('officelocationid')?.invalid"
                         class="mt-1">
                         <p class="text-red-500 text-xs">Office Location is required</p>
                     </div>
+
+
+                     <input type="text" formControlName="officelocation" readonly
+                        placeholder="Select Office Location"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="employeeForm.get('officelocation')?.touched && employeeForm.get('officelocation')?.invalid" />
+
                 </div>
 
                 <div>
