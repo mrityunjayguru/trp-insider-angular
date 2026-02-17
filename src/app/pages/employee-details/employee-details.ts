@@ -643,6 +643,10 @@ allofficelocation:any;
 AllEmployeeByDesignationIDEmployees:any;
 getAllEmployeeHavingDesignationEmployees:any;
 allbank:any;
+allfueltype:any;
+
+
+
 
 
 
@@ -762,7 +766,16 @@ allbank:any;
     ];
 
 
+//    getallfueltype
     
+  this.apiService.getAllFuelType().subscribe(
+      (response : any) => {               
+        this.allfueltype = response.data;
+        console.log("allfueltype");
+        console.log(this.allfueltype);
+        console.log("allfueltype");
+          
+      })
 
 
   this.apiService.getAllBankName().subscribe(

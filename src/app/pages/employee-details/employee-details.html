@@ -580,10 +580,13 @@
                             <div>
                                 <label class="text-sm font-medium text-[#050914]">
                                     Fuel Type<span class="text-primary">*</span>
+                                    
                                 </label>
-                                <select
-                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
-                                    <option>Vehicle Fuel Type</option>
+                                <select formControlName="fueltype" class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
+                                    <option value="">Choose Fuel Type</option>
+                                    <option *ngFor="let item of allfueltype; index as i" [value]="item.idfueltypename">
+                                        {{ item.fueltypename }}
+                                    </option>
                                 </select>
                             </div>
                             <div>
