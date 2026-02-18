@@ -552,18 +552,48 @@
                             <div>
                                 <label class="text-sm font-medium text-[#050914]">
                                     Add Vehicle Type<span class="text-primary">*</span>
+                                    
                                 </label>
-                                <select
+                                <select formControlName="vehicletypeid" (change)="onVehicletypChange($event)"
                                     class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
-                                    <option>Add Vehicle Type</option>
-                                    <option value="Four Wheeler">Four Wheeler</option>
+                                    <option value="">Choose Vehicle Type</option>
+                                    <option *ngFor="let item of allvehicletype; index as i" [value]="item.id">
+                                        {{ item.vehicletypename }}
+                                    </option>
                                 </select>
                             </div>
+
+                            <div>
+                                <label class="text-sm text-[#050914]">
+                                    Select Vehicle Type
+                                </label>
+                                <input type="text" formControlName="vehicletypename" placeholder="Select Vehicle Type" class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC]
+                                       focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+
+                            </div>
+
+
                             <div>
                                 <label class="text-sm font-medium text-[#050914]">
-                                    Vehicle Make/Brand<span class="text-primary">*</span>
+                                    Add Vehicle Brand Type<span class="text-primary">*</span>
+                                    
                                 </label>
-                                <input type="text" placeholder="Add Vehicle Number"
+                                <select formControlName="vehicletypebrandid" (change)="onVehicletypBrandChange($event)"
+                                    class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm text-[#BCBCBC] focus:outline-none">
+                                    <option value="">Choose Vehicle Brand Type</option>
+                                    <option *ngFor="let item of allvehicletypebrand; index as i" [value]="item.id">
+                                        {{ item.vehicletypebrandname }}
+                                    </option>
+                                </select>
+                            </div>
+
+
+                            <div>
+                                <label class="text-sm font-medium text-[#050914]">
+                                    Select Vehicle Make/Brand<span class="text-primary">*</span>
+                                    
+                                </label>
+                                <input type="text" formControlName="vehicletypebrandname" placeholder="Select Vehicle Brand" 
                                     class="mt-2 w-full border border-[#E2E2E2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:outline-none" />
                             </div>
 
@@ -733,28 +763,98 @@
 
                 </div>
             </div>
+
+
             <div class="mt-4">
                 <h1 class="text-xl font-semibold text-primary">Upload Documents</h1>
                 <hr class="border-[#D2D2D2] my-4" />
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-center">
                     
                       <div class="row">
-                 <label>
-                    Employee Image
-                </label><br>
-            <div class="file-uploa">
-                <div class="image-upload-wrap" [style.backgroundImage]="'url(' + imageSrc + ')'" id="backgroundElement">
-                    <input type="file"  (change)="onFileSelected($event)" accept="image/*"  class="file-upload-input" name="topimage" id="topimage"
-                        formControlName="topimage" >
+                             <label>
+                                 Employee Image
+                        </label><br>
+                        <div class="file-uploa">
+                            <div class="image-upload-wrap" [style.backgroundImage]="'url(' + imageSrc + ')'" id="backgroundElement">
+                                <input type="file"  (change)="onFileSelected($event)" accept="image/*"  class="file-upload-input" name="topimage" id="topimage"
+                                    formControlName="topimage" >
+                                    
+                                <div class="drag-text">
+                                    <img src="assets/icon.png" width="50px;">
+                                    <h3>Upload Employee Images</h3>
+                                </div>
+                            </div>
                         
-                    <div class="drag-text">
-                        <img src="assets/icon.png" width="50px;">
-                        <h3>Upload Employee Images</h3>
-                    </div>
-                </div>
-               
-            </div>
-        </div>
+                        </div>
+                        
+                     </div>
+
+
+
+                     <div class="row">
+                             <label>
+                                 Aadhaar/VoterID/Passport
+                        </label><br>
+                        <div class="file-uploa">
+                            <div class="image-upload-wrap" [style.backgroundImage]="'url(' + imageSrc + ')'" id="backgroundElement">
+                                <input type="file"  (change)="onFileSelectBottom($event)" accept="image/*"  class="file-upload-input" name="topimage" id="topimage"
+                                    formControlName="imgfile0" >
+                                    
+                                <div class="drag-text">
+                                    <img src="assets/icon.png" width="50px;">
+                                    <h3>Upload Aadhaar/VoterID/Passport</h3>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                     </div>
+
+
+                     <div class="row">
+                             <label>
+                                  Driving Licence
+                        </label><br>
+                        <div class="file-uploa">
+                            <div class="image-upload-wrap" [style.backgroundImage]="'url(' + imageSrc + ')'" id="backgroundElement">
+                                <input type="file"  (change)="onFileSelectBottoms($event)" accept="image/*"  class="file-upload-input" name="topimage" id="topimage"
+                                    formControlName="imgfile1" >
+                                    
+                                <div class="drag-text">
+                                    <img src="assets/icon.png" width="50px;">
+                                    <h3>Upload Driving Licence</h3>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                     </div>
+
+
+                     <div class="row">
+                             <label>
+                                  PAN Card
+                        </label><br>
+                        <div class="file-uploa">
+                            <div class="image-upload-wrap" [style.backgroundImage]="'url(' + imageSrc + ')'" id="backgroundElement">
+                                <input type="file"  (change)="onFileSelectBottom2($event)" accept="image/*"  class="file-upload-input" name="topimage" id="topimage"
+                                    formControlName="imgfile2" >
+                                    
+                                <div class="drag-text">
+                                    <img src="assets/icon.png" width="50px;">
+                                    <h3>Upload PAN Card</h3>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                     </div>
+
+
+                     
+
+
+
                   
         <!--
 

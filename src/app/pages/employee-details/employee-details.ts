@@ -644,7 +644,9 @@ AllEmployeeByDesignationIDEmployees:any;
 getAllEmployeeHavingDesignationEmployees:any;
 allbank:any;
 allfueltype:any;
+allvehicletype:any;
 
+allvehicletypebrand:any;
 
 
 
@@ -764,6 +766,19 @@ allfueltype:any;
       this.docPictureinput29,
       this.docPictureinput30
     ];
+
+
+// 
+
+     this.apiService.getAllVehicleType().subscribe(
+      (response : any) => {               
+        this.allvehicletype = response.data;
+        console.log("allvehicletype nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+        console.log(this.allvehicletype);
+        console.log("allvehicletype nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+          
+      })
+
 
 
 //    getallfueltype
@@ -948,6 +963,15 @@ this.apiService.getAllCommissionType().subscribe(
       workmodeid:[1],
       typeofemploymentid:[''],
       commissionid:[''],
+
+      vehicletypeid:[''],
+      vehicletypename:[''],
+      vehicletypebrandid:[''],
+      vehicletypebrandname:[''],
+
+    
+    
+
       
 
 
@@ -2025,6 +2049,58 @@ onBankChange(event: Event): void {
     }
   }
 
+
+
+onVehicletypBrandChange(event: any) {
+  const selectedId = event.target.value;
+
+
+  const selectedvehicletype = this.allvehicletypebrand.find(
+    (vehicletypedata: any) => vehicletypedata.id == selectedId
+  );
+
+  if (selectedvehicletype) {
+    this.employeeForm.patchValue({
+      vehicletypebrandname: selectedvehicletype.vehicletypebrandname
+    });
+  } else {
+    this.employeeForm.patchValue({
+      vehicletypebrandname: ''
+    });
+  }
+}
+
+
+onVehicletypChange(event: any) {
+  const selectedId = event.target.value;
+
+
+ this.apiService.getVehicleTypeBrandByVehicleType(selectedId).subscribe(
+      (response: any) => {
+        this.allvehicletypebrand = response.data;
+        console.log(" Vehicle Type Brand ");
+        console.log(this.allvehicletypebrand);
+        console.log(" Vehicle Type Brand ");
+
+      })
+
+
+
+
+  const selectedvehicletype = this.allvehicletype.find(
+    (vehicletypedata: any) => vehicletypedata.id == selectedId
+  );
+
+  if (selectedvehicletype) {
+    this.employeeForm.patchValue({
+      vehicletypename: selectedvehicletype.vehicletypename
+    });
+  } else {
+    this.employeeForm.patchValue({
+      vehicletypename: ''
+    });
+  }
+}
 
 
   
