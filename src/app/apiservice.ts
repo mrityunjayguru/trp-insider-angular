@@ -203,6 +203,30 @@ export class ApiService {
   //====================================================================
 
 
+
+  //=====================Pickup Point ===========================
+  saveStops(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/stops/save", formData, { "headers": this.headers });
+  }
+
+ updateStops(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/stops/update", formData, { "headers": this.headers });
+  }
+  getAllStops(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/stops/getAllStops", { "headers": this.headers });
+  }
+
+ updateStopsDeleted(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/stops/updateDeletedFlag", formData, { "headers": this.headers });
+  }
+
+
+  //====================================================================
+
+
+
+
+
   //=====================================
   saveDepartment(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/department/save", formData, { "headers": this.headers });
@@ -269,6 +293,9 @@ updateAddVehiclesDeleted(formData: any): Observable<any> {
   getAllState(): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/statemaster/getAllStates", { "headers": this.headers });
   }
+
+
+ 
   //====================================================================
 
 
