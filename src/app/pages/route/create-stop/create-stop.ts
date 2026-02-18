@@ -80,7 +80,7 @@ stops: Stop[] = [
   }
 
   onSearch() {
-    alert("dd");
+    
     if (this.searchQuery.trim() === '') {
       this.filteredStops = [...this.stops];
     } else {
@@ -122,14 +122,18 @@ stops: Stop[] = [
     this.apiService = apiService;
    
     this.formsize = this.formBuilder.group({
-      pickupname:['',Validators.required],
-      pickupdistance:['',Validators.required],
-      pickupstatus:['',Validators.required],
-      pickupduration:['',Validators.required],
-      dropoffduration:['',Validators.required],
-      latitude:[''],
-      longitude:[''],
-      address:['']
+       stopsname: [''],
+       stopsdistance: [''],
+       stopsstatus: [''],
+       stopsduration: [''],
+       dropoffduration: [''],
+       latitude: [''],
+       longitude: [''],
+       address: [''],
+
+     departmentid:[''],
+     departmentname:['']
+
 
     });
 
@@ -166,28 +170,35 @@ stops: Stop[] = [
 
 
   
-  onSubmit(){
-  
-   var formData = new FormData();  
+ onSubmit() {
 
-   formData.append("save", JSON.stringify(this.formsize.value));
-   
-   this.apiService.saveStops(formData).subscribe(
-    (response : any) => {
-     
+  if (!this.formsize || !this.formsize.value) {
+    alert("Form data is invalid.");
+    return;
+  }
 
-      if(response.status ==200)
-      {
+  const formData = new FormData();
+  formData.append("data", JSON.stringify(this.formsize.value));
+
+  console.log("Form Value:", this.formsize.value);
+
+  this.apiService.saveStops(formData).subscribe({
+    next: (response: any) => {
+      console.log("API Response:", response);
+
+      if (response && response.status === 200) {
         alert("Size Added Successfully.");
+      } else {
+        alert("Unable to save data.");
       }
-      else
-      {
-         alert("Not Add");
-      }
-    })
-
-
+    },
+    error: (error) => {
+      console.error("API Error:", error);
+      alert("Unable to save data. Please try again.");
+    }
+  });
 }
+
 
  
  
