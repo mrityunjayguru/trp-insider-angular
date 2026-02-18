@@ -1,1 +1,110 @@
-<p>manage-employee works!</p>
+<section class="w-full h-full p-6 bg-[#FCFCFC]">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-semibold text-[#3BB48B]">Manage Employee</h1>
+        <!-- <div class="relative w-80">
+            <input type="text" placeholder="Search..." [ngModel]="searchQuery()"
+                (input)="searchQuery.set($any($event.target).value); onSearch()"
+                class="w-full border border-gray-200 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#3BB48B] placeholder:text-gray-300">
+            <span class="absolute right-3 top-2.5 text-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </span>
+        </div> -->
+
+        <div class="flex items-center gap-4">
+            <button routerLink="/company/employee-details"
+                class="cursor-pointer bg-[#006842] hover:bg-secondary hover:text-primary text-white px-4 py-2 rounded-md">Add
+                Employee</button>
+        </div>
+    </div>
+    <div class="overflow-x-auto rounded-lg">
+        <table class="w-full">
+            <thead class="">
+                <tr class="bg-primary font-medium text-white">
+                    <th class="px-6 py-3 text-left text-sm font-medium whitespace-nowrap">Name</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium whitespace-nowrap">ID</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium whitespace-nowrap">Mobile</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium whitespace-nowrap">Emp. Type</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium whitespace-nowrap">Department</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium whitespace-nowrap">Designation</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium whitespace-nowrap">Status</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium ">Action</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                <tr *ngFor="let employee of paginatedEmployees(); let i = index"
+                    [ngClass]="i % 2 !== 0 ? '' : 'bg-gray-50'"
+                    class="hover:bg-gray-100 transition-colors border-b border-gray-200">
+                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.name }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.empId }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.mobile }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.empType }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.department }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.designation }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                            <button (click)="toggleStatus(employee)"
+                                class="relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-200 focus:outline-none cursor-pointer"
+                                [class.bg-[#D1F2E8]]="employee.isActive" [class.bg-gray-200]="!employee.isActive">
+                                <span
+                                    class="inline-block h-5 w-5 transform rounded-full transition-transform duration-200"
+                                    [class.translate-x-5]="employee.isActive" [class.translate-x-1]="!employee.isActive"
+                                    [class.bg-[#3BB48B]]="employee.isActive" [class.bg-gray-400]="!employee.isActive">
+                                </span>
+                            </button>
+                            <span class="text-sm font-medium" [class.text-[#3BB48B]]="employee.isActive"
+                                [class.text-gray-400]="!employee.isActive">
+                                {{ employee.isActive ? 'Active' : 'Inactive' }}
+                            </span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-5 whitespace-nowrap">
+                        <div class="flex items-center gap-4">
+                            <button (click)="viewRoute(employee)"
+                                class="text-[#006842] hover:text-[#006842]/80 transition-colors cursor-pointer"
+                                title="View">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12.0001 8.13762C9.86911 8.13762 8.1377 9.86903 8.1377 12C8.1377 14.131 9.86911 15.8624 12.0001 15.8624C14.131 15.8624 15.8624 14.131 15.8624 12C15.8624 9.86903 14.131 8.13762 12.0001 8.13762ZM11.7071 10.8546C11.2276 10.8546 10.828 11.2542 10.828 11.7336H9.54946C9.5761 10.535 10.535 9.57602 11.7071 9.57602V10.8546Z"
+                                        fill="currentColor" />
+                                    <path
+                                        d="M23.7203 11.2009C22.4151 9.57603 17.7536 4.27525 12 4.27525C6.24639 4.27525 1.58491 9.57603 0.279689 11.2009C-0.0932297 11.6537 -0.0932297 12.3196 0.279689 12.7991C1.58491 14.424 6.24639 19.7248 12 19.7248C17.7536 19.7248 22.4151 14.424 23.7203 12.7991C24.0932 12.3463 24.0932 11.6804 23.7203 11.2009ZM12 17.5938C8.9101 17.5938 6.40622 15.0899 6.40622 12C6.40622 8.9101 8.9101 6.40622 12 6.40622C15.0899 6.40622 17.5938 8.9101 17.5938 12C17.5938 15.0899 15.0899 17.5938 12 17.5938Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </button>
+                            <button (click)="editRoute(employee)"
+                                class="text-[#006842] hover:text-[#006842]/80 transition-colors cursor-pointer"
+                                title="Edit">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7 4C5.34315 4 4 5.34315 4 7V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V11C20 10.4477 20.4477 10 21 10C21.5523 10 22 10.4477 22 11V17C22 19.7614 19.7614 22 17 22H7C4.23858 22 2 19.7614 2 17V7C2 4.23858 4.23858 2 7 2H13C13.5523 2 14 2.44772 14 3C14 3.55228 13.5523 4 13 4H7Z"
+                                        fill="currentColor" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M17.2156 2.82088C17.7412 2.29528 18.4541 2 19.1974 2C19.9407 2 20.6535 2.29528 21.1791 2.82088C21.7047 3.34648 22 4.05934 22 4.80265C22 5.54596 21.7047 6.25883 21.1791 6.78443L20.396 7.56757C20.0055 7.9581 19.3723 7.9581 18.9818 7.56757L16.4324 5.01824C16.0419 4.62771 16.0419 3.99455 16.4324 3.60402L17.2156 2.82088ZM15.0182 6.43245C14.6277 6.04192 13.9945 6.04192 13.604 6.43245L9.14269 10.8938C9.01453 11.0219 8.92362 11.1825 8.87966 11.3583L8.02988 14.7575C7.94468 15.0982 8.04453 15.4587 8.29291 15.7071C8.54129 15.9555 8.90178 16.0553 9.24256 15.9701L12.6417 15.1204C12.8175 15.0764 12.9781 14.9855 13.1062 14.8573L17.5676 10.396C17.9581 10.0055 17.9581 9.37231 17.5676 8.98179L15.0182 6.43245Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="filteredEmployees().length === 0">
+                    <td colspan="8" class="px-6 py-10 text-center text-gray-400 text-sm">
+                        No employees found matching your search.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-8 flex justify-center">
+        <app-pagination [currentPage]="currentPage()" [totalPages]="totalPages()" (pageChange)="onPageChange($event)">
+        </app-pagination>
+    </div>
+</section>
