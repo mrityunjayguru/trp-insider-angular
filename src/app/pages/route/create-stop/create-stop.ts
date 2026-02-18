@@ -39,6 +39,7 @@ export class CreateStop implements OnInit,AfterViewInit {
   formBuilder: any;
   apiService: ApiService;
   sizes:any;
+  departments:any;
   logService : any;
 
     map:any;
@@ -53,18 +54,7 @@ export class CreateStop implements OnInit,AfterViewInit {
   markerPosition: google.maps.LatLngLiteral | null = null;
   zone: any;
 
-stops: Stop[] = [
-    { id: 1, stopName: 'Market, Sector 3', address: 'Rewari, Haryana 123401', department: 'Procurement', isActive: true },
-    { id: 2, stopName: 'Mandir', address: 'Rewari, Haryana 123401', department: 'Delivery', isActive: true },
-    { id: 3, stopName: 'Lao', address: 'Rewari, Haryana 123401', department: 'Collection', isActive: false },
-    { id: 4, stopName: 'Ankoran', address: 'Rewari, Haryana 123401', department: 'Delivery', isActive: true },
-    { id: 5, stopName: 'Central Park', address: 'Delhi, Delhi 110001', department: 'Procurement', isActive: true },
-    { id: 6, stopName: 'Tech Hub', address: 'Bangalore, Karnataka 560001', department: 'IT', isActive: true },
-    { id: 7, stopName: 'Finance Center', address: 'Mumbai, Maharashtra 400001', department: 'Finance', isActive: false },
-    { id: 8, stopName: 'Warehouse A', address: 'Pune, Maharashtra 411001', department: 'Logistics', isActive: true },
-    { id: 9, stopName: 'Office Complex', address: 'Gurgaon, Haryana 122001', department: 'HR', isActive: true },
-    { id: 10, stopName: 'Distribution Hub', address: 'Chennai, Tamil Nadu 600001', department: 'Delivery', isActive: false },
-  ];
+   stops: any;
 
   filteredStops: Stop[] = [];
   paginatedStops: Stop[] = [];
@@ -75,12 +65,13 @@ stops: Stop[] = [
   totalPages: number = 1;
 
   ngOnInit() {
-    this.filteredStops = [...this.stops];
-    this.updatePagination();
+   // this.filteredStops = [...this.stops];
+    //this.updatePagination();
   }
 
   onSearch() {
     
+    /*
     if (this.searchQuery.trim() === '') {
       this.filteredStops = [...this.stops];
     } else {
@@ -92,7 +83,7 @@ stops: Stop[] = [
       );
     }
     this.currentPage = 1;
-    this.updatePagination();
+    this.updatePagination(); */
   }
 
   toggleStatus(stop: Stop) {
@@ -139,22 +130,35 @@ stops: Stop[] = [
 
 
 
+    
+      this.apiService.getAllDepartment().subscribe(
+      (response : any) => {
+               
+        this.departments = response.data;
+        console.log("Department");
+        console.log(this.departments);
+        console.log("Department");
 
-    this.apiService.getAllPickupPoint().subscribe(
+          
+      })
+
+
+
+    this.apiService.getAllStops().subscribe(
       (response : any) => {
 
-        console.log("==================");
-        console.log(response);
-        console.log("==================");
+        console.log("======stops nnnnnnnnnnnnnnnnnn============");
+        console.log(response.data);
+        console.log("======stops nnnnnnnnnnnnnnnnnnnnnnnn============");
 
 
                
-        this.sizes = response.data.content;
+        this.stops = response.data;
 
         
-        console.log("=========this.sizes=========");
-        console.log(this.sizes);
-        console.log("======this.sizes============");
+        console.log("=========this.stops=========");
+        console.log(this.stops);
+        console.log("======this.stops============");
 
         
         
@@ -165,6 +169,28 @@ stops: Stop[] = [
 
 
   }
+
+  
+  
+onDepartmentChange(event: any) {
+  const deptid = event.target.value;
+
+  const selectedDepartment = this.departments.find(
+    (departmentsdata: any) => departmentsdata.id == deptid
+  );
+
+  if (selectedDepartment) {
+    this.formsize.patchValue({
+      departmentname: selectedDepartment.deptname,
+      
+    });
+  } else {
+    this.formsize.patchValue({
+      departmentname: ''
+      
+    });
+  }
+}
 
 
 
@@ -288,7 +314,7 @@ initMap(): void {
     this.formsize.patchValue({
       latitude: lat,
       longitude: lng,
-      address:this.searchBox.nativeElement.value
+      stopsstatus:this.searchBox.nativeElement.value
     });
 
 

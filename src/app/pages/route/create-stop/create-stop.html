@@ -20,7 +20,7 @@
                             Search Location
                         </label>
                         <input
-          #searchBox    (input)="onSearch()" formControlName="stopsname"
+          #searchBox    (input)="onSearch()" formControlName="stopsstatus"
           type="text"
           placeholder="Search location"
           class="form-control mb-3"
@@ -32,7 +32,7 @@
                         <label class="text-sm text-[#050914]">
                             Address<span class="text-primary">*</span>
                         </label>
-                        <input type="text" placeholder="Add Office Location"
+                        <input type="text" placeholder="Add Office Location" formControlName="address"
                             class="mt-2 w-full border rounded-md px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
                     </div>
 
@@ -40,21 +40,28 @@
                         <label class="text-sm text-[#050914]">
                             Stop Name<span class="text-primary">*</span>
                         </label>
-                        <input type="text" placeholder="Office Location"
+                        <input type="text" placeholder="Office Location"  formControlName="stopsname"
                             class="mt-2 w-full border rounded-md px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none" />
                     </div>
 
                     <div>
                         <label class="text-sm text-[#050914]">
                             Department
+                            departmentid
                         </label>
-                        <select
+                        <select formControlName="departmentid" (change)="onDepartmentChange($event)"
                             class="mt-2 w-full border rounded-md px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
                             <option value="">Choose Department</option>
-                            <option>HR</option>
-                            <option>IT</option>
-                            <option>Finance</option>
+                           <option *ngFor="let item of departments; index as i" [value]="item.id">
+                                                {{ item.deptname}}
+                                           </option>
                         </select>
+
+                          <input type="text" formControlName="departmentname" readonly
+                        placeholder="Select Department"
+                        class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                        [class.border-red-500]="formsize.get('departmentname')?.touched && formsize.get('departmentname')?.invalid" />
+
                     </div>
                 </div>
             </div>
@@ -93,9 +100,11 @@
                     </thead>
 
                     <tbody class="bg-white">
-                        <tr *ngFor="let stop of paginatedStops; let i = index"
+                        
+                        <tr *ngFor="let stop of stops; let i = index"
                             [ngClass]="i % 2 === 0 ? 'bg-white' : 'bg-gray-50'"
                             class="hover:bg-gray-100 transition-colors border-b border-gray-200">
+                           
                             <td class="px-6 py-4 text-sm text-[#050914]">
                                 {{ stop.stopName }}
                             </td>
