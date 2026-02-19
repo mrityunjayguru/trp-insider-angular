@@ -1,21 +1,243 @@
-<p>Employee List </p>
+<section class="w-full h-full p-8 bg-white overflow-y-auto">
+  <div *ngIf="employee; else loading" class="max-w-5xl mx-auto">
+    <!-- Header -->
+    <div class="flex justify-between items-center ">
+      <h1 class="text-xl font-semibold text-primary">Add Employee</h1>
+      <button [routerLink]="['/company/employee-details']" [queryParams]="{ id: employeeId }"
+        class="bg-[#006842] text-white text-sm px-8 py-2 rounded-md hover:bg-secondary hover:text-primary cursor-pointer transition-all font-semibold">
+        Edit
+      </button>
+    </div>
+    <hr class="border-[#D2D2D2] my-4" />
 
+    <!-- Basic Information Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-10">
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Employment Type</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.typeofemployment || 'Regular' }}</p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Employee ID</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.id || 'TRPE0001' }}</p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Name</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.name || 'Summer Sullivan' }}</p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Mobile Number</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.contactnumber || '9876543210' }}</p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Department</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.departmentname || 'Tech' }}</p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Designation</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.designation || 'Java Developer' }}</p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Office Location</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.officelocation || 'Sector, Noida' }}</p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Monthly Fixed Salary</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.monthlyFixedSalary || '50,000' }}</p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Reporting Authority</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.reportingauthority || 'Creative Head' }}</p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Reporting Person</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.reportingmanagername || 'Hawa Singh' }}</p>
+      </div>
+      <div class="flex flex-col">
+        <label class="text-sm text-[#050914]">Work Mode</label>
+        <p class="text-sm text-[#666666]  font-medium">{{ employee.workmode || 'Work From Home' }}</p>
+      </div>
+    </div>
 
+    <!-- Sections -->
+    <div class="space-y-12">
+      <!-- Personal Information -->
+      <section>
+        <h1 class="text-xl font-semibold text-primary">Personal Information</h1>
+        <hr class="border-[#D2D2D2] my-4" />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Gender</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.gender || 'Male' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Date of Birth</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ (employee.dateofbirth | date:'dd/MM/yyyy') ||
+              '15/08/1947' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Address</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.address || '221B Baker Street, London' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Pin code</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.pincode || '110033' }}</p>
+          </div>
+          <div class="grid grid-cols-3 gap-4 md:col-span-2">
+            <div class="flex flex-col">
+              <label class="text-sm text-[#050914]">Country</label>
+              <p class="text-sm text-[#666666]  font-medium">India</p>
+            </div>
+            <div class="flex flex-col">
+              <label class="text-sm text-[#050914]">State</label>
+              <p class="text-sm text-[#666666]  font-medium">{{ employee.state || 'London' }}</p>
+            </div>
+            <div class="flex flex-col">
+              <label class="text-sm text-[#050914]">District</label>
+              <p class="text-sm text-[#666666]  font-medium">{{ employee.district || 'Baker Street' }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<div *ngIf="employee; else loading">
-  <div *ngFor="let item of employee | keyvalue">
-    <table class="w-full" style="text-align: left; border-collapse: collapse;"> 
+      <!-- Employment Information -->
+      <section>
+        <h1 class="text-xl font-semibold text-primary">Employment Information</h1>
+        <hr class="border-[#D2D2D2] my-4" />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Date of Joining</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ (employee.joiningdate | date:'dd/MM/yyyy') ||
+              '26/01/2026' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">UAN</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.uan || '-' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">PAN</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.pannumber || 'ADPC001122' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Aadhaar Number <span class="text-[#3BB48B]">*</span></label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.aadhaarnumber || '1111 2222 3333 4444' }}</p>
+          </div>
+          <div class="grid grid-cols-3 gap-4 md:col-span-2">
+            <div class="flex flex-col">
+              <label class="text-sm text-[#050914]">PF Number</label>
+              <p class="text-sm text-[#666666]  font-medium">{{ employee.pfnumber || '-' }}</p>
+            </div>
+            <div class="flex flex-col">
+              <label class="text-sm text-[#050914]">PF Joining Date</label>
+              <p class="text-sm text-[#666666]  font-medium">{{ (employee.pfjoiningdate | date:'dd/MM/yyyy') || '-'
+                }}</p>
+            </div>
+            <div class="flex flex-col">
+              <label class="text-sm text-[#050914]">ESI Number</label>
+              <p class="text-sm text-[#666666]  font-medium">{{ employee.esinumber || '-' }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <tr>
-        <th border="10" style="border: 1px solid rgb(170, 170, 184);">{{ item.key }}</th>
-        <th border="10" style="border: 1px solid rgb(164, 164, 174);">{{ item.value }}</th>
-        </tr>
+      <!-- Transport Details -->
+      <section>
+        <h1 class="text-xl font-semibold text-primary">Transport Details</h1>
+        <hr class="border-[#D2D2D2] my-4" />
+        <div class="flex flex-col">
+          <label class="text-sm text-[#050914]">Choose Vehicle</label>
+          <p class="text-sm text-[#666666]  font-medium">{{ employee.vehiclenumber || 'BH01AK0047' }}</p>
+        </div>
+      </section>
 
-    </table>
-  
+      <!-- Bank Details -->
+      <section>
+        <h1 class="text-xl font-semibold text-primary">Bank Details</h1>
+        <hr class="border-[#D2D2D2] my-4" />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Bank Name</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.bankname || 'Kings Bank London' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">IFSC Code</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.ifsccode || '-' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Account Number</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.accountnumber || '-' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Account Holder Name</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.nameofaccountholder || 'Summer Sullivan'
+              }}</p>
+          </div>
+          <div class="flex flex-col md:col-span-2">
+            <label class="text-sm text-[#050914]">UPI Detail</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.upiid || 'Kings Bank London' }}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Emergency Details -->
+      <section>
+        <h1 class="text-xl font-semibold text-primary">Emergency Details</h1>
+        <hr class="border-[#D2D2D2] my-4" />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Employee's Blood Group</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.bloodgroupofemployee || 'AB+' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Emergency Contact Person</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.emergencycontactpersonname || 'Audrey Gill'
+              }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Emergency Contact Number</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.emergencycontactnumber || '9876543211' }}</p>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-sm text-[#050914]">Relation with Employee</label>
+            <p class="text-sm text-[#666666]  font-medium">{{ employee.relationwithemployee || 'Wife' }}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Upload Documents -->
+      <section class="pb-20">
+        <h1 class="text-xl font-semibold text-primary">Upload Documents</h1>
+        <hr class="border-[#D2D2D2] my-4" />
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="flex flex-col">
+            <label class="text-sm text-gray-500 mb-4">Employee Photo <span class="text-[#3BB48B]">*</span></label>
+            <button
+              class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">Preview
+              File</button>
+          </div>
+
+          <div class="flex flex-col">
+            <label class="text-sm text-gray-500 mb-4">Aadhaar/VoterID/Passport <span
+                class="text-[#3BB48B]">*</span></label>
+            <button
+              class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">Preview
+              File</button>
+          </div>
+
+          <div class="flex flex-col">
+            <label class="text-sm text-gray-500 mb-4">Driving Licence</label>
+            <button
+              class="w-full mt-3 bg-[#E5E5E5] text-[#006842] cursor-pointer hover:bg-gray-300 text-sm p-2 rounded-md font-medium">Preview
+              File</button>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
-</div>
 
-<ng-template #loading>
-  Loading employee...
-</ng-template>
+  <ng-template #loading>
+    <div class="flex flex-col items-center justify-center h-full text-gray-400">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3BB48B] mb-4"></div>
+      <p class="text-sm">Loading employee details...</p>
+    </div>
+  </ng-template>
+</section>

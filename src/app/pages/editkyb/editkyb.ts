@@ -8,11 +8,16 @@ import { FormBuilder } from '@angular/forms';
 import { ApiService } from '../../apiservice';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ZardDialogService } from '@/shared/components/dialog/dialog.service';
+import { TemplateRef } from '@angular/core';
+
+
+import { ZardIconComponent } from '@/shared/components/icon/icon.component';
 
 
 @Component({
   selector: 'app-editkyb',
-  imports: [NgClass, NgIf, FormsModule, ReactiveFormsModule],
+  imports: [NgClass, NgIf, FormsModule, ReactiveFormsModule, ZardIconComponent],
   templateUrl: './editkyb.html',
   styleUrl: './editkyb.css',
 })
@@ -204,6 +209,7 @@ export class Editkyb implements OnInit {
   previewUrl: string | ArrayBuffer | null = null;
   isSelected = true;
   submitted = false;
+  selectedPreviewUrl: string | null = null;
   businesstype = 'proprietor';
   gstin = '';
   businessname = '';
@@ -685,7 +691,7 @@ export class Editkyb implements OnInit {
 
 
 
-  constructor(private route: ActivatedRoute,formBuilder: FormBuilder, apiService: ApiService, router: Router) {
+  constructor(private route: ActivatedRoute, formBuilder: FormBuilder, apiService: ApiService, router: Router, private dialogService: ZardDialogService) {
     this.apiService = apiService;
     this.formBuilder = formBuilder;
     this.productsForm = this.formBuilder
@@ -971,19 +977,19 @@ export class Editkyb implements OnInit {
   }
 
 
-ngOnInit() {
-  const id = this.route.snapshot.paramMap.get('id');
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
 
-  this.apiService.getKnowYourBusinessById(id).subscribe(
-    (response: any) => {
-      console.log('Edit KYB Response:', response);
-      this.productsForm.patchValue(response.data);
-    },
-    (error: any) => {
-      console.error('Error fetching KYB details:', error);
-    }
-  );
-}
+    this.apiService.getKnowYourBusinessById(id).subscribe(
+      (response: any) => {
+        console.log('Edit KYB Response:', response);
+        this.productsForm.patchValue(response.data);
+      },
+      (error: any) => {
+        console.error('Error fetching KYB details:', error);
+      }
+    );
+  }
 
 
   toggleRowVisibility(): void {
@@ -1056,14 +1062,14 @@ ngOnInit() {
         alert(response.mesage);
         if (response.mesage == "Data Stored successfully." || response.status == 200) {
           alert(" Indise if for routing");
-         
+
 
           console.log("response.data");
           console.log(response.data);
           console.log("response.data");
 
           this.router.navigate(['/company/editkyb', response.data.id]);
-         //this.router.navigate(['company/editkyb']);
+          //this.router.navigate(['company/editkyb']);
         }
         else {
           alert(response);
@@ -1077,7 +1083,7 @@ ngOnInit() {
     this.docTopimage = event.target.files[0];
     this.imageData[0] = this.docTopimage;
 
-   
+
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {
@@ -2008,7 +2014,32 @@ ngOnInit() {
     }
   }
 
+  openEditDialog(content: TemplateRef<any>): void {
+    this.dialogService.create({
+      zTitle: 'Edit Contact Information',
+      zContent: content,
+      zOkText: 'Save',
+      zCancelText: 'Cancel',
+      zWidth: '500px',
+      zOnOk: () => {
+        this.onSubmit();
+      }
+    });
+  }
 
+  openPreviewDialog(content: TemplateRef<any>, imageUrl: string | null): void {
+    if (!imageUrl) {
+      alert("No file available for preview");
+      return;
+    }
+    this.selectedPreviewUrl = imageUrl;
+    this.dialogService.create({
+      zTitle: 'Document Preview',
+      zContent: content,
+      zHideFooter: true,
+      zWidth: '800px',
+    });
+  }
 }
 
 
