@@ -529,6 +529,11 @@ updateAddVehiclesDeleted(formData: any): Observable<any> {
   getAllEmploymentType(): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/employmenttypemaster/getAllMaster", { "headers": this.headers });
   }
+
+  
+ updateEmployeeDeleted(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/employee/updateDeletedFlag", formData, { "headers": this.headers });
+  }
   //====================================================================
 
 
