@@ -40,25 +40,25 @@
                     [ngClass]="i % 2 !== 0 ? '' : 'bg-gray-50'"
                     class="hover:bg-gray-100 transition-colors border-b border-gray-200">
                     <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.name }}</td>
-                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.empId }}</td>
-                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.mobile }}</td>
-                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.empType }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.id }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.contactnumber }}</td>
+                    <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.typeofemployment }}</td>
                     <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.department }}</td>
                     <td class="px-6 py-4 text-sm text-[#050914] whitespace-nowrap">{{ employee.designation }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center gap-3">
                             <button (click)="toggleStatus(employee)"
                                 class="relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-200 focus:outline-none cursor-pointer"
-                                [class.bg-[#D1F2E8]]="employee.isActive" [class.bg-gray-200]="!employee.isActive">
+                                [class.bg-[#D1F2E8]]="employee.deleted" [class.bg-gray-200]="!employee.deleted">
                                 <span
                                     class="inline-block h-5 w-5 transform rounded-full transition-transform duration-200"
-                                    [class.translate-x-5]="employee.isActive" [class.translate-x-1]="!employee.isActive"
-                                    [class.bg-[#3BB48B]]="employee.isActive" [class.bg-gray-400]="!employee.isActive">
+                                    [class.translate-x-5]="employee.deleted" [class.translate-x-1]="employee.deleted"
+                                    [class.bg-[#3BB48B]]="employee.deleted" [class.bg-gray-400]="!employee.deleted">
                                 </span>
                             </button>
-                            <span class="text-sm font-medium" [class.text-[#3BB48B]]="employee.isActive"
-                                [class.text-gray-400]="!employee.isActive">
-                                {{ employee.isActive ? 'Active' : 'Inactive' }}
+                            <span class="text-sm font-medium" [class.text-[#3BB48B]]="employee.deleted"
+                                [class.text-gray-400]="!employee.deleted">
+                                {{ employee.deleted ? 'Inactive' : 'Active' }}
                             </span>
                         </div>
                     </td>
