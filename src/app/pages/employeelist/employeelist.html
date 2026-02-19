@@ -1,0 +1,13 @@
+<p>Employee List </p>
+
+
+
+<div *ngIf="employee; else loading">
+  <div *ngFor="let item of employee | keyvalue">
+    <strong>{{ item.key }}:</strong> {{ item.value }}
+  </div>
+</div>
+
+<ng-template #loading>
+  Loading employee...
+</ng-template>

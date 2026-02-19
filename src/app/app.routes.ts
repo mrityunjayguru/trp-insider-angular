@@ -16,6 +16,7 @@ import { ManageRoute } from './pages/route/manage-route/manage-route';
 import { CreateRoute } from './pages/route/create-route/create-route';
 import { Knowyourbusinesslisting } from './pages/knowyourbusinesslisting/knowyourbusinesslisting';
 import { Editkyb } from './pages/editkyb/editkyb';
+import {Employeelist} from './pages/employeelist/employeelist';
 export const routes: Routes = [
   { path: '', component: Landing },
   { path: 'register', component: Register },
@@ -38,7 +39,8 @@ export const routes: Routes = [
       { path: 'create-route', component: CreateRoute },
       { path: 'create-stop', component: CreateStop },
       { path: 'settings', component: Settings },
-      { path: 'knowyourbusinesslisting', component: Knowyourbusinesslisting }
+      { path: 'knowyourbusinesslisting', component: Knowyourbusinesslisting },
+      { path: 'employeelist/:id', component: Employeelist },
     ]
   }
 ];
