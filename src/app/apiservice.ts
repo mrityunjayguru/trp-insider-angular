@@ -598,6 +598,10 @@ getKnowYourBusinessById(id: any): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/knowyourbusiness/getKybById?id=" + id, { "headers": this.headers });
   }
 
+  updateKYBData(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/knowyourbusiness/updatedata", formData, { "headers": this.headers });
+  }
+
   //===========================  ========================================
 
 

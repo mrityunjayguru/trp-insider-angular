@@ -838,6 +838,7 @@ export class Editkyb implements OnInit {
 
 
     this.productsForm = this.formBuilder.group({
+      id:[''],
       topimage: ['', Validators.required],
       name: [''],
       designationid: [''],
@@ -995,6 +996,39 @@ export class Editkyb implements OnInit {
   toggleRowVisibility(): void {
     this.showRow = !this.showRow;
   }
+
+
+onSubmitEdit()
+{
+   console.log("====this.productsForm====");
+   console.log(" id "+this.productsForm.value.id);
+   console.log(" contactpersonname "+this.productsForm.value.contactpersonname);
+   console.log("contactpersondesignation "+this.productsForm.value.contactpersondesignation);
+   console.log("contactpersonmobile "+this.productsForm.value.contactpersonmobile);
+   console.log("====this.productsForm====");
+
+   const formData = new FormData();
+        formData.append('id', this.productsForm.value.id);
+        formData.append('contactpersonname', this.productsForm.value.contactpersonname);
+        formData.append('contactpersondesignation', this.productsForm.value.contactpersondesignation);
+        formData.append('contactpersonmobile', this.productsForm.value.contactpersonmobile);
+
+        this.apiService.updateKYBData(formData).subscribe(
+          (response: any) => {
+            
+            alert("Status updated successfully.");
+            
+          },
+          (error:any) => {
+            
+            alert("An error occurred while updating status." + error);
+          }
+        );
+
+
+
+}
+
 
   onSubmit() {
     this.submitted = true;
@@ -2022,7 +2056,7 @@ export class Editkyb implements OnInit {
       zCancelText: 'Cancel',
       zWidth: '500px',
       zOnOk: () => {
-        this.onSubmit();
+        this.onSubmitEdit();
       }
     });
   }
