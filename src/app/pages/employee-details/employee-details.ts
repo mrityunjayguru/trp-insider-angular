@@ -2,8 +2,8 @@ import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toast } from 'ngx-sonner';
-
-
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import {  OnInit } from '@angular/core';
 
 import { ApiService } from '../../apiservice';
@@ -690,7 +690,7 @@ allvehicletypebrand:any;
   isSelected = true;
 
   
-  constructor(formBuilder: FormBuilder, apiService: ApiService, router: Router) {
+  constructor(private route: ActivatedRoute,formBuilder: FormBuilder, apiService: ApiService, router: Router) {
     this.apiService = apiService;
     this.formBuilder = formBuilder;
     this.employeeForm = this.formBuilder
@@ -1046,6 +1046,40 @@ this.apiService.getAllCommissionType().subscribe(
 
 
   ngOnInit(): void {
+
+
+  this.route.queryParamMap.subscribe(params => {
+    const id = params.get('id');
+
+    if (id) {
+      alert('Employee ID:'+ id);
+      // You can convert to number if needed
+      const employeeId = Number(id);
+      // Now you can use employeeId to fetch data or perform other actions
+
+         this.apiService.getemployeebyid(id).subscribe(
+          (response: any) => {
+            const employeeData = response.data;
+            console.log("Employee data for ID " + id + ":");
+            console.log(employeeData);
+
+             this.employeeForm.patchValue(employeeData);
+
+            // You can now use employeeData to populate your form or perform other actions
+          },
+          (error: any) => {
+            console.error("Error fetching employee data for ID " + id + ":");
+            console.error(error);
+          }
+        );
+
+    } else {
+      console.log('No ID provided in query params');
+    }
+  });
+
+
+    
 
   }
 

@@ -28,6 +28,7 @@ export class Employeelist implements OnInit {
 
   constructor(private route: ActivatedRoute,private apiService: ApiService, private cdr : ChangeDetectorRef) {
 
+    
    
   }
 
@@ -37,6 +38,7 @@ export class Employeelist implements OnInit {
       .pipe(
         switchMap(params => {
           const id = Number(params.get('id'));
+          alert("ID "+id);
           this.employeeId = id;
           return this.apiService.getemployeebyid(id); // call API for new id
         })
