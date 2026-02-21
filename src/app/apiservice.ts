@@ -163,6 +163,11 @@ export class ApiService {
 
 
   updateemployeebyid(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/employee/updatedata", formData, { "headers": this.headersVendor });
+  }
+
+
+  updateEmployee(formData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + "/employee/update", formData, { "headers": this.headersVendor });
   }
 

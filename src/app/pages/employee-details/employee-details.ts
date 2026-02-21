@@ -21,6 +21,7 @@ import { Router } from '@angular/router';
 
 export class EmployeeDetails implements OnInit {
 
+  successupdate:any;
   employeeForm!: FormGroup;
   showPersonalVehicleForm = false;
   employmentType: string = '';
@@ -897,6 +898,7 @@ this.apiService.getAllCommissionType().subscribe(
     this.employeeForm = this.formBuilder.group({
 
       employmentType:[''],
+      id:[''],
       
       pan:[''],
       district:[''],
@@ -1052,8 +1054,8 @@ this.apiService.getAllCommissionType().subscribe(
     const id = params.get('id');
 
     if (id) {
-      alert('Employee ID:'+ id);
-      // You can convert to number if needed
+      
+       // You can convert to number if needed
       const employeeId = Number(id);
       // Now you can use employeeId to fetch data or perform other actions
 
@@ -1064,6 +1066,11 @@ this.apiService.getAllCommissionType().subscribe(
             console.log(employeeData);
 
              this.employeeForm.patchValue(employeeData);
+
+              this.successupdate=true;
+
+             // alert('Employee ID:'+ id +" this.successupdate "+this.successupdate);
+    
 
             // You can now use employeeData to populate your form or perform other actions
           },
@@ -1088,8 +1095,31 @@ this.apiService.getAllCommissionType().subscribe(
     this.showRow = !this.showRow;
   }
 
+  reset()
+  {
+          this.successupdate=false;
+  }
+
 
   onSubmit() {
+
+
+   // alert(this.successupdate);
+    if(this.successupdate)
+    {
+      this.updateData();
+      
+    }
+    else
+    {
+    this.saveData();
+    
+    }
+
+
+  }
+
+updateData() {
 
     
     if (this.employeeForm.value.name.length == 0) {
@@ -1123,12 +1153,131 @@ this.apiService.getAllCommissionType().subscribe(
     }
 
 
-const payload = {
-    ...this.employeeForm.value,   // existing form fields
-    departmentobj: {
-      id: this.employeeForm.value.department_id                  // or this.formsize.value.companyId
+      const payload = {
+          ...this.employeeForm.value,   // existing form fields
+          departmentobj: {
+            id: this.employeeForm.value.department_id                  // or this.formsize.value.companyId
+          }
+        };
+
+
+  console.log("=========Paylaod =================");
+  
+  console.log("=========Paylaod =================");
+
+  
+  console.log(payload);
+
+
+  console.log("=========Paylaod =================");
+
+  console.log("=========Paylaod =================");
+
+
+  
+
+
+
+    this.imageData.forEach((element: any) => {
+  
+      if (element != undefined) {
+        this.formData.append('file', element, element.name);
+      }
+
+
+    });
+
+
+
+
+    //this.formData.append("eventProduct", JSON.stringify(this.productsForm.value));
+  
+   
+  this.formData.append(
+    'eventProduct',
+    JSON.stringify(payload)
+  );
+    
+  
+
+  console.log(" Employee Form data =========");
+  console.log(" Employee Form data =========");
+  console.log(" Employee Form data =========");
+  console.log(" Employee Form data =========");
+  console.log(this.formData);
+  console.log(" Employee Form data =========");
+  console.log(" Employee Form data =========");
+  console.log(" Employee Form data =========");
+
+
+  
+    this.apiService.updateEmployee(this.formData).subscribe(
+      (response: any) => {
+
+
+        console.log(" Save Empluee API response ");
+        console.log(response);
+        console.log(" Save Empluee API response ");
+
+
+        
+        if (response.mesage == "Data Stored successfully." || response.status == 200) {
+          alert(response.mesage);
+          this.reset();
+          this.router.navigateByUrl('/getallemployee.component');
+        }
+        else
+        {
+          console.log(response);
+        }
+      })
+
+
+    
+
+
+  }
+
+saveData() {
+
+    
+    if (this.employeeForm.value.name.length == 0) {
+      alert("Kinldy enter the Employee name.");
+      return;
     }
-  };
+    else if (this.employeeForm.value.topimage.length == 0) {
+      alert("Kinldy select the topimage  ");
+      return;
+    }
+    else if (this.employeeForm.value.designation.length == 0) {
+      alert("Kinldy enter  the employee designation ");
+      return;
+    }
+    
+
+    else if (this.employeeForm.value.workmode.length == 0) {
+      alert("Kinldy enter  the work mode");
+      return;
+    }
+    else if (this.employeeForm.value.contactnumber.length == 0 || this.employeeForm.value.contactnumber == 0) {
+      alert("Kinldy enter  the mobile number");
+      return;
+    }
+    else if (this.employeeForm.value.departmentname.length == 0 || this.employeeForm.value.departmentname == 0) {
+      alert("Kinldy select  the department name");
+      return;
+    }
+    else {
+
+    }
+
+
+      const payload = {
+          ...this.employeeForm.value,   // existing form fields
+          departmentobj: {
+            id: this.employeeForm.value.department_id                  // or this.formsize.value.companyId
+          }
+        };
 
 
   console.log("=========Paylaod =================");
@@ -1190,9 +1339,11 @@ const payload = {
         console.log(" Save Empluee API response ");
 
 
-        alert(response.mesage);
+       
         if (response.mesage == "Data Stored successfully." || response.status == 200) {
 
+          this.reset();
+           alert(response.mesage);
           this.router.navigateByUrl('/getallemployee.component');
         }
         else
@@ -1206,6 +1357,8 @@ const payload = {
 
 
   }
+
+
   onFileSelected(event: any): void {
     this.docTopimage = event.target.files[0];
     this.imageData[0] = this.docTopimage;
