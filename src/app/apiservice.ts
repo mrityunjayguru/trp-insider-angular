@@ -43,8 +43,8 @@ export class ApiService {
     // alert(" Niraj Updated "+this.apiUrl);
   
      
-   this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
-   // this.apiUrl = 'http://localhost:8085/api';
+     this.apiUrl = 'https://trpinsiderbackend.routerosterpro.com/api';
+    //this.apiUrl = 'http://localhost:8085/api';
         
        // alert(" Niraj Updated "+this.apiUrl);
 
@@ -225,6 +225,9 @@ export class ApiService {
     return this.http.post<any>(this.apiUrl + "/stops/updateDeletedFlag", formData, { "headers": this.headers });
   }
 
+  getStopsById(id: any): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/stops/getStopsById?id=" + id, { "headers": this.headers });
+  }
 
   //====================================================================
 

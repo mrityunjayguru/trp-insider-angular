@@ -107,9 +107,11 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100" cdkDropList (cdkDropListDropped)="onDrop($event)">
-                        <tr *ngFor="let stop of paginatedStops(); let i = index" [class.bg-gray-50]="i % 2 !== 0"
+                      
+                        <tr *ngFor="let stop of stops; let i = index" [class.bg-gray-50]="i % 2 !== 0"
                             class="hover:bg-gray-50 transition-colors bg-white" cdkDrag
                             [cdkDragDisabled]="!isSettingOrder">
+                           
                             <td class="px-6 py-4">
                                 <input *ngIf="!isSettingOrder" type="checkbox" [(ngModel)]="stop.selected"
                                     class="rounded text-primary accent-primary h-4 w-4 focus:ring-primary">
@@ -121,9 +123,9 @@
                                     </svg>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.name }}</td>
+                            <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.stopsname }}</td>
                             <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.address }}</td>
-                            <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.department }}</td>
+                            <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.departmentname }}</td>
                             <td *ngIf="isSettingOrder" class="px-6 py-4 text-sm text-[#050914] font-medium">{{
                                 stop.order }}</td>
                         </tr>

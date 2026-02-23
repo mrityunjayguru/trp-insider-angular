@@ -35,6 +35,7 @@ interface Stop {
 export class CreateStop implements OnInit,AfterViewInit {
   
   
+  isEditable:any;
   formsize:any;
   formBuilder: any;
   apiService: ApiService;
@@ -63,6 +64,11 @@ export class CreateStop implements OnInit,AfterViewInit {
   currentPage: number = 1;
   itemsPerPage: number = 5;
   totalPages: number = 1;
+
+  reset()
+  {
+    this.isEditable=false;
+  }
 
   ngOnInit() {
    // this.filteredStops = [...this.stops];
@@ -104,8 +110,19 @@ export class CreateStop implements OnInit,AfterViewInit {
   }
 
   editStop(stop: Stop) {
-    console.log('Editing stop:', stop);
-    // Add your edit logic here
+
+    this.apiService.getStopsById(stop.id).subscribe(
+      (response: any) => {
+        console.log("Response from getStopsById:", response);
+        if (response && response.data) {
+          this.formsize.patchValue(response.data);
+          this.isEditable=true;
+        }
+      },
+      (error: any) => {
+        console.error("Error fetching stop details:", error);
+      }
+    );
   }
 
   constructor(formBuilder: FormBuilder,   apiService: ApiService){
@@ -115,6 +132,7 @@ export class CreateStop implements OnInit,AfterViewInit {
     this.apiService = apiService;
    
     this.formsize = this.formBuilder.group({
+       id:[''],
        stopsname: [''],
        stopsdistance: [''],
        stopsstatus: [''],
@@ -123,10 +141,8 @@ export class CreateStop implements OnInit,AfterViewInit {
        latitude: [''],
        longitude: [''],
        address: [''],
-
-     departmentid:[''],
-     departmentname:['']
-
+       departmentid:[''],
+      departmentname:['']
 
     });
 
@@ -135,13 +151,7 @@ export class CreateStop implements OnInit,AfterViewInit {
     
       this.apiService.getAllDepartment().subscribe(
       (response : any) => {
-               
         this.departments = response.data;
-        console.log("Department");
-        console.log(this.departments);
-        console.log("Department");
-        this.updatePagination();
-        alert(" Update page");
           
       })
 
@@ -149,24 +159,8 @@ export class CreateStop implements OnInit,AfterViewInit {
 
     this.apiService.getAllStops().subscribe(
       (response : any) => {
-
-        console.log("======stops nnnnnnnnnnnnnnnnnn============");
-        console.log(response.data);
-        console.log("======stops nnnnnnnnnnnnnnnnnnnnnnnn============");
-
-
-               
         this.stops = response.data;
-
-        
-        console.log("=========this.stops=========");
-        console.log(this.stops);
-        console.log("======this.stops============");
-
-        
-        
-    
-        
+       
       })
 
 
@@ -201,6 +195,54 @@ onDepartmentChange(event: any) {
   
  onSubmit() {
 
+    if(this.isEditable == true)
+    {
+      this.updateData();
+    }
+    else
+    {
+      this.saveData();
+    }
+
+
+}
+
+
+
+ updateData() {
+
+  if (!this.formsize || !this.formsize.value) {
+    alert("Form data is invalid.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("data", JSON.stringify(this.formsize.value));
+
+  console.log("Form Value:", this.formsize.value);
+
+  this.apiService.updateStops(formData).subscribe({
+    next: (response: any) => {
+      console.log("API Response:", response);
+
+      if (response && response.status === 200) {
+        alert("Data updated Successfully.");
+        this.reset();
+      } else {
+        alert("Unable to save data.");
+      }
+    },
+    error: (error) => {
+      console.error("API Error:", error);
+      alert("Unable to save data. Please try again.");
+    }
+  });
+}
+
+
+
+ saveData() {
+
   if (!this.formsize || !this.formsize.value) {
     alert("Form data is invalid.");
     return;
@@ -216,7 +258,9 @@ onDepartmentChange(event: any) {
       console.log("API Response:", response);
 
       if (response && response.status === 200) {
-        alert("Size Added Successfully.");
+        alert("Data added Successfully.");
+        this.reset();
+
       } else {
         alert("Unable to save data.");
       }

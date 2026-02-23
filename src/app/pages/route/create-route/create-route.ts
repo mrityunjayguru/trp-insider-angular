@@ -5,6 +5,11 @@ import { CreateStop } from '../create-stop/create-stop';
 import { PaginationComponent } from '../../../shared/components/pagination/pagination.component';
 import { CdkDragDrop, moveItemInArray, DragDropModule } from '@angular/cdk/drag-drop';
 
+import { NgZone } from '@angular/core';
+import { ApiService } from '../../../apiservice'
+
+
+
 @Component({
   selector: 'app-create-route',
   standalone: true,
@@ -28,7 +33,8 @@ export class CreateRoute {
   searchTerm = signal('');
   currentPage = signal(1);
   itemsPerPage = 20;
-
+  stops:any;
+/*
   stops = signal([
     { id: 1, name: 'Market, Sector 3', address: 'Rewari, Haryana 123401', department: 'Procurement', selected: false, order: 1 },
     { id: 2, name: 'Mandir', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 2 },
@@ -63,14 +69,39 @@ export class CreateRoute {
     { id: 31, name: 'Lab', address: 'Rewari, Haryana 123401', department: 'Collection', selected: false, order: 31 },
     { id: 32, name: 'Ankorah', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 32 },
   ]);
+  */
+
+constructor(private apiService: ApiService)
+{
+
+  this.apiService.getAllStops().subscribe(
+      (response : any) => {
+        this.stops = response.data;
+        
+        console.log("this.stops");
+        console.log(this.stops);
+        console.log("this.stops");
+
+          
+      })
+
+
+}
+
 
   filteredStops = computed(() => {
+    
+    return this.stops;
+    /*
     const term = this.searchTerm().toLowerCase();
-    return this.stops().filter(stop =>
-      stop.name.toLowerCase().includes(term) ||
+    
+
+    return this.stops.filter((stop:any) =>
+      stop.stopname.toLowerCase().includes(term) ||
       stop.address.toLowerCase().includes(term) ||
       stop.department.toLowerCase().includes(term)
-    );
+    );*/
+    
   });
 
   paginatedStops = computed(() => {
@@ -101,7 +132,7 @@ export class CreateRoute {
   }
 
   saveRoute() {
-    console.log('Route saved with stops:', this.stops().filter(s => s.selected));
+    console.log('Route saved with stops:', this.stops().filter((s:any) => s.selected));
   }
 
   onSearch(term: string) {
