@@ -109,6 +109,8 @@ export class CreateStop implements OnInit,AfterViewInit {
   }
 
   constructor(formBuilder: FormBuilder,   apiService: ApiService){
+
+    
     this.formBuilder=formBuilder;
     this.apiService = apiService;
    
@@ -138,7 +140,8 @@ export class CreateStop implements OnInit,AfterViewInit {
         console.log("Department");
         console.log(this.departments);
         console.log("Department");
-
+        this.updatePagination();
+        alert(" Update page");
           
       })
 
