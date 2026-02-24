@@ -2,13 +2,14 @@ import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../../../shared/components/pagination/pagination.component';
+import { ApiService } from '@/apiservice';
 
 interface RouteItem {
   id: number;
-  name: string;
+  routename: string;
   totalStops: number;
-  officeLocation: string;
-  transport: string;
+  officelocation: string;
+  modeoftransport: string;
   isActive: boolean;
 }
 
@@ -20,29 +21,31 @@ interface RouteItem {
   styleUrl: './manage-route.css',
 })
 export class ManageRoute {
+
   searchQuery = signal('');
   currentPage = signal(1);
   itemsPerPage = 10;
 
-  routes = signal<RouteItem[]>([
-    { id: 1, name: 'Bank Route Rewari', totalStops: 12, officeLocation: 'Model Town', transport: 'Truck', isActive: true },
-    { id: 2, name: 'Mandir Route Rewari', totalStops: 18, officeLocation: 'Sector 3', transport: 'EAuto', isActive: true },
-    { id: 3, name: 'Liquor Stores', totalStops: 49, officeLocation: 'Brass Market', transport: 'PickUp', isActive: false },
-    { id: 4, name: 'Bakery Rewari', totalStops: 167, officeLocation: 'CR Complex', transport: 'Tempo', isActive: true },
-    { id: 5, name: 'Main City Route', totalStops: 25, officeLocation: 'Main Square', transport: 'Van', isActive: true },
-    { id: 6, name: 'Industrial Area', totalStops: 30, officeLocation: 'Sector 10', transport: 'Truck', isActive: true },
-    { id: 7, name: 'Railway Station', totalStops: 15, officeLocation: 'Station Road', transport: 'EAuto', isActive: false },
-    { id: 8, name: 'Expressway Route', totalStops: 50, officeLocation: 'Highway Point', transport: 'Tempo', isActive: true },
-  ]);
+  // ✅ Make routes a signal
+  routes = signal<RouteItem[]>([]);
+
+  constructor(private apiService: ApiService) {
+    this.apiService.getAllCreateRoots().subscribe((response: any) => {
+      this.routes.set(response.data || []);
+      console.log("Routes fetched successfully:", this.routes());
+    });
+  }
 
   filteredRoutes = computed(() => {
     const query = this.searchQuery().toLowerCase().trim();
-    if (!query) return this.routes();
+    const routes = this.routes();
 
-    return this.routes().filter(route =>
-      route.name.toLowerCase().includes(query) ||
-      route.officeLocation.toLowerCase().includes(query) ||
-      route.transport.toLowerCase().includes(query)
+    if (!query) return routes;
+
+    return routes.filter(route =>
+      route.routename?.toLowerCase().includes(query) ||
+      route.officelocation?.toLowerCase().includes(query) ||
+      route.modeoftransport?.toLowerCase().includes(query)
     );
   });
 
@@ -51,7 +54,9 @@ export class ManageRoute {
     return this.filteredRoutes().slice(startIndex, startIndex + this.itemsPerPage);
   });
 
-  totalPages = computed(() => Math.ceil(this.filteredRoutes().length / this.itemsPerPage));
+  totalPages = computed(() =>
+    Math.ceil(this.filteredRoutes().length / this.itemsPerPage)
+  );
 
   onSearch() {
     this.currentPage.set(1);
@@ -63,7 +68,11 @@ export class ManageRoute {
 
   toggleStatus(route: RouteItem) {
     this.routes.update(items =>
-      items.map(item => item.id === route.id ? { ...item, isActive: !item.isActive } : item)
+      items.map(item =>
+        item.id === route.id
+          ? { ...item, isActive: !item.isActive }
+          : item
+      )
     );
   }
 

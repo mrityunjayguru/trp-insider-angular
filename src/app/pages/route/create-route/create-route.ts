@@ -19,12 +19,14 @@ import { ApiService } from '../../../apiservice'
 })
 export class CreateRoute {
   private fb = inject(FormBuilder);
+  allofficelocation:any;
+  allvehicletype:any;
 
   isRouteCreated = false;
   routeForm: FormGroup = this.fb.group({
-    routeName: ['', Validators.required],
-    office: ['', Validators.required],
-    modeOfTransport: ['', Validators.required]
+    routename: ['', Validators.required],
+    officelocation: ['', Validators.required],
+    modeoftransport: ['', Validators.required]
   });
 
   routeData: any = null;
@@ -34,42 +36,6 @@ export class CreateRoute {
   currentPage = signal(1);
   itemsPerPage = 20;
   stops:any;
-/*
-  stops = signal([
-    { id: 1, name: 'Market, Sector 3', address: 'Rewari, Haryana 123401', department: 'Procurement', selected: false, order: 1 },
-    { id: 2, name: 'Mandir', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 2 },
-    { id: 3, name: 'Lab', address: 'Rewari, Haryana 123401', department: 'Collection', selected: false, order: 3 },
-    { id: 4, name: 'Ankorah', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 4 },
-    { id: 5, name: 'Market, Sector 3', address: 'Rewari, Haryana 123401', department: 'Procurement', selected: false, order: 5 },
-    { id: 6, name: 'Mandir', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 6 },
-    { id: 7, name: 'Lab', address: 'Rewari, Haryana 123401', department: 'Collection', selected: false, order: 7 },
-    { id: 8, name: 'Ankorah', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 8 },
-    { id: 9, name: 'Market, Sector 3', address: 'Rewari, Haryana 123401', department: 'Procurement', selected: false, order: 9 },
-    { id: 10, name: 'Mandir', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 10 },
-    { id: 11, name: 'Lab', address: 'Rewari, Haryana 123401', department: 'Collection', selected: false, order: 11 },
-    { id: 12, name: 'Ankorah', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 12 },
-    { id: 13, name: 'Market, Sector 3', address: 'Rewari, Haryana 123401', department: 'Procurement', selected: false, order: 13 },
-    { id: 14, name: 'Mandir', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 14 },
-    { id: 15, name: 'Lab', address: 'Rewari, Haryana 123401', department: 'Collection', selected: false, order: 15 },
-    { id: 16, name: 'Ankorah', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 16 },
-    { id: 17, name: 'Market, Sector 3', address: 'Rewari, Haryana 123401', department: 'Procurement', selected: false, order: 17 },
-    { id: 18, name: 'Mandir', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 18 },
-    { id: 19, name: 'Lab', address: 'Rewari, Haryana 123401', department: 'Collection', selected: false, order: 19 },
-    { id: 20, name: 'Ankorah', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 20 },
-    { id: 21, name: 'Market, Sector 3', address: 'Rewari, Haryana 123401', department: 'Procurement', selected: false, order: 21 },
-    { id: 22, name: 'Mandir', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 22 },
-    { id: 23, name: 'Lab', address: 'Rewari, Haryana 123401', department: 'Collection', selected: false, order: 23 },
-    { id: 24, name: 'Ankorah', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 24 },
-    { id: 25, name: 'Market, Sector 3', address: 'Rewari, Haryana 123401', department: 'Procurement', selected: false, order: 25 },
-    { id: 26, name: 'Mandir', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 26 },
-    { id: 27, name: 'Lab', address: 'Rewari, Haryana 123401', department: 'Collection', selected: false, order: 27 },
-    { id: 28, name: 'Ankorah', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 28 },
-    { id: 29, name: 'Market, Sector 3', address: 'Rewari, Haryana 123401', department: 'Procurement', selected: false, order: 29 },
-    { id: 30, name: 'Mandir', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 30 },
-    { id: 31, name: 'Lab', address: 'Rewari, Haryana 123401', department: 'Collection', selected: false, order: 31 },
-    { id: 32, name: 'Ankorah', address: 'Rewari, Haryana 123401', department: 'Delivery', selected: false, order: 32 },
-  ]);
-  */
 
 constructor(private apiService: ApiService)
 {
@@ -77,13 +43,21 @@ constructor(private apiService: ApiService)
   this.apiService.getAllStops().subscribe(
       (response : any) => {
         this.stops = response.data;
-        
-        console.log("this.stops");
-        console.log(this.stops);
-        console.log("this.stops");
-
           
       })
+
+      this.apiService.getAllOfficeLocation().subscribe(
+        (response : any) => {
+          this.allofficelocation = response.data;
+          console.log("Office Locations:", this.allofficelocation);
+
+        })
+
+        this.apiService.getAllVehicleType().subscribe(
+          (response : any) => {
+            this.allvehicletype = response.data;
+            console.log("Vehicle Types:", this.allvehicletype);
+          })
 
 
 }
@@ -112,12 +86,54 @@ constructor(private apiService: ApiService)
   totalPages = computed(() => Math.ceil(this.filteredStops().length / this.itemsPerPage));
 
   onSubmit() {
+
+  //  console.log("Submitting route form with values:", this.routeForm.value);
+
     if (this.routeForm.valid) {
       this.routeData = this.routeForm.value;
+      this.saveData();
       this.isRouteCreated = true;
       console.log('Route submitted:', this.routeData);
     }
   }
+
+ saveData() {
+
+  if (!this.routeForm || !this.routeForm.value) {
+    alert("Form data is invalid.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("data", JSON.stringify(this.routeForm.value));
+
+  console.log("Form Value:", this.routeForm.value);
+
+  this.apiService.saveCreateRoots(formData).subscribe({
+    next: (response: any) => {
+      console.log("API Response:", response);
+
+      if (response && response.status === 200) {
+        alert("Data added Successfully.");
+        
+
+      } else {
+        alert("Unable to save data.");
+      }
+    },
+    error: (error) => {
+      console.error("API Error:", error);
+      alert("Unable to save data. Please try again.");
+    }
+  });
+}
+
+
+
+
+
+
+
 
   editRoute() {
     this.isRouteCreated = false;

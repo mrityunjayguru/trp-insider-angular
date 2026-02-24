@@ -234,6 +234,31 @@ export class ApiService {
 
 
 
+//============================CreateRoots =========================
+
+saveCreateRoots(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/createroot/save", formData, { "headers": this.headers });
+  }
+
+ updateCreateRoots(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/createroot/update", formData, { "headers": this.headers });
+  }
+  getAllCreateRoots(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/createroot/getAllCreateRoots", { "headers": this.headers });
+  }
+
+ updateCreateRootsDeleted(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/createroot/updateDeletedFlag", formData, { "headers": this.headers });
+  }
+
+  getCreateRootsById(id: any): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/createroot/getCreateRootsById?id=" + id, { "headers": this.headers });
+  }
+
+
+  //==================================Crete Roots========================================================
+
+
 
   //=====================================
   saveDepartment(formData: any): Observable<any> {

@@ -10,7 +10,7 @@
                     <label class="block text-sm font-medium text-[#050914] mb-2">
                         Route Name<span class="text-primary">*</span>
                     </label>
-                    <input type="text" formControlName="routeName" placeholder="Enter Route Name"
+                    <input type="text" formControlName="routename" placeholder="Enter Route Name"
                         class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:outline-none placeholder:text-[#BCBCBC]" />
                 </div>
 
@@ -18,22 +18,24 @@
                     <label class="block text-sm font-medium text-[#050914] mb-2">
                         Office<span class="text-primary">*</span>
                     </label>
-                    <select formControlName="office"
+                    <select formControlName="officelocation"
                         class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:outline-none">
                         <option value="">Choose Office Location</option>
-                        <option value="Sector 3">Sector 3</option>
-                        <option value="Main Office">Main Office</option>
+                        <option *ngFor="let office of allofficelocation" [value]="office.officename">
+                          {{ office.officename }}
+                        </option>
                     </select>
                 </div>
                 <div class="flex-1 min-w-[250px]">
                     <label class="block text-sm font-medium text-[#050914] mb-2">
                         Mode of Transport<span class="text-primary">*</span>
                     </label>
-                    <select formControlName="modeOfTransport"
+                    <select formControlName="modeoftransport"
                         class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:outline-none ">
                         <option value="">Select Transport Vehicle</option>
-                        <option value="Truck">Truck</option>
-                        <option value="Van">Van</option>
+                        <option *ngFor="let vehicle of allvehicletype" [value]="vehicle.vehicletypename">
+                          {{ vehicle.vehicletypename }}
+                        </option>
                     </select>
                 </div>
             </div>
