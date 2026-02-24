@@ -49,14 +49,18 @@
                             Department
                             departmentid
                         </label>
-                        <select formControlName="departmentid" (change)="onDepartmentChange($event)"
-                            class="mt-2 w-full border rounded-md px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                            <option value="">Choose Department</option>
-                           <option *ngFor="let item of departments; index as i" [value]="item.id">
-                                                {{ item.deptname}}
-                                           </option>
-                        </select>
+                       <select 
+                        formControlName="dumydepartmentid"
+                        multiple
+                        (change)="onDepartmentChange($event)"
+                        class="mt-2 w-full border rounded-md px-3 py-3 placeholder:text-[#BCBCBC] text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
 
+                        <option *ngFor="let item of departments; index as i" 
+                                [value]="item.id">
+                            {{ item.deptname }}
+                        </option>
+
+                        </select>
                           <input type="text" formControlName="departmentname" readonly
                         placeholder="Select Department"
                         class="mt-2 w-full border border-[#D2D2D2] rounded-sm px-3 py-3 text-sm placeholder:text-[#BCBCBC] focus:ring-2 focus:ring-teal-500 focus:outline-none"
@@ -87,13 +91,14 @@
                     </svg>
                 </div>
             </div>
-            <div class="overflow-hidden rounded-lg">
+            <div class=" rounded-lg">
                 <table class="w-full">
                     <thead>
                         <tr class="bg-primary font-medium text-white">
                             <th class="px-6 py-3 text-left text-sm font-medium">Stop Name</th>
                             <th class="px-6 py-3 text-left text-sm font-medium">Address</th>
-                            <th class="px-6 py-3 text-left text-sm font-medium">Department</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium">Department ID's</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium">Department Names</th>
                             <th class="px-6 py-3 text-left text-sm font-medium">Status</th>
                             <th class="px-6 py-3 text-left text-sm font-medium">Action</th>
                         </tr>
@@ -111,6 +116,9 @@
                             </td>
                             <td class="px-6 py-4 text-sm text-[#050914]">
                                 {{ stop.address }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-[#050914]">
+                                {{ stop.departmentid }}
                             </td>
                             <td class="px-6 py-4 text-sm text-[#050914]">
                                 {{ stop.departmentname }}

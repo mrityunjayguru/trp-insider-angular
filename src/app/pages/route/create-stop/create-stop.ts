@@ -141,7 +141,8 @@ export class CreateStop implements OnInit,AfterViewInit {
        latitude: [''],
        longitude: [''],
        address: [''],
-       departmentid:[''],
+       dumydepartmentid: [''],
+       departmentid: [''] ,
       departmentname:['']
 
     });
@@ -149,11 +150,9 @@ export class CreateStop implements OnInit,AfterViewInit {
 
 
     
-      this.apiService.getAllDepartment().subscribe(
-      (response : any) => {
-        this.departments = response.data;
-          
-      })
+      
+    
+
 
 
 
@@ -163,33 +162,49 @@ export class CreateStop implements OnInit,AfterViewInit {
        
       })
 
+    
+      
+      this.apiService.getAllDepartment().subscribe(
+      (response : any) => {
+        this.departments = response.data;
+       
+      })
+
+
 
 
   }
 
-  
-  
-onDepartmentChange(event: any) {
-  const deptid = event.target.value;
+  // Handle multi-select change
+  onDepartmentChange(event: any) {
 
-  const selectedDepartment = this.departments.find(
-    (departmentsdata: any) => departmentsdata.id == deptid
-  );
+  console.log(" event.target.selectedOptions "+event.target.selectedOptions);
 
-  if (selectedDepartment) {
+
+    // Get only selected values (NOT index)
+    const selectedIds: string = Array.from(event.target.selectedOptions)
+      .map((option: any) => option.value).join(',');  // ['2','4','67','88'] -> "2,4,67,88"
+
+    // Optional: get names
+    const selectedDepartments = this.departments.filter((dept: any) =>
+      selectedIds.includes(dept.id.toString())
+    );
+    const selectedNames = selectedDepartments.map((dept: any) => dept.deptname);
+
+console.log(selectedIds);
+
+
+    // Patch form: IDs joined by comma
     this.formsize.patchValue({
-      departmentname: selectedDepartment.deptname,
-      
+      departmentid: selectedIds.split(',')
+  .map(part => part.split(':')[1].trim())   // get value after colon and remove spaces
+  .join(','),           // "2,4,67,88"
+      departmentname: selectedNames.join(',')    // "HR,IT,Finance,Marketing"
     });
-  } else {
-    this.formsize.patchValue({
-      departmentname: ''
-      
-    });
+
+    console.log("Selected Department IDs:", this.formsize.value.departmentid);
+    console.log("Selected Department Names:", this.formsize.value.departmentname);
   }
-}
-
-
 
 
   
