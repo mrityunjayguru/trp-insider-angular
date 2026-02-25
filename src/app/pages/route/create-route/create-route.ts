@@ -145,6 +145,7 @@ checkBoxClick(stop: any) {
   }
 
   console.log('Selected Stops:', this.selectedStops);
+  console.log("routeForm value:", this.routeForm.value);
 }
 
 
@@ -154,7 +155,18 @@ checkBoxClick(stop: any) {
 
   setStopOrder() {
     this.isSettingOrder = true;
+
+    if(this.selectedStops.length !== 0) {
     this.stops = this.selectedStops;
+    }
+    else
+    {
+      this.apiService.getAllStops().subscribe(
+      (response : any) => {
+        this.stops = response.data;
+          
+      })
+    }
   }
 
   manageStops() {
@@ -162,7 +174,19 @@ checkBoxClick(stop: any) {
   }
 
   saveRoute() {
-    console.log('Route saved with stops:', this.stops().filter((s:any) => s.selected));
+
+    console.log("this.selectedStops");
+    console.log(this.selectedStops);
+    console.log("this.selectedStops");
+
+    console.log("this.routeForm.value");
+    console.log(this.routeForm.value);
+    
+    console.log("this.routeForm.value");
+    
+    console.log('Route saved with stops:', this.stops.filter((s:any) => s.selected));
+  
+  
   }
 
   onSearch(term: string) {
