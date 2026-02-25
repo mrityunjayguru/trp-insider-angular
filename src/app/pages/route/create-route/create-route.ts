@@ -128,11 +128,24 @@ constructor(private apiService: ApiService)
   });
 }
 
+selectedStops: any[] = [];
 
+checkBoxClick(stop: any) {
 
+  if (stop.selected) {
+    // Add only if not already added
+    const exists = this.selectedStops.find(s => s.id === stop.id);
+    if (!exists) {
+      this.selectedStops.push(stop);
+    }
 
+  } else {
+    // Remove unchecked stop
+    this.selectedStops = this.selectedStops.filter(s => s.id !== stop.id);
+  }
 
-
+  console.log('Selected Stops:', this.selectedStops);
+}
 
 
   editRoute() {
@@ -141,6 +154,7 @@ constructor(private apiService: ApiService)
 
   setStopOrder() {
     this.isSettingOrder = true;
+    this.stops = this.selectedStops;
   }
 
   manageStops() {
