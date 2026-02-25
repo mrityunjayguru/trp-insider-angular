@@ -7,7 +7,7 @@ import { ApiService } from '@/apiservice';
 interface RouteItem {
   id: number;
   routename: string;
-  totalStops: number;
+  selectedstops: [[]];
   officelocation: string;
   modeoftransport: string;
   isActive: boolean;

@@ -26,7 +26,9 @@ export class CreateRoute {
   routeForm: FormGroup = this.fb.group({
     routename: ['', Validators.required],
     officelocation: ['', Validators.required],
-    modeoftransport: ['', Validators.required]
+    modeoftransport: ['', Validators.required],
+    id:[''],
+    selectedstops: [[]],
   });
 
   routeData: any = null;
@@ -97,6 +99,41 @@ constructor(private apiService: ApiService)
     }
   }
 
+updateData() {
+
+  if (!this.routeForm || !this.routeForm.value) {
+    alert("Form data is invalid.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("data", JSON.stringify(this.routeForm.value));
+
+  console.log("Form Value:", this.routeForm.value);
+
+  this.apiService.updateCreateRoots(formData).subscribe({
+    next: (response: any) => {
+      console.log("API Response:", response);
+
+      if (response && response.status === 200) {
+
+            this.routeForm.reset(response.data);
+           alert("Data updated Successfully.");
+        
+
+      } else {
+        alert("Unable to save data.");
+      }
+    },
+    error: (error) => {
+      console.error("API Error:", error);
+      alert("Unable to save data. Please try again.");
+    }
+  });
+}
+
+
+
  saveData() {
 
   if (!this.routeForm || !this.routeForm.value) {
@@ -114,7 +151,9 @@ constructor(private apiService: ApiService)
       console.log("API Response:", response);
 
       if (response && response.status === 200) {
-        alert("Data added Successfully.");
+
+            this.routeForm.reset(response.data);
+           alert("Data added Successfully.");
         
 
       } else {
@@ -146,6 +185,10 @@ checkBoxClick(stop: any) {
 
   console.log('Selected Stops:', this.selectedStops);
   console.log("routeForm value:", this.routeForm.value);
+
+  
+
+
 }
 
 
@@ -186,7 +229,9 @@ checkBoxClick(stop: any) {
     
     console.log('Route saved with stops:', this.stops.filter((s:any) => s.selected));
   
-  
+    this.routeForm.patchValue({ selectedstops: this.selectedStops });
+    this.updateData();
+
   }
 
   onSearch(term: string) {
