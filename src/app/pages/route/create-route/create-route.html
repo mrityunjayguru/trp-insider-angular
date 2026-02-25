@@ -114,6 +114,7 @@
                             class="hover:bg-gray-50 transition-colors bg-white" cdkDrag
                             [cdkDragDisabled]="!isSettingOrder">
                            
+                            <td> {{i}}</td>
                             <td class="px-6 py-4">
                                 <input *ngIf="!isSettingOrder" type="checkbox" [(ngModel)]="stop.selected"
                                     class="rounded text-primary accent-primary h-4 w-4 focus:ring-primary">
