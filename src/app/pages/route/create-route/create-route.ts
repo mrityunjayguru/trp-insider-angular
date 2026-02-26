@@ -33,6 +33,9 @@ export class CreateRoute  implements OnInit{
   });
 
   routeData: any = null;
+
+  myrouteData:any;
+  
   isSettingOrder = false;
 
   searchTerm = signal('');
@@ -83,21 +86,17 @@ constructor(private apiService: ApiService,private route:ActivatedRoute)
             this.apiService.getCreateRootsById(id).subscribe(
               (response : any) => {             
 
-
-                console.log(" Response data by id ");
-                console.log(response.data);
-                console.log(" Response data by id ");
-
-
                  this.routeForm.patchValue(response.data);
-                 
-                          this.setStopOrder();
+                 this.routeData =this.routeForm.value; 
+
+                 console.log("this.routeData");
+                 console.log(this.routeData);
+                 console.log("this.routeData");
+     
+                 this.isRouteCreated = true;
+                  this.setStopOrder();
 
                  
-
-                 
-               
-                
                 })
 
 
@@ -105,7 +104,7 @@ constructor(private apiService: ApiService,private route:ActivatedRoute)
       });
 
     
-     //this.isRouteCreated = true;
+     
 
 
   }
