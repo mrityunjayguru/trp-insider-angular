@@ -34,8 +34,6 @@ export class CreateRoute  implements OnInit{
 
   routeData: any = null;
 
-  myrouteData:any;
-  
   isSettingOrder = false;
 
   searchTerm = signal('');
@@ -89,12 +87,26 @@ constructor(private apiService: ApiService,private route:ActivatedRoute)
                  this.routeForm.patchValue(response.data);
                  this.routeData =this.routeForm.value; 
 
-                 console.log("this.routeData");
-                 console.log(this.routeData);
-                 console.log("this.routeData");
+                  console.log("=======this.routeForm.value=============");
+                  console.log(this.routeForm.value);
+                  console.log("=======this.routeForm.value=============");
+const selectedStops = this.routeForm.value.selectedstops;
+
+if (selectedStops && selectedStops.length !== 0) {
+
+  console.log("Selected Stops", selectedStops);
+
+  this.stops = this.stops.map((stop: any) => ({
+    ...stop,
+    selected: selectedStops.some((s: any) =>
+      String(s.id) === String(stop.id)
+    )
+  }));
+
+}
      
                  this.isRouteCreated = true;
-                  this.setStopOrder();
+                 //this.setStopOrder();
 
                  
                 })
@@ -259,6 +271,8 @@ checkBoxClick(stop: any) {
 
   manageStops() {
     this.isSettingOrder = false;
+
+    
   }
 
   saveRoute() {

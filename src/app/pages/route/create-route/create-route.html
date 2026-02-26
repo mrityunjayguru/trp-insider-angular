@@ -116,7 +116,7 @@
                            
                             <td> {{i}}</td>
                             <td class="px-6 py-4">
-                                <input *ngIf="!isSettingOrder" type="checkbox" (change)="checkBoxClick(stop)"  [(ngModel)]="stop.selected"
+                                <input *ngIf="!isSettingOrder" type="checkbox"  [(ngModel)]="stop.selected" (change)="checkBoxClick(stop)"  [(ngModel)]="stop.selected"
                                     class="rounded text-primary accent-primary h-4 w-4 focus:ring-primary">
                                 <div *ngIf="isSettingOrder" class="text-gray-400 cursor-move" cdkDragHandle>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
@@ -126,7 +126,7 @@
                                     </svg>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.stopsname }}</td>
+                            <td class="px-6 py-4 text-sm text-[#050914]"> {{ stop.stopsname }}</td>
                             <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.address }}</td>
                             <td class="px-6 py-4 text-sm text-[#050914]">{{ stop.departmentname }}</td>
                             <td *ngIf="isSettingOrder" class="px-6 py-4 text-sm text-[#050914] font-medium">{{
