@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../../../shared/components/pagination/pagination.component';
 import { ApiService } from '@/apiservice';
+import {  Router } from "@angular/router";
+
 
 interface RouteItem {
   id: number;
@@ -30,7 +32,7 @@ export class ManageRoute {
   // ✅ Make routes a signal
   routes = signal<RouteItem[]>([]);
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private router: Router) {
     this.apiService.getAllCreateRoots().subscribe((response: any) => {
       this.routes.set(response.data || []);
       console.log("Routes fetched successfully:", this.routes());
@@ -82,6 +84,9 @@ export class ManageRoute {
   }
 
   viewRoute(route: RouteItem) {
-    console.log('View route:', route);
+    this.router.navigate(['/company/viewroute'], {
+        state: { routeData: route }
+    });
+    
   }
 }
