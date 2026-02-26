@@ -74,7 +74,7 @@
                                         fill="currentColor" />
                                 </svg>
                             </button>
-                            <button (click)="editRoute(route)"
+                            <button [routerLink]="['/company/create-route']" [queryParams]="{ id: route.id }"
                                 class="text-[#006842] hover:text-[#006842]/80 transition-colors cursor-pointer"
                                 title="Edit">
                                 <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5" />

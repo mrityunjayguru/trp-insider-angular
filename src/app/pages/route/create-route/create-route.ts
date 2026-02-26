@@ -1,4 +1,4 @@
-import { Component, inject, computed, signal } from '@angular/core';
+import { Component, inject, computed, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup, FormsModule } from '@angular/forms';
 import { CreateStop } from '../create-stop/create-stop';
@@ -7,6 +7,7 @@ import { CdkDragDrop, moveItemInArray, DragDropModule } from '@angular/cdk/drag-
 
 import { NgZone } from '@angular/core';
 import { ApiService } from '../../../apiservice'
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -17,7 +18,7 @@ import { ApiService } from '../../../apiservice'
   templateUrl: './create-route.html',
   styleUrl: './create-route.css',
 })
-export class CreateRoute {
+export class CreateRoute  implements OnInit{
   private fb = inject(FormBuilder);
   allofficelocation:any;
   allvehicletype:any;
@@ -39,7 +40,7 @@ export class CreateRoute {
   itemsPerPage = 20;
   stops:any;
 
-constructor(private apiService: ApiService)
+constructor(private apiService: ApiService,private route:ActivatedRoute)
 {
 
   this.apiService.getAllStops().subscribe(
@@ -63,6 +64,56 @@ constructor(private apiService: ApiService)
 
 
 }
+  ngOnInit(): void {
+
+
+
+  this.route.queryParamMap.subscribe(params => {
+    const id = params.get('id');
+
+    if (id) {
+           
+          this.apiService.getAllStops().subscribe(
+            (response : any) => {
+              this.stops = response.data;
+                
+                })
+
+
+            this.apiService.getCreateRootsById(id).subscribe(
+              (response : any) => {             
+
+
+                console.log(" Response data by id ");
+                console.log(response.data);
+                console.log(" Response data by id ");
+
+
+                 this.routeForm.patchValue(response.data);
+                 
+
+
+                 
+
+
+                this.isRouteCreated = true;
+
+                 
+
+                 
+               
+                
+                })
+
+
+        }
+      });
+
+    
+     //this.isRouteCreated = true;
+
+
+  }
 
 
   filteredStops = computed(() => {

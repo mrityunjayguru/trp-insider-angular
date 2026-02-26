@@ -253,7 +253,7 @@ saveCreateRoots(formData: any): Observable<any> {
   }
 
   getCreateRootsById(id: any): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/createroot/getCreateRootsById?id=" + id, { "headers": this.headers });
+    return this.http.get<any>(this.apiUrl + "/createroot/getCreateRootById?id=" + id, { "headers": this.headers });
   }
 
 

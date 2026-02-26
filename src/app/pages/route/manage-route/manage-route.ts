@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../../../shared/components/pagination/pagination.component';
 import { ApiService } from '@/apiservice';
-import {  Router } from "@angular/router";
+import {  Router,RouterLink } from "@angular/router";
+
 
 
 interface RouteItem {
@@ -19,7 +20,7 @@ interface RouteItem {
 @Component({
   selector: 'app-manage-route',
   standalone: true,
-  imports: [CommonModule, FormsModule, PaginationComponent],
+  imports: [CommonModule, FormsModule, RouterLink, PaginationComponent],
   templateUrl: './manage-route.html',
   styleUrl: './manage-route.css',
 })
