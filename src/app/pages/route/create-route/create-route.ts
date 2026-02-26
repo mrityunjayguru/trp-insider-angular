@@ -91,12 +91,7 @@ constructor(private apiService: ApiService,private route:ActivatedRoute)
 
                  this.routeForm.patchValue(response.data);
                  
-
-
-                 
-
-
-                this.isRouteCreated = true;
+                          this.setStopOrder();
 
                  
 
