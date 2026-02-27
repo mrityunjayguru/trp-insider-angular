@@ -1,0 +1,11 @@
+.profile-avatar {
+    background-color: #1a1a1a;
+}
+
+.profile-trigger {
+    border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.profile-popover {
+    margin-top: 8px;
+}
