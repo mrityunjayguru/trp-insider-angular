@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 
+
 @Component({
   selector: 'app-create-route',
   standalone: true,
@@ -234,8 +235,7 @@ updateData() {
 selectedStops: any[] = [];
 
 checkBoxClick(stop: any) {
-
-  if (stop.selected) {
+if (stop.selected) {
     // Add only if not already added
     const exists = this.selectedStops.find(s => s.id === stop.id);
     if (!exists) {
@@ -247,13 +247,28 @@ checkBoxClick(stop: any) {
     this.selectedStops = this.selectedStops.filter(s => s.id !== stop.id);
   }
 
-  console.log('Selected Stops:', this.selectedStops);
-  console.log("routeForm value:", this.routeForm.value);
-
-  
-
-
 }
+
+
+manageStops() {
+    this.isSettingOrder = false;
+    
+  this.stops = this.stops.map((stop: any) => ({
+    ...stop,
+    selected: this.selectedStopsData.some((s: any) =>
+      String(s.id) === String(stop.id)
+    )
+      }));
+
+
+this.stops.forEach((element: any) => {
+  console.log(element);
+  this.checkBoxClick(element);
+});
+
+
+
+  }
 
 
   editRoute() {
@@ -276,18 +291,7 @@ checkBoxClick(stop: any) {
     }
   }
 
-  manageStops() {
-    this.isSettingOrder = false;
-    
-  this.stops = this.stops.map((stop: any) => ({
-    ...stop,
-    selected: this.selectedStopsData.some((s: any) =>
-      String(s.id) === String(stop.id)
-    )
-      }));
-
-    
-  }
+  
 
   saveRoute() {
 
@@ -316,6 +320,8 @@ checkBoxClick(stop: any) {
     this.currentPage.set(page);
   }
 
+
+  
   onDrop(event: CdkDragDrop<any[]>) {
     if (event.previousIndex === event.currentIndex) return;
     const filtered = [...this.filteredStops()];
@@ -339,4 +345,6 @@ checkBoxClick(stop: any) {
       this.stops.set(result);
     }
   }
+
+  
 }
