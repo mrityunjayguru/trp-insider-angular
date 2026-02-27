@@ -3,16 +3,44 @@
     <img src="assets/logos/logo.svg" alt="TRP Logo" class="w-32 md:w-48" />
 
     <div class="flex items-center gap-6">
+
+      <div zPopover [zContent]="profileContent"
+        class="profile-trigger flex items-center gap-2 p-1 pr-3 rounded-full bg-green-50 cursor-pointer transition-colors hover:bg-green-100"
+        zPlacement="bottom" zTrigger="click">
+        <div class="profile-avatar flex items-center justify-center w-8 h-8 rounded-full bg-black">
+          <z-icon zType="user" class="text-white w-5 h-5" />
+        </div>
+        <z-icon zType="chevron-down" class="text-emerald-500 w-4 h-4" />
+      </div>
+
+      <ng-template #profileContent>
+        <z-popover class="profile-popover bg-white rounded-md p-4 min-w-[150px]">
+          <div class="flex flex-col mb-4">
+            <span class="text-gray-300 text-md font-medium">{{ user.name }}</span>
+            <span class="text-emerald-500 text-md font-semibold">{{ user.companyId }}</span>
+          </div>
+
+          <div class="flex flex-col gap-1 mb-3">
+            <a class="text-black text-md font-medium hover:text-emerald-600 cursor-pointer">KYB</a>
+            <a class="text-black text-md font-medium hover:text-emerald-600 cursor-pointer">Support</a>
+          </div>
+
+          <button (click)="logout()"
+            class="w-fit py-2 cursor-pointer px-4 rounded-lg bg-[#006842] text-white text-sm font-semibold hover:bg-secondary hover:text-primary transition-colors">
+            Logout
+          </button>
+        </z-popover>
+      </ng-template>
+
       <a routerLink="/register" class="text-primary text-sm font-medium cursor-pointer">
         Register
       </a>
 
-      <button
-        routerLink="/login"
-        class="px-6 py-2 rounded-full bg-primary text-white text-sm font-medium hover:bg-secondary hover:text-primary cursor-pointer transition"
-      >
+      <button routerLink="/login"
+        class="px-6 py-2 rounded-full bg-primary text-white text-sm font-medium hover:bg-secondary hover:text-primary cursor-pointer transition">
         Login
       </button>
     </div>
   </div>
 </header>
+
