@@ -22,6 +22,7 @@ export class CreateRoute  implements OnInit{
   private fb = inject(FormBuilder);
   allofficelocation:any;
   allvehicletype:any;
+  selectedStopsData:any;
 
   isRouteCreated = false;
   routeForm: FormGroup = this.fb.group({
@@ -71,14 +72,16 @@ constructor(private apiService: ApiService,private route:ActivatedRoute)
 
   this.route.queryParamMap.subscribe(params => {
     const id = params.get('id');
+    
 
     if (id) {
+
+      alert("id "+id);
            
           this.apiService.getAllStops().subscribe(
             (response : any) => {
-              this.stops = response.data;
-                
-                })
+                this.stops = response.data;
+              })
 
 
             this.apiService.getCreateRootsById(id).subscribe(
@@ -90,23 +93,23 @@ constructor(private apiService: ApiService,private route:ActivatedRoute)
                   console.log("=======this.routeForm.value=============");
                   console.log(this.routeForm.value);
                   console.log("=======this.routeForm.value=============");
-const selectedStops = this.routeForm.value.selectedstops;
+              this.selectedStopsData = this.routeForm.value.selectedstops;
 
-if (selectedStops && selectedStops.length !== 0) {
+            if (this.selectedStopsData && this.selectedStopsData.length !== 0) {
 
-  console.log("Selected Stops", selectedStops);
+             
 
-  this.stops = this.stops.map((stop: any) => ({
-    ...stop,
-    selected: selectedStops.some((s: any) =>
-      String(s.id) === String(stop.id)
-    )
-  }));
+             this.stops=this.selectedStopsData;
+              this.setStopOrder();
 
-}
+            }
+            else
+            {
+               // this.setStopOrder();
+            }
      
                  this.isRouteCreated = true;
-                 this.setStopOrder();
+                 
 
                  
                 })
@@ -271,6 +274,13 @@ checkBoxClick(stop: any) {
 
   manageStops() {
     this.isSettingOrder = false;
+    
+  this.stops = this.stops.map((stop: any) => ({
+    ...stop,
+    selected: this.selectedStopsData.some((s: any) =>
+      String(s.id) === String(stop.id)
+    )
+      }));
 
     
   }
