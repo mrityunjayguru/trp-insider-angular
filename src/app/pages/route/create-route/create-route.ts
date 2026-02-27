@@ -128,13 +128,20 @@ constructor(private apiService: ApiService,private route:ActivatedRoute, private
 
 
  filteredStops = computed(() => {
-  const term = (this.searchTerm() ?? '').toLowerCase();
+  
+  return this.stops;
 
-  return (this.stops ?? []).filter((stop: any) =>
-    (stop.stopname ?? '').toLowerCase().includes(term) ||
-    (stop.address ?? '').toLowerCase().includes(term) ||
-    (stop.departmentname ?? '').toLowerCase().includes(term)
-  );
+        /*const term = (this.searchTerm() ?? '').toLowerCase();
+
+        return (this.stops ?? []).filter((stop: any) =>
+          (stop.stopname ?? '').toLowerCase().includes(term) ||
+          (stop.address ?? '').toLowerCase().includes(term) ||
+          (stop.departmentname ?? '').toLowerCase().includes(term)
+        );
+        */
+
+
+
 });
 
 
@@ -311,6 +318,9 @@ manageStops() {
 
   
   onDrop(event: CdkDragDrop<any[]>) {
+
+    /*
+    
     if (event.previousIndex === event.currentIndex) return;
     const filtered = [...this.filteredStops()];
     const startIndex = (this.currentPage() - 1) * this.itemsPerPage;
@@ -331,7 +341,9 @@ manageStops() {
         return updated ? updated : s;
       });
       this.stops= result;
-    }
+
+      
+    }*/
 
 
 
