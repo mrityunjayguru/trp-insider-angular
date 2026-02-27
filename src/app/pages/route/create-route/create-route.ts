@@ -76,7 +76,7 @@ constructor(private apiService: ApiService,private route:ActivatedRoute)
 
     if (id) {
 
-      alert("id "+id);
+      
            
           this.apiService.getAllStops().subscribe(
             (response : any) => {
