@@ -127,22 +127,7 @@ constructor(private apiService: ApiService,private route:ActivatedRoute, private
   }
 
 
- filteredStops = computed(() => {
-  
-  return this.stops;
-
-        /*const term = (this.searchTerm() ?? '').toLowerCase();
-
-        return (this.stops ?? []).filter((stop: any) =>
-          (stop.stopname ?? '').toLowerCase().includes(term) ||
-          (stop.address ?? '').toLowerCase().includes(term) ||
-          (stop.departmentname ?? '').toLowerCase().includes(term)
-        );
-        */
-
-
-
-});
+ 
 
 
 
@@ -314,6 +299,26 @@ manageStops() {
   onPageChange(page: number) {
     this.currentPage.set(page);
   }
+
+
+
+  
+filteredStops = computed(() => {
+  
+  return this.stops;
+
+        /*const term = (this.searchTerm() ?? '').toLowerCase();
+
+        return (this.stops ?? []).filter((stop: any) =>
+          (stop.stopname ?? '').toLowerCase().includes(term) ||
+          (stop.address ?? '').toLowerCase().includes(term) ||
+          (stop.departmentname ?? '').toLowerCase().includes(term)
+        );
+        */
+
+
+
+});
 
 
   

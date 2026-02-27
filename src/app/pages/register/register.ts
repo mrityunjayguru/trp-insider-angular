@@ -7,6 +7,8 @@ import { ApiService } from '../../apiservice';
 
 import { Router } from '@angular/router';
 
+import {Cidservice} from "../../cidservice"
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -24,7 +26,7 @@ export class Register implements OnInit {
   constructor(
     private fb: FormBuilder,
     private registerService: ApiService,
-    private router: Router
+    private router: Router, private cidservice:Cidservice
   ) { }
 
   ngOnInit(): void {
@@ -80,11 +82,19 @@ export class Register implements OnInit {
                   if (res.mesage && res.mesage.includes(' User allready exists')) {
                      // redirect to login if user already exists
                      alert("User allready exists");
-                      this.router.navigate(['/login']);
+                            localStorage.setItem("cid",res.data.id);
+
+                            this.cidservice.setCompanyId(res.data.id);
+                            alert(this.cidservice.getCompanyId());
+
+                        this.router.navigate(['/login']);
                     }
                     else
                     {
-                                        this.router.navigate(['company/kyb']);
+                           this.cidservice.setCompanyId(res.data.id);
+                            alert(this.cidservice.getCompanyId());
+
+                          this.router.navigate(['company/kyb']);
                     }
                 },
                 error: () => alert('Registration failed')

@@ -7,6 +7,8 @@ import { ApiService } from '../../apiservice';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
+import {Cidservice} from "../../cidservice"
+
 @Component({
   selector: 'app-know-your-business',
   imports: [NgClass, NgIf, FormsModule, ReactiveFormsModule],
@@ -15,6 +17,8 @@ import { FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 })
 
 export class KnowYourBusiness implements OnInit {
+
+  cid:any;
   docTopimage: any;
   file0: any;
 
@@ -680,7 +684,14 @@ export class KnowYourBusiness implements OnInit {
 
 
 
-  constructor(formBuilder: FormBuilder, apiService: ApiService, router: Router) {
+  constructor(formBuilder: FormBuilder, apiService: ApiService, router: Router,private cidservice:Cidservice) {
+
+
+      this.cid = this.cidservice.getCompanyId();
+      if(this.cid == undefined)
+        return;
+
+
     this.apiService = apiService;
     this.formBuilder = formBuilder;
     this.productsForm = this.formBuilder
