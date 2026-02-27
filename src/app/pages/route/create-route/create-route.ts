@@ -106,7 +106,7 @@ if (selectedStops && selectedStops.length !== 0) {
 }
      
                  this.isRouteCreated = true;
-                 //this.setStopOrder();
+                 this.setStopOrder();
 
                  
                 })
