@@ -7,7 +7,8 @@ import { CdkDragDrop, moveItemInArray, DragDropModule } from '@angular/cdk/drag-
 
 import { NgZone } from '@angular/core';
 import { ApiService } from '../../../apiservice'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router'; 
+
 
 
 
@@ -42,7 +43,7 @@ export class CreateRoute  implements OnInit{
   itemsPerPage = 20;
   stops:any;
 
-constructor(private apiService: ApiService,private route:ActivatedRoute)
+constructor(private apiService: ApiService,private route:ActivatedRoute, private router : Router)
 {
 
   this.apiService.getAllStops().subscribe(
@@ -179,6 +180,9 @@ updateData() {
 
             this.routeForm.reset(response.data);
            alert("Data updated Successfully.");
+           
+
+           this.router.navigate(['company/manage-routes']);
         
 
       } else {
