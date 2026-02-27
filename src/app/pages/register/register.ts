@@ -82,22 +82,20 @@ export class Register implements OnInit {
                   if (res.mesage && res.mesage.includes(' User allready exists')) {
                      // redirect to login if user already exists
                      alert("User allready exists");
-                            localStorage.setItem("cid",res.data.id);
-
-                            this.cidservice.setCompanyId(res.data.id);
-                            alert(this.cidservice.getCompanyId());
-
-                        this.router.navigate(['/login']);
+                            this.cidservice.clearStorage();
+                           this.router.navigate(['/login']);
                     }
                     else
                     {
-                           this.cidservice.setCompanyId(res.data.id);
-                            alert(this.cidservice.getCompanyId());
+                          this.cidservice.setCompanyId(res.data.id);
+                          //alert(this.cidservice.getCompanyId());
 
                           this.router.navigate(['company/kyb']);
                     }
                 },
-                error: () => alert('Registration failed')
+               error: (err) => {
+                   this.cidservice.clearStorage();
+                }
               });
 
     }

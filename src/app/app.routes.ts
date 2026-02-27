@@ -18,6 +18,7 @@ import { Knowyourbusinesslisting } from './pages/knowyourbusinesslisting/knowyou
 import { Editkyb } from './pages/editkyb/editkyb';
 import {Employeelist} from './pages/employeelist/employeelist';
 import {Viewroute} from './pages/route/viewroute/viewroute';
+import { CompanyGuard } from './guards/company-guard';
 
 
 export const routes: Routes = [
@@ -30,9 +31,9 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: Dashboard },
-      { path: 'kyb', component: KnowYourBusiness },
+      { path: 'kyb', component: KnowYourBusiness, canActivate: [CompanyGuard] },
       {
-           path: 'editkyb/:id', component: Editkyb
+           path: 'editkyb/:id', component: Editkyb, canActivate: [CompanyGuard]
       },
       { path: 'business-setting', component: BusinessSetting },
       { path: 'transport-gps', component: TransportGps },

@@ -6,6 +6,8 @@ import { ApiService } from './apiservice'
 import { Router } from '@angular/router';
 import { toast } from 'ngx-sonner';
 
+import {Cidservice} from './cidservice'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +29,25 @@ export class AuthService {
 
           try {
             if (response.data.mobile != undefined) {
+
+
+              
+              console.log(" Company Users ");
+              console.log(" Company Users ");
+              console.log(" Company Users ");
+              console.log(" Company Users ");
+
+              console.log(response.data);
+
+              this.cidservice.setCompanyId(response.data.id);
+              alert(this.cidservice.getCompanyId());
+
+              console.log(" Company Users ");
+              console.log(" Company Users ");
+              console.log(" Company Users ");
+              console.log(" Company Users ");
+
+
               this.isUserLoggedIn = userName == response.data.mobile && password == response.data.otp;
               localStorage.setItem('isUserLoggedIn', this.isUserLoggedIn ? "true" : "false"); 
 
@@ -275,7 +296,7 @@ export class AuthService {
     localStorage.removeItem('isUserLoggedIn');
   }
 
-  constructor(private apiService: ApiService, private router: Router) {
+  constructor(private cidservice :Cidservice ,private apiService: ApiService, private router: Router) {
 
 
 
