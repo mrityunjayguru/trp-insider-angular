@@ -101,7 +101,7 @@
                 <table class="w-full">
                     <thead>
                         <tr class="bg-primary font-medium text-white">
-                            <th class="px-6 py-3 text-left text-sm font-medium w-12"></th>
+                            <th class="px-6 py-3 text-left text-sm font-medium w-12">S.No</th>
                             <th class="px-6 py-3 text-left text-sm font-medium">Stop Name</th>
                             <th class="px-6 py-3 text-left text-sm font-medium">Address</th>
                             <th class="px-6 py-3 text-left text-sm font-medium">Department</th>
@@ -114,7 +114,7 @@
                             class="hover:bg-gray-50 transition-colors bg-white" cdkDrag
                             [cdkDragDisabled]="!isSettingOrder">
                            
-                            <td> {{i}}</td>
+                            <td> {{i+1}}</td>
                             <td class="px-6 py-4">
                                 <input *ngIf="!isSettingOrder" type="checkbox"  [(ngModel)]="stop.selected" (change)="checkBoxClick(stop)"  [(ngModel)]="stop.selected"
                                     class="rounded text-primary accent-primary h-4 w-4 focus:ring-primary">

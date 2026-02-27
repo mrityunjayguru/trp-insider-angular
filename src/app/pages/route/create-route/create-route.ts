@@ -127,20 +127,17 @@ constructor(private apiService: ApiService,private route:ActivatedRoute, private
   }
 
 
-  filteredStops = computed(() => {
-    
-    return this.stops;
-    /*
-    const term = this.searchTerm().toLowerCase();
-    
+ filteredStops = computed(() => {
+  const term = (this.searchTerm() ?? '').toLowerCase();
 
-    return this.stops.filter((stop:any) =>
-      stop.stopname.toLowerCase().includes(term) ||
-      stop.address.toLowerCase().includes(term) ||
-      stop.department.toLowerCase().includes(term)
-    );*/
-    
-  });
+  return (this.stops ?? []).filter((stop: any) =>
+    (stop.stopname ?? '').toLowerCase().includes(term) ||
+    (stop.address ?? '').toLowerCase().includes(term) ||
+    (stop.departmentname ?? '').toLowerCase().includes(term)
+  );
+});
+
+
 
   paginatedStops = computed(() => {
     const startIndex = (this.currentPage() - 1) * this.itemsPerPage;
@@ -261,10 +258,10 @@ manageStops() {
       }));
 
 
-this.stops.forEach((element: any) => {
-  console.log(element);
-  this.checkBoxClick(element);
-});
+      this.stops.forEach((element: any) => {
+        console.log(element);
+        this.checkBoxClick(element);
+      });
 
 
 
@@ -295,17 +292,8 @@ this.stops.forEach((element: any) => {
 
   saveRoute() {
 
-    console.log("this.selectedStops");
-    console.log(this.selectedStops);
-    console.log("this.selectedStops");
-
-    console.log("this.routeForm.value");
-    console.log(this.routeForm.value);
-    
-    console.log("this.routeForm.value");
-    
-    console.log('Route saved with stops:', this.stops.filter((s:any) => s.selected));
-  
+   
+   
     this.routeForm.patchValue({ selectedstops: this.selectedStops });
     this.updateData();
 
@@ -333,17 +321,20 @@ this.stops.forEach((element: any) => {
       ...stop,
       order: index + 1
     }));
-    const allStops = [...this.stops()];
+    const allStops = [...this.stops];
     const updatedMap = new Map(updatedFiltered.map(s => [s.id, s]));
     if (this.searchTerm().trim() === '') {
-      this.stops.set(updatedFiltered);
+      this.stops =updatedFiltered;
     } else {
       const result = allStops.map(s => {
         const updated = updatedMap.get(s.id);
         return updated ? updated : s;
       });
-      this.stops.set(result);
+      this.stops= result;
     }
+
+
+
   }
 
   
