@@ -688,8 +688,7 @@ export class KnowYourBusiness implements OnInit {
 
 
       this.cid = this.cidservice.getCompanyId();
-      if(this.cid == undefined)
-        return;
+     
 
 
     this.apiService = apiService;
@@ -771,31 +770,21 @@ export class KnowYourBusiness implements OnInit {
 
     this.apiService.getAllEmploymentType().subscribe(
       (response: any) => {
-        this.allemploymenttype = response.data;
-        console.log("getAllEmploymentType");
-        console.log(this.allemploymenttype);
-        console.log("getAllEmploymentType");
-
+        this.allemploymenttype = response.data;       
       })
 
 
     this.apiService.getAllCommissionType().subscribe(
       (response: any) => {
         this.allcommission = response.data;
-        console.log("getAllCommissionType");
-        console.log(this.allcommission);
-        console.log("getAllCommissionType");
-
+      
       })
 
 
     this.apiService.getAllWorkMode().subscribe(
       (response: any) => {
         this.allworkmode = response.data;
-        console.log("getAllWorkMode");
-        console.log(this.allworkmode);
-        console.log("getAllWorkMode");
-
+       
       })
 
 
@@ -807,11 +796,8 @@ export class KnowYourBusiness implements OnInit {
 
     this.apiService.getAllState().subscribe(
       (response: any) => {
-
         this.allState = response.data;
-        console.log("allState");
-        console.log(this.allState);
-        console.log("allState");
+       
       })
 
 
@@ -820,24 +806,20 @@ export class KnowYourBusiness implements OnInit {
       (response: any) => {
 
         this.departments = response.data;
-        console.log("Department");
-        console.log(this.departments);
-        console.log("Department");
-
-
+      
       })
 
     this.apiService.getAllDesignation().subscribe(
       (response: any) => {
         this.alldesignation = response.data;
-        console.log("alldesignation");
-        console.log(this.alldesignation);
-        console.log("alldesignation");
+      
 
       })
 
 
     this.productsForm = this.formBuilder.group({
+
+      companyid:this.cid,
       topimage: ['', Validators.required],
       name: [''],
       designationid: [''],
