@@ -141,6 +141,8 @@ export class ApiService {
   }
 
 
+
+
   getcompanybyid(id: any): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/company/getCompanyById?id=" + id, { "headers": this.headers });
   }
@@ -666,6 +668,11 @@ getKnowYourBusinessById(id: any): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/login/getUsersByMobile?mobile=" + mobile, { "headers": this.headersAdmin });
   }
 
+  
+
+getUserDetailsByid(id:any): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/login/getUserDetailsByid?id=" + id, { "headers": this.headers });
+  }
 
   getusersByVendoid(id: any): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/login/getUsersByVendorid?vendorid=" + id, { "headers": this.headers });

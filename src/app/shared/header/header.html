@@ -13,8 +13,8 @@
       <ng-template #profileContent>
         <z-popover class="profile-popover bg-white rounded-md p-4 min-w-[150px]">
           <div class="flex flex-col mb-4">
-            <span class="text-gray-300 text-md font-medium">{{ user.name }}</span>
-            <span class="text-emerald-500 text-md font-semibold">{{ user.companyId }}</span>
+            <span class="text-gray-300 text-md font-medium">{{ user.mobile }}</span>
+            <span class="text-emerald-500 text-md font-semibold">{{ user.id }}</span>
           </div>
           <div class="flex flex-col gap-1 mb-3">
             <a class="text-black text-md font-medium hover:text-emerald-600 cursor-pointer">KYB</a>
@@ -27,6 +27,8 @@
           </button>
         </z-popover>
       </ng-template>
+
+      <div >
       <a routerLink="/register" class="text-primary text-sm font-medium cursor-pointer">
         Register
       </a>
@@ -34,6 +36,8 @@
         class="px-6 py-2 rounded-full bg-primary text-white text-sm font-medium hover:bg-secondary hover:text-primary cursor-pointer transition">
         Login
       </button>
+
+      </div>
     </div>
   </div>
 </header>

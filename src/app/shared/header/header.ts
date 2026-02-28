@@ -2,28 +2,52 @@
 
 
 import { Component, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {Router, RouterLink } from '@angular/router';
 
 import { ZardIconComponent } from '../components/icon/icon.component';
 import { ZardPopoverComponent, ZardPopoverDirective } from '../components/popover/popover.component';
+import {Cidservice} from "../../cidservice"
+import { ApiService } from '../../apiservice';
+
 
 @Component({
+
   selector: 'app-header',
   imports: [RouterLink, ZardPopoverDirective, ZardPopoverComponent, ZardIconComponent],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
-  readonly isLoggedIn = signal(true);
+  cid:any;
+  user:any;
+  
 
-  readonly user = {
-    name: 'Summer Sullivan',
-    companyId: 'COMPANY-123',
-    kybStatus: 'Verified',
-  };
+  constructor(private cidservice : Cidservice,private router :Router, private apiService :ApiService)
+  {
+
+    
+    this.cid = this.cidservice.getCompanyId();
+    
+
+    this.apiService.getUserDetailsByid(this.cid).subscribe(
+      (response: any) => {
+        this.user = response.data;
+        console.log("users");
+        console.log(this.user);
+        console.log("users");
+
+      })
+
+
+  }
+
 
   logout() {
-    this.isLoggedIn.set(false);
+
+    this.cidservice.clearStorage();
+    this.router.navigate(['/login']);
+    
+    
   }
 }
 
