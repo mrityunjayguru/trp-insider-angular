@@ -992,7 +992,7 @@ export class KnowYourBusiness implements OnInit {
       return;
     }
 
-    alert("ON check");
+  
     const payload = {
       ...this.productsForm.value,   // existing form fields
       departmentobj: {
@@ -1034,15 +1034,9 @@ export class KnowYourBusiness implements OnInit {
 
         alert(response.mesage);
         if (response.mesage == "Data Stored successfully." || response.status == 200) {
-          alert(" Indise if for routing");
          
-
-          console.log("response.data");
-          console.log(response.data);
-          console.log("response.data");
-
-          this.router.navigate(['/company/editkyb', response.data.id]);
-         //this.router.navigate(['company/editkyb']);
+          this.router.navigate(['/company/editkyb', response.data.id,response.data.companyid]);
+         
         }
         else {
           alert(response);

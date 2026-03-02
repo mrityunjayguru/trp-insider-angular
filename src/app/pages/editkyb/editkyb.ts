@@ -980,6 +980,9 @@ export class Editkyb implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    const companyid = this.route.snapshot.paramMap.get('companyid');
+
+    //alert(" Param ID "+id + " companyid "+companyid);
 
     this.apiService.getKnowYourBusinessById(id).subscribe(
       (response: any) => {
@@ -1053,7 +1056,6 @@ onSubmitEdit()
       return;
     }
 
-    alert("ON check");
     const payload = {
       ...this.productsForm.value,   // existing form fields
       departmentobj: {

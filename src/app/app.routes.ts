@@ -33,7 +33,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: Dashboard },
       { path: 'kyb', component: KnowYourBusiness, canActivate: [CompanyGuard] },
       {
-           path: 'editkyb/:id', component: Editkyb, canActivate: [CompanyGuard]
+           path: 'editkyb/:id/:companyid', component: Editkyb, canActivate: [CompanyGuard]
       },
       { path: 'business-setting', component: BusinessSetting },
       { path: 'transport-gps', component: TransportGps },
