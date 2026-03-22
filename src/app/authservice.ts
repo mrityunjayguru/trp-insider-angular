@@ -30,32 +30,11 @@ export class AuthService {
           try {
             if (response.data.mobile != undefined) {
 
-
-              
-              console.log(" Company Users ");
-              console.log(" Company Users ");
-              console.log(" Company Users ");
-              console.log(" Company Users ");
-
-              console.log(response.data);
-
               this.cidservice.setCompanyId(response.data.id);
-              alert(this.cidservice.getCompanyId());
-
-              console.log(" Company Users ");
-              console.log(" Company Users ");
-              console.log(" Company Users ");
-              console.log(" Company Users ");
-
-
+              
               this.isUserLoggedIn = userName == response.data.mobile && password == response.data.otp;
               localStorage.setItem('isUserLoggedIn', this.isUserLoggedIn ? "true" : "false"); 
-
               localStorage.setItem('userType', "Admin"); 
-
-
-
-
            
               var user = "";
 
@@ -95,6 +74,7 @@ export class AuthService {
               localStorage.setItem("otheruserData", JSON.stringify(response.data));
 
               this.router.navigate(['company/kyb']);
+              //window.location.reload();
             //  this.router.navigate([user], { queryParams: { user: response.data } });
 
             } else {
